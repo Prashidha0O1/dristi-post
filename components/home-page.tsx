@@ -5,6 +5,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { NewsCard } from "@/components/news-card";
 import { SectionHeader } from "@/components/section-header";
+import { TimeAgo } from "@/components/time-ago";
 import { useLocale } from "@/lib/locale-context";
 import {
   getFeaturedArticles,
@@ -107,11 +108,7 @@ function LatestWithSidebar() {
                     {locale === "ne" ? a.title.ne : a.title.en}
                   </Text>
                 </a>
-                <Text fontSize="12px" color="#aaa" mt="3px">
-                  {locale === "ne" ? (
-                    <span>{Math.floor(Math.random() * 10 + 1)} घण्टा अगाडि</span>
-                  ) : null}
-                </Text>
+                <TimeAgo date={a.publishedAt} fontSize="12px" color="#aaa" mt="3px" />
               </Box>
             </Flex>
           ))}
