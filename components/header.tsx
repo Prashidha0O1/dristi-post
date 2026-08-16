@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  Box,
-  Flex,
-  Text,
-  Input,
-  Container,
-  HStack,
-} from "@chakra-ui/react";
+import { Box, Flex, Text, Input } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLocale } from "@/lib/locale-context";
@@ -17,49 +10,48 @@ import { getBreakingArticles } from "@/lib/mock-data";
 function BreakingTicker() {
   const { t, localized } = useLocale();
   const articles = getBreakingArticles();
-  const tickerText = articles.map((a) => localized(a.title)).join("  •  ");
+  const tickerText = articles.map((a) => localized(a.title)).join("    ●    ");
 
   return (
-    <Box bg="#c0392b" color="white" py="6px" overflow="hidden">
-      <Container maxW="100%" px="30px">
-        <Flex align="center" gap="10px">
-          <Box
-            bg="white"
-            color="#c0392b"
-            fontWeight="800"
+    <Box bg="#c0392b" color="white" h="32px" overflow="hidden" display="flex" alignItems="center">
+      <Box maxW="var(--max-content)" mx="auto" w="full" px="var(--side-pad)" display="flex" alignItems="center" gap="10px">
+        <Text
+          fontWeight="800"
+          fontSize="11px"
+          textTransform="uppercase"
+          letterSpacing="0.8px"
+          bg="rgba(255,255,255,0.2)"
+          px="10px"
+          py="2px"
+          borderRadius="2px"
+          flexShrink={0}
+          lineHeight="1.5"
+        >
+          {t("breaking")}
+        </Text>
+        <Box overflow="hidden" whiteSpace="nowrap" flex="1">
+          <Text
             fontSize="13px"
-            px="14px"
-            py="4px"
-            borderRadius="14px"
-            flexShrink={0}
-            lineHeight="1.4"
+            fontWeight="500"
+            css={{
+              display: "inline-block",
+              animation: "ticker 35s linear infinite",
+              "@keyframes ticker": {
+                "0%": { transform: "translateX(100%)" },
+                "100%": { transform: "translateX(-100%)" },
+              },
+            }}
           >
-            {t("breaking")}
-          </Box>
-          <Box overflow="hidden" whiteSpace="nowrap" flex="1">
-            <Text
-              fontSize="15px"
-              fontWeight="600"
-              css={{
-                display: "inline-block",
-                animation: "marquee 30s linear infinite",
-                "@keyframes marquee": {
-                  "0%": { transform: "translateX(100%)" },
-                  "100%": { transform: "translateX(-100%)" },
-                },
-              }}
-            >
-              {tickerText}
-            </Text>
-          </Box>
-        </Flex>
-      </Container>
+            {tickerText}
+          </Text>
+        </Box>
+      </Box>
     </Box>
   );
 }
 
-function DateBar() {
-  const { locale } = useLocale();
+function Masthead() {
+  const { locale, setLocale } = useLocale();
   const [dateStr, setDateStr] = useState("");
 
   useEffect(() => {
@@ -75,12 +67,72 @@ function DateBar() {
   }, [locale]);
 
   return (
-    <Box bg="#f8f9fa" borderBottom="1px solid #e8e8e8" py="4px">
-      <Container maxW="100%" px="30px">
-        <Text fontSize="13px" color="#666" textAlign="center">
-          {dateStr}
-        </Text>
-      </Container>
+    <Box bg="white" borderBottom="1px solid #eee">
+      <Box maxW="var(--max-content)" mx="auto" px="var(--side-pad)" py="14px">
+        <Flex justify="space-between" align="center">
+          <Text fontSize="12px" color="#888" display={{ base: "none", md: "block" }}>
+            {dateStr}
+          </Text>
+
+          <Link href="/">
+            <Box textAlign="center">
+              <Text
+                fontWeight="900"
+                fontSize={{ base: "28px", md: "38px" }}
+                lineHeight="1"
+                letterSpacing="-0.5px"
+                fontFamily="var(--font-mukta), sans-serif"
+              >
+                <Text as="span" color="#c0392b">
+                  {locale === "ne" ? "दृष्टि" : "Dristi"}
+                </Text>
+                <Text as="span" color="#1a1a2e" ml="6px">
+                  {locale === "ne" ? "पोस्ट" : "Post"}
+                </Text>
+              </Text>
+              <Text fontSize="10px" color="#999" letterSpacing="2px" textTransform="uppercase" mt="-2px" fontWeight="400">
+                {locale === "ne" ? "नेपालको विश्वसनीय समाचार" : "Nepal's Trusted News"}
+              </Text>
+            </Box>
+          </Link>
+
+          <Flex align="center" gap="8px" display={{ base: "none", md: "flex" }}>
+            <Box
+              as="button"
+              onClick={() => setLocale("ne")}
+              fontSize="13px"
+              fontWeight={locale === "ne" ? "700" : "400"}
+              color={locale === "ne" ? "#c0392b" : "#888"}
+              bg="transparent"
+              border="none"
+              cursor="pointer"
+              px="4px"
+              borderBottom={locale === "ne" ? "2px solid #c0392b" : "2px solid transparent"}
+              pb="2px"
+              transition="all 0.15s"
+            >
+              नेपाली
+            </Box>
+            <Text color="#ddd" fontSize="12px">|</Text>
+            <Box
+              as="button"
+              onClick={() => setLocale("en")}
+              fontSize="13px"
+              fontWeight={locale === "en" ? "700" : "400"}
+              color={locale === "en" ? "#c0392b" : "#888"}
+              bg="transparent"
+              border="none"
+              cursor="pointer"
+              px="4px"
+              borderBottom={locale === "en" ? "2px solid #c0392b" : "2px solid transparent"}
+              pb="2px"
+              transition="all 0.15s"
+            >
+              English
+            </Box>
+          </Flex>
+        </Flex>
+      </Box>
     </Box>
   );
 }
@@ -93,144 +145,102 @@ function NavBar() {
   return (
     <>
       <Box
-        bg="#2260bf"
+        bg="#1a1a2e"
         position="sticky"
         top="0"
         zIndex="1000"
-        shadow="0 2px 8px rgba(0,0,0,0.12)"
       >
-        <Container maxW="100%" px="30px">
-          <Flex align="center" justify="space-between" h="52px">
-            <Flex align="center" gap="0" h="full">
-              <Link href="/">
-                <Flex align="center" h="52px" pr="20px" mr="4px">
-                  <Text
-                    fontWeight="900"
-                    fontSize="24px"
-                    color="white"
-                    fontFamily="var(--font-mukta), sans-serif"
-                    letterSpacing="-0.3px"
-                    lineHeight="1"
+        <Box maxW="var(--max-content)" mx="auto" px="var(--side-pad)">
+          <Flex align="center" justify="space-between" h="44px">
+            <Flex align="center" gap="0" h="full" display={{ base: "none", lg: "flex" }}>
+              {navItems.map((item) => (
+                <Link key={item.href} href={item.href}>
+                  <Flex
+                    align="center"
+                    h="44px"
+                    px="14px"
+                    color="rgba(255,255,255,0.8)"
+                    fontSize="15px"
+                    fontWeight="500"
+                    transition="all 0.15s"
+                    _hover={{ color: "white", bg: "rgba(255,255,255,0.08)" }}
+                    cursor="pointer"
                   >
-                    {locale === "ne" ? "दृष्टि" : "Dristi"}{" "}
-                    <Text as="span" color="rgba(255,255,255,0.85)">
-                      {locale === "ne" ? "पोस्ट" : "Post"}
-                    </Text>
-                  </Text>
-                </Flex>
-              </Link>
+                    {localized(item.label)}
+                  </Flex>
+                </Link>
+              ))}
+            </Flex>
 
-              <HStack
-                gap="0"
-                display={{ base: "none", lg: "flex" }}
-                h="full"
+            <Flex align="center" gap="2" display={{ base: "flex", lg: "none" }}>
+              <Box
+                as="button"
+                onClick={() => setMobileOpen(!mobileOpen)}
+                color="white"
+                p="6px"
+                cursor="pointer"
+                bg="transparent"
+                border="none"
               >
-                {navItems.map((item) => (
-                  <Link key={item.href} href={item.href}>
-                    <Flex
-                      align="center"
-                      h="52px"
-                      px="14px"
-                      color="white"
-                      fontSize="16px"
-                      fontWeight="600"
-                      transition="background 0.15s"
-                      _hover={{ bg: "rgba(255,255,255,0.15)" }}
-                      cursor="pointer"
-                    >
-                      {localized(item.label)}
-                    </Flex>
-                  </Link>
-                ))}
-              </HStack>
+                {mobileOpen ? (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M18 6 6 18M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M3 12h18M3 6h18M3 18h18" />
+                  </svg>
+                )}
+              </Box>
+              <Link href="/">
+                <Text color="white" fontWeight="700" fontSize="15px">
+                  {locale === "ne" ? "दृष्टि पोस्ट" : "Dristi Post"}
+                </Text>
+              </Link>
             </Flex>
 
             <Flex align="center" gap="6px">
-              <Box
-                as="button"
-                onClick={() => setLocale(locale === "ne" ? "en" : "ne")}
-                display={{ base: "none", md: "flex" }}
-                alignItems="center"
-                gap="6px"
-                bg="rgba(255,255,255,0.15)"
-                border="1px solid rgba(255,255,255,0.3)"
-                px="12px"
-                py="5px"
-                borderRadius="4px"
-                cursor="pointer"
-                transition="all 0.15s"
-                _hover={{ bg: "rgba(255,255,255,0.25)" }}
-                color="white"
-                fontSize="13px"
-                fontWeight="600"
-              >
-                {locale === "ne" ? "English" : "नेपाली"}
-              </Box>
-
               {searchOpen && (
                 <Input
                   placeholder={t("search")}
                   size="sm"
-                  maxW="200px"
-                  bg="rgba(255,255,255,0.15)"
-                  border="1px solid rgba(255,255,255,0.3)"
-                  borderRadius="20px"
+                  maxW="180px"
+                  bg="rgba(255,255,255,0.1)"
+                  border="1px solid rgba(255,255,255,0.2)"
+                  borderRadius="2px"
                   color="white"
-                  _placeholder={{ color: "rgba(255,255,255,0.7)" }}
+                  _placeholder={{ color: "rgba(255,255,255,0.5)" }}
                   autoFocus
-                  px="14px"
-                  h="34px"
+                  px="12px"
+                  h="32px"
                   fontSize="13px"
                 />
               )}
               <Box
                 as="button"
                 onClick={() => setSearchOpen(!searchOpen)}
-                color="white"
-                p="8px"
+                color="rgba(255,255,255,0.7)"
+                p="6px"
                 cursor="pointer"
                 bg="transparent"
                 border="none"
-                borderRadius="50%"
-                transition="background 0.15s"
-                _hover={{ bg: "rgba(255,255,255,0.15)" }}
+                transition="color 0.15s"
+                _hover={{ color: "white" }}
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="11" cy="11" r="8" />
                   <path d="m21 21-4.35-4.35" />
                 </svg>
               </Box>
-
-              <Box
-                as="button"
-                onClick={() => setMobileOpen(!mobileOpen)}
-                color="white"
-                p="8px"
-                cursor="pointer"
-                bg="transparent"
-                border="none"
-                display={{ base: "flex", lg: "none" }}
-                alignItems="center"
-              >
-                {mobileOpen ? (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M18 6 6 18M6 6l12 12" />
-                  </svg>
-                ) : (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M3 12h18M3 6h18M3 18h18" />
-                  </svg>
-                )}
-              </Box>
             </Flex>
           </Flex>
-        </Container>
+        </Box>
       </Box>
 
       {mobileOpen && (
         <Box
           position="fixed"
-          top="52px"
+          top="44px"
           left="0"
           right="0"
           bottom="0"
@@ -238,20 +248,19 @@ function NavBar() {
           zIndex="999"
           overflowY="auto"
           display={{ lg: "none" }}
-          shadow="0 4px 20px rgba(0,0,0,0.1)"
         >
-          <Flex direction="column" py="2">
+          <Flex direction="column">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href}>
                 <Box
                   px="20px"
-                  py="14px"
-                  fontSize="17px"
+                  py="13px"
+                  fontSize="16px"
                   fontWeight="500"
                   color="#333"
                   borderBottom="1px solid #f0f0f0"
-                  _hover={{ bg: "#f8f9fa", color: "#2260bf" }}
-                  transition="all 0.15s"
+                  _hover={{ color: "#c0392b" }}
+                  transition="color 0.15s"
                   onClick={() => setMobileOpen(false)}
                   cursor="pointer"
                 >
@@ -259,18 +268,18 @@ function NavBar() {
                 </Box>
               </Link>
             ))}
-            <Box
-              px="20px"
-              py="14px"
-              fontSize="17px"
-              fontWeight="500"
-              color="#2260bf"
-              borderBottom="1px solid #f0f0f0"
-              cursor="pointer"
-              onClick={() => { setLocale(locale === "ne" ? "en" : "ne"); setMobileOpen(false); }}
-            >
-              {locale === "ne" ? "English" : "नेपाली"}
-            </Box>
+            <Flex px="20px" py="13px" gap="12px" borderBottom="1px solid #f0f0f0">
+              <Box as="button" onClick={() => { setLocale("ne"); setMobileOpen(false); }}
+                fontSize="15px" fontWeight={locale === "ne" ? "700" : "400"} color={locale === "ne" ? "#c0392b" : "#888"}
+                bg="transparent" border="none" cursor="pointer">
+                नेपाली
+              </Box>
+              <Box as="button" onClick={() => { setLocale("en"); setMobileOpen(false); }}
+                fontSize="15px" fontWeight={locale === "en" ? "700" : "400"} color={locale === "en" ? "#c0392b" : "#888"}
+                bg="transparent" border="none" cursor="pointer">
+                English
+              </Box>
+            </Flex>
           </Flex>
         </Box>
       )}
@@ -282,7 +291,7 @@ export function Header() {
   return (
     <Box as="header">
       <BreakingTicker />
-      <DateBar />
+      <Masthead />
       <NavBar />
     </Box>
   );

@@ -3,6 +3,16 @@
 :root {
   --font-mukta: "Mukta", sans-serif;
   --font-poppins: "Poppins", sans-serif;
+  --color-brand: #c0392b;
+  --color-nav: #1a1a2e;
+  --color-headline: #1a1a1a;
+  --color-body: #333;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-surface: #fff;
+  --color-page: #f7f8fa;
+  --max-content: 1320px;
+  --side-pad: 30px;
 }
 
 @theme inline {
@@ -19,13 +29,25 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-mukta), sans-serif;
+  color: var(--color-body);
+  background: var(--color-page);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 @layer base {
   .font-nepali {
     font-family: var(--font-mukta), sans-serif;
   }
-
   .font-english {
     font-family: var(--font-poppins), sans-serif;
   }

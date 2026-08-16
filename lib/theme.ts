@@ -4,23 +4,11 @@ export const system = createSystem(defaultConfig, {
   theme: {
     tokens: {
       fonts: {
-        heading: { value: "'Mukta', 'Poppins', sans-serif" },
-        body: { value: "'Mukta', 'Poppins', sans-serif" },
+        heading: { value: "var(--font-mukta), 'Mukta', sans-serif" },
+        body: { value: "var(--font-mukta), 'Mukta', sans-serif" },
       },
       colors: {
         brand: {
-          50: { value: "#eff6ff" },
-          100: { value: "#dbeafe" },
-          200: { value: "#bfdbfe" },
-          300: { value: "#93c5fd" },
-          400: { value: "#60a5fa" },
-          500: { value: "#3b82f6" },
-          600: { value: "#2563eb" },
-          700: { value: "#1d4ed8" },
-          800: { value: "#1e40af" },
-          900: { value: "#1e3a8a" },
-        },
-        accent: {
           50: { value: "#fef2f2" },
           100: { value: "#fee2e2" },
           200: { value: "#fecaca" },
@@ -32,43 +20,31 @@ export const system = createSystem(defaultConfig, {
           800: { value: "#991b1b" },
           900: { value: "#7f1d1d" },
         },
+        navy: {
+          50: { value: "#f0f4f8" },
+          100: { value: "#d9e2ec" },
+          200: { value: "#bcccdc" },
+          300: { value: "#9fb3c8" },
+          400: { value: "#829ab1" },
+          500: { value: "#627d98" },
+          600: { value: "#486581" },
+          700: { value: "#334e68" },
+          800: { value: "#243b53" },
+          900: { value: "#102a43" },
+        },
       },
     },
     semanticTokens: {
       colors: {
-        "bg.surface": {
-          value: { base: "#ffffff", _dark: "#1a1a2e" },
-        },
-        "bg.muted": {
-          value: { base: "#f8fafc", _dark: "#16213e" },
-        },
-        "bg.subtle": {
-          value: { base: "#f1f5f9", _dark: "#0f3460" },
-        },
-        "text.primary": {
-          value: { base: "#1e293b", _dark: "#e2e8f0" },
-        },
-        "text.secondary": {
-          value: { base: "#64748b", _dark: "#94a3b8" },
-        },
-        "text.muted": {
-          value: { base: "#94a3b8", _dark: "#64748b" },
-        },
-        "border.default": {
-          value: { base: "#e2e8f0", _dark: "#334155" },
-        },
-        "breaking.bg": {
-          value: { base: "#dc2626", _dark: "#991b1b" },
-        },
-        "breaking.text": {
-          value: { base: "#ffffff", _dark: "#fecaca" },
-        },
-        "category.bg": {
-          value: { base: "#eff6ff", _dark: "#1e3a5f" },
-        },
-        "category.text": {
-          value: { base: "#2563eb", _dark: "#93c5fd" },
-        },
+        "bg.surface": { value: { base: "#ffffff", _dark: "#102a43" } },
+        "bg.page": { value: { base: "#f7f8fa", _dark: "#0d2137" } },
+        "bg.muted": { value: { base: "#f0f2f5", _dark: "#1a3a5c" } },
+        "text.headline": { value: { base: "#1a1a1a", _dark: "#f0f4f8" } },
+        "text.body": { value: { base: "#333333", _dark: "#d9e2ec" } },
+        "text.secondary": { value: { base: "#6b7280", _dark: "#9fb3c8" } },
+        "text.muted": { value: { base: "#9ca3af", _dark: "#627d98" } },
+        "border.subtle": { value: { base: "#e5e7eb", _dark: "#243b53" } },
+        "border.strong": { value: { base: "#d1d5db", _dark: "#334e68" } },
       },
     },
   },
