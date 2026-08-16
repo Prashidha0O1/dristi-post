@@ -19,7 +19,7 @@ export default function TrendingPage() {
     <PageShell>
       <Flex gap="6px" align="center" mb="20px" fontSize="13px" color="#999">
         <Link href="/">
-          <Text _hover={{ color: "#c0392b" }} transition="color 0.15s">
+          <Text _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
             {locale === "ne" ? "गृहपृष्ठ" : "Home"}
           </Text>
         </Link>
@@ -27,14 +27,14 @@ export default function TrendingPage() {
         <Text color="#1a1a1a" fontWeight="600">{t("trending")}</Text>
       </Flex>
 
-      <SectionHeader title={t("trending")} accent="#c0392b" />
+      <SectionHeader title={t("trending")} accent="var(--color-brand)" />
 
       <SimpleGrid columns={{ base: 1, lg: 3 }} gap="32px">
         <Box gridColumn={{ lg: "span 2" }}>
           {trending.map((a, i) => {
             const title = localized(a.title);
             const categoryName = localized(a.category.name);
-            const catColor = a.category.color || "#c0392b";
+            const catColor = a.category.color || "var(--color-brand)";
 
             return (
               <Link key={a.id} href={`/article/${a.slug}`}>
@@ -42,7 +42,7 @@ export default function TrendingPage() {
                   gap="20px"
                   py="20px"
                   borderBottom="1px solid #eee"
-                  _hover={{ "& .t-title": { color: "#c0392b" }, "& .t-img img": { transform: "scale(1.03)" } }}
+                  _hover={{ "& .t-title": { color: "var(--color-brand)" }, "& .t-img img": { transform: "scale(1.03)" } }}
                   cursor="pointer"
                   align="flex-start"
                 >

@@ -10,7 +10,7 @@ interface SectionHeaderProps {
   accent?: string;
 }
 
-export function SectionHeader({ title, href, accent = "#c0392b" }: SectionHeaderProps) {
+export function SectionHeader({ title, href, accent = "var(--color-brand)" }: SectionHeaderProps) {
   const { t } = useLocale();
 
   return (

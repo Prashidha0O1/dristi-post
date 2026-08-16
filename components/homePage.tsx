@@ -12,6 +12,7 @@ import {
   getLatestArticles,
   getArticlesByCategory,
 } from "@/lib/mockData";
+import { IframeEmbed } from "@/components/iframeEmbed";
 
 function AdBanner() {
   return (
@@ -72,46 +73,55 @@ function LatestWithSidebar() {
       </Box>
 
       <Box>
-        <SectionHeader title={t("trending")} accent="#c0392b" />
-        <Box>
-          {trending.map((a, i) => (
-            <Flex
-              key={a.id}
-              gap="12px"
-              py="14px"
-              borderBottom={i < trending.length - 1 ? "1px solid #eee" : "none"}
-              _hover={{ "& .rank": { color: "#c0392b" }, "& .t-title": { color: "#c0392b" } }}
-              cursor="pointer"
-              align="flex-start"
-            >
-              <Text
-                className="rank"
-                fontSize="28px"
-                fontWeight="900"
-                color="#e0e0e0"
-                lineHeight="1"
-                w="40px"
-                textAlign="center"
-                flexShrink={0}
-                whiteSpace="nowrap"
-                fontFamily="var(--font-poppins), sans-serif"
-                transition="color 0.15s"
+        <Box display="flex" justifyContent="center" mb="24px">
+          <IframeEmbed
+            src="https://nepalicalendar.rat32.com/addons/nepali-calendar-aja-ko-din.php"
+            width="200px"
+            height="217px"
+          />
+        </Box>
+        <Box mt="24px">
+          <SectionHeader title={t("trending")} accent="var(--color-brand)" />
+          <Box>
+            {trending.map((a, i) => (
+              <Flex
+                key={a.id}
+                gap="12px"
+                py="14px"
+                borderBottom={i < trending.length - 1 ? "1px solid #eee" : "none"}
+                _hover={{ "& .rank": { color: "var(--color-brand)" }, "& .t-title": { color: "var(--color-brand)" } }}
+                cursor="pointer"
+                align="flex-start"
               >
-                {String(i + 1).padStart(2, "0")}
-              </Text>
-              <Box flex="1" minW="0">
-                <Text fontSize="11px" fontWeight="700" color={a.category.color || "#888"} textTransform="uppercase" letterSpacing="0.5px" mb="2px">
-                  {locale === "ne" ? a.category.name.ne : a.category.name.en}
+                <Text
+                  className="rank"
+                  fontSize="28px"
+                  fontWeight="900"
+                  color="#e0e0e0"
+                  lineHeight="1"
+                  w="40px"
+                  textAlign="center"
+                  flexShrink={0}
+                  whiteSpace="nowrap"
+                  fontFamily="var(--font-poppins), sans-serif"
+                  transition="color 0.15s"
+                >
+                  {String(i + 1).padStart(2, "0")}
                 </Text>
-                <a href={`/article/${a.slug}`}>
-                  <Text className="t-title" fontWeight="700" fontSize="15px" lineHeight="1.45" noOfLines={2} color="#1a1a1a" transition="color 0.15s">
-                    {locale === "ne" ? a.title.ne : a.title.en}
+                <Box flex="1" minW="0">
+                  <Text fontSize="11px" fontWeight="700" color={a.category.color || "#888"} textTransform="uppercase" letterSpacing="0.5px" mb="2px">
+                    {locale === "ne" ? a.category.name.ne : a.category.name.en}
                   </Text>
-                </a>
-                <TimeAgo date={a.publishedAt} fontSize="12px" color="#aaa" mt="3px" />
-              </Box>
-            </Flex>
-          ))}
+                  <a href={`/article/${a.slug}`}>
+                    <Text className="t-title" fontWeight="700" fontSize="15px" lineHeight="1.45" noOfLines={2} color="#1a1a1a" transition="color 0.15s">
+                      {locale === "ne" ? a.title.ne : a.title.en}
+                    </Text>
+                  </a>
+                  <TimeAgo date={a.publishedAt} fontSize="12px" color="#aaa" mt="3px" />
+                </Box>
+              </Flex>
+            ))}
+          </Box>
         </Box>
       </Box>
     </SimpleGrid>
@@ -162,6 +172,7 @@ function MoreNews() {
 }
 
 export default function HomePage() {
+  const { locale } = useLocale();
   return (
     <PageShell>
         <AdBanner />
@@ -170,12 +181,19 @@ export default function HomePage() {
 
         <SimpleGrid columns={{ base: 1, lg: 3 }} gap="28px" mb="36px">
           <Box gridColumn={{ lg: "span 2" }}>
-            <CategorySection categorySlug="politics" color="#c0392b" />
+            <CategorySection categorySlug="politics" color="var(--color-brand)" />
             <CategorySection categorySlug="business" color="#1a56db" />
             <CategorySection categorySlug="entertainment" color="#7c3aed" />
           </Box>
           <Box>
             <MoreNews />
+            <Box mb="32px">
+              <SectionHeader title={locale === "ne" ? "विदेशी विनिमय दर" : "Foreign Exchange Rates"} accent="var(--color-brand)" />
+              <IframeEmbed
+                src="https://nepalicalendar.rat32.com/embed-forex.php"
+                height="900px"
+              />
+            </Box>
             <AdBanner />
           </Box>
         </SimpleGrid>

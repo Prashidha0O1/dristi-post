@@ -32,7 +32,7 @@ export function NewsCard({
   const excerpt = localized(article.excerpt);
   const categoryName = localized(article.category.name);
   const authorName = localized(article.author.name);
-  const catColor = article.category.color || "#c0392b";
+  const catColor = article.category.color || "var(--color-brand)";
 
   // List: text-first, small thumbnail right
   if (variant === "list") {
@@ -42,7 +42,7 @@ export function NewsCard({
           gap="12px"
           py="12px"
           borderBottom="1px solid #eee"
-          _hover={{ "& .title": { color: "#c0392b" } }}
+          _hover={{ "& .title": { color: "var(--color-brand)" } }}
           cursor="pointer"
         >
           <Box flex="1" minW="0">
@@ -68,7 +68,7 @@ export function NewsCard({
   if (variant === "compact") {
     return (
       <Link href={`/article/${article.slug}`}>
-        <Box _hover={{ "& .title": { color: "#c0392b" }, "& .img img": { transform: "scale(1.03)" } }} cursor="pointer">
+        <Box _hover={{ "& .title": { color: "var(--color-brand)" }, "& .img img": { transform: "scale(1.03)" } }} cursor="pointer">
           <Box className="img" position="relative" w="full" h={imageHeight || "140px"} overflow="hidden" borderRadius="3px" mb="10px">
             <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 50vw, 25vw" />
           </Box>
@@ -111,7 +111,7 @@ export function NewsCard({
             pt={{ base: "80px", md: "120px" }}
           >
             {article.isBreaking && (
-              <Text display="inline-block" bg="#c0392b" color="white" fontSize="10px" fontWeight="700" px="8px" py="2px" borderRadius="1px" textTransform="uppercase" letterSpacing="1px" mb="10px">
+              <Text display="inline-block" bg="var(--color-brand)" color="white" fontSize="10px" fontWeight="700" px="8px" py="2px" borderRadius="1px" textTransform="uppercase" letterSpacing="1px" mb="10px">
                 Breaking
               </Text>
             )}
@@ -143,14 +143,14 @@ export function NewsCard({
     return (
       <Link href={`/article/${article.slug}`}>
         <Box
-          _hover={{ "& .title": { color: "#c0392b" }, "& .img img": { transform: "scale(1.03)" } }}
+          _hover={{ "& .title": { color: "var(--color-brand)" }, "& .img img": { transform: "scale(1.03)" } }}
           cursor="pointer"
           h="full"
         >
           <Box className="img" position="relative" w="full" h={imageHeight || "200px"} overflow="hidden" borderRadius="3px" mb="12px">
             <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 100vw, 33vw" />
             {article.isBreaking && (
-              <Text position="absolute" top="8px" left="8px" bg="#c0392b" color="white" fontSize="10px" fontWeight="700" px="7px" py="2px" borderRadius="1px" textTransform="uppercase" letterSpacing="0.5px">
+              <Text position="absolute" top="8px" left="8px" bg="var(--color-brand)" color="white" fontSize="10px" fontWeight="700" px="7px" py="2px" borderRadius="1px" textTransform="uppercase" letterSpacing="0.5px">
                 Breaking
               </Text>
             )}
@@ -185,7 +185,7 @@ export function NewsCard({
         borderRadius="4px"
         overflow="hidden"
         border="1px solid #eee"
-        _hover={{ "& .title": { color: "#c0392b" }, "& .img img": { transform: "scale(1.03)" } }}
+        _hover={{ "& .title": { color: "var(--color-brand)" }, "& .img img": { transform: "scale(1.03)" } }}
         transition="box-shadow 0.2s"
         cursor="pointer"
         h="full"
@@ -193,7 +193,7 @@ export function NewsCard({
         <Box className="img" position="relative" w="full" h={imageHeight || "180px"} overflow="hidden">
           <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 100vw, 25vw" />
           {article.isBreaking && (
-            <Text position="absolute" top="8px" left="8px" bg="#c0392b" color="white" fontSize="10px" fontWeight="700" px="7px" py="2px" borderRadius="1px" textTransform="uppercase" letterSpacing="0.5px">
+            <Text position="absolute" top="8px" left="8px" bg="var(--color-brand)" color="white" fontSize="10px" fontWeight="700" px="7px" py="2px" borderRadius="1px" textTransform="uppercase" letterSpacing="0.5px">
               Breaking
             </Text>
           )}

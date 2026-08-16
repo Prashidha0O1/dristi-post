@@ -16,14 +16,14 @@ function TrendingSidebar() {
 
   return (
     <Box>
-      <SectionHeader title={locale === "ne" ? "ट्रेन्डिङ" : "Trending"} accent="#c0392b" />
+      <SectionHeader title={locale === "ne" ? "ट्रेन्डिङ" : "Trending"} accent="var(--color-brand)" />
       {trending.map((a, i) => (
         <Flex
           key={a.id}
           gap="12px"
           py="12px"
           borderBottom={i < trending.length - 1 ? "1px solid #eee" : "none"}
-          _hover={{ "& .t-title": { color: "#c0392b" } }}
+          _hover={{ "& .t-title": { color: "var(--color-brand)" } }}
           cursor="pointer"
           align="flex-start"
         >
@@ -72,7 +72,7 @@ export default function CategoryPage() {
             {locale === "ne" ? "विषय भेटिएन" : "Category Not Found"}
           </Text>
           <Link href="/">
-            <Text color="#c0392b" fontWeight="600" fontSize="15px" _hover={{ textDecoration: "underline" }}>
+            <Text color="var(--color-brand)" fontWeight="600" fontSize="15px" _hover={{ textDecoration: "underline" }}>
               {locale === "ne" ? "गृहपृष्ठमा फर्कनुहोस्" : "Back to Home"}
             </Text>
           </Link>
@@ -82,7 +82,7 @@ export default function CategoryPage() {
   }
 
   const categoryName = localized(category.name);
-  const catColor = category.color || "#c0392b";
+  const catColor = category.color || "var(--color-brand)";
   const lead = articles[0];
   const rest = articles.slice(1);
 
@@ -91,7 +91,7 @@ export default function CategoryPage() {
       {/* Breadcrumb */}
       <Flex gap="6px" align="center" mb="20px" fontSize="13px" color="#999">
         <Link href="/">
-          <Text _hover={{ color: "#c0392b" }} transition="color 0.15s">
+          <Text _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
             {locale === "ne" ? "गृहपृष्ठ" : "Home"}
           </Text>
         </Link>

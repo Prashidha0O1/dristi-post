@@ -24,4 +24,5 @@ export const navItems: NavItem[] = [
   { label: { ne: "स्वास्थ्य", en: "Health" }, href: "/category/health" },
   { label: { ne: "विश्व", en: "World" }, href: "/category/world" },
   { label: { ne: "विचार", en: "Opinion" }, href: "/category/opinion" },
+  { label: { ne: "राशिफल", en: "Rashifal" }, href: "/rashifal" },
 ];

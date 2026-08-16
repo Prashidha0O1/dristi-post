@@ -14,7 +14,7 @@ export function Footer() {
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} gap="32px" mb="32px">
           <Box>
             <Text fontWeight="900" fontSize="22px" mb="8px" fontFamily="var(--font-mukta), sans-serif">
-              <Text as="span" color="#c0392b">{locale === "ne" ? "दृष्टि" : "Dristi"}</Text>{" "}
+              <Text as="span" color="var(--color-brand)">{locale === "ne" ? "दृष्टि" : "Dristi"}</Text>{" "}
               <Text as="span" color="white">{locale === "ne" ? "पोस्ट" : "Post"}</Text>
             </Text>
             <Text fontSize="13px" color="#777" lineHeight="1.7">
@@ -29,7 +29,7 @@ export function Footer() {
             <Flex direction="column" gap="7px">
               {categories.slice(0, 5).map((cat) => (
                 <Link key={cat.id} href={`/category/${cat.slug}`}>
-                  <Text fontSize="13px" color="#888" _hover={{ color: "#c0392b" }} transition="color 0.15s">
+                  <Text fontSize="13px" color="#888" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
                     {localized(cat.name)}
                   </Text>
                 </Link>
@@ -44,7 +44,7 @@ export function Footer() {
             <Flex direction="column" gap="7px">
               {categories.slice(5).map((cat) => (
                 <Link key={cat.id} href={`/category/${cat.slug}`}>
-                  <Text fontSize="13px" color="#888" _hover={{ color: "#c0392b" }} transition="color 0.15s">
+                  <Text fontSize="13px" color="#888" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
                     {localized(cat.name)}
                   </Text>
                 </Link>
@@ -57,10 +57,10 @@ export function Footer() {
               {locale === "ne" ? "लिंकहरू" : "Links"}
             </Text>
             <Flex direction="column" gap="7px">
-              <Link href="/about"><Text fontSize="13px" color="#888" _hover={{ color: "#c0392b" }}>{t("aboutUs")}</Text></Link>
-              <Link href="/contact"><Text fontSize="13px" color="#888" _hover={{ color: "#c0392b" }}>{t("contactUs")}</Text></Link>
-              <Link href="/privacy"><Text fontSize="13px" color="#888" _hover={{ color: "#c0392b" }}>{t("privacyPolicy")}</Text></Link>
-              <Link href="/terms"><Text fontSize="13px" color="#888" _hover={{ color: "#c0392b" }}>{t("termsOfService")}</Text></Link>
+              <Link href="/about"><Text fontSize="13px" color="#888" _hover={{ color: "var(--color-brand)" }}>{t("aboutUs")}</Text></Link>
+              <Link href="/contact"><Text fontSize="13px" color="#888" _hover={{ color: "var(--color-brand)" }}>{t("contactUs")}</Text></Link>
+              <Link href="/privacy"><Text fontSize="13px" color="#888" _hover={{ color: "var(--color-brand)" }}>{t("privacyPolicy")}</Text></Link>
+              <Link href="/terms"><Text fontSize="13px" color="#888" _hover={{ color: "var(--color-brand)" }}>{t("termsOfService")}</Text></Link>
             </Flex>
           </Box>
         </SimpleGrid>
