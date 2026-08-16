@@ -1,8 +1,7 @@
 "use client";
 
 import { Box, SimpleGrid, Flex, Text } from "@chakra-ui/react";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { PageShell } from "@/components/pageShell";
 import { NewsCard } from "@/components/newsCard";
 import { SectionHeader } from "@/components/sectionHeader";
 import { TimeAgo } from "@/components/timeAgo";
@@ -164,10 +163,7 @@ function MoreNews() {
 
 export default function HomePage() {
   return (
-    <Box minH="100vh" bg="#f7f8fa" fontFamily="var(--font-mukta), sans-serif">
-      <Header />
-
-      <Box as="main" maxW="var(--max-content)" mx="auto" px="var(--side-pad)" py="24px">
+    <PageShell>
         <AdBanner />
         <HeroSection />
         <LatestWithSidebar />
@@ -186,9 +182,6 @@ export default function HomePage() {
 
         <CategorySection categorySlug="sports" color="#059669" />
         <CategorySection categorySlug="technology" color="#0891b2" />
-      </Box>
-
-      <Footer />
-    </Box>
+    </PageShell>
   );
 }

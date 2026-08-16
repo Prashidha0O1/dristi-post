@@ -1,0 +1,224 @@
+"use client";
+
+import { useParams } from "next/navigation";
+import { Box, Flex, Text, SimpleGrid } from "@chakra-ui/react";
+import Image from "next/image";
+import Link from "next/link";
+import { PageShell } from "@/components/pageShell";
+import { NewsCard } from "@/components/newsCard";
+import { SectionHeader } from "@/components/sectionHeader";
+import { TimeAgo } from "@/components/timeAgo";
+import { useLocale } from "@/lib/localeContext";
+import { getArticleBySlug, getRelatedArticles, getTrendingArticles } from "@/lib/mockData";
+
+function TrendingSidebar() {
+  const { locale } = useLocale();
+  const trending = getTrendingArticles();
+
+  return (
+    <Box>
+      <SectionHeader title={locale === "ne" ? "ट्रेन्डिङ" : "Trending"} accent="#c0392b" />
+      {trending.map((a, i) => (
+        <Flex
+          key={a.id}
+          gap="12px"
+          py="12px"
+          borderBottom={i < trending.length - 1 ? "1px solid #eee" : "none"}
+          _hover={{ "& .t-title": { color: "#c0392b" } }}
+          cursor="pointer"
+          align="flex-start"
+        >
+          <Text
+            fontSize="24px"
+            fontWeight="900"
+            color="#e0e0e0"
+            lineHeight="1"
+            w="36px"
+            textAlign="center"
+            flexShrink={0}
+            whiteSpace="nowrap"
+            fontFamily="var(--font-poppins), sans-serif"
+            transition="color 0.15s"
+          >
+            {String(i + 1).padStart(2, "0")}
+          </Text>
+          <Box flex="1" minW="0">
+            <Text fontSize="11px" fontWeight="700" color={a.category.color || "#888"} textTransform="uppercase" letterSpacing="0.5px" mb="2px">
+              {locale === "ne" ? a.category.name.ne : a.category.name.en}
+            </Text>
+            <Link href={`/article/${a.slug}`}>
+              <Text className="t-title" fontWeight="700" fontSize="14px" lineHeight="1.45" noOfLines={2} color="#1a1a1a" transition="color 0.15s">
+                {locale === "ne" ? a.title.ne : a.title.en}
+              </Text>
+            </Link>
+          </Box>
+        </Flex>
+      ))}
+    </Box>
+  );
+}
+
+export default function ArticlePage() {
+  const params = useParams();
+  const slug = params?.slug as string;
+  const { localized, locale } = useLocale();
+
+  const article = getArticleBySlug(slug);
+
+  if (!article) {
+    return (
+      <PageShell>
+        <Box py="60px" textAlign="center">
+          <Text fontSize="24px" fontWeight="700" color="#1a1a1a" mb="8px">
+            {locale === "ne" ? "समाचार भेटिएन" : "Article Not Found"}
+          </Text>
+          <Link href="/">
+            <Text color="#c0392b" fontWeight="600" fontSize="15px" _hover={{ textDecoration: "underline" }}>
+              {locale === "ne" ? "गृहपृष्ठमा फर्कनुहोस्" : "Back to Home"}
+            </Text>
+          </Link>
+        </Box>
+      </PageShell>
+    );
+  }
+
+  const related = getRelatedArticles(article);
+  const title = localized(article.title);
+  const excerpt = localized(article.excerpt);
+  const categoryName = localized(article.category.name);
+  const authorName = localized(article.author.name);
+  const catColor = article.category.color || "#c0392b";
+
+  return (
+    <PageShell>
+      <SimpleGrid columns={{ base: 1, lg: 3 }} gap="36px">
+        <Box gridColumn={{ lg: "span 2" }}>
+          {/* Breadcrumb */}
+          <Flex gap="6px" align="center" mb="16px" fontSize="13px" color="#999">
+            <Link href="/">
+              <Text _hover={{ color: "#c0392b" }} transition="color 0.15s">
+                {locale === "ne" ? "गृहपृष्ठ" : "Home"}
+              </Text>
+            </Link>
+            <Text>›</Text>
+            <Link href={`/category/${article.category.slug}`}>
+              <Text _hover={{ color: "#c0392b" }} transition="color 0.15s" color={catColor} fontWeight="600">
+                {categoryName}
+              </Text>
+            </Link>
+          </Flex>
+
+          {/* Article Header */}
+          <Text
+            fontSize="11px"
+            fontWeight="700"
+            color={catColor}
+            textTransform="uppercase"
+            letterSpacing="0.5px"
+            mb="8px"
+          >
+            {categoryName}
+          </Text>
+
+          <Text
+            as="h1"
+            fontSize={{ base: "26px", md: "34px" }}
+            fontWeight="800"
+            lineHeight="1.3"
+            color="#1a1a1a"
+            mb="12px"
+          >
+            {title}
+          </Text>
+
+          <Text fontSize="17px" color="#555" lineHeight="1.7" mb="16px">
+            {excerpt}
+          </Text>
+
+          <Flex align="center" gap="16px" mb="24px" pb="16px" borderBottom="1px solid #eee">
+            <Text fontSize="14px" fontWeight="600" color="#333">
+              {authorName}
+            </Text>
+            <TimeAgo date={article.publishedAt} fontSize="13px" color="#999" />
+          </Flex>
+
+          {/* Featured Image */}
+          <Box position="relative" w="full" h={{ base: "240px", md: "420px" }} borderRadius="4px" overflow="hidden" mb="28px">
+            <Image src={article.image} alt={title} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 66vw" priority />
+          </Box>
+
+          {/* Article Body */}
+          <Box mb="40px" fontSize="17px" lineHeight="1.9" color="#333">
+            <Text mb="16px">
+              {excerpt}
+            </Text>
+            <Text mb="16px">
+              {locale === "ne"
+                ? "यो समाचारको विस्तृत विवरण यहाँ प्रकाशित हुनेछ। हाल यो डेमो संस्करण हो र वास्तविक सामग्री API बाट लोड हुनेछ।"
+                : "The full article content will be published here. This is currently a demo version and actual content will be loaded from an API."}
+            </Text>
+            <Text mb="16px">
+              {locale === "ne"
+                ? "दृष्टि पोस्टले नेपालका विभिन्न क्षेत्रका समाचारहरू तपाईंसम्म पुर्‍याउँछ। हामीसँग जोडिएर रहनुहोस्।"
+                : "Dristi Post brings you news from various sectors of Nepal. Stay connected with us."}
+            </Text>
+          </Box>
+
+          {/* Tags */}
+          {article.tags.length > 0 && (
+            <Flex gap="8px" mb="32px" flexWrap="wrap">
+              {article.tags.map((tag) => (
+                <Text
+                  key={tag.id}
+                  fontSize="12px"
+                  color="#666"
+                  bg="#f0f0f0"
+                  px="10px"
+                  py="4px"
+                  borderRadius="2px"
+                  fontWeight="500"
+                >
+                  #{localized(tag.name)}
+                </Text>
+              ))}
+            </Flex>
+          )}
+
+          {/* Related Articles */}
+          {related.length > 0 && (
+            <Box>
+              <SectionHeader
+                title={locale === "ne" ? "सम्बन्धित समाचार" : "Related News"}
+                accent={catColor}
+              />
+              <SimpleGrid columns={{ base: 1, sm: 2 }} gap="18px">
+                {related.map((a) => (
+                  <NewsCard key={a.id} article={a} variant="compact" imageHeight="140px" />
+                ))}
+              </SimpleGrid>
+            </Box>
+          )}
+        </Box>
+
+        {/* Sidebar */}
+        <Box>
+          <Box
+            bg="white"
+            border="1px solid #eee"
+            borderRadius="4px"
+            h="200px"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            mb="28px"
+          >
+            <Text fontSize="11px" color="#ccc" fontWeight="500" textTransform="uppercase" letterSpacing="2px">
+              विज्ञापन
+            </Text>
+          </Box>
+          <TrendingSidebar />
+        </Box>
+      </SimpleGrid>
+    </PageShell>
+  );
+}

@@ -262,3 +262,13 @@ export function getLatestArticles(): Article[] {
 export function getArticlesByCategory(categorySlug: string): Article[] {
   return mockArticles.filter((a) => a.category.slug === categorySlug);
 }
+
+export function getArticleBySlug(slug: string): Article | undefined {
+  return mockArticles.find((a) => a.slug === slug);
+}
+
+export function getRelatedArticles(article: Article, limit = 4): Article[] {
+  return mockArticles
+    .filter((a) => a.id !== article.id && a.category.slug === article.category.slug)
+    .slice(0, limit);
+}
