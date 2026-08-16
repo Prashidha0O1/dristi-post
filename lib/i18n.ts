@@ -1,0 +1,101 @@
+import type { Locale } from "./types";
+
+export const defaultLocale: Locale = "ne";
+
+export const locales: Locale[] = ["ne", "en"];
+
+const translations = {
+  ne: {
+    siteName: "दृष्टि पोस्ट",
+    siteTagline: "नेपालको विश्वसनीय समाचार पोर्टल",
+    home: "गृहपृष्ठ",
+    latest: "ताजा अपडेट",
+    trending: "ट्रेन्डिङ",
+    featured: "मुख्य समाचार",
+    breaking: "ब्रेकिङ",
+    categories: "विषयहरू",
+    search: "खोज्नुहोस्...",
+    readMore: "थप पढ्नुहोस्",
+    minutesAgo: "मिनेट अगाडि",
+    hoursAgo: "घण्टा अगाडि",
+    daysAgo: "दिन अगाडि",
+    seeAll: "सबै हेर्नुहोस्",
+    relatedNews: "सम्बन्धित समाचार",
+    opinion: "विचार",
+    sports: "खेलकुद",
+    politics: "राजनीति",
+    business: "बिजनेस",
+    entertainment: "मनोरन्जन",
+    technology: "प्रविधि",
+    lifestyle: "जीवनशैली",
+    health: "स्वास्थ्य",
+    world: "विश्व",
+    education: "शिक्षा",
+    noResults: "कुनै परिणाम भेटिएन",
+    language: "भाषा",
+    english: "English",
+    nepali: "नेपाली",
+    darkMode: "डार्क मोड",
+    aboutUs: "हाम्रो बारेमा",
+    contactUs: "सम्पर्क",
+    privacyPolicy: "गोपनीयता नीति",
+    termsOfService: "सेवाका सर्तहरू",
+    copyright: "© २०२६ दृष्टि पोस्ट। सर्वाधिकार सुरक्षित।",
+    publishedAt: "प्रकाशित",
+    updatedAt: "अपडेट",
+    viewAll: "सबै हेर्नुहोस्",
+  },
+  en: {
+    siteName: "Dristi Post",
+    siteTagline: "Nepal's Trusted News Portal",
+    home: "Home",
+    latest: "Latest Updates",
+    trending: "Trending",
+    featured: "Featured News",
+    breaking: "Breaking",
+    categories: "Categories",
+    search: "Search...",
+    readMore: "Read More",
+    minutesAgo: "minutes ago",
+    hoursAgo: "hours ago",
+    daysAgo: "days ago",
+    seeAll: "See All",
+    relatedNews: "Related News",
+    opinion: "Opinion",
+    sports: "Sports",
+    politics: "Politics",
+    business: "Business",
+    entertainment: "Entertainment",
+    technology: "Technology",
+    lifestyle: "Lifestyle",
+    health: "Health",
+    world: "World",
+    education: "Education",
+    noResults: "No results found",
+    language: "Language",
+    english: "English",
+    nepali: "नेपाली",
+    darkMode: "Dark Mode",
+    aboutUs: "About Us",
+    contactUs: "Contact Us",
+    privacyPolicy: "Privacy Policy",
+    termsOfService: "Terms of Service",
+    copyright: "© 2026 Dristi Post. All rights reserved.",
+    publishedAt: "Published",
+    updatedAt: "Updated",
+    viewAll: "View All",
+  },
+} as const;
+
+export type TranslationKey = keyof (typeof translations)["ne"];
+
+export function t(locale: Locale, key: TranslationKey): string {
+  return translations[locale][key];
+}
+
+export function getLocalizedField<T>(
+  field: Record<Locale, T>,
+  locale: Locale,
+): T {
+  return field[locale];
+}
