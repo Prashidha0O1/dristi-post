@@ -91,9 +91,10 @@ function LatestWithSidebar() {
                 fontWeight="900"
                 color="#e0e0e0"
                 lineHeight="1"
-                w="32px"
+                w="40px"
                 textAlign="center"
                 flexShrink={0}
+                whiteSpace="nowrap"
                 fontFamily="var(--font-poppins), sans-serif"
                 transition="color 0.15s"
               >
