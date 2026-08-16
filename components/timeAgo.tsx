@@ -2,7 +2,7 @@
 
 import { Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useLocale } from "@/lib/locale-context";
+import { useLocale } from "@/lib/localeContext";
 import { timeAgo } from "@/lib/time";
 
 export function TimeAgo({

@@ -2,7 +2,7 @@
 
 import { Flex, Text, Box } from "@chakra-ui/react";
 import Link from "next/link";
-import { useLocale } from "@/lib/locale-context";
+import { useLocale } from "@/lib/localeContext";
 
 interface SectionHeaderProps {
   title: string;

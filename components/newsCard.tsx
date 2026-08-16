@@ -4,8 +4,8 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Article } from "@/lib/types";
-import { useLocale } from "@/lib/locale-context";
-import { TimeAgo } from "./time-ago";
+import { useLocale } from "@/lib/localeContext";
+import { TimeAgo } from "./timeAgo";
 
 interface NewsCardProps {
   article: Article;

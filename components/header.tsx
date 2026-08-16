@@ -3,9 +3,9 @@
 import { Box, Flex, Text, Input } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useLocale } from "@/lib/locale-context";
+import { useLocale } from "@/lib/localeContext";
 import { navItems } from "@/lib/config";
-import { getBreakingArticles } from "@/lib/mock-data";
+import { getBreakingArticles } from "@/lib/mockData";
 
 function BreakingTicker() {
   const { t, localized } = useLocale();

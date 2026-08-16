@@ -2,7 +2,7 @@
 
 import { Box, Flex, Text, SimpleGrid } from "@chakra-ui/react";
 import Link from "next/link";
-import { useLocale } from "@/lib/locale-context";
+import { useLocale } from "@/lib/localeContext";
 import { categories } from "@/lib/config";
 
 export function Footer() {

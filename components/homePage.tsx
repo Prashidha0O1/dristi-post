@@ -3,16 +3,16 @@
 import { Box, SimpleGrid, Flex, Text } from "@chakra-ui/react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { NewsCard } from "@/components/news-card";
-import { SectionHeader } from "@/components/section-header";
-import { TimeAgo } from "@/components/time-ago";
-import { useLocale } from "@/lib/locale-context";
+import { NewsCard } from "@/components/newsCard";
+import { SectionHeader } from "@/components/sectionHeader";
+import { TimeAgo } from "@/components/timeAgo";
+import { useLocale } from "@/lib/localeContext";
 import {
   getFeaturedArticles,
   getTrendingArticles,
   getLatestArticles,
   getArticlesByCategory,
-} from "@/lib/mock-data";
+} from "@/lib/mockData";
 
 function AdBanner() {
   return (
