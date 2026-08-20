@@ -79,7 +79,8 @@ img {
 }
 
 #np_widget_wiz1 .np-cell {
-  min-height: 68px !important;
+  height: 78px !important;
+  min-height: 0 !important;
 }
 
 #np_widget_wiz1 .np-day-bg .number {

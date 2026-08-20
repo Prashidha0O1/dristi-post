@@ -44,6 +44,8 @@ const translations = {
     publishedAt: "प्रकाशित",
     updatedAt: "अपडेट",
     viewAll: "सबै हेर्नुहोस्",
+    companyReg: "कम्पनी दर्ता नं.",
+    mediaReg: "मिडिया दर्ता नं.",
   },
   en: {
     siteName: "Dristi Post",
@@ -84,6 +86,8 @@ const translations = {
     publishedAt: "Published",
     updatedAt: "Updated",
     viewAll: "View All",
+    companyReg: "Company Reg. No.",
+    mediaReg: "Media Reg. No.",
   },
 } as const;
 

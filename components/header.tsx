@@ -10,6 +10,8 @@ import { formatNepaliDate } from "@/lib/nepaliDate";
 
 const BRAND = "var(--color-brand)";
 
+const DEFAULT_LOCATION = { lat: 27.7172, lon: 85.324, city: "Kathmandu", cityNe: "काठमाडौं" };
+
 function TopInfoBar() {
   const { locale } = useLocale();
   const [info, setInfo] = useState({
@@ -32,9 +34,9 @@ function TopInfoBar() {
     setInfo({
       nepaliDate,
       adDate,
-      weather: locale === "ne" ? "काठमाडौं २६°C" : "Kathmandu 26°C",
-      usd: "USD 134.52",
-      inr: "INR 1.60",
+      weather: "",
+      usd: "",
+      inr: "",
     });
 
     async function fetchLiveRates() {
@@ -54,49 +56,102 @@ function TopInfoBar() {
       } catch {}
     }
 
-    async function fetchWeather() {
+    async function fetchWeatherAt(lat: number, lon: number, cityName: string) {
       try {
         const res = await fetch(
-          "https://api.open-meteo.com/v1/forecast?latitude=27.7172&longitude=85.324&current_weather=true"
+          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
         );
         if (!res.ok) return;
         const data = await res.json();
-        const temp = Math.round(data.current_weather?.temperature ?? 26);
-        setInfo((prev) => ({
-          ...prev,
-          weather: locale === "ne" ? `काठमाडौं ${temp}°C` : `Kathmandu ${temp}°C`,
-        }));
+        const temp = Math.round(data.current_weather?.temperature ?? 0);
+        setInfo((prev) => ({ ...prev, weather: `${cityName} ${temp}°C` }));
       } catch {}
     }
 
+    async function reverseGeocode(lat: number, lon: number): Promise<string | null> {
+      try {
+        const res = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&zoom=10&accept-language=${locale}`,
+          { headers: { "Accept": "application/json" } }
+        );
+        if (!res.ok) return null;
+        const data = await res.json();
+        return data.address?.city || data.address?.town || data.address?.village || data.address?.county || null;
+      } catch {
+        return null;
+      }
+    }
+
+    async function locateAndFetchWeather() {
+      const fallback = () => {
+        const cityName = locale === "ne" ? DEFAULT_LOCATION.cityNe : DEFAULT_LOCATION.city;
+        fetchWeatherAt(DEFAULT_LOCATION.lat, DEFAULT_LOCATION.lon, cityName);
+      };
+
+      const cached = typeof window !== "undefined" ? localStorage.getItem("dp_geo") : null;
+      if (cached) {
+        try {
+          const { lat, lon, city } = JSON.parse(cached);
+          if (typeof lat === "number" && typeof lon === "number" && city) {
+            fetchWeatherAt(lat, lon, city);
+            return;
+          }
+        } catch {}
+      }
+
+      if (typeof navigator === "undefined" || !navigator.geolocation) {
+        fallback();
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        async (pos) => {
+          const { latitude, longitude } = pos.coords;
+          const cityName = (await reverseGeocode(latitude, longitude)) ?? (locale === "ne" ? DEFAULT_LOCATION.cityNe : DEFAULT_LOCATION.city);
+          try {
+            localStorage.setItem("dp_geo", JSON.stringify({ lat: latitude, lon: longitude, city: cityName }));
+          } catch {}
+          fetchWeatherAt(latitude, longitude, cityName);
+        },
+        () => fallback(),
+        { timeout: 5000, maximumAge: 3600000 }
+      );
+    }
+
     fetchLiveRates();
-    fetchWeather();
+    locateAndFetchWeather();
   }, [locale]);
 
   return (
     <Box bg="#1a1a2e" color="rgba(255,255,255,0.85)" fontSize="12px" fontFamily="var(--font-poppins), sans-serif">
       <Box maxW="var(--max-content)" mx="auto" px="var(--side-pad)">
-        <Flex align="center" justify="space-between" h="30px" gap="16px">
-          <Flex align="center" gap="16px" overflow="hidden" flex="1">
-            <Text fontWeight="600" whiteSpace="nowrap" fontSize="12px">
+        <Flex align="center" justify="space-between" h={{ base: "auto", sm: "30px" }} py={{ base: "6px", sm: "0" }} gap={{ base: "8px", sm: "16px" }} flexWrap={{ base: "wrap", sm: "nowrap" }}>
+          <Flex align="center" gap={{ base: "8px", sm: "12px" }} overflow="hidden" flex="1" flexWrap="wrap" fontSize={{ base: "11px", sm: "12px" }}>
+            <Text fontWeight="600" whiteSpace="nowrap">
               {info.nepaliDate}
             </Text>
-            <Text color="rgba(255,255,255,0.3)" display={{ base: "none", sm: "block" }}>·</Text>
-            <Text whiteSpace="nowrap" display={{ base: "none", sm: "block" }} fontSize="12px">
+            <Text color="rgba(255,255,255,0.3)">·</Text>
+            <Text whiteSpace="nowrap">
               {info.adDate}
             </Text>
-            <Text color="rgba(255,255,255,0.3)" display={{ base: "none", md: "block" }}>·</Text>
-            <Text whiteSpace="nowrap" display={{ base: "none", md: "block" }} fontSize="12px">
-              ☁ {info.weather}
-            </Text>
+            {info.weather && (
+              <>
+                <Text color="rgba(255,255,255,0.3)">·</Text>
+                <Text whiteSpace="nowrap">☁ {info.weather}</Text>
+              </>
+            )}
           </Flex>
-          <Flex align="center" gap="14px" flexShrink={0} display={{ base: "none", md: "flex" }}>
-            <Text whiteSpace="nowrap" fontSize="12px" color="rgba(255,255,255,0.7)">
-              {info.usd}
-            </Text>
-            <Text whiteSpace="nowrap" fontSize="12px" color="rgba(255,255,255,0.7)">
-              {info.inr}
-            </Text>
+          <Flex align="center" gap={{ base: "10px", md: "14px" }} flexShrink={0} display={{ base: "none", sm: "flex" }} fontSize={{ base: "11px", sm: "12px" }}>
+            {info.usd && (
+              <Text whiteSpace="nowrap" color="rgba(255,255,255,0.7)">
+                {info.usd}
+              </Text>
+            )}
+            {info.inr && (
+              <Text whiteSpace="nowrap" color="rgba(255,255,255,0.7)">
+                {info.inr}
+              </Text>
+            )}
           </Flex>
         </Flex>
       </Box>
@@ -222,6 +277,17 @@ function NavBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    if (mobileOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [mobileOpen]);
+
   return (
     <>
       <Box
@@ -320,21 +386,46 @@ function NavBar() {
       {mobileOpen && (
         <Box
           position="fixed"
-          top="44px"
-          left="0"
-          right="0"
-          bottom="0"
+          inset="0"
           bg="white"
-          zIndex="999"
+          zIndex="1100"
           overflowY="auto"
           display={{ lg: "none" }}
         >
+          <Flex
+            align="center"
+            justify="space-between"
+            h="52px"
+            px="16px"
+            bg="#1a1a2e"
+            position="sticky"
+            top="0"
+            zIndex="1"
+          >
+            <Text color="white" fontWeight="800" fontSize="17px">
+              {locale === "ne" ? "दृष्टि पोस्ट" : "Dristi Post"}
+            </Text>
+            <Box
+              as="button"
+              onClick={() => setMobileOpen(false)}
+              color="white"
+              p="6px"
+              cursor="pointer"
+              bg="transparent"
+              border="none"
+              aria-label="Close menu"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            </Box>
+          </Flex>
           <Flex direction="column">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href}>
                 <Box
                   px="20px"
-                  py="13px"
+                  py="14px"
                   fontSize="16px"
                   fontWeight="500"
                   color="#333"
@@ -348,12 +439,13 @@ function NavBar() {
                 </Box>
               </Link>
             ))}
-            <Flex px="20px" py="13px" gap="12px" borderBottom="1px solid #f0f0f0">
+            <Flex px="20px" py="16px" gap="14px">
               <Box as="button" onClick={() => { setLocale("ne"); setMobileOpen(false); }}
                 fontSize="15px" fontWeight={locale === "ne" ? "700" : "400"} color={locale === "ne" ? BRAND : "#888"}
                 bg="transparent" border="none" cursor="pointer">
                 नेपाली
               </Box>
+              <Text color="#ddd">|</Text>
               <Box as="button" onClick={() => { setLocale("en"); setMobileOpen(false); }}
                 fontSize="15px" fontWeight={locale === "en" ? "700" : "400"} color={locale === "en" ? BRAND : "#888"}
                 bg="transparent" border="none" cursor="pointer">
