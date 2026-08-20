@@ -12,23 +12,21 @@ export function NepaliPatroWidget() {
     const mount = mountRef.current;
     if (!mount) return;
 
-    // Clear any prior render so re-mounts start fresh
-    mount.innerHTML = "";
+    // Insert the placeholder markup exactly as documented — using innerHTML
+    // so the `widget="month"` attribute is present when the widget script
+    // scans the DOM (it reads attributes at init, not via live property).
+    mount.innerHTML = '<div id="np_widget_wiz1" widget="month"></div>';
 
-    // Create the placeholder div the widget expects
-    const target = document.createElement("div");
-    target.id = "np_widget_wiz1";
-    target.setAttribute("widget", "month");
-    mount.appendChild(target);
+    // Remove any previous instance of the widget script.
+    document.querySelectorAll('script[data-np-widget="wiz1"]').forEach((s) => s.remove());
 
-    // Remove any previous injected script so the widget re-initializes
-    const prev = document.getElementById("np_widget_script_wiz1");
-    if (prev) prev.remove();
-
+    // Inject a fresh <script> tag; the cache-buster query forces the browser
+    // to actually re-execute the script (and re-run the widget's init) on
+    // client-side navigation, not serve a stale, already-initialized copy.
     const script = document.createElement("script");
-    script.id = "np_widget_script_wiz1";
-    script.src = SCRIPT_SRC;
+    script.src = `${SCRIPT_SRC}?t=${Date.now()}`;
     script.async = true;
+    script.setAttribute("data-np-widget", "wiz1");
     document.body.appendChild(script);
 
     return () => {
