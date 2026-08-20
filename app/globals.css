@@ -52,3 +52,50 @@ img {
     font-family: var(--font-poppins), sans-serif;
   }
 }
+
+/* Nepali Patro widget: on desktop the sidebar column is narrow (~415px), so
+   the widget's default cell height (~126px) makes each day tall and thin.
+   Scale the cell down toward square and shrink the type to match. Scoped to
+   lg+ only — tablet/mobile keep the widget's stock sizing. */
+@media (min-width: 1024px) {
+  /* The widget hard-codes a row height as well as a cell height; both need
+     overriding or the rows keep their original size and leave gaps. */
+  #np_widget_wiz1 .np-body .np-wrows {
+    height: 96px !important;
+  }
+
+  #np_widget_wiz1 .np-cell {
+    height: 96px !important;
+    min-height: 0 !important;
+  }
+
+  /* The day number is flex-centred by the widget, which puts it under the
+     3-line event names. Pin it just below the event zone instead so every
+     cell aligns on the same baseline. */
+  #np_widget_wiz1 .np-day-bg .text {
+    font-size: 1.6em !important;
+    top: 36px !important;
+    bottom: auto !important;
+  }
+
+  #np_widget_wiz1 .np-cell .event {
+    font-size: 9px !important;
+    line-height: 1.15 !important;
+    max-height: 32px !important;
+  }
+
+  #np_widget_wiz1 .np-day-bg .number,
+  #np_widget_wiz1 .np-day-bg .tithi {
+    font-size: 10px !important;
+  }
+
+  #np_widget_wiz1 .np-day-bg .tithiMonth {
+    font-size: 9px !important;
+    bottom: 1.5em !important;
+  }
+
+  #np_widget_wiz1 .np-cell .more {
+    font-size: 9px !important;
+    padding: 0 3px !important;
+  }
+}
