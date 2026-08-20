@@ -1,39 +1,39 @@
 "use client";
 
 import { Box } from "@chakra-ui/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 
 const SCRIPT_SRC = "https://nepalipatro.com.np/np-widgets/nepalipatro.js";
 
 export function NepaliPatroWidget() {
-  const mountRef = useRef<HTMLDivElement | null>(null);
+  // Bump this on mount so the injected <script> gets a unique URL each time
+  // (cache-buster) — forces the widget to actually re-execute on client-side
+  // navigation back to the homepage, instead of the browser serving a stale
+  // already-initialized copy.
+  const [nonce, setNonce] = useState<number | null>(null);
 
   useEffect(() => {
-    const mount = mountRef.current;
-    if (!mount) return;
-
-    // Insert the placeholder markup exactly as documented — using innerHTML
-    // so the `widget="month"` attribute is present when the widget script
-    // scans the DOM (it reads attributes at init, not via live property).
-    mount.innerHTML = '<div id="np_widget_wiz1" widget="month"></div>';
-
-    // Remove any previous instance of the widget script.
-    document.querySelectorAll('script[data-np-widget="wiz1"]').forEach((s) => s.remove());
-
-    // Inject a fresh <script> tag; the cache-buster query forces the browser
-    // to actually re-execute the script (and re-run the widget's init) on
-    // client-side navigation, not serve a stale, already-initialized copy.
-    const script = document.createElement("script");
-    script.src = `${SCRIPT_SRC}?t=${Date.now()}`;
-    script.async = true;
-    script.setAttribute("data-np-widget", "wiz1");
-    document.body.appendChild(script);
-
+    setNonce(Date.now());
     return () => {
-      script.remove();
-      mount.innerHTML = "";
+      // Clean up any script tag we added so the next mount starts fresh
+      document.querySelectorAll('script[data-np-widget="wiz1"]').forEach((s) => s.remove());
     };
   }, []);
 
-  return <Box w="full" ref={mountRef} />;
+  return (
+    <Box w="full">
+      {/* The widget script scans the DOM for this exact id + widget attribute
+          at execution time. Using dangerouslySetInnerHTML keeps the raw HTML
+          attribute intact rather than a React prop. */}
+      <div dangerouslySetInnerHTML={{ __html: '<div id="np_widget_wiz1" widget="month"></div>' }} />
+      {nonce !== null && (
+        // eslint-disable-next-line @next/next/no-sync-scripts
+        <script
+          key={nonce}
+          data-np-widget="wiz1"
+          src={`${SCRIPT_SRC}?t=${nonce}`}
+        />
+      )}
+    </Box>
+  );
 }

@@ -46,6 +46,9 @@ const translations = {
     viewAll: "सबै हेर्नुहोस्",
     companyReg: "कम्पनी दर्ता नं.",
     mediaReg: "मिडिया दर्ता नं.",
+    followUs: "हामीलाई फलो गर्नुहोस्",
+    adInquiry: "विज्ञापनका लागि सम्पर्क",
+    adInquiryDesc: "विज्ञापन प्लेसमेन्टका लागि हामीलाई सम्पर्क गर्नुहोस्।",
   },
   en: {
     siteName: "Dristi Post",
@@ -88,6 +91,9 @@ const translations = {
     viewAll: "View All",
     companyReg: "Company Reg. No.",
     mediaReg: "Media Reg. No.",
+    followUs: "Follow Us",
+    adInquiry: "विज्ञापनका लागि सम्पर्क",
+    adInquiryDesc: "विज्ञापन प्लेसमेन्टका लागि हामीलाई सम्पर्क गर्नुहोस्।",
   },
 } as const;
 

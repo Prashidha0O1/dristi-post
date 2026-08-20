@@ -15,19 +15,26 @@ import {
 import { IframeEmbed } from "@/components/iframeEmbed";
 import { NepaliPatroWidget } from "@/components/nepaliPatroWidget";
 
-function AdBanner() {
+function AdBanner({ variant = "slim" }: { variant?: "slim" | "full" }) {
+  const isFull = variant === "full";
   return (
     <Box
-      mb="24px"
+      mb={isFull ? "36px" : "24px"}
       bg="white"
-      border="1px solid #eee"
-      h="90px"
+      border="1px dashed #d5d5d5"
+      h={isFull ? { base: "160px", md: "250px" } : "90px"}
       display="flex"
       alignItems="center"
       justifyContent="center"
-      borderRadius="2px"
+      borderRadius="4px"
     >
-      <Text fontSize="11px" color="#ccc" fontWeight="500" textTransform="uppercase" letterSpacing="2px">
+      <Text
+        fontSize={isFull ? "13px" : "11px"}
+        color="#bbb"
+        fontWeight="500"
+        textTransform="uppercase"
+        letterSpacing="2px"
+      >
         विज्ञापन / Advertisement
       </Text>
     </Box>
@@ -175,6 +182,8 @@ export default function HomePage() {
         <AdBanner />
         <HeroSection />
         <LatestWithSidebar />
+
+        <AdBanner variant="full" />
 
         <SimpleGrid columns={{ base: 1, lg: 3 }} gap="28px" mb="36px">
           <Box gridColumn={{ lg: "span 2" }}>
