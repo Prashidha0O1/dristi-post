@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex, Text, SimpleGrid } from "@chakra-ui/react";
+import { Box, Flex, Text, SimpleGrid, chakra } from "@chakra-ui/react";
 import Link from "next/link";
 import { useLocale } from "@/lib/localeContext";
 import { categories } from "@/lib/config";
@@ -55,8 +55,7 @@ export function Footer() {
             </Text>
             <Flex gap="10px">
               {SOCIALS.map((s) => (
-                <Box
-                  as="a"
+                <chakra.a
                   key={s.name}
                   href={s.href}
                   target="_blank"
@@ -76,7 +75,7 @@ export function Footer() {
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                     <path d={s.path} />
                   </svg>
-                </Box>
+                </chakra.a>
               ))}
             </Flex>
           </Box>
@@ -132,12 +131,12 @@ export function Footer() {
               {t("adInquiryDesc")}
             </Text>
             <Flex direction="column" gap="3px" fontSize="12px">
-              <Box as="a" href={`tel:${AD_CONTACT_PHONE.replace(/[^+\d]/g, "")}`} color="#bbb" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
+              <chakra.a href={`tel:${AD_CONTACT_PHONE.replace(/[^+\d]/g, "")}`} color="#bbb" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
                 📞 {AD_CONTACT_PHONE}
-              </Box>
-              <Box as="a" href={`mailto:${AD_CONTACT_EMAIL}`} color="#bbb" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
+              </chakra.a>
+              <chakra.a href={`mailto:${AD_CONTACT_EMAIL}`} color="#bbb" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
                 ✉ {AD_CONTACT_EMAIL}
-              </Box>
+              </chakra.a>
             </Flex>
           </Box>
         </SimpleGrid>
