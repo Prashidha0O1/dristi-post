@@ -13,6 +13,7 @@ import {
   getArticlesByCategory,
 } from "@/lib/mockData";
 import { IframeEmbed } from "@/components/iframeEmbed";
+import { NepaliPatroWidget } from "@/components/nepaliPatroWidget";
 
 function AdBanner() {
   return (
@@ -73,12 +74,8 @@ function LatestWithSidebar() {
       </Box>
 
       <Box>
-        <Box display="flex" justifyContent="center" mb="24px">
-          <IframeEmbed
-            src="https://nepalicalendar.rat32.com/addons/nepali-calendar-aja-ko-din.php"
-            width="200px"
-            height="217px"
-          />
+        <Box mb="24px">
+          <NepaliPatroWidget />
         </Box>
         <Box mt="24px">
           <SectionHeader title={t("trending")} accent="var(--color-brand)" />
@@ -113,7 +110,7 @@ function LatestWithSidebar() {
                     {locale === "ne" ? a.category.name.ne : a.category.name.en}
                   </Text>
                   <a href={`/article/${a.slug}`}>
-                    <Text className="t-title" fontWeight="700" fontSize="15px" lineHeight="1.45" noOfLines={2} color="#1a1a1a" transition="color 0.15s">
+                    <Text className="t-title" fontWeight="700" fontSize="15px" lineHeight="1.45" lineClamp={2} color="#1a1a1a" transition="color 0.15s">
                       {locale === "ne" ? a.title.ne : a.title.en}
                     </Text>
                   </a>

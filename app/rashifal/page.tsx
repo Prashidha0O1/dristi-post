@@ -25,14 +25,14 @@ export default function RashifalPage() {
       </Flex>
 
       <SectionHeader
-        title={locale === "ne" ? "आजको राशिफल" : "Today's Rashifal"}
+        title={locale === "ne" ? "राशिफल" : "Rashifal"}
         accent="var(--color-brand)"
       />
 
       <Box maxW="720px" mx="auto">
         <IframeEmbed
           src="https://nepalicalendar.rat32.com/rashifal/embed.php"
-          height="5170px"
+          height="3220px"
         />
       </Box>
     </PageShell>

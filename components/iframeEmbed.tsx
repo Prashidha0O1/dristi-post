@@ -7,11 +7,20 @@ interface IframeEmbedProps {
   height: string;
   width?: string;
   borderRadius?: string;
+  blockClicks?: boolean;
+  iframeWidth?: string;
 }
 
-export function IframeEmbed({ src, height, width = "100%", borderRadius = "4px" }: IframeEmbedProps) {
+export function IframeEmbed({
+  src,
+  height,
+  width = "100%",
+  borderRadius = "4px",
+  blockClicks = false,
+  iframeWidth,
+}: IframeEmbedProps) {
   return (
-    <Box w={width} h={height} overflow="hidden" borderRadius={borderRadius}>
+    <Box position="relative" w={width} h={height} overflow="hidden" borderRadius={borderRadius}>
       <iframe
         src={src}
         frameBorder="0"
@@ -19,7 +28,7 @@ export function IframeEmbed({ src, height, width = "100%", borderRadius = "4px" 
         style={{
           border: "none",
           overflow: "hidden",
-          width: "100%",
+          width: iframeWidth ?? "100%",
           height: "100%",
           borderRadius,
           padding: 0,
@@ -27,6 +36,14 @@ export function IframeEmbed({ src, height, width = "100%", borderRadius = "4px" 
         }}
         allowTransparency
       />
+      {blockClicks && (
+        <Box
+          position="absolute"
+          inset="0"
+          cursor="default"
+          onClick={(e) => e.preventDefault()}
+        />
+      )}
     </Box>
   );
 }

@@ -12,7 +12,7 @@
   --color-surface: #fff;
   --color-page: #f7f8fa;
   --max-content: 1320px;
-  --side-pad: 30px;
+  --side-pad: 8px;
 }
 
 @theme inline {
@@ -51,4 +51,74 @@ img {
   .font-english {
     font-family: var(--font-poppins), sans-serif;
   }
+}
+
+/* Nepali Patro month widget (full "month" mode, with tithi) — fitted to sidebar width */
+#np_widget_wiz1 {
+  width: 100%;
+  font-size: 10px;
+}
+
+#np_widget_wiz1 .np-brand {
+  height: 18px;
+  width: auto;
+}
+
+#np_widget_wiz1 h1 {
+  font-size: 14px !important;
+  margin: 4px 0 !important;
+}
+
+#np_widget_wiz1 .np-wiz-btn {
+  font-size: 10px !important;
+  padding: 3px 6px !important;
+}
+
+#np_widget_wiz1 .np-wrows.eng {
+  display: none !important;
+}
+
+#np_widget_wiz1 .np-cell {
+  min-height: 68px !important;
+}
+
+#np_widget_wiz1 .np-day-bg .number {
+  right: 0.3em !important;
+  bottom: 0.2em !important;
+}
+
+#np_widget_wiz1 .np-day-bg .tithi {
+  font-size: 8px !important;
+  left: 0.3em !important;
+  bottom: 0.2em !important;
+}
+
+#np_widget_wiz1 .np-day-bg .tithiMonth {
+  font-size: 7px !important;
+  left: 0.3em !important;
+  bottom: 1.3em !important;
+}
+
+#np_widget_wiz1 .event {
+  font-size: 7px !important;
+  line-height: 1.2 !important;
+  max-height: 32px !important;
+  top: 0.1em !important;
+}
+
+#np_widget_wiz1 .more {
+  font-size: 7px !important;
+  padding: 0 2px !important;
+  top: 38% !important;
+}
+
+#np_widget_wiz1 .np-day-bg.current {
+  background: var(--color-brand) !important;
+  border-radius: 6px;
+}
+
+#np_widget_wiz1 .np-day-bg.current .text,
+#np_widget_wiz1 .np-day-bg.current .tithi,
+#np_widget_wiz1 .np-day-bg.current .tithiMonth {
+  color: #fff !important;
 }

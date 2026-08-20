@@ -64,10 +64,10 @@ export default function TrendingPage() {
                     <Text fontSize="11px" fontWeight="700" color={catColor} textTransform="uppercase" letterSpacing="0.5px" mb="4px">
                       {categoryName}
                     </Text>
-                    <Text className="t-title" fontWeight="700" fontSize="20px" lineHeight="1.4" noOfLines={2} color="#1a1a1a" transition="color 0.15s" mb="6px">
+                    <Text className="t-title" fontWeight="700" fontSize="20px" lineHeight="1.4" lineClamp={2} color="#1a1a1a" transition="color 0.15s" mb="6px">
                       {title}
                     </Text>
-                    <Text fontSize="14px" color="#666" noOfLines={2} lineHeight="1.6" mb="6px" display={{ base: "none", sm: "block" }}>
+                    <Text fontSize="14px" color="#666" lineClamp={2} lineHeight="1.6" mb="6px" display={{ base: "none", sm: "block" }}>
                       {localized(a.excerpt)}
                     </Text>
                     <TimeAgo date={a.publishedAt} fontSize="13px" color="#999" />

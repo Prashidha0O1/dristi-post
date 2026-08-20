@@ -51,7 +51,7 @@ export function NewsCard({
                 {categoryName}
               </Text>
             )}
-            <Text className="title" fontWeight="700" fontSize="15px" lineHeight="1.5" noOfLines={2} color="#1a1a1a" transition="color 0.15s">
+            <Text className="title" fontWeight="700" fontSize="15px" lineHeight="1.5" lineClamp={2} color="#1a1a1a" transition="color 0.15s">
               {title}
             </Text>
             {showTimestamp && <TimeAgo date={article.publishedAt} fontSize="12px" color="#999" mt="4px" />}
@@ -77,7 +77,7 @@ export function NewsCard({
               {categoryName}
             </Text>
           )}
-          <Text className="title" fontWeight="700" fontSize="16px" lineHeight="1.4" noOfLines={2} color="#1a1a1a" transition="color 0.15s">
+          <Text className="title" fontWeight="700" fontSize="16px" lineHeight="1.4" lineClamp={2} color="#1a1a1a" transition="color 0.15s">
             {title}
           </Text>
           {showTimestamp && <TimeAgo date={article.publishedAt} fontSize="12px" color="#999" mt="6px" />}
@@ -120,11 +120,11 @@ export function NewsCard({
                 {categoryName}
               </Text>
             )}
-            <Text fontWeight="800" fontSize={{ base: "24px", md: "32px" }} lineHeight="1.25" color="white" noOfLines={3} mb="8px">
+            <Text fontWeight="800" fontSize={{ base: "24px", md: "32px" }} lineHeight="1.25" color="white" lineClamp={3} mb="8px">
               {title}
             </Text>
             {showExcerpt && (
-              <Text fontSize="15px" color="rgba(255,255,255,0.7)" noOfLines={2} lineHeight="1.6" mb="8px" display={{ base: "none", md: "block" }}>
+              <Text fontSize="15px" color="rgba(255,255,255,0.7)" lineClamp={2} lineHeight="1.6" mb="8px" display={{ base: "none", md: "block" }}>
                 {excerpt}
               </Text>
             )}
@@ -160,11 +160,11 @@ export function NewsCard({
               {categoryName}
             </Text>
           )}
-          <Text className="title" fontWeight="700" fontSize="18px" lineHeight="1.4" noOfLines={3} color="#1a1a1a" transition="color 0.15s" mb="6px">
+          <Text className="title" fontWeight="700" fontSize="18px" lineHeight="1.4" lineClamp={3} color="#1a1a1a" transition="color 0.15s" mb="6px">
             {title}
           </Text>
           {showExcerpt && (
-            <Text fontSize="14px" color="#666" noOfLines={2} lineHeight="1.6" mb="6px">
+            <Text fontSize="14px" color="#666" lineClamp={2} lineHeight="1.6" mb="6px">
               {excerpt}
             </Text>
           )}
@@ -204,11 +204,11 @@ export function NewsCard({
               {categoryName}
             </Text>
           )}
-          <Text className="title" fontWeight="700" fontSize="17px" lineHeight="1.4" noOfLines={2} color="#1a1a1a" transition="color 0.15s" mb="6px">
+          <Text className="title" fontWeight="700" fontSize="17px" lineHeight="1.4" lineClamp={2} color="#1a1a1a" transition="color 0.15s" mb="6px">
             {title}
           </Text>
           {showExcerpt && (
-            <Text fontSize="14px" color="#666" noOfLines={2} lineHeight="1.6" mb="6px">
+            <Text fontSize="14px" color="#666" lineClamp={2} lineHeight="1.6" mb="6px">
               {excerpt}
             </Text>
           )}

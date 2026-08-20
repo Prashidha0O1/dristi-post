@@ -1,0 +1,39 @@
+name: Deploy to Codeberg Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    # "docker" is the label used by the official examples for a runner that
+    # can execute Docker-based actions (required by git-pages/action below).
+    # Adjust this if your registered runner uses a different label.
+    runs-on: docker
+    steps:
+      - name: Checkout
+        uses: https://code.forgejo.org/actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: https://code.forgejo.org/actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+        env:
+          # Must match the "/<repository-name>" path Codeberg Pages serves
+          # this project under. Override here if the repo is ever renamed.
+          CODEBERG_PAGES_BASE_PATH: /news-portal
+
+      - name: Deploy to Codeberg Pages
+        uses: https://codeberg.org/git-pages/action@v2
+        with:
+          site: https://${{ forge.repository_owner }}.codeberg.page/news-portal/
+          token: ${{ forge.token }}
+          source: out/
