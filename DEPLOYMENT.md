@@ -35,7 +35,73 @@ Either way, Actions must be turned on for this repository:
 **Repository Settings → Units → Overview → enable Actions.**
 
 Pushing the workflow file alone will not deploy anything until Actions is enabled and a runner is
-available to pick up the job.
+available to pick up the job. The queued job will say "Waiting for a runner with the following
+label: docker" until one exists.
+
+### Setting up a self-hosted runner (Linux/WSL2)
+
+Official docs: [Forgejo Runner installation](https://forgejo.org/docs/latest/admin/actions/installation/binary/),
+[registration](https://forgejo.org/docs/latest/admin/actions/registration/),
+[configuration](https://forgejo.org/docs/latest/admin/actions/configuration/). On Windows, run
+this inside WSL2 (Ubuntu/Debian) with Docker installed there (Docker Desktop's WSL2 integration
+works fine) — the Forgejo Runner binary itself is Linux-only.
+
+1. **Get a registration token.** On Codeberg: repository → Settings → Actions → Runners → Create
+   new Runner. This shows a UUID and a token — copy both, you'll paste them into the runner config
+   below.
+
+2. **Download and install the binary** (inside WSL2):
+
+   ```bash
+   export ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+   export RUNNER_VERSION=$(curl -X 'GET' https://data.forgejo.org/api/v1/repos/forgejo/runner/releases/latest | jq .name -r | cut -c 2-)
+   export FORGEJO_URL="https://code.forgejo.org/forgejo/runner/releases/download/v${RUNNER_VERSION}/forgejo-runner-${RUNNER_VERSION}-linux-${ARCH}"
+   wget -O forgejo-runner ${FORGEJO_URL} || curl -o forgejo-runner ${FORGEJO_URL}
+   chmod +x forgejo-runner
+   sudo cp forgejo-runner /usr/local/bin/forgejo-runner
+   forgejo-runner -v   # sanity check
+   ```
+
+3. **Make sure Docker is reachable** by whichever user will run the daemon (add them to the
+   `docker` group: `sudo usermod -aG docker $USER`, then start a new shell).
+
+4. **Generate a config file and register it:**
+
+   ```bash
+   forgejo-runner generate-config > runner-config.yml
+   ```
+
+   Edit `runner-config.yml`:
+
+   - Under `server.connections`, add the UUID/token from step 1:
+
+     ```yaml
+     server:
+       connections:
+         codeberg:
+           url: https://codeberg.org/
+           uuid: <uuid-from-step-1>
+           token: <token-from-step-1>
+     ```
+
+   - Under the runner's `labels`, add an entry named `docker` (matching `runs-on: docker` in
+     [.forgejo/workflows/deploy.yml](.forgejo/workflows/deploy.yml)) pointing at an image with
+     Node/git available:
+
+     ```yaml
+     labels:
+       - docker:docker://ghcr.io/catthehacker/ubuntu:act-22.04
+     ```
+
+5. **Start it:**
+
+   ```bash
+   forgejo-runner daemon -c runner-config.yml
+   ```
+
+   Leave that running (or set it up as a systemd service — see the official docs above — to
+   survive reboots). Once it's up, the queued "build-and-deploy" job on Codeberg should pick it up
+   within a few seconds without needing to push again.
 
 ## Deployment branch
 
