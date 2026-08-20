@@ -34,7 +34,6 @@ export function IframeEmbed({
           padding: 0,
           margin: 0,
         }}
-        allowTransparency
       />
       {blockClicks && (
         <Box
