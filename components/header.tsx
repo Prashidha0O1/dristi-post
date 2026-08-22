@@ -318,7 +318,7 @@ function NavBar() {
             <Flex align="center" gap="0" h="full" display={{ base: "none", lg: "flex" }}>
               {navItems.map((item) =>
                 item.children ? (
-                  <Box key={item.href} position="relative" role="group" h="full">
+                  <Box key={item.href} position="relative" className="group" h="full">
                     <Link href={item.href}>
                       <Flex
                         align="center"
