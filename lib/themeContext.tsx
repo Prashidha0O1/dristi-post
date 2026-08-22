@@ -1,16 +1,46 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useSyncExternalStore,
+  type ReactNode,
+} from "react";
 
 type Theme = "light" | "dark" | "system";
 
 interface ThemeCtx {
   theme: Theme;
-  setTheme: (t: Theme) => void;
+  setTheme: (theme: Theme) => void;
   resolved: "light" | "dark";
 }
 
-const Ctx = createContext<ThemeCtx>({ theme: "system", setTheme: () => {}, resolved: "light" });
+const Ctx = createContext<ThemeCtx>({
+  theme: "system",
+  setTheme: () => {},
+  resolved: "light",
+});
+
+function subscribeToSystemTheme(onChange: () => void) {
+  if (typeof window === "undefined") return () => {};
+
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const handleChange = () => onChange();
+  mediaQuery.addEventListener("change", handleChange);
+
+  return () => mediaQuery.removeEventListener("change", handleChange);
+}
+
+function getSystemTheme(): "light" | "dark" {
+  if (typeof window === "undefined") return "light";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function getServerTheme(): "light" {
+  return "light";
+}
 
 export function useTheme() {
   return useContext(Ctx);
@@ -18,33 +48,28 @@ export function useTheme() {
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>("system");
-  const [resolved, setResolved] = useState<"light" | "dark">("light");
+  const systemTheme = useSyncExternalStore(subscribeToSystemTheme, getSystemTheme, getServerTheme);
+  const resolved = theme === "system" ? systemTheme : theme;
 
   useEffect(() => {
     const stored = localStorage.getItem("dp_theme") as Theme | null;
-    if (stored === "light" || stored === "dark" || stored === "system") {
-      setThemeState(stored);
+    if ((stored === "light" || stored === "dark") && stored !== theme) {
+      window.setTimeout(() => setThemeState(stored), 0);
     }
-  }, []);
+  }, [theme]);
 
   useEffect(() => {
     const root = document.documentElement;
     if (theme === "system") {
       root.removeAttribute("data-theme");
-      const mq = window.matchMedia("(prefers-color-scheme: dark)");
-      setResolved(mq.matches ? "dark" : "light");
-      const handler = (e: MediaQueryListEvent) => setResolved(e.matches ? "dark" : "light");
-      mq.addEventListener("change", handler);
-      return () => mq.removeEventListener("change", handler);
     } else {
       root.setAttribute("data-theme", theme);
-      setResolved(theme);
     }
   }, [theme]);
 
-  function setTheme(t: Theme) {
-    setThemeState(t);
-    localStorage.setItem("dp_theme", t);
+  function setTheme(nextTheme: Theme) {
+    setThemeState(nextTheme);
+    localStorage.setItem("dp_theme", nextTheme);
   }
 
   return <Ctx value={{ theme, setTheme, resolved }}>{children}</Ctx>;

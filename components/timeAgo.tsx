@@ -1,7 +1,6 @@
 "use client";
 
 import { Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import { useLocale } from "@/lib/localeContext";
 import { timeAgo } from "@/lib/time";
 
@@ -10,11 +9,7 @@ export function TimeAgo({
   ...props
 }: { date: string } & Record<string, unknown>) {
   const { locale } = useLocale();
-  const [display, setDisplay] = useState("");
-
-  useEffect(() => {
-    setDisplay(timeAgo(date, locale));
-  }, [date, locale]);
+  const display = timeAgo(date, locale);
 
   if (!display) return null;
 

@@ -35,3 +35,17 @@ export const navItems: NavItem[] = [
     ],
   },
 ];
+
+export const primaryNavItems: NavItem[] = [
+  navItems[0],
+  navItems[1],
+  navItems[2],
+  navItems[3],
+  navItems[5],
+].filter((item): item is NavItem => Boolean(item));
+
+export const secondaryNavItems: NavItem[] = navItems.filter(
+  (item) => !item.children && !primaryNavItems.some((primary) => primary.href === item.href),
+);
+
+export const toolNavItems: NavItem[] = navItems.find((item) => item.children)?.children ?? [];
