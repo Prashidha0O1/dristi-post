@@ -28,7 +28,7 @@ export function Footer() {
   const catsRight = categories.slice(half);
 
   return (
-    <Box as="footer" bg="#1a1a2e" color="#aaa">
+    <Box as="footer" bg="var(--color-nav)" color="#aaa">
       <Box maxW="var(--max-content)" mx="auto" px="var(--side-pad)" pt="40px" pb="20px">
         <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap={{ base: "28px", md: "32px" }} mb="32px">
           {/* Brand + registration + socials */}

@@ -12,8 +12,9 @@ import {
   getLatestArticles,
   getArticlesByCategory,
 } from "@/lib/mockData";
-import { IframeEmbed } from "@/components/iframeEmbed";
-import { NepaliPatroWidget } from "@/components/nepaliPatroWidget";
+import { NepaliCalendar } from "@/components/nepaliCalendar";
+import { ForexWidget } from "@/components/forexWidget";
+import { GoldSilverWidget } from "@/components/goldSilverWidget";
 
 function AdBanner({ variant = "slim" }: { variant?: "slim" | "full" }) {
   const isFull = variant === "full";
@@ -82,7 +83,10 @@ function LatestWithSidebar() {
 
       <Box>
         <Box mb="24px">
-          <NepaliPatroWidget />
+          <NepaliCalendar />
+        </Box>
+        <Box mb="24px">
+          <GoldSilverWidget />
         </Box>
         <Box mt="24px">
           <SectionHeader title={t("trending")} accent="var(--color-brand)" />
@@ -194,11 +198,7 @@ export default function HomePage() {
           <Box>
             <MoreNews />
             <Box mb="32px">
-              <SectionHeader title={locale === "ne" ? "विदेशी विनिमय दर" : "Foreign Exchange Rates"} accent="var(--color-brand)" />
-              <IframeEmbed
-                src="https://nepalicalendar.rat32.com/embed-forex.php"
-                height="900px"
-              />
+              <ForexWidget />
             </Box>
             <AdBanner />
           </Box>

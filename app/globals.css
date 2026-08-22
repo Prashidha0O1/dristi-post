@@ -11,8 +11,33 @@
   --color-border: #e5e7eb;
   --color-surface: #fff;
   --color-page: #f7f8fa;
+  --color-card-alt: #fafafa;
   --max-content: 1320px;
   --side-pad: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-nav: #0f1320;
+    --color-headline: #e5e7eb;
+    --color-body: #d1d5db;
+    --color-muted: #9ca3af;
+    --color-border: #374151;
+    --color-surface: #1f2937;
+    --color-page: #111827;
+    --color-card-alt: #1a2332;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-nav: #0f1320;
+  --color-headline: #e5e7eb;
+  --color-body: #d1d5db;
+  --color-muted: #9ca3af;
+  --color-border: #374151;
+  --color-surface: #1f2937;
+  --color-page: #111827;
+  --color-card-alt: #1a2332;
 }
 
 @theme inline {
@@ -50,64 +75,5 @@ img {
   }
   .font-english {
     font-family: var(--font-poppins), sans-serif;
-  }
-}
-
-/* Nepali Patro widget: on desktop the sidebar column is narrow (~415px), so
-   the widget's default cell height (~126px) makes each day tall and thin.
-   Scale the cell down toward square and shrink the type to match. Scoped to
-   lg+ only — tablet/mobile keep the widget's stock sizing. */
-@media (min-width: 1024px) {
-  /* The widget hard-codes a row height as well as a cell height; both need
-     overriding or the rows keep their original size and leave gaps. */
-  #np_widget_wiz1 .np-body .np-wrows {
-    height: 96px !important;
-  }
-
-  #np_widget_wiz1 .np-cell {
-    height: 96px !important;
-    min-height: 0 !important;
-  }
-
-  /* The day number is flex-centred by the widget, which puts it under the
-     3-line event names. Pin it just below the event zone instead so every
-     cell aligns on the same baseline. */
-  #np_widget_wiz1 .np-day-bg .text {
-    font-size: 1.6em !important;
-    top: 36px !important;
-    bottom: auto !important;
-  }
-
-  #np_widget_wiz1 .np-cell .event {
-    font-size: 9px !important;
-    line-height: 1.15 !important;
-    max-height: 32px !important;
-  }
-
-  #np_widget_wiz1 .np-day-bg .number,
-  #np_widget_wiz1 .np-day-bg .tithi {
-    font-size: 10px !important;
-  }
-
-  #np_widget_wiz1 .np-day-bg .tithiMonth {
-    font-size: 9px !important;
-    bottom: 1.5em !important;
-  }
-
-  /* "+N more events" badge. The widget renders this ~20px wide (9px type plus
-     2px letter-spacing that also pushes the label off-centre in its pill),
-     which runs into the day numeral in a 59px-wide cell. Shrink it so it fits
-     the free strip to the right of the numeral, and drop the letter-spacing. */
-  #np_widget_wiz1 .np-cell .more {
-    top: 41px !important;
-    right: 1px !important;
-    font-size: 8px !important;
-    line-height: 1.5 !important;
-    letter-spacing: 0 !important;
-    padding: 0 3px !important;
-    border-radius: 8px !important;
-    background: #9a9a9a !important;
-    color: #fff !important;
-    font-weight: 600 !important;
   }
 }

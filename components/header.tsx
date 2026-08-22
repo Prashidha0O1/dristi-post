@@ -4,6 +4,7 @@ import { Box, Flex, Text, Input } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLocale } from "@/lib/localeContext";
+import { useTheme } from "@/lib/themeContext";
 import { navItems } from "@/lib/config";
 import { getBreakingArticles } from "@/lib/mockData";
 import { formatNepaliDate } from "@/lib/nepaliDate";
@@ -123,7 +124,7 @@ function TopInfoBar() {
   }, [locale]);
 
   return (
-    <Box bg="#1a1a2e" color="rgba(255,255,255,0.85)" fontSize="12px" fontFamily="var(--font-poppins), sans-serif">
+    <Box bg="var(--color-nav)" color="rgba(255,255,255,0.85)" fontSize="12px" fontFamily="var(--font-poppins), sans-serif">
       <Box maxW="var(--max-content)" mx="auto" px="var(--side-pad)">
         <Flex align="center" justify="space-between" h={{ base: "auto", sm: "30px" }} py={{ base: "6px", sm: "0" }} gap={{ base: "8px", sm: "16px" }} flexWrap={{ base: "wrap", sm: "nowrap" }}>
           <Flex align="center" gap={{ base: "8px", sm: "12px" }} overflow="hidden" flex="1" flexWrap="wrap" fontSize={{ base: "11px", sm: "12px" }}>
@@ -206,7 +207,7 @@ function Masthead() {
   const { locale, setLocale } = useLocale();
 
   return (
-    <Box bg="white" borderBottom="1px solid #eee">
+    <Box bg="var(--color-surface)" borderBottom="1px solid var(--color-border)">
       <Box maxW="var(--max-content)" mx="auto" px="var(--side-pad)" py="14px">
         <Flex justify="center" align="center">
           <Link href="/">
@@ -221,7 +222,7 @@ function Masthead() {
                 <Text as="span" color={BRAND}>
                   {locale === "ne" ? "दृष्टि" : "Dristi"}
                 </Text>
-                <Text as="span" color="#1a1a2e" ml="6px">
+                <Text as="span" color="var(--color-nav)" ml="6px">
                   {locale === "ne" ? "पोस्ट" : "Post"}
                 </Text>
               </Text>
@@ -274,6 +275,7 @@ function Masthead() {
 
 function NavBar() {
   const { localized, t, locale, setLocale } = useLocale();
+  const { resolved, setTheme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -291,7 +293,7 @@ function NavBar() {
   return (
     <>
       <Box
-        bg="#1a1a2e"
+        bg="var(--color-nav)"
         position="sticky"
         top="0"
         zIndex="1000"
@@ -323,7 +325,7 @@ function NavBar() {
                       position="absolute"
                       top="44px"
                       left="0"
-                      bg="#1a1a2e"
+                      bg="var(--color-nav)"
                       border="1px solid rgba(255,255,255,0.1)"
                       borderRadius="0 0 4px 4px"
                       minW="180px"
@@ -399,6 +401,24 @@ function NavBar() {
             </Flex>
 
             <Flex align="center" gap="6px">
+              <Box
+                as="button"
+                onClick={() => setTheme(resolved === "dark" ? "light" : "dark")}
+                color="rgba(255,255,255,0.7)"
+                p="6px"
+                cursor="pointer"
+                bg="transparent"
+                border="none"
+                transition="color 0.15s"
+                _hover={{ color: "white" }}
+                aria-label="Toggle dark mode"
+              >
+                {resolved === "dark" ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                )}
+              </Box>
               {searchOpen && (
                 <Input
                   placeholder={t("search")}
@@ -440,7 +460,7 @@ function NavBar() {
         <Box
           position="fixed"
           inset="0"
-          bg="white"
+          bg="var(--color-surface)"
           zIndex="1100"
           overflowY="auto"
           display={{ lg: "none" }}
@@ -450,7 +470,7 @@ function NavBar() {
             justify="space-between"
             h="52px"
             px="16px"
-            bg="#1a1a2e"
+            bg="var(--color-nav)"
             position="sticky"
             top="0"
             zIndex="1"
@@ -482,7 +502,7 @@ function NavBar() {
                     py="14px"
                     fontSize="16px"
                     fontWeight="500"
-                    color="#333"
+                    color="var(--color-body)"
                     borderBottom="1px solid #f0f0f0"
                     _hover={{ color: BRAND }}
                     transition="color 0.15s"
