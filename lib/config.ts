@@ -15,19 +15,6 @@ export const categories: Category[] = [
 
 export const navItems: NavItem[] = [
   { label: { ne: "गृहपृष्ठ", en: "Home" }, href: "/" },
-  {
-    label: { ne: "प्रदेश", en: "Province" },
-    href: "/province/bagmati",
-    children: [
-      { label: { ne: "कोशी", en: "Koshi" }, href: "/province/koshi" },
-      { label: { ne: "मधेश", en: "Madhesh" }, href: "/province/madhesh" },
-      { label: { ne: "बागमती", en: "Bagmati" }, href: "/province/bagmati" },
-      { label: { ne: "गण्डकी", en: "Gandaki" }, href: "/province/gandaki" },
-      { label: { ne: "लुम्बिनी", en: "Lumbini" }, href: "/province/lumbini" },
-      { label: { ne: "कर्णाली", en: "Karnali" }, href: "/province/karnali" },
-      { label: { ne: "सुदूरपश्चिम", en: "Sudurpashchim" }, href: "/province/sudurpashchim" },
-    ],
-  },
   { label: { ne: "राजनीति", en: "Politics" }, href: "/category/politics" },
   { label: { ne: "व्यापार र अर्थ", en: "Business and Finance" }, href: "/category/business" },
   { label: { ne: "खेलकुद", en: "Sports" }, href: "/category/sports" },

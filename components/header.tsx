@@ -2,12 +2,14 @@
 
 import { Box, Flex, Text, Input } from "@chakra-ui/react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocale } from "@/lib/localeContext";
 import { useTheme } from "@/lib/themeContext";
 import { navItems } from "@/lib/config";
+import { provinces } from "@/lib/domain/province";
 import { getBreakingArticles } from "@/lib/mockData";
 import { formatNepaliDate } from "@/lib/nepaliDate";
+import Image from "next/image";
 
 const BRAND = "var(--color-brand)";
 
@@ -278,6 +280,19 @@ function NavBar() {
   const { resolved, setTheme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [filterOpen, setFilterOpen] = useState(false);
+  const filterRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!filterOpen) return;
+    function handleClick(e: MouseEvent) {
+      if (filterRef.current && !filterRef.current.contains(e.target as Node)) {
+        setFilterOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [filterOpen]);
 
   useEffect(() => {
     if (typeof document === "undefined") return;
@@ -450,6 +465,56 @@ function NavBar() {
                   <circle cx="11" cy="11" r="8" />
                   <path d="m21 21-4.35-4.35" />
                 </svg>
+              </Box>
+              <Box position="relative" ref={filterRef}>
+                <Box
+                  as="button"
+                  onClick={() => setFilterOpen(!filterOpen)}
+                  p="4px"
+                  cursor="pointer"
+                  bg="transparent"
+                  border="none"
+                  transition="opacity 0.15s"
+                  opacity={filterOpen ? 1 : 0.7}
+                  _hover={{ opacity: 1 }}
+                  aria-label="Province filter"
+                >
+                  <Image src="/filter.png" alt="Filter" width={20} height={20} style={{ filter: "invert(1)" }} />
+                </Box>
+                {filterOpen && (
+                  <Box
+                    position="absolute"
+                    right="0"
+                    top="100%"
+                    mt="8px"
+                    bg="var(--color-surface)"
+                    border="1px solid var(--color-border)"
+                    borderRadius="6px"
+                    boxShadow="0 4px 12px rgba(0,0,0,0.15)"
+                    zIndex="1200"
+                    minW="180px"
+                    py="6px"
+                  >
+                    <Text px="12px" py="6px" fontSize="11px" fontWeight="700" color="var(--color-muted)" textTransform="uppercase" letterSpacing="0.5px">
+                      {locale === "ne" ? "प्रदेश" : "Province"}
+                    </Text>
+                    {provinces.map((p) => (
+                      <Link key={p.slug} href={`/province/${p.slug}`} onClick={() => setFilterOpen(false)}>
+                        <Text
+                          px="12px"
+                          py="8px"
+                          fontSize="14px"
+                          color="var(--color-body)"
+                          _hover={{ bg: "var(--color-tag-bg)", color: BRAND }}
+                          transition="all 0.1s"
+                          cursor="pointer"
+                        >
+                          {locale === "ne" ? p.name.ne : p.name.en}
+                        </Text>
+                      </Link>
+                    ))}
+                  </Box>
+                )}
               </Box>
             </Flex>
           </Flex>
