@@ -226,7 +226,7 @@ function Masthead() {
                   {locale === "ne" ? "पोस्ट" : "Post"}
                 </Text>
               </Text>
-              <Text fontSize="10px" color="#999" letterSpacing="2px" textTransform="uppercase" mt="-2px" fontWeight="400">
+              <Text fontSize="10px" color="var(--color-muted)" letterSpacing="2px" textTransform="uppercase" mt="-2px" fontWeight="400">
                 {locale === "ne" ? "नेपालको विश्वसनीय समाचार" : "Nepal's Trusted News"}
               </Text>
             </Box>
@@ -249,7 +249,7 @@ function Masthead() {
             >
               नेपाली
             </Box>
-            <Text color="#ddd" fontSize="12px">|</Text>
+            <Text color="var(--color-border)" fontSize="12px">|</Text>
             <Box
               as="button"
               onClick={() => setLocale("en")}
@@ -503,7 +503,7 @@ function NavBar() {
                     fontSize="16px"
                     fontWeight="500"
                     color="var(--color-body)"
-                    borderBottom="1px solid #f0f0f0"
+                    borderBottom="1px solid var(--color-border)"
                     _hover={{ color: BRAND }}
                     transition="color 0.15s"
                     onClick={() => setMobileOpen(false)}
@@ -520,8 +520,8 @@ function NavBar() {
                       py="10px"
                       fontSize="14px"
                       fontWeight="400"
-                      color="#666"
-                      borderBottom="1px solid #f5f5f5"
+                      color="var(--color-subtle)"
+                      borderBottom="1px solid var(--color-border)"
                       _hover={{ color: BRAND }}
                       transition="color 0.15s"
                       onClick={() => setMobileOpen(false)}
@@ -539,7 +539,7 @@ function NavBar() {
                 bg="transparent" border="none" cursor="pointer">
                 नेपाली
               </Box>
-              <Text color="#ddd">|</Text>
+              <Text color="var(--color-border)">|</Text>
               <Box as="button" onClick={() => { setLocale("en"); setMobileOpen(false); }}
                 fontSize="15px" fontWeight={locale === "en" ? "700" : "400"} color={locale === "en" ? BRAND : "#888"}
                 bg="transparent" border="none" cursor="pointer">

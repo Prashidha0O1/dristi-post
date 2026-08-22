@@ -1,7 +1,6 @@
 "use client";
 
 import { Box, Text, SimpleGrid } from "@chakra-ui/react";
-import Link from "next/link";
 import { PageShell } from "@/components/pageShell";
 import { NewsCard } from "@/components/newsCard";
 import { SectionHeader } from "@/components/sectionHeader";
@@ -22,7 +21,7 @@ export default function BlogPage() {
         accent="var(--color-brand)"
       />
 
-      <Text fontSize="15px" color="#666" mb="24px" lineHeight="1.7">
+      <Text fontSize="15px" color="var(--color-subtle)" mb="24px" lineHeight="1.7">
         {locale === "ne"
           ? "विचार, विश्लेषण र जीवनशैलीका लेखहरू"
           : "Opinion, analysis, and lifestyle articles"}
@@ -36,7 +35,7 @@ export default function BlogPage() {
         </SimpleGrid>
       ) : (
         <Box py="40px" textAlign="center">
-          <Text fontSize="16px" color="#999">
+          <Text fontSize="16px" color="var(--color-muted)">
             {locale === "ne" ? "लेखहरू भेटिएनन्।" : "No articles found."}
           </Text>
         </Box>

@@ -36,10 +36,10 @@ export function GoldSilverWidget() {
         title={locale === "ne" ? "सुन चाँदी दर" : "Gold & Silver Rates"}
         accent="#d4a017"
       />
-      <Text fontSize="11px" color="#999" mb="8px">
+      <Text fontSize="11px" color="var(--color-muted)" mb="8px">
         {locale === "ne" ? "स्रोत: फेनेगोसिडा (प्रति तोला)" : "Source: FENEGOSIDA (per tola)"}
       </Text>
-      <Flex direction="column" gap="0" border="1px solid #eee" borderRadius="4px" overflow="hidden">
+      <Flex direction="column" gap="0" border="1px solid var(--color-border)" borderRadius="4px" overflow="hidden">
         {items.map((item, i) => (
           <Flex
             key={item.label}
@@ -47,10 +47,10 @@ export function GoldSilverWidget() {
             align="center"
             px="12px"
             py="10px"
-            bg={i % 2 === 0 ? "white" : "#fafafa"}
-            borderTop={i > 0 ? "1px solid #f0f0f0" : "none"}
+            bg={i % 2 === 0 ? "var(--color-surface)" : "var(--color-card-alt)"}
+            borderTop={i > 0 ? "1px solid var(--color-border)" : "none"}
           >
-            <Text fontSize="13px" fontWeight="500" color="#555">
+            <Text fontSize="13px" fontWeight="500" color="var(--color-subtle)">
               {item.label}
             </Text>
             <Text fontSize="14px" fontWeight="700" color={item.color}>

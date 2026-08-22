@@ -34,14 +34,13 @@ export function NewsCard({
   const authorName = localized(article.author.name);
   const catColor = article.category.color || "var(--color-brand)";
 
-  // List: text-first, small thumbnail right
   if (variant === "list") {
     return (
       <Link href={`/article/${article.slug}`}>
         <Flex
           gap="12px"
           py="12px"
-          borderBottom="1px solid #eee"
+          borderBottom="1px solid var(--color-border)"
           _hover={{ "& .title": { color: "var(--color-brand)" } }}
           cursor="pointer"
         >
@@ -51,10 +50,10 @@ export function NewsCard({
                 {categoryName}
               </Text>
             )}
-            <Text className="title" fontWeight="700" fontSize="15px" lineHeight="1.5" lineClamp={2} color="#1a1a1a" transition="color 0.15s">
+            <Text className="title" fontWeight="700" fontSize="15px" lineHeight="1.5" lineClamp={2} color="var(--color-headline)" transition="color 0.15s">
               {title}
             </Text>
-            {showTimestamp && <TimeAgo date={article.publishedAt} fontSize="12px" color="#999" mt="4px" />}
+            {showTimestamp && <TimeAgo date={article.publishedAt} fontSize="12px" color="var(--color-muted)" mt="4px" />}
           </Box>
           <Box position="relative" w="80px" h="60px" flexShrink={0} borderRadius="3px" overflow="hidden">
             <Image src={article.image} alt={title} fill style={{ objectFit: "cover" }} sizes="80px" />
@@ -64,7 +63,6 @@ export function NewsCard({
     );
   }
 
-  // Compact: smaller image + headline, for sidebar / secondary
   if (variant === "compact") {
     return (
       <Link href={`/article/${article.slug}`}>
@@ -77,16 +75,15 @@ export function NewsCard({
               {categoryName}
             </Text>
           )}
-          <Text className="title" fontWeight="700" fontSize="16px" lineHeight="1.4" lineClamp={2} color="#1a1a1a" transition="color 0.15s">
+          <Text className="title" fontWeight="700" fontSize="16px" lineHeight="1.4" lineClamp={2} color="var(--color-headline)" transition="color 0.15s">
             {title}
           </Text>
-          {showTimestamp && <TimeAgo date={article.publishedAt} fontSize="12px" color="#999" mt="6px" />}
+          {showTimestamp && <TimeAgo date={article.publishedAt} fontSize="12px" color="var(--color-muted)" mt="6px" />}
         </Box>
       </Link>
     );
   }
 
-  // Hero: large lead story with overlay text
   if (variant === "hero") {
     return (
       <Link href={`/article/${article.slug}`}>
@@ -138,7 +135,6 @@ export function NewsCard({
     );
   }
 
-  // Featured: image top, strong headline, for secondary stories
   if (variant === "featured") {
     return (
       <Link href={`/article/${article.slug}`}>
@@ -160,31 +156,30 @@ export function NewsCard({
               {categoryName}
             </Text>
           )}
-          <Text className="title" fontWeight="700" fontSize="18px" lineHeight="1.4" lineClamp={3} color="#1a1a1a" transition="color 0.15s" mb="6px">
+          <Text className="title" fontWeight="700" fontSize="18px" lineHeight="1.4" lineClamp={3} color="var(--color-headline)" transition="color 0.15s" mb="6px">
             {title}
           </Text>
           {showExcerpt && (
-            <Text fontSize="14px" color="#666" lineClamp={2} lineHeight="1.6" mb="6px">
+            <Text fontSize="14px" color="var(--color-subtle)" lineClamp={2} lineHeight="1.6" mb="6px">
               {excerpt}
             </Text>
           )}
           <Flex align="center" gap="8px">
-            {showAuthor && <Text fontSize="12px" color="#999" fontWeight="500">{authorName}</Text>}
-            {showTimestamp && <TimeAgo date={article.publishedAt} fontSize="12px" color="#999" />}
+            {showAuthor && <Text fontSize="12px" color="var(--color-muted)" fontWeight="500">{authorName}</Text>}
+            {showTimestamp && <TimeAgo date={article.publishedAt} fontSize="12px" color="var(--color-muted)" />}
           </Flex>
         </Box>
       </Link>
     );
   }
 
-  // Standard: clean card with subtle border, default
   return (
     <Link href={`/article/${article.slug}`}>
       <Box
-        bg="white"
+        bg="var(--color-surface)"
         borderRadius="4px"
         overflow="hidden"
-        border="1px solid #eee"
+        border="1px solid var(--color-border)"
         _hover={{ "& .title": { color: "var(--color-brand)" }, "& .img img": { transform: "scale(1.03)" } }}
         transition="box-shadow 0.2s"
         cursor="pointer"
@@ -204,17 +199,17 @@ export function NewsCard({
               {categoryName}
             </Text>
           )}
-          <Text className="title" fontWeight="700" fontSize="17px" lineHeight="1.4" lineClamp={2} color="#1a1a1a" transition="color 0.15s" mb="6px">
+          <Text className="title" fontWeight="700" fontSize="17px" lineHeight="1.4" lineClamp={2} color="var(--color-headline)" transition="color 0.15s" mb="6px">
             {title}
           </Text>
           {showExcerpt && (
-            <Text fontSize="14px" color="#666" lineClamp={2} lineHeight="1.6" mb="6px">
+            <Text fontSize="14px" color="var(--color-subtle)" lineClamp={2} lineHeight="1.6" mb="6px">
               {excerpt}
             </Text>
           )}
           <Flex align="center" gap="8px" justify="space-between">
-            {showAuthor && <Text fontSize="12px" color="#999" fontWeight="500">{authorName}</Text>}
-            {showTimestamp && <TimeAgo date={article.publishedAt} fontSize="12px" color="#999" />}
+            {showAuthor && <Text fontSize="12px" color="var(--color-muted)" fontWeight="500">{authorName}</Text>}
+            {showTimestamp && <TimeAgo date={article.publishedAt} fontSize="12px" color="var(--color-muted)" />}
           </Flex>
         </Box>
       </Box>

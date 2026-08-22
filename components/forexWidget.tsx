@@ -42,12 +42,12 @@ export function ForexWidget() {
         accent="var(--color-brand)"
       />
       {date && (
-        <Text fontSize="11px" color="#999" mb="8px">
+        <Text fontSize="11px" color="var(--color-muted)" mb="8px">
           {locale === "ne" ? "स्रोत: नेपाल राष्ट्र बैंक" : "Source: Nepal Rastra Bank"} · {date}
         </Text>
       )}
-      <Box border="1px solid #eee" borderRadius="4px" overflow="hidden" fontSize="12px">
-        <Flex bg="#f5f5f5" fontWeight="700" color="#555" px="10px" py="6px">
+      <Box border="1px solid var(--color-border)" borderRadius="4px" overflow="hidden" fontSize="12px">
+        <Flex bg="var(--color-table-header)" fontWeight="700" color="var(--color-subtle)" px="10px" py="6px">
           <Text flex="1">{locale === "ne" ? "मुद्रा" : "Currency"}</Text>
           <Text w="60px" textAlign="right">{locale === "ne" ? "एकाइ" : "Unit"}</Text>
           <Text w="70px" textAlign="right">{locale === "ne" ? "किन्ने" : "Buy"}</Text>
@@ -58,14 +58,14 @@ export function ForexWidget() {
             key={r.iso3}
             px="10px"
             py="6px"
-            borderTop="1px solid #f0f0f0"
-            bg={i % 2 === 0 ? "white" : "#fafafa"}
+            borderTop="1px solid var(--color-border)"
+            bg={i % 2 === 0 ? "var(--color-surface)" : "var(--color-card-alt)"}
             align="center"
           >
-            <Text flex="1" fontWeight="500" color="#333">
+            <Text flex="1" fontWeight="500" color="var(--color-body)">
               {r.iso3}
             </Text>
-            <Text w="60px" textAlign="right" color="#888">{r.unit}</Text>
+            <Text w="60px" textAlign="right" color="var(--color-muted)">{r.unit}</Text>
             <Text w="70px" textAlign="right" color="#16a34a" fontWeight="600">{r.buy}</Text>
             <Text w="70px" textAlign="right" color="#dc2626" fontWeight="600">{r.sell}</Text>
           </Flex>

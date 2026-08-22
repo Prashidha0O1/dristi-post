@@ -60,6 +60,17 @@ export default function DateConverterPage() {
   const yearOptions = Array.from({ length: 101 }, (_, i) => 2000 + i);
   const monthNames = locale === "ne" ? BS_MONTHS_NE : BS_MONTHS;
 
+  const selectStyle = {
+    w: "full" as const,
+    h: "40px",
+    border: "1px solid var(--color-input-border)",
+    borderRadius: "4px",
+    px: "8px",
+    fontSize: "14px",
+    bg: "var(--color-input-bg)",
+    color: "var(--color-body)",
+  };
+
   return (
     <PageShell>
       <SectionHeader
@@ -68,7 +79,7 @@ export default function DateConverterPage() {
       />
 
       <Box maxW="600px" mx="auto" py="20px">
-        <Flex gap="0" mb="24px" borderRadius="4px" overflow="hidden" border="1px solid #ddd">
+        <Flex gap="0" mb="24px" borderRadius="4px" overflow="hidden" border="1px solid var(--color-border)">
           {(["bs2ad", "ad2bs"] as const).map((m) => (
             <chakra.button
               key={m}
@@ -76,8 +87,8 @@ export default function DateConverterPage() {
               py="10px"
               fontSize="14px"
               fontWeight="600"
-              bg={mode === m ? "var(--color-brand)" : "white"}
-              color={mode === m ? "white" : "#555"}
+              bg={mode === m ? "var(--color-brand)" : "var(--color-surface)"}
+              color={mode === m ? "white" : "var(--color-subtle)"}
               border="none"
               cursor="pointer"
               transition="all 0.15s"
@@ -93,40 +104,37 @@ export default function DateConverterPage() {
         {mode === "bs2ad" ? (
           <SimpleGrid columns={3} gap="12px" mb="16px">
             <Box>
-              <Text fontSize="12px" fontWeight="600" color="#555" mb="4px">
+              <Text fontSize="12px" fontWeight="600" color="var(--color-subtle)" mb="4px">
                 {locale === "ne" ? "वर्ष" : "Year"}
               </Text>
-              <chakra.select w="full" h="40px" border="1px solid #ddd" borderRadius="4px" px="8px" fontSize="14px" bg="white"
-                value={bsYear} onChange={(e) => setBsYear(e.target.value)}>
+              <chakra.select {...selectStyle} value={bsYear} onChange={(e) => setBsYear(e.target.value)}>
                 {yearOptions.map((y) => <option key={y} value={y}>{y}</option>)}
               </chakra.select>
             </Box>
             <Box>
-              <Text fontSize="12px" fontWeight="600" color="#555" mb="4px">
+              <Text fontSize="12px" fontWeight="600" color="var(--color-subtle)" mb="4px">
                 {locale === "ne" ? "महिना" : "Month"}
               </Text>
-              <chakra.select w="full" h="40px" border="1px solid #ddd" borderRadius="4px" px="8px" fontSize="14px" bg="white"
-                value={bsMonth} onChange={(e) => setBsMonth(e.target.value)}>
+              <chakra.select {...selectStyle} value={bsMonth} onChange={(e) => setBsMonth(e.target.value)}>
                 {monthNames.map((m, i) => <option key={i} value={i + 1}>{m}</option>)}
               </chakra.select>
             </Box>
             <Box>
-              <Text fontSize="12px" fontWeight="600" color="#555" mb="4px">
+              <Text fontSize="12px" fontWeight="600" color="var(--color-subtle)" mb="4px">
                 {locale === "ne" ? "गते" : "Day"}
               </Text>
-              <chakra.select w="full" h="40px" border="1px solid #ddd" borderRadius="4px" px="8px" fontSize="14px" bg="white"
-                value={bsDay} onChange={(e) => setBsDay(e.target.value)}>
+              <chakra.select {...selectStyle} value={bsDay} onChange={(e) => setBsDay(e.target.value)}>
                 {Array.from({ length: 32 }, (_, i) => i + 1).map((d) => <option key={d} value={d}>{d}</option>)}
               </chakra.select>
             </Box>
           </SimpleGrid>
         ) : (
           <Box mb="16px">
-            <Text fontSize="12px" fontWeight="600" color="#555" mb="4px">
+            <Text fontSize="12px" fontWeight="600" color="var(--color-subtle)" mb="4px">
               {locale === "ne" ? "ई.सं. मिति" : "AD Date"}
             </Text>
             <Input type="date" value={adDate} onChange={(e) => setAdDate(e.target.value)}
-              h="40px" border="1px solid #ddd" borderRadius="4px" fontSize="14px" />
+              h="40px" border="1px solid var(--color-input-border)" borderRadius="4px" fontSize="14px" bg="var(--color-input-bg)" color="var(--color-body)" />
           </Box>
         )}
 
@@ -154,11 +162,11 @@ export default function DateConverterPage() {
         )}
 
         {result && (
-          <Box mt="20px" p="20px" bg="white" border="1px solid #eee" borderRadius="4px" textAlign="center">
-            <Text fontSize="12px" fontWeight="600" color="#999" textTransform="uppercase" letterSpacing="1px" mb="8px">
+          <Box mt="20px" p="20px" bg="var(--color-surface)" border="1px solid var(--color-border)" borderRadius="4px" textAlign="center">
+            <Text fontSize="12px" fontWeight="600" color="var(--color-muted)" textTransform="uppercase" letterSpacing="1px" mb="8px">
               {locale === "ne" ? "परिणाम" : "Result"}
             </Text>
-            <Text fontSize="24px" fontWeight="800" color="#1a1a1a">
+            <Text fontSize="24px" fontWeight="800" color="var(--color-headline)">
               {result}
             </Text>
           </Box>

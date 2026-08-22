@@ -21,8 +21,8 @@ function AdBanner({ variant = "slim" }: { variant?: "slim" | "full" }) {
   return (
     <Box
       mb={isFull ? "36px" : "24px"}
-      bg="white"
-      border="1px dashed #d5d5d5"
+      bg="var(--color-surface)"
+      border="1px dashed var(--color-border)"
       h={isFull ? { base: "160px", md: "250px" } : "90px"}
       display="flex"
       alignItems="center"
@@ -31,7 +31,7 @@ function AdBanner({ variant = "slim" }: { variant?: "slim" | "full" }) {
     >
       <Text
         fontSize={isFull ? "13px" : "11px"}
-        color="#bbb"
+        color="var(--color-muted)"
         fontWeight="500"
         textTransform="uppercase"
         letterSpacing="2px"
@@ -96,7 +96,7 @@ function LatestWithSidebar() {
                 key={a.id}
                 gap="12px"
                 py="14px"
-                borderBottom={i < trending.length - 1 ? "1px solid #eee" : "none"}
+                borderBottom={i < trending.length - 1 ? "1px solid var(--color-border)" : "none"}
                 _hover={{ "& .rank": { color: "var(--color-brand)" }, "& .t-title": { color: "var(--color-brand)" } }}
                 cursor="pointer"
                 align="flex-start"
@@ -105,7 +105,7 @@ function LatestWithSidebar() {
                   className="rank"
                   fontSize="28px"
                   fontWeight="900"
-                  color="#e0e0e0"
+                  color="var(--color-border)"
                   lineHeight="1"
                   w="40px"
                   textAlign="center"
@@ -121,11 +121,11 @@ function LatestWithSidebar() {
                     {locale === "ne" ? a.category.name.ne : a.category.name.en}
                   </Text>
                   <a href={`/article/${a.slug}`}>
-                    <Text className="t-title" fontWeight="700" fontSize="15px" lineHeight="1.45" lineClamp={2} color="#1a1a1a" transition="color 0.15s">
+                    <Text className="t-title" fontWeight="700" fontSize="15px" lineHeight="1.45" lineClamp={2} color="var(--color-headline)" transition="color 0.15s">
                       {locale === "ne" ? a.title.ne : a.title.en}
                     </Text>
                   </a>
-                  <TimeAgo date={a.publishedAt} fontSize="12px" color="#aaa" mt="3px" />
+                  <TimeAgo date={a.publishedAt} fontSize="12px" color="var(--color-muted)" mt="3px" />
                 </Box>
               </Flex>
             ))}

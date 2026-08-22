@@ -21,7 +21,7 @@ function TrendingSidebar() {
           key={a.id}
           gap="12px"
           py="12px"
-          borderBottom={i < trending.length - 1 ? "1px solid #eee" : "none"}
+          borderBottom={i < trending.length - 1 ? "1px solid var(--color-border)" : "none"}
           _hover={{ "& .t-title": { color: "var(--color-brand)" } }}
           cursor="pointer"
           align="flex-start"
@@ -29,7 +29,7 @@ function TrendingSidebar() {
           <Text
             fontSize="24px"
             fontWeight="900"
-            color="#e0e0e0"
+            color="var(--color-border)"
             lineHeight="1"
             w="36px"
             textAlign="center"
@@ -40,11 +40,11 @@ function TrendingSidebar() {
             {String(i + 1).padStart(2, "0")}
           </Text>
           <Box flex="1" minW="0">
-            <Text fontSize="11px" fontWeight="700" color={a.category.color || "#888"} textTransform="uppercase" letterSpacing="0.5px" mb="2px">
+            <Text fontSize="11px" fontWeight="700" color={a.category.color || "var(--color-muted)"} textTransform="uppercase" letterSpacing="0.5px" mb="2px">
               {locale === "ne" ? a.category.name.ne : a.category.name.en}
             </Text>
             <Link href={`/article/${a.slug}`}>
-              <Text className="t-title" fontWeight="700" fontSize="14px" lineHeight="1.45" lineClamp={2} color="#1a1a1a" transition="color 0.15s">
+              <Text className="t-title" fontWeight="700" fontSize="14px" lineHeight="1.45" lineClamp={2} color="var(--color-headline)" transition="color 0.15s">
                 {locale === "ne" ? a.title.ne : a.title.en}
               </Text>
             </Link>
@@ -65,7 +65,7 @@ export default function CategoryPageClient({ slug }: { slug: string }) {
     return (
       <PageShell>
         <Box py="60px" textAlign="center">
-          <Text fontSize="24px" fontWeight="700" color="#1a1a1a" mb="8px">
+          <Text fontSize="24px" fontWeight="700" color="var(--color-headline)" mb="8px">
             {locale === "ne" ? "विषय भेटिएन" : "Category Not Found"}
           </Text>
           <Link href="/">
@@ -85,8 +85,7 @@ export default function CategoryPageClient({ slug }: { slug: string }) {
 
   return (
     <PageShell>
-      {/* Breadcrumb */}
-      <Flex gap="6px" align="center" mb="20px" fontSize="13px" color="#999">
+      <Flex gap="6px" align="center" mb="20px" fontSize="13px" color="var(--color-muted)">
         <Link href="/">
           <Text _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
             {locale === "ne" ? "गृहपृष्ठ" : "Home"}
@@ -100,14 +99,11 @@ export default function CategoryPageClient({ slug }: { slug: string }) {
 
       <SimpleGrid columns={{ base: 1, lg: 3 }} gap="32px">
         <Box gridColumn={{ lg: "span 2" }}>
-          {/* Lead article */}
           {lead && (
             <Box mb="28px">
               <NewsCard article={lead} variant="hero" showExcerpt showAuthor imageHeight="380px" />
             </Box>
           )}
-
-          {/* Rest of articles */}
           {rest.length > 0 && (
             <SimpleGrid columns={{ base: 1, sm: 2 }} gap="20px">
               {rest.map((a) => (
@@ -115,21 +111,19 @@ export default function CategoryPageClient({ slug }: { slug: string }) {
               ))}
             </SimpleGrid>
           )}
-
           {articles.length === 0 && (
             <Box py="40px" textAlign="center">
-              <Text fontSize="16px" color="#999">
+              <Text fontSize="16px" color="var(--color-muted)">
                 {locale === "ne" ? "यस विषयमा समाचार भेटिएन।" : "No articles found in this category."}
               </Text>
             </Box>
           )}
         </Box>
 
-        {/* Sidebar */}
         <Box>
           <Box
-            bg="white"
-            border="1px solid #eee"
+            bg="var(--color-surface)"
+            border="1px solid var(--color-border)"
             borderRadius="4px"
             h="200px"
             display="flex"
@@ -137,7 +131,7 @@ export default function CategoryPageClient({ slug }: { slug: string }) {
             justifyContent="center"
             mb="28px"
           >
-            <Text fontSize="11px" color="#ccc" fontWeight="500" textTransform="uppercase" letterSpacing="2px">
+            <Text fontSize="11px" color="var(--color-muted)" fontWeight="500" textTransform="uppercase" letterSpacing="2px">
               विज्ञापन
             </Text>
           </Box>

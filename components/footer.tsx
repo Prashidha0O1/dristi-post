@@ -28,7 +28,7 @@ export function Footer() {
   const catsRight = categories.slice(half);
 
   return (
-    <Box as="footer" bg="var(--color-nav)" color="#aaa">
+    <Box as="footer" bg="var(--color-nav)" color="var(--color-muted)">
       <Box maxW="var(--max-content)" mx="auto" px="var(--side-pad)" pt="40px" pb="20px">
         <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap={{ base: "28px", md: "32px" }} mb="32px">
           {/* Brand + registration + socials */}
@@ -37,16 +37,16 @@ export function Footer() {
               <Text as="span" color="var(--color-brand)">{locale === "ne" ? "दृष्टि" : "Dristi"}</Text>{" "}
               <Text as="span" color="white">{locale === "ne" ? "पोस्ट" : "Post"}</Text>
             </Text>
-            <Text fontSize="13px" color="#777" lineHeight="1.7" mb="14px">
+            <Text fontSize="13px" color="var(--color-muted)" lineHeight="1.7" mb="14px">
               {t("siteTagline")}
             </Text>
-            <Flex direction="column" gap="4px" fontSize="12px" color="#666" lineHeight="1.6" mb="16px">
+            <Flex direction="column" gap="4px" fontSize="12px" color="var(--color-subtle)" lineHeight="1.6" mb="16px">
               <Text>
-                <Text as="span" color="#888" fontWeight="600">{t("companyReg")}</Text>{" "}
+                <Text as="span" color="var(--color-muted)" fontWeight="600">{t("companyReg")}</Text>{" "}
                 {COMPANY_REG_NO}
               </Text>
               <Text>
-                <Text as="span" color="#888" fontWeight="600">{t("mediaReg")}</Text>{" "}
+                <Text as="span" color="var(--color-muted)" fontWeight="600">{t("mediaReg")}</Text>{" "}
                 {MEDIA_REG_NO}
               </Text>
             </Flex>
@@ -68,7 +68,7 @@ export function Footer() {
                   alignItems="center"
                   justifyContent="center"
                   bg="rgba(255,255,255,0.06)"
-                  color="#bbb"
+                  color="var(--color-body)"
                   borderRadius="4px"
                   transition="all 0.15s"
                   _hover={{ bg: "var(--color-brand)", color: "white" }}
@@ -89,7 +89,7 @@ export function Footer() {
             <SimpleGrid columns={2} gap="7px">
               {categories.map((cat) => (
                 <Link key={cat.id} href={`/category/${cat.slug}`}>
-                  <Text fontSize="13px" color="#888" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
+                  <Text fontSize="13px" color="var(--color-muted)" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
                     {localized(cat.name)}
                   </Text>
                 </Link>
@@ -103,7 +103,7 @@ export function Footer() {
             <Flex direction="column" gap="7px">
               {catsLeft.map((cat) => (
                 <Link key={cat.id} href={`/category/${cat.slug}`}>
-                  <Text fontSize="13px" color="#888" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
+                  <Text fontSize="13px" color="var(--color-muted)" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
                     {localized(cat.name)}
                   </Text>
                 </Link>
@@ -117,7 +117,7 @@ export function Footer() {
             <Flex direction="column" gap="7px">
               {catsRight.map((cat) => (
                 <Link key={cat.id} href={`/category/${cat.slug}`}>
-                  <Text fontSize="13px" color="#888" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
+                  <Text fontSize="13px" color="var(--color-muted)" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
                     {localized(cat.name)}
                   </Text>
                 </Link>
@@ -131,23 +131,23 @@ export function Footer() {
               {locale === "ne" ? "लिंकहरू" : "Links"}
             </Text>
             <Flex direction="column" gap="7px" mb="20px">
-              <Link href="/about"><Text fontSize="13px" color="#888" _hover={{ color: "var(--color-brand)" }}>{t("aboutUs")}</Text></Link>
-              <Link href="/contact"><Text fontSize="13px" color="#888" _hover={{ color: "var(--color-brand)" }}>{t("contactUs")}</Text></Link>
-              <Link href="/privacy"><Text fontSize="13px" color="#888" _hover={{ color: "var(--color-brand)" }}>{t("privacyPolicy")}</Text></Link>
-              <Link href="/terms"><Text fontSize="13px" color="#888" _hover={{ color: "var(--color-brand)" }}>{t("termsOfService")}</Text></Link>
+              <Link href="/about"><Text fontSize="13px" color="var(--color-muted)" _hover={{ color: "var(--color-brand)" }}>{t("aboutUs")}</Text></Link>
+              <Link href="/contact"><Text fontSize="13px" color="var(--color-muted)" _hover={{ color: "var(--color-brand)" }}>{t("contactUs")}</Text></Link>
+              <Link href="/privacy"><Text fontSize="13px" color="var(--color-muted)" _hover={{ color: "var(--color-brand)" }}>{t("privacyPolicy")}</Text></Link>
+              <Link href="/terms"><Text fontSize="13px" color="var(--color-muted)" _hover={{ color: "var(--color-brand)" }}>{t("termsOfService")}</Text></Link>
             </Flex>
 
             <Text fontSize="12px" fontWeight="700" color="white" mb="8px" textTransform="uppercase" letterSpacing="1px">
               {t("adInquiry")}
             </Text>
-            <Text fontSize="12px" color="#777" lineHeight="1.6" mb="6px">
+            <Text fontSize="12px" color="var(--color-muted)" lineHeight="1.6" mb="6px">
               {t("adInquiryDesc")}
             </Text>
             <Flex direction="column" gap="3px" fontSize="12px">
-              <chakra.a href={`tel:${AD_CONTACT_PHONE.replace(/[^+\d]/g, "")}`} color="#bbb" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
+              <chakra.a href={`tel:${AD_CONTACT_PHONE.replace(/[^+\d]/g, "")}`} color="var(--color-body)" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
                 📞 {AD_CONTACT_PHONE}
               </chakra.a>
-              <chakra.a href={`mailto:${AD_CONTACT_EMAIL}`} color="#bbb" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
+              <chakra.a href={`mailto:${AD_CONTACT_EMAIL}`} color="var(--color-body)" _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
                 ✉ {AD_CONTACT_EMAIL}
               </chakra.a>
               <chakra.a href={`https://wa.me/${AD_WHATSAPP}`} target="_blank" rel="noopener noreferrer" color="#25D366" _hover={{ color: "#128C7E" }} transition="color 0.15s" display="flex" alignItems="center" gap="6px">
@@ -158,8 +158,8 @@ export function Footer() {
           </Box>
         </SimpleGrid>
 
-        <Box borderTop="1px solid #2a2a3e" pt="16px" textAlign="center">
-          <Text fontSize="12px" color="#555">
+        <Box borderTop="1px solid var(--color-border)" pt="16px" textAlign="center">
+          <Text fontSize="12px" color="var(--color-subtle)">
             {t("copyright")}
           </Text>
         </Box>

@@ -17,14 +17,14 @@ export default function TrendingPage() {
 
   return (
     <PageShell>
-      <Flex gap="6px" align="center" mb="20px" fontSize="13px" color="#999">
+      <Flex gap="6px" align="center" mb="20px" fontSize="13px" color="var(--color-muted)">
         <Link href="/">
           <Text _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
             {locale === "ne" ? "गृहपृष्ठ" : "Home"}
           </Text>
         </Link>
         <Text>›</Text>
-        <Text color="#1a1a1a" fontWeight="600">{t("trending")}</Text>
+        <Text color="var(--color-headline)" fontWeight="600">{t("trending")}</Text>
       </Flex>
 
       <SectionHeader title={t("trending")} accent="var(--color-brand)" />
@@ -41,7 +41,7 @@ export default function TrendingPage() {
                 <Flex
                   gap="20px"
                   py="20px"
-                  borderBottom="1px solid #eee"
+                  borderBottom="1px solid var(--color-border)"
                   _hover={{ "& .t-title": { color: "var(--color-brand)" }, "& .t-img img": { transform: "scale(1.03)" } }}
                   cursor="pointer"
                   align="flex-start"
@@ -49,7 +49,7 @@ export default function TrendingPage() {
                   <Text
                     fontSize="36px"
                     fontWeight="900"
-                    color="#e8e8e8"
+                    color="var(--color-border)"
                     lineHeight="1"
                     w="50px"
                     textAlign="center"
@@ -64,13 +64,13 @@ export default function TrendingPage() {
                     <Text fontSize="11px" fontWeight="700" color={catColor} textTransform="uppercase" letterSpacing="0.5px" mb="4px">
                       {categoryName}
                     </Text>
-                    <Text className="t-title" fontWeight="700" fontSize="20px" lineHeight="1.4" lineClamp={2} color="#1a1a1a" transition="color 0.15s" mb="6px">
+                    <Text className="t-title" fontWeight="700" fontSize="20px" lineHeight="1.4" lineClamp={2} color="var(--color-headline)" transition="color 0.15s" mb="6px">
                       {title}
                     </Text>
-                    <Text fontSize="14px" color="#666" lineClamp={2} lineHeight="1.6" mb="6px" display={{ base: "none", sm: "block" }}>
+                    <Text fontSize="14px" color="var(--color-subtle)" lineClamp={2} lineHeight="1.6" mb="6px" display={{ base: "none", sm: "block" }}>
                       {localized(a.excerpt)}
                     </Text>
-                    <TimeAgo date={a.publishedAt} fontSize="13px" color="#999" />
+                    <TimeAgo date={a.publishedAt} fontSize="13px" color="var(--color-muted)" />
                   </Box>
 
                   <Box className="t-img" position="relative" w={{ base: "100px", sm: "160px" }} h={{ base: "75px", sm: "110px" }} flexShrink={0} borderRadius="3px" overflow="hidden">
@@ -82,11 +82,10 @@ export default function TrendingPage() {
           })}
         </Box>
 
-        {/* Sidebar */}
         <Box>
           <Box
-            bg="white"
-            border="1px solid #eee"
+            bg="var(--color-surface)"
+            border="1px solid var(--color-border)"
             borderRadius="4px"
             h="200px"
             display="flex"
@@ -94,12 +93,12 @@ export default function TrendingPage() {
             justifyContent="center"
             mb="28px"
           >
-            <Text fontSize="11px" color="#ccc" fontWeight="500" textTransform="uppercase" letterSpacing="2px">
+            <Text fontSize="11px" color="var(--color-muted)" fontWeight="500" textTransform="uppercase" letterSpacing="2px">
               विज्ञापन
             </Text>
           </Box>
 
-          <SectionHeader title={t("latest")} accent="#1a1a2e" href="/latest" />
+          <SectionHeader title={t("latest")} accent="var(--color-nav)" href="/latest" />
           {latest.map((a) => (
             <NewsCard key={a.id} article={a} variant="list" showCategory />
           ))}

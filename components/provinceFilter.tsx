@@ -56,10 +56,10 @@ function Chip({
         px="14px"
         py="7px"
         borderRadius="999px"
-        bg={active ? "var(--color-brand)" : "white"}
-        color={active ? "white" : "#555"}
+        bg={active ? "var(--color-brand)" : "var(--color-surface)"}
+        color={active ? "white" : "var(--color-subtle)"}
         border="1px solid"
-        borderColor={active ? "var(--color-brand)" : "#e2e2e2"}
+        borderColor={active ? "var(--color-brand)" : "var(--color-border)"}
         transition="all 0.15s"
         _hover={active ? {} : { borderColor: "var(--color-brand)", color: "var(--color-brand)" }}
       >

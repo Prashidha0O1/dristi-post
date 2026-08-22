@@ -22,7 +22,7 @@ function TrendingSidebar() {
           key={a.id}
           gap="12px"
           py="12px"
-          borderBottom={i < trending.length - 1 ? "1px solid #eee" : "none"}
+          borderBottom={i < trending.length - 1 ? "1px solid var(--color-border)" : "none"}
           _hover={{ "& .t-title": { color: "var(--color-brand)" } }}
           cursor="pointer"
           align="flex-start"
@@ -30,7 +30,7 @@ function TrendingSidebar() {
           <Text
             fontSize="24px"
             fontWeight="900"
-            color="#e0e0e0"
+            color="var(--color-border)"
             lineHeight="1"
             w="36px"
             textAlign="center"
@@ -42,11 +42,11 @@ function TrendingSidebar() {
             {String(i + 1).padStart(2, "0")}
           </Text>
           <Box flex="1" minW="0">
-            <Text fontSize="11px" fontWeight="700" color={a.category.color || "#888"} textTransform="uppercase" letterSpacing="0.5px" mb="2px">
+            <Text fontSize="11px" fontWeight="700" color={a.category.color || "var(--color-muted)"} textTransform="uppercase" letterSpacing="0.5px" mb="2px">
               {locale === "ne" ? a.category.name.ne : a.category.name.en}
             </Text>
             <Link href={`/article/${a.slug}`}>
-              <Text className="t-title" fontWeight="700" fontSize="14px" lineHeight="1.45" lineClamp={2} color="#1a1a1a" transition="color 0.15s">
+              <Text className="t-title" fontWeight="700" fontSize="14px" lineHeight="1.45" lineClamp={2} color="var(--color-headline)" transition="color 0.15s">
                 {locale === "ne" ? a.title.ne : a.title.en}
               </Text>
             </Link>
@@ -66,7 +66,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
     return (
       <PageShell>
         <Box py="60px" textAlign="center">
-          <Text fontSize="24px" fontWeight="700" color="#1a1a1a" mb="8px">
+          <Text fontSize="24px" fontWeight="700" color="var(--color-headline)" mb="8px">
             {locale === "ne" ? "समाचार भेटिएन" : "Article Not Found"}
           </Text>
           <Link href="/">
@@ -90,8 +90,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
     <PageShell>
       <SimpleGrid columns={{ base: 1, lg: 3 }} gap="36px">
         <Box gridColumn={{ lg: "span 2" }}>
-          {/* Breadcrumb */}
-          <Flex gap="6px" align="center" mb="16px" fontSize="13px" color="#999">
+          <Flex gap="6px" align="center" mb="16px" fontSize="13px" color="var(--color-muted)">
             <Link href="/">
               <Text _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
                 {locale === "ne" ? "गृहपृष्ठ" : "Home"}
@@ -105,15 +104,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
             </Link>
           </Flex>
 
-          {/* Article Header */}
-          <Text
-            fontSize="11px"
-            fontWeight="700"
-            color={catColor}
-            textTransform="uppercase"
-            letterSpacing="0.5px"
-            mb="8px"
-          >
+          <Text fontSize="11px" fontWeight="700" color={catColor} textTransform="uppercase" letterSpacing="0.5px" mb="8px">
             {categoryName}
           </Text>
 
@@ -122,33 +113,29 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
             fontSize={{ base: "26px", md: "34px" }}
             fontWeight="800"
             lineHeight="1.3"
-            color="#1a1a1a"
+            color="var(--color-headline)"
             mb="12px"
           >
             {title}
           </Text>
 
-          <Text fontSize="17px" color="#555" lineHeight="1.7" mb="16px">
+          <Text fontSize="17px" color="var(--color-subtle)" lineHeight="1.7" mb="16px">
             {excerpt}
           </Text>
 
-          <Flex align="center" gap="16px" mb="24px" pb="16px" borderBottom="1px solid #eee">
-            <Text fontSize="14px" fontWeight="600" color="#333">
+          <Flex align="center" gap="16px" mb="24px" pb="16px" borderBottom="1px solid var(--color-border)">
+            <Text fontSize="14px" fontWeight="600" color="var(--color-body)">
               {authorName}
             </Text>
-            <TimeAgo date={article.publishedAt} fontSize="13px" color="#999" />
+            <TimeAgo date={article.publishedAt} fontSize="13px" color="var(--color-muted)" />
           </Flex>
 
-          {/* Featured Image */}
           <Box position="relative" w="full" h={{ base: "240px", md: "420px" }} borderRadius="4px" overflow="hidden" mb="28px">
             <Image src={article.image} alt={title} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 66vw" priority />
           </Box>
 
-          {/* Article Body */}
-          <Box mb="40px" fontSize="17px" lineHeight="1.9" color="#333">
-            <Text mb="16px">
-              {excerpt}
-            </Text>
+          <Box mb="40px" fontSize="17px" lineHeight="1.9" color="var(--color-body)">
+            <Text mb="16px">{excerpt}</Text>
             <Text mb="16px">
               {locale === "ne"
                 ? "यो समाचारको विस्तृत विवरण यहाँ प्रकाशित हुनेछ। हाल यो डेमो संस्करण हो र वास्तविक सामग्री API बाट लोड हुनेछ।"
@@ -161,15 +148,14 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
             </Text>
           </Box>
 
-          {/* Tags */}
           {article.tags.length > 0 && (
             <Flex gap="8px" mb="32px" flexWrap="wrap">
               {article.tags.map((tag) => (
                 <Text
                   key={tag.id}
                   fontSize="12px"
-                  color="#666"
-                  bg="#f0f0f0"
+                  color="var(--color-tag-text)"
+                  bg="var(--color-tag-bg)"
                   px="10px"
                   py="4px"
                   borderRadius="2px"
@@ -181,13 +167,9 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
             </Flex>
           )}
 
-          {/* Related Articles */}
           {related.length > 0 && (
             <Box>
-              <SectionHeader
-                title={locale === "ne" ? "सम्बन्धित समाचार" : "Related News"}
-                accent={catColor}
-              />
+              <SectionHeader title={locale === "ne" ? "सम्बन्धित समाचार" : "Related News"} accent={catColor} />
               <SimpleGrid columns={{ base: 1, sm: 2 }} gap="18px">
                 {related.map((a) => (
                   <NewsCard key={a.id} article={a} variant="compact" imageHeight="140px" />
@@ -197,11 +179,10 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
           )}
         </Box>
 
-        {/* Sidebar */}
         <Box>
           <Box
-            bg="white"
-            border="1px solid #eee"
+            bg="var(--color-surface)"
+            border="1px solid var(--color-border)"
             borderRadius="4px"
             h="200px"
             display="flex"
@@ -209,7 +190,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
             justifyContent="center"
             mb="28px"
           >
-            <Text fontSize="11px" color="#ccc" fontWeight="500" textTransform="uppercase" letterSpacing="2px">
+            <Text fontSize="11px" color="var(--color-muted)" fontWeight="500" textTransform="uppercase" letterSpacing="2px">
               विज्ञापन
             </Text>
           </Box>

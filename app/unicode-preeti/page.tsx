@@ -29,25 +29,27 @@ export default function UnicodePreetiPage() {
       />
 
       <Box maxW="700px" mx="auto" py="20px">
-        <Text fontSize="14px" color="#666" mb="20px" lineHeight="1.7">
+        <Text fontSize="14px" color="var(--color-subtle)" mb="20px" lineHeight="1.7">
           {locale === "ne"
             ? "तलको बक्समा युनिकोड नेपाली टाइप गर्नुहोस् वा पेस्ट गर्नुहोस्। प्रिती फन्टमा रूपान्तरित पाठ तल देखिनेछ।"
             : "Type or paste Unicode Nepali text in the box below. The converted Preeti font text will appear underneath."}
         </Text>
 
         <Box mb="16px">
-          <Text fontSize="12px" fontWeight="600" color="#555" mb="6px">
+          <Text fontSize="12px" fontWeight="600" color="var(--color-subtle)" mb="6px">
             {locale === "ne" ? "युनिकोड इनपुट" : "Unicode Input"}
           </Text>
           <chakra.textarea
             w="full"
             h="150px"
             p="12px"
-            border="1px solid #ddd"
+            border="1px solid var(--color-input-border)"
             borderRadius="4px"
             fontSize="15px"
             lineHeight="1.8"
             fontFamily="var(--font-mukta), sans-serif"
+            bg="var(--color-input-bg)"
+            color="var(--color-body)"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={locale === "ne" ? "यहाँ नेपाली टाइप गर्नुहोस्..." : "Type Nepali text here..."}
@@ -56,7 +58,7 @@ export default function UnicodePreetiPage() {
 
         <Box mb="16px">
           <Flex justify="space-between" align="center" mb="6px">
-            <Text fontSize="12px" fontWeight="600" color="#555">
+            <Text fontSize="12px" fontWeight="600" color="var(--color-subtle)">
               {locale === "ne" ? "प्रिती आउटपुट" : "Preeti Output"}
             </Text>
             <chakra.button
@@ -77,11 +79,12 @@ export default function UnicodePreetiPage() {
             w="full"
             h="150px"
             p="12px"
-            border="1px solid #ddd"
+            border="1px solid var(--color-input-border)"
             borderRadius="4px"
             fontSize="15px"
             lineHeight="1.8"
-            bg="#f9f9f9"
+            bg="var(--color-card-alt)"
+            color="var(--color-body)"
             fontFamily="Preeti, sans-serif"
             value={output}
             readOnly

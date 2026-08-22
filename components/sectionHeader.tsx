@@ -19,7 +19,7 @@ export function SectionHeader({ title, href, accent = "var(--color-brand)" }: Se
         <Text
           fontSize="20px"
           fontWeight="800"
-          color="#1a1a1a"
+          color="var(--color-headline)"
           lineHeight="1.2"
           textTransform="uppercase"
           letterSpacing="0.3px"

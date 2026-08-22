@@ -25,8 +25,7 @@ export default function ProvincePageClient({
 
   return (
     <PageShell>
-      {/* Breadcrumb */}
-      <Flex gap="6px" align="center" mb="20px" fontSize="13px" color="#999">
+      <Flex gap="6px" align="center" mb="20px" fontSize="13px" color="var(--color-muted)">
         <Link href="/">
           <Text _hover={{ color: "var(--color-brand)" }} transition="color 0.15s">
             {locale === "ne" ? "गृहपृष्ठ" : "Home"}
@@ -39,15 +38,11 @@ export default function ProvincePageClient({
       </Flex>
 
       <SectionHeader
-        title={
-          locale === "ne"
-            ? `${provinceName} प्रदेश`
-            : `${provinceName} Province`
-        }
+        title={locale === "ne" ? `${provinceName} प्रदेश` : `${provinceName} Province`}
         accent="var(--color-brand)"
       />
 
-      <Text fontSize="13px" color="#888" mb="20px">
+      <Text fontSize="13px" color="var(--color-muted)" mb="20px">
         {locale === "ne"
           ? `प्रदेश नं. ${province.number} · राजधानी: ${localized(province.capital)}`
           : `Province No. ${province.number} · Capital: ${localized(province.capital)}`}
@@ -57,7 +52,7 @@ export default function ProvincePageClient({
 
       {articles.length === 0 ? (
         <Box py="48px" textAlign="center">
-          <Text fontSize="16px" color="#999">
+          <Text fontSize="16px" color="var(--color-muted)">
             {locale === "ne"
               ? "यस प्रदेशका समाचार अझै प्रकाशित भएका छैनन्।"
               : "No news published for this province yet."}
