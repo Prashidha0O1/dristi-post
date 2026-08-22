@@ -299,23 +299,76 @@ function NavBar() {
         <Box maxW="var(--max-content)" mx="auto" px="var(--side-pad)">
           <Flex align="center" justify="space-between" h="44px">
             <Flex align="center" gap="0" h="full" display={{ base: "none", lg: "flex" }}>
-              {navItems.map((item) => (
-                <Link key={item.href} href={item.href}>
-                  <Flex
-                    align="center"
-                    h="44px"
-                    px="14px"
-                    color="rgba(255,255,255,0.8)"
-                    fontSize="15px"
-                    fontWeight="500"
-                    transition="all 0.15s"
-                    _hover={{ color: "white", bg: "rgba(255,255,255,0.08)" }}
-                    cursor="pointer"
-                  >
-                    {localized(item.label)}
-                  </Flex>
-                </Link>
-              ))}
+              {navItems.map((item) =>
+                item.children ? (
+                  <Box key={item.href} position="relative" role="group" h="full">
+                    <Link href={item.href}>
+                      <Flex
+                        align="center"
+                        h="44px"
+                        px="14px"
+                        color="rgba(255,255,255,0.8)"
+                        fontSize="15px"
+                        fontWeight="500"
+                        transition="all 0.15s"
+                        _hover={{ color: "white", bg: "rgba(255,255,255,0.08)" }}
+                        cursor="pointer"
+                        gap="4px"
+                      >
+                        {localized(item.label)}
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                      </Flex>
+                    </Link>
+                    <Box
+                      position="absolute"
+                      top="44px"
+                      left="0"
+                      bg="#1a1a2e"
+                      border="1px solid rgba(255,255,255,0.1)"
+                      borderRadius="0 0 4px 4px"
+                      minW="180px"
+                      py="6px"
+                      zIndex="1001"
+                      opacity="0"
+                      visibility="hidden"
+                      transition="all 0.15s"
+                      _groupHover={{ opacity: 1, visibility: "visible" }}
+                    >
+                      {item.children.map((child) => (
+                        <Link key={child.href} href={child.href}>
+                          <Box
+                            px="16px"
+                            py="8px"
+                            fontSize="14px"
+                            color="rgba(255,255,255,0.75)"
+                            _hover={{ color: "white", bg: "rgba(255,255,255,0.08)" }}
+                            transition="all 0.15s"
+                            cursor="pointer"
+                          >
+                            {localized(child.label)}
+                          </Box>
+                        </Link>
+                      ))}
+                    </Box>
+                  </Box>
+                ) : (
+                  <Link key={item.href} href={item.href}>
+                    <Flex
+                      align="center"
+                      h="44px"
+                      px="14px"
+                      color="rgba(255,255,255,0.8)"
+                      fontSize="15px"
+                      fontWeight="500"
+                      transition="all 0.15s"
+                      _hover={{ color: "white", bg: "rgba(255,255,255,0.08)" }}
+                      cursor="pointer"
+                    >
+                      {localized(item.label)}
+                    </Flex>
+                  </Link>
+                )
+              )}
             </Flex>
 
             <Flex align="center" gap="2" display={{ base: "flex", lg: "none" }}>
@@ -422,22 +475,43 @@ function NavBar() {
           </Flex>
           <Flex direction="column">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                <Box
-                  px="20px"
-                  py="14px"
-                  fontSize="16px"
-                  fontWeight="500"
-                  color="#333"
-                  borderBottom="1px solid #f0f0f0"
-                  _hover={{ color: BRAND }}
-                  transition="color 0.15s"
-                  onClick={() => setMobileOpen(false)}
-                  cursor="pointer"
-                >
-                  {localized(item.label)}
-                </Box>
-              </Link>
+              <Box key={item.href}>
+                <Link href={item.href}>
+                  <Box
+                    px="20px"
+                    py="14px"
+                    fontSize="16px"
+                    fontWeight="500"
+                    color="#333"
+                    borderBottom="1px solid #f0f0f0"
+                    _hover={{ color: BRAND }}
+                    transition="color 0.15s"
+                    onClick={() => setMobileOpen(false)}
+                    cursor="pointer"
+                  >
+                    {localized(item.label)}
+                  </Box>
+                </Link>
+                {item.children?.map((child) => (
+                  <Link key={child.href} href={child.href}>
+                    <Box
+                      px="20px"
+                      pl="40px"
+                      py="10px"
+                      fontSize="14px"
+                      fontWeight="400"
+                      color="#666"
+                      borderBottom="1px solid #f5f5f5"
+                      _hover={{ color: BRAND }}
+                      transition="color 0.15s"
+                      onClick={() => setMobileOpen(false)}
+                      cursor="pointer"
+                    >
+                      {localized(child.label)}
+                    </Box>
+                  </Link>
+                ))}
+              </Box>
             ))}
             <Flex px="20px" py="16px" gap="14px">
               <Box as="button" onClick={() => { setLocale("ne"); setMobileOpen(false); }}

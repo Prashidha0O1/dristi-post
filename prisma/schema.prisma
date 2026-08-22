@@ -1,0 +1,108 @@
+// Dristi Post — editorial schema.
+//
+// Localised text is stored as paired columns (`titleNe`/`titleEn`) rather than
+// JSON so that Postgres can index and full-text search them directly. Nepali is
+// non-null (the portal's primary language); English is nullable so an editor can
+// publish before a translation exists.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ArticleStatus {
+  DRAFT
+  PUBLISHED
+}
+
+/// Nepal's seven federal provinces. Mirrors `lib/domain/province.ts`.
+enum Province {
+  KOSHI
+  MADHESH
+  BAGMATI
+  GANDAKI
+  LUMBINI
+  KARNALI
+  SUDURPASHCHIM
+}
+
+model Author {
+  id        String    @id @default(uuid())
+  nameNe    String
+  nameEn    String?
+  bioNe     String?
+  bioEn     String?
+  avatarUrl String?
+  /// Supabase auth user id, when this byline maps to a login.
+  authUserId String?  @unique
+  createdAt DateTime  @default(now())
+  articles  Article[]
+
+  @@map("authors")
+}
+
+model Category {
+  id       String    @id @default(uuid())
+  slug     String    @unique
+  nameNe   String
+  nameEn   String
+  color    String?
+  /// Controls ordering in the nav and on the homepage.
+  position Int       @default(0)
+  articles Article[]
+
+  @@map("categories")
+}
+
+model Tag {
+  id       String    @id @default(uuid())
+  slug     String    @unique
+  nameNe   String
+  nameEn   String?
+  articles Article[]  @relation("ArticleTags")
+
+  @@map("tags")
+}
+
+model Article {
+  id        String        @id @default(uuid())
+  slug      String        @unique
+  titleNe   String
+  titleEn   String?
+  excerptNe String
+  excerptEn String?
+  bodyNe    String
+  bodyEn    String?
+  imageUrl  String
+  status    ArticleStatus @default(DRAFT)
+
+  /// Null for national or international news that isn't province-specific.
+  province Province?
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+
+  authorId String
+  author   Author @relation(fields: [authorId], references: [id], onDelete: Restrict)
+
+  tags Tag[] @relation("ArticleTags")
+
+  isFeatured Boolean @default(false)
+  isBreaking Boolean @default(false)
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  /// Stamped once, on first publish.
+  publishedAt DateTime?
+
+  // The public site's hot path is "published articles, newest first, filtered
+  // by category or province" — these composite indexes serve exactly that.
+  @@index([status, publishedAt(sort: Desc)])
+  @@index([status, province, publishedAt(sort: Desc)])
+  @@index([status, categoryId, publishedAt(sort: Desc)])
+  @@map("articles")
+}

@@ -1,18 +1,17 @@
 import type { NextConfig } from "next";
 
-// Codeberg Pages serves project sites under https://<owner>.codeberg.page/<repo>/,
-// so the production build needs to know its own base path. Left unset (empty)
-// by default so `next dev`/local `next build` keep working at the site root;
-// the deploy workflow sets CODEBERG_PAGES_BASE_PATH=/news-portal explicitly
-// for the build that actually gets published.
-const basePath = process.env.CODEBERG_PAGES_BASE_PATH || "";
+// NOTE: `output: "export"` was removed deliberately. The admin console needs
+// Server Actions, a database and auth, none of which a static export supports.
+// The site is therefore deployed to a Node runtime (Vercel), not Codeberg Pages
+// — see DEPLOYMENT.md.
+//
+// `basePath` is still honoured via env so the public site can be served from a
+// subpath if that is ever needed again; it defaults to the domain root.
+const basePath = process.env.SITE_BASE_PATH || "";
 
 const nextConfig: NextConfig = {
-  output: "export",
   basePath,
-  trailingSlash: true,
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

@@ -1,12 +1,6 @@
 import type { Article } from "./types";
 import { categories } from "./config";
-
-const authors = [
-  { id: "a1", name: { ne: "राम प्रसाद शर्मा", en: "Ram Prasad Sharma" }, avatar: "" },
-  { id: "a2", name: { ne: "सीता देवी पौडेल", en: "Sita Devi Poudel" }, avatar: "" },
-  { id: "a3", name: { ne: "बिष्णु कुमार थापा", en: "Bishnu Kumar Thapa" }, avatar: "" },
-  { id: "a4", name: { ne: "गीता राई", en: "Geeta Rai" }, avatar: "" },
-];
+import { authors } from "./authors";
 
 function hoursAgo(h: number): string {
   const base = new Date("2026-08-16T12:00:00Z");

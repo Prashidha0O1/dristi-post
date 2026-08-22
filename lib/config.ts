@@ -2,7 +2,7 @@ import type { Category, NavItem } from "./types";
 
 export const categories: Category[] = [
   { id: "1", slug: "politics", name: { ne: "राजनीति", en: "Politics" }, color: "#dc2626" },
-  { id: "2", slug: "business", name: { ne: "बिजनेस", en: "Business" }, color: "#2563eb" },
+  { id: "2", slug: "business", name: { ne: "व्यापार र अर्थ", en: "Business and Finance" }, color: "#2563eb" },
   { id: "3", slug: "sports", name: { ne: "खेलकुद", en: "Sports" }, color: "#16a34a" },
   { id: "4", slug: "entertainment", name: { ne: "मनोरन्जन", en: "Entertainment" }, color: "#9333ea" },
   { id: "5", slug: "technology", name: { ne: "प्रविधि", en: "Technology" }, color: "#0891b2" },
@@ -15,8 +15,21 @@ export const categories: Category[] = [
 
 export const navItems: NavItem[] = [
   { label: { ne: "गृहपृष्ठ", en: "Home" }, href: "/" },
+  {
+    label: { ne: "प्रदेश", en: "Province" },
+    href: "/province/bagmati",
+    children: [
+      { label: { ne: "कोशी", en: "Koshi" }, href: "/province/koshi" },
+      { label: { ne: "मधेश", en: "Madhesh" }, href: "/province/madhesh" },
+      { label: { ne: "बागमती", en: "Bagmati" }, href: "/province/bagmati" },
+      { label: { ne: "गण्डकी", en: "Gandaki" }, href: "/province/gandaki" },
+      { label: { ne: "लुम्बिनी", en: "Lumbini" }, href: "/province/lumbini" },
+      { label: { ne: "कर्णाली", en: "Karnali" }, href: "/province/karnali" },
+      { label: { ne: "सुदूरपश्चिम", en: "Sudurpashchim" }, href: "/province/sudurpashchim" },
+    ],
+  },
   { label: { ne: "राजनीति", en: "Politics" }, href: "/category/politics" },
-  { label: { ne: "बिजनेस", en: "Business" }, href: "/category/business" },
+  { label: { ne: "व्यापार र अर्थ", en: "Business and Finance" }, href: "/category/business" },
   { label: { ne: "खेलकुद", en: "Sports" }, href: "/category/sports" },
   { label: { ne: "मनोरन्जन", en: "Entertainment" }, href: "/category/entertainment" },
   { label: { ne: "प्रविधि", en: "Technology" }, href: "/category/technology" },
@@ -25,4 +38,13 @@ export const navItems: NavItem[] = [
   { label: { ne: "विश्व", en: "World" }, href: "/category/world" },
   { label: { ne: "विचार", en: "Opinion" }, href: "/category/opinion" },
   { label: { ne: "राशिफल", en: "Rashifal" }, href: "/rashifal" },
+  { label: { ne: "ब्लग", en: "Blog" }, href: "/blog" },
+  {
+    label: { ne: "उपकरण", en: "Tools" },
+    href: "/date-converter",
+    children: [
+      { label: { ne: "मिति रूपान्तरक", en: "Date Converter" }, href: "/date-converter" },
+      { label: { ne: "युनिकोड → प्रिती", en: "Unicode → Preeti" }, href: "/unicode-preeti" },
+    ],
+  },
 ];
