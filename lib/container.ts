@@ -1,5 +1,6 @@
 import type { ArticleRepository, Clock, IdGenerator, Slugger } from "./domain/ports";
 import { InMemoryArticleRepository } from "./infrastructure/inMemoryArticleRepository";
+import { SupabaseArticleRepository } from "./infrastructure/supabaseArticleRepository";
 import { RandomIdGenerator, SlugGenerator, SystemClock } from "./infrastructure/services";
 import { CreateArticle } from "./application/createArticle";
 import { UpdateArticle } from "./application/updateArticle";
@@ -37,7 +38,8 @@ export interface Container {
 export function buildContainer(
   overrides: Partial<Pick<Container, "articles" | "clock" | "ids" | "slugger">> = {},
 ): Container {
-  const articles = overrides.articles ?? new InMemoryArticleRepository(seedArticles);
+  const useSupabase = !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+  const articles = overrides.articles ?? (useSupabase ? new SupabaseArticleRepository() : new InMemoryArticleRepository(seedArticles));
   const clock = overrides.clock ?? new SystemClock();
   const ids = overrides.ids ?? new RandomIdGenerator();
   const slugger = overrides.slugger ?? new SlugGenerator();
