@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, chakra } from "@chakra-ui/react";
 import { useState } from "react";
 import { PageShell } from "@/components/pageShell";
 import { SectionHeader } from "@/components/sectionHeader";
@@ -39,8 +39,7 @@ export default function UnicodePreetiPage() {
           <Text fontSize="12px" fontWeight="600" color="#555" mb="6px">
             {locale === "ne" ? "युनिकोड इनपुट" : "Unicode Input"}
           </Text>
-          <Box
-            as="textarea"
+          <chakra.textarea
             w="full"
             h="150px"
             p="12px"
@@ -48,10 +47,9 @@ export default function UnicodePreetiPage() {
             borderRadius="4px"
             fontSize="15px"
             lineHeight="1.8"
-            resize="vertical"
             fontFamily="var(--font-mukta), sans-serif"
             value={input}
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setInput(e.target.value)}
+            onChange={(e) => setInput(e.target.value)}
             placeholder={locale === "ne" ? "यहाँ नेपाली टाइप गर्नुहोस्..." : "Type Nepali text here..."}
           />
         </Box>
@@ -61,8 +59,7 @@ export default function UnicodePreetiPage() {
             <Text fontSize="12px" fontWeight="600" color="#555">
               {locale === "ne" ? "प्रिती आउटपुट" : "Preeti Output"}
             </Text>
-            <Box
-              as="button"
+            <chakra.button
               fontSize="12px"
               fontWeight="600"
               color={copied ? "#16a34a" : "var(--color-brand)"}
@@ -70,15 +67,13 @@ export default function UnicodePreetiPage() {
               border="none"
               cursor="pointer"
               onClick={handleCopy}
-              disabled={!output}
             >
               {copied
                 ? (locale === "ne" ? "कपी भयो ✓" : "Copied ✓")
                 : (locale === "ne" ? "कपी गर्नुहोस्" : "Copy")}
-            </Box>
+            </chakra.button>
           </Flex>
-          <Box
-            as="textarea"
+          <chakra.textarea
             w="full"
             h="150px"
             p="12px"
@@ -86,7 +81,6 @@ export default function UnicodePreetiPage() {
             borderRadius="4px"
             fontSize="15px"
             lineHeight="1.8"
-            resize="vertical"
             bg="#f9f9f9"
             fontFamily="Preeti, sans-serif"
             value={output}

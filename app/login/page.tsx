@@ -1,11 +1,20 @@
 "use client";
 
-import { Box, Flex, Text, Input } from "@chakra-ui/react";
+import { Box, Flex, Text, Input, chakra } from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { getSupabaseBrowserClient } from "@/lib/infrastructure/supabaseClient";
 
 export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
+  );
+}
+
+function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
@@ -59,8 +68,7 @@ export default function LoginPage() {
             <Text fontSize="13px" color="#dc2626" mb="12px" textAlign="center">{error}</Text>
           )}
 
-          <Box
-            as="button"
+          <chakra.button
             type="submit"
             w="full"
             py="10px"
@@ -75,7 +83,7 @@ export default function LoginPage() {
             transition="opacity 0.15s"
           >
             {loading ? "Signing in..." : "Sign In"}
-          </Box>
+          </chakra.button>
         </form>
       </Box>
     </Flex>

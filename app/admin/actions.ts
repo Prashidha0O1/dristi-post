@@ -55,13 +55,13 @@ export async function updateArticleAction(id: string, formData: FormData) {
 export async function publishArticleAction(id: string) {
   await requireAuth();
   const container = getContainer();
-  await container.changeArticleStatus.execute(id, "published");
+  await container.changeArticleStatus.publish(id);
 }
 
 export async function unpublishArticleAction(id: string) {
   await requireAuth();
   const container = getContainer();
-  await container.changeArticleStatus.execute(id, "draft");
+  await container.changeArticleStatus.unpublish(id);
 }
 
 export async function deleteArticleAction(id: string) {

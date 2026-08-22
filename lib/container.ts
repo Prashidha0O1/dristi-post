@@ -37,15 +37,7 @@ export interface Container {
 export function buildContainer(
   overrides: Partial<Pick<Container, "articles" | "clock" | "ids" | "slugger">> = {},
 ): Container {
-  let defaultArticles: ArticleRepository;
-  if (process.env.DATABASE_URL) {
-    const { prisma } = require("./infrastructure/prismaClient");
-    const { PrismaArticleRepository } = require("./infrastructure/prismaArticleRepository");
-    defaultArticles = new PrismaArticleRepository(prisma);
-  } else {
-    defaultArticles = new InMemoryArticleRepository(seedArticles);
-  }
-  const articles = overrides.articles ?? defaultArticles;
+  const articles = overrides.articles ?? new InMemoryArticleRepository(seedArticles);
   const clock = overrides.clock ?? new SystemClock();
   const ids = overrides.ids ?? new RandomIdGenerator();
   const slugger = overrides.slugger ?? new SlugGenerator();

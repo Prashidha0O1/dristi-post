@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex, Text, SimpleGrid, Input } from "@chakra-ui/react";
+import { Box, Flex, Text, SimpleGrid, Input, chakra } from "@chakra-ui/react";
 import { useState } from "react";
 import { PageShell } from "@/components/pageShell";
 import { SectionHeader } from "@/components/sectionHeader";
@@ -70,9 +70,8 @@ export default function DateConverterPage() {
       <Box maxW="600px" mx="auto" py="20px">
         <Flex gap="0" mb="24px" borderRadius="4px" overflow="hidden" border="1px solid #ddd">
           {(["bs2ad", "ad2bs"] as const).map((m) => (
-            <Box
+            <chakra.button
               key={m}
-              as="button"
               flex="1"
               py="10px"
               fontSize="14px"
@@ -87,7 +86,7 @@ export default function DateConverterPage() {
               {m === "bs2ad"
                 ? (locale === "ne" ? "बि.सं. → ई.सं." : "BS → AD")
                 : (locale === "ne" ? "ई.सं. → बि.सं." : "AD → BS")}
-            </Box>
+            </chakra.button>
           ))}
         </Flex>
 
@@ -97,28 +96,28 @@ export default function DateConverterPage() {
               <Text fontSize="12px" fontWeight="600" color="#555" mb="4px">
                 {locale === "ne" ? "वर्ष" : "Year"}
               </Text>
-              <Box as="select" w="full" h="40px" border="1px solid #ddd" borderRadius="4px" px="8px" fontSize="14px" bg="white"
-                value={bsYear} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setBsYear(e.target.value)}>
+              <chakra.select w="full" h="40px" border="1px solid #ddd" borderRadius="4px" px="8px" fontSize="14px" bg="white"
+                value={bsYear} onChange={(e) => setBsYear(e.target.value)}>
                 {yearOptions.map((y) => <option key={y} value={y}>{y}</option>)}
-              </Box>
+              </chakra.select>
             </Box>
             <Box>
               <Text fontSize="12px" fontWeight="600" color="#555" mb="4px">
                 {locale === "ne" ? "महिना" : "Month"}
               </Text>
-              <Box as="select" w="full" h="40px" border="1px solid #ddd" borderRadius="4px" px="8px" fontSize="14px" bg="white"
-                value={bsMonth} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setBsMonth(e.target.value)}>
+              <chakra.select w="full" h="40px" border="1px solid #ddd" borderRadius="4px" px="8px" fontSize="14px" bg="white"
+                value={bsMonth} onChange={(e) => setBsMonth(e.target.value)}>
                 {monthNames.map((m, i) => <option key={i} value={i + 1}>{m}</option>)}
-              </Box>
+              </chakra.select>
             </Box>
             <Box>
               <Text fontSize="12px" fontWeight="600" color="#555" mb="4px">
                 {locale === "ne" ? "गते" : "Day"}
               </Text>
-              <Box as="select" w="full" h="40px" border="1px solid #ddd" borderRadius="4px" px="8px" fontSize="14px" bg="white"
-                value={bsDay} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setBsDay(e.target.value)}>
+              <chakra.select w="full" h="40px" border="1px solid #ddd" borderRadius="4px" px="8px" fontSize="14px" bg="white"
+                value={bsDay} onChange={(e) => setBsDay(e.target.value)}>
                 {Array.from({ length: 32 }, (_, i) => i + 1).map((d) => <option key={d} value={d}>{d}</option>)}
-              </Box>
+              </chakra.select>
             </Box>
           </SimpleGrid>
         ) : (
@@ -131,8 +130,7 @@ export default function DateConverterPage() {
           </Box>
         )}
 
-        <Box
-          as="button"
+        <chakra.button
           w="full"
           py="12px"
           bg="var(--color-brand)"
@@ -147,7 +145,7 @@ export default function DateConverterPage() {
           onClick={mode === "bs2ad" ? convertBsToAd : convertAdToBs}
         >
           {locale === "ne" ? "रूपान्तरण गर्नुहोस्" : "Convert"}
-        </Box>
+        </chakra.button>
 
         {error && (
           <Text mt="16px" textAlign="center" color="#dc2626" fontSize="14px" fontWeight="500">

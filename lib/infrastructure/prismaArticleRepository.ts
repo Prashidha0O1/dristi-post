@@ -1,4 +1,4 @@
-import type { PrismaClient, Article, Province, ArticleStatus as PrismaStatus } from "@/lib/generated/prisma";
+import type { PrismaClient, Article, Province, ArticleStatus as PrismaStatus } from "@/lib/generated/prisma/client";
 import type { ArticleRepository } from "@/lib/domain/ports";
 import type { ArticleRecord, ArticleQuery, Paginated, ArticleStatus } from "@/lib/domain/article";
 import type { ProvinceSlug } from "@/lib/domain/province";

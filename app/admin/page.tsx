@@ -48,7 +48,7 @@ export default async function AdminDashboard() {
               {s.label}
             </Text>
             <Text fontSize="32px" fontWeight="800" color={s.color}>
-              {s.total}
+              {s.value}
             </Text>
           </Box>
         ))}
