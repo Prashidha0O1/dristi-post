@@ -1,4 +1,8 @@
 import type { Locale } from "./types";
+import { toNepaliDigits } from "./nepaliDate";
+
+const AD_MONTHS_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const AD_MONTHS_NE = ["जनवरी", "फेब्रुअरी", "मार्च", "अप्रिल", "मे", "जुन", "जुलाई", "अगस्ट", "सेप्टेम्बर", "अक्टोबर", "नोभेम्बर", "डिसेम्बर"];
 
 export function timeAgo(dateStr: string, locale: Locale): string {
   const now = Date.now();
@@ -30,9 +34,12 @@ export function timeAgo(dateStr: string, locale: Locale): string {
       : `${days}d ago`;
   }
 
+  // Built from explicit tables instead of toLocaleDateString("ne-NP"): Node's
+  // full ICU renders "अगस्ट १६" while the browser lacks ne-NP data and falls
+  // back to "Aug 16". Since this runs during both SSR and hydration, the two
+  // must agree or React discards the tree.
   const date = new Date(dateStr);
-  return date.toLocaleDateString(locale === "ne" ? "ne-NP" : "en-US", {
-    month: "short",
-    day: "numeric",
-  });
+  return locale === "ne"
+    ? `${AD_MONTHS_NE[date.getMonth()]} ${toNepaliDigits(date.getDate())}`
+    : `${AD_MONTHS_EN[date.getMonth()]} ${date.getDate()}`;
 }

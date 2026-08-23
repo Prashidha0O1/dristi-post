@@ -1,4 +1,28 @@
+/* Chakra emits "@layer reset, base, tokens, recipes;" and Tailwind emits
+   "@layer theme, base, components, utilities;". Merged, Chakra's reset layer
+   landed AFTER Tailwind's utilities layer, so its global rule zeroing margin,
+   padding and border-width silently killed every Tailwind padding and border
+   utility. Gap, rounded and height survived because Chakra does not reset
+   those. Declaring the full order up front (legal before @import) pins the
+   utilities layer last so Tailwind-styled components keep their spacing. */
+@layer reset, base, tokens, recipes, theme, components, utilities;
+
 @import "tailwindcss";
+
+/* Tailwind's `dark:` variant must follow the same signal as the Chakra-side
+   tokens below: an explicit [data-theme] wins, otherwise fall back to the OS
+   preference. Without this, `dark:` would only ever read prefers-color-scheme
+   and the in-app theme toggle would leave Tailwind-styled components light. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
 
 :root {
   --font-mukta: "Mukta", sans-serif;
@@ -76,6 +100,21 @@
 @theme inline {
   --font-sans: var(--font-mukta);
   --font-mono: var(--font-poppins);
+  --font-np: var(--font-mukta);
+
+  --color-crimson: #b91c1c;
+  --color-crimson-50: #fef2f2;
+
+  --color-ink: #1a1a2e;
+  --color-ink-400: #8b8ba0;
+  --color-ink-500: #6b6b80;
+  --color-ink-600: #4a4a5e;
+  --color-ink-700: #2d2d42;
+  --color-ink-800: #1f1f34;
+
+  --color-paper-50: #fafafa;
+  --color-paper-100: #f3f3f5;
+  --color-paper-200: #e5e5ea;
 }
 
 @layer base {
