@@ -15,16 +15,23 @@ export const categories: Category[] = [
 
 export const navItems: NavItem[] = [
   { label: { ne: "गृहपृष्ठ", en: "Home" }, href: "/" },
-  { label: { ne: "राजनीति", en: "Politics" }, href: "/category/politics" },
-  { label: { ne: "व्यापार र अर्थ", en: "Business and Finance" }, href: "/category/business" },
-  { label: { ne: "खेलकुद", en: "Sports" }, href: "/category/sports" },
-  { label: { ne: "मनोरन्जन", en: "Entertainment" }, href: "/category/entertainment" },
-  { label: { ne: "प्रविधि", en: "Technology" }, href: "/category/technology" },
-  { label: { ne: "जीवनशैली", en: "Lifestyle" }, href: "/category/lifestyle" },
-  { label: { ne: "स्वास्थ्य", en: "Health" }, href: "/category/health" },
-  { label: { ne: "विश्व", en: "World" }, href: "/category/world" },
-  { label: { ne: "विचार", en: "Opinion" }, href: "/category/opinion" },
+  {
+    label: { ne: "विषयवस्तु", en: "Categories" },
+    href: "/category/politics",
+    children: [
+      { label: { ne: "राजनीति", en: "Politics" }, href: "/category/politics" },
+      { label: { ne: "व्यापार र अर्थ", en: "Business & Finance" }, href: "/category/business" },
+      { label: { ne: "खेलकुद", en: "Sports" }, href: "/category/sports" },
+      { label: { ne: "मनोरन्जन", en: "Entertainment" }, href: "/category/entertainment" },
+      { label: { ne: "प्रविधि", en: "Technology" }, href: "/category/technology" },
+      { label: { ne: "जीवनशैली", en: "Lifestyle" }, href: "/category/lifestyle" },
+      { label: { ne: "स्वास्थ्य", en: "Health" }, href: "/category/health" },
+      { label: { ne: "विश्व", en: "World" }, href: "/category/world" },
+      { label: { ne: "विचार", en: "Opinion" }, href: "/category/opinion" },
+    ],
+  },
   { label: { ne: "राशिफल", en: "Rashifal" }, href: "/rashifal" },
+  { label: { ne: "पात्रो", en: "Calendar" }, href: "/calendar" },
   { label: { ne: "ब्लग", en: "Blog" }, href: "/blog" },
   {
     label: { ne: "उपकरण", en: "Tools" },
@@ -36,16 +43,8 @@ export const navItems: NavItem[] = [
   },
 ];
 
-export const primaryNavItems: NavItem[] = [
-  navItems[0],
-  navItems[1],
-  navItems[2],
-  navItems[3],
-  navItems[5],
-].filter((item): item is NavItem => Boolean(item));
+export const toolNavItems: NavItem[] =
+  navItems.find((item) => item.label.en === "Tools")?.children ?? [];
 
-export const secondaryNavItems: NavItem[] = navItems.filter(
-  (item) => !item.children && !primaryNavItems.some((primary) => primary.href === item.href),
-);
-
-export const toolNavItems: NavItem[] = navItems.find((item) => item.children)?.children ?? [];
+export const categoryNavItems: NavItem[] =
+  navItems.find((item) => item.label.en === "Categories")?.children ?? [];

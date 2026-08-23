@@ -36,8 +36,8 @@ import {
 import { useLocale } from "@/lib/localeContext";
 import { useTheme } from "@/lib/themeContext";
 import {
-  primaryNavItems,
-  secondaryNavItems,
+  navItems,
+  categoryNavItems,
   toolNavItems,
 } from "@/lib/config";
 import { provinces } from "@/lib/domain/province";
@@ -289,54 +289,44 @@ function Masthead() {
   );
 }
 
-function MoreSectionsMenu({ active }: { active: boolean }) {
-  const { localized, locale } = useLocale();
+function NavDropdown({ item, active }: { item: NavItem; active: boolean }) {
+  const { locale } = useLocale();
+  const isCategories = item.label.en === "Categories";
 
   return (
     <Menu.Root positioning={{ placement: "bottom-start" }}>
       <Menu.Trigger asChild>
-        <Button type="button" variant="ghost" size="sm" className={`dp-nav-link ${active ? "is-active" : ""}`} borderRadius="0" px="12px" color="rgba(255,255,255,0.75)" fontWeight="500">
-          {locale === "ne" ? "अन्य विषयहरू" : "Other sections"}
-          <ChevronDown size={14} strokeWidth={1.8} color="currentColor" aria-hidden="true" />
+        <Button type="button" variant="ghost" size="sm" className={`dp-nav-link ${active ? "is-active" : ""}`} borderRadius="0" px="12px" color="rgba(255,255,255,0.75)" fontWeight="500" gap="4px">
+          {navLabel(item, locale)}
+          <ChevronDown size={12} strokeWidth={2} color="currentColor" aria-hidden="true" />
         </Button>
       </Menu.Trigger>
       <Portal>
         <Menu.Positioner>
-          <Menu.Content minW="390px" maxH="min(70vh, 520px)" overflowY="auto" p="16px" bg="var(--color-surface)" border="1px solid var(--color-border)" color="var(--color-body)" boxShadow="0 8px 20px rgba(26,26,46,0.12)">
-            <Grid templateColumns="minmax(0, 1.1fr) minmax(0, 1fr)" gap="28px">
-              <Box minW="0">
-                <Text className="dp-english" mb="8px" fontSize="10px" fontWeight="700" textTransform="uppercase" letterSpacing="0.14em" color="var(--color-muted)">
-                  {locale === "ne" ? "थप विषय" : "More sections"}
-                </Text>
-                {secondaryNavItems.map((item) => (
-                  <Menu.Item key={item.href} value={item.href} asChild>
-                    <Link href={item.href} className="dp-menu-link">{navLabel(item, locale)}</Link>
+          <Menu.Content
+            minW={isCategories ? "280px" : "200px"}
+            maxH="min(70vh, 520px)"
+            overflowY="auto"
+            p="8px"
+            bg="var(--color-surface)"
+            border="1px solid var(--color-border)"
+            color="var(--color-body)"
+            boxShadow="0 8px 20px rgba(26,26,46,0.12)"
+          >
+            {isCategories && (
+              <Grid templateColumns="repeat(2, minmax(0, 1fr))" gapX="4px">
+                {item.children!.map((child) => (
+                  <Menu.Item key={child.href} value={child.href} asChild>
+                    <Link href={child.href} className="dp-menu-link">{navLabel(child, locale)}</Link>
                   </Menu.Item>
                 ))}
-              </Box>
-              <Box minW="0">
-                <Text className="dp-english" mb="8px" fontSize="10px" fontWeight="700" textTransform="uppercase" letterSpacing="0.14em" color="var(--color-muted)">
-                  {locale === "ne" ? "उपकरण र प्रदेश" : "Tools & provinces"}
-                </Text>
-                {toolNavItems.map((item) => (
-                  <Menu.Item key={item.href} value={item.href} asChild>
-                    <Link href={item.href} className="dp-menu-link">{navLabel(item, locale)}</Link>
-                  </Menu.Item>
-                ))}
-                <Box mt="10px" pt="10px" borderTop="1px solid var(--color-border)">
-                  <Text className="dp-english" mb="4px" fontSize="9px" fontWeight="700" textTransform="uppercase" letterSpacing="0.12em" color="var(--color-muted)">
-                    {locale === "ne" ? "प्रदेश अनुसार" : "Browse by province"}
-                  </Text>
-                  <Grid templateColumns="repeat(2, minmax(0, 1fr))" gapX="12px">
-                    {provinces.map((province) => (
-                      <Menu.Item key={province.slug} value={province.slug} asChild>
-                        <Link href={`/province/${province.slug}`} className="dp-menu-link">{localized(province.name)}</Link>
-                      </Menu.Item>
-                    ))}
-                  </Grid>
-                </Box>
-              </Box>
-            </Grid>
+              </Grid>
+            )}
+            {!isCategories && item.children!.map((child) => (
+              <Menu.Item key={child.href} value={child.href} asChild>
+                <Link href={child.href} className="dp-menu-link">{navLabel(child, locale)}</Link>
+              </Menu.Item>
+            ))}
           </Menu.Content>
         </Menu.Positioner>
       </Portal>
@@ -410,9 +400,9 @@ function MobileNavGroup({
 }
 
 function MobileNavigation({ pathname, onClose }: { pathname: string | null; onClose: () => void }) {
-  const { locale, setLocale } = useLocale();
-  const mobileTools = toolNavItems;
+  const { locale, setLocale, localized } = useLocale();
   const mobileProvinces = provinces.map((province) => ({ label: province.name, href: `/province/${province.slug}` }));
+  const plainItems = navItems.filter((item) => !item.children);
 
   return (
     <Portal>
@@ -430,9 +420,9 @@ function MobileNavigation({ pathname, onClose }: { pathname: string | null; onCl
             </Flex>
           </Drawer.Header>
           <Drawer.Body p="0" overflowY="auto">
-            <MobileNavGroup label={locale === "ne" ? "मुख्य विषय" : "Primary sections"} items={primaryNavItems} pathname={pathname} onClose={onClose} />
-            <MobileNavGroup label={locale === "ne" ? "अन्य विषय" : "Other sections"} items={secondaryNavItems} pathname={pathname} onClose={onClose} />
-            <MobileNavGroup label={locale === "ne" ? "उपकरण" : "Tools"} items={mobileTools} pathname={pathname} onClose={onClose} />
+            <MobileNavGroup label={locale === "ne" ? "मुख्य" : "Main"} items={plainItems} pathname={pathname} onClose={onClose} />
+            <MobileNavGroup label={locale === "ne" ? "विषयवस्तु" : "Categories"} items={categoryNavItems} pathname={pathname} onClose={onClose} />
+            <MobileNavGroup label={locale === "ne" ? "उपकरण" : "Tools"} items={toolNavItems} pathname={pathname} onClose={onClose} />
             <Box>
               <Text className="dp-english" px="20px" pt="20px" pb="8px" fontSize="10px" fontWeight="700" textTransform="uppercase" letterSpacing="0.14em" color="var(--color-muted)">
                 {locale === "ne" ? "प्रदेश अनुसार" : "Browse by province"}
@@ -442,7 +432,7 @@ function MobileNavigation({ pathname, onClose }: { pathname: string | null; onCl
                 return (
                   <Link key={province.href} href={province.href} onClick={onClose} aria-current={active ? "page" : undefined}>
                     <Flex minH="44px" px="20px" align="center" borderBottom="1px solid var(--color-border)" color={active ? BRAND : "var(--color-body)"} fontSize="16px" fontWeight={active ? "700" : "500"} _hover={{ color: BRAND }}>
-                      {province.label[locale]}
+                      {localized(province.label)}
                     </Flex>
                   </Link>
                 );
@@ -472,7 +462,8 @@ function NavBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const otherActive = secondaryNavItems.some((item) => isPathActive(pathname, item.href)) || toolNavItems.some((item) => isPathActive(pathname, item.href)) || Boolean(pathname?.startsWith("/province/"));
+  const categoryActive = categoryNavItems.some((item) => isPathActive(pathname, item.href));
+  const toolActive = toolNavItems.some((item) => isPathActive(pathname, item.href));
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -493,8 +484,12 @@ function NavBar() {
     <Drawer.Root open={mobileOpen} onOpenChange={(details) => setMobileOpen(details.open)} placement="start" size="full">
       <Box as="nav" position="sticky" top="0" zIndex="1000" bg="var(--color-nav)" color="white" boxShadow="0 2px 8px rgba(26,26,46,0.12)">
         <Flex className="dp-shell-pad dp-nav-inner" maxW="var(--max-content)" mx="auto" px="var(--side-pad)" align="center" justify="space-between" minH="44px">
-          <Flex className="dp-primary-nav dp-nav-scroll" display={{ base: "none", md: "flex" }} align="center" h="44px" gap="4px" overflow="hidden">
-            {primaryNavItems.map((item) => {
+          <Flex className="dp-primary-nav dp-nav-scroll" display={{ base: "none", md: "flex" }} align="center" h="44px" gap="6px" overflow="hidden">
+            {navItems.map((item) => {
+              if (item.children) {
+                const childActive = item.label.en === "Categories" ? categoryActive : toolActive;
+                return <NavDropdown key={item.href} item={item} active={childActive} />;
+              }
               const active = isPathActive(pathname, item.href);
               return (
                 <Link key={item.href} href={item.href} className={`dp-nav-link ${active ? "is-active" : ""}`} aria-current={active ? "page" : undefined}>
@@ -502,10 +497,9 @@ function NavBar() {
                 </Link>
               );
             })}
-            <MoreSectionsMenu active={otherActive} />
           </Flex>
 
-          <Flex className="dp-mobile-nav" align="center" gap="8px">
+          <Flex className="dp-mobile-nav" display={{ base: "flex", md: "none" }} align="center" gap="8px">
             <Drawer.Trigger asChild>
               <IconButton aria-label={locale === "ne" ? "मेनु खोल्नुहोस्" : "Open menu"} w="44px" h="44px" size="sm" variant="ghost" color="white" _hover={{ bg: "rgba(255,255,255,0.08)" }}>
                 <MenuIcon size={22} strokeWidth={1.8} color="currentColor" aria-hidden="true" />

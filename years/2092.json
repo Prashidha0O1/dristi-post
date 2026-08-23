@@ -1,0 +1,6632 @@
+[
+  {
+    "month": 1,
+    "days": [
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 1
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 2
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 3
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 4
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 5
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 6
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 7
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 8
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 9
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 10
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 11
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 12
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 13
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 14
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 15
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 16
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 17
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 18
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 19
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 20
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 21
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 22
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 23
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 24
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 25
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 26
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 27
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 28
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 29
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 1,
+          "day": 30
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 2,
+    "days": [
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 1
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 2
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 3
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 4
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 5
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 6
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 7
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 8
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 9
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 10
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 11
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 12
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 13
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 14
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 15
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 16
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 17
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 18
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 19
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 20
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 21
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 22
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 23
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 24
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 25
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 26
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 27
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 28
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 29
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 30
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 2,
+          "day": 31
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 3,
+    "days": [
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 1
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 2
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 3
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 4
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 5
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 6
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 7
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 8
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 9
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 10
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 11
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 12
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 13
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 14
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 15
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 16
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 17
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 18
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 19
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 20
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 21
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 22
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 23
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 24
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 25
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 26
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 27
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 28
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 29
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 30
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 31
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 3,
+          "day": 32
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 4,
+    "days": [
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 1
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 2
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 3
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 4
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 5
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 6
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 7
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 8
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 9
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 10
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 11
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 12
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 13
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 14
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 15
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 16
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 17
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 18
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 19
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 20
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 21
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 22
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 23
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 24
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 25
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 26
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 27
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 28
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 29
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 30
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 31
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 4,
+          "day": 32
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 5,
+    "days": [
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 1
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 2
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 3
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 4
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 5
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 6
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 7
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 8
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 9
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 10
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 11
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 12
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 13
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 14
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 15
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 16
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 17
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 18
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 19
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 20
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 21
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 22
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 23
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 24
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 25
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 26
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 27
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 28
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 29
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 30
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 5,
+          "day": 31
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 6,
+    "days": [
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 1
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 2
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 3
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 4
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 5
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 6
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 7
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 8
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 9
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 10
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 11
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 12
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 13
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 14
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 15
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 16
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 17
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 18
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 19
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 20
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 21
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 22
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 23
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 24
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 25
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 26
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 27
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 28
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 29
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 6,
+          "day": 30
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 7,
+    "days": [
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 1
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 2
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 3
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 4
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 5
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 6
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 7
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 8
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 9
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 10
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 11
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 12
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 13
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 14
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 15
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 16
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 17
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 18
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 19
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 20
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 21
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 22
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 23
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 24
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 25
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 26
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 27
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 28
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 29
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 7,
+          "day": 30
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 8,
+    "days": [
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 1
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 2
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 3
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 4
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 5
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 6
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 7
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 8
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 9
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 10
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 11
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 12
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 13
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 14
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 15
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 16
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 17
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 18
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 19
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 20
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 21
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 22
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 23
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 24
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 25
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 26
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 27
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 28
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 29
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 8,
+          "day": 30
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 9,
+    "days": [
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 1
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 2
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 3
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 4
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 5
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 6
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 7
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 8
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 9
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 10
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 11
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 12
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 13
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 14
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 15
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 16
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 17
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 18
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 19
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 20
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 21
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 22
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 23
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 24
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 25
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 26
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 27
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 28
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 9,
+          "day": 29
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 10,
+    "days": [
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 1
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 2
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 3
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 4
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 5
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 6
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 7
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 8
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 9
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 10
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 11
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 12
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 13
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 14
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 15
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 16
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 17
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 18
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 19
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 20
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 21
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 22
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 23
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 24
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 25
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 26
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 27
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 28
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 29
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 10,
+          "day": 30
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 11,
+    "days": [
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 1
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 2
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 3
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 4
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 5
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 6
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 7
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 8
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 9
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 10
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 11
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 12
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 13
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 14
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 15
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 16
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 17
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 18
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 19
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 20
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 21
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 22
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 23
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 24
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 25
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 26
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 27
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 28
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 29
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 11,
+          "day": 30
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 12,
+    "days": [
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 1
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 2
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 3
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 4
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 5
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 6
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 7
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 8
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 9
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 10
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 11
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 12
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 13
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 14
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 15
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 16
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 17
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 18
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 19
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 20
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 21
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 22
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 23
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 24
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 25
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 26
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 27
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 28
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 29
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2092,
+          "month": 12,
+          "day": 30
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  }
+]
