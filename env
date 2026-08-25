@@ -1,4 +1,0 @@
-DATABASE_URL="postgresql://postgres:.HNRbec7%23v.cX%2FK@db.nwccmjsvcpnbovjeflcz.supabase.co:6543/postgres"
-
-NEXT_PUBLIC_SUPABASE_URL="https://nwccmjsvcpnbovjeflcz.supabase.co"
-NEXT_PUBLIC_SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53Y2NtanN2Y3BuYm92amVmbGN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY4ODc0NDYsImV4cCI6MjEwMjQ2MzQ0Nn0.8oSRMFFz9ZdJdYaKSurkoSeHEstw5hB47KaWWyz1Hm8"
