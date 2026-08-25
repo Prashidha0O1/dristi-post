@@ -11,6 +11,7 @@ import { BreakingTicker } from "./BreakingTicker";
 import { CategoryNav } from "./CategoryNav";
 import { SearchPanel } from "./SearchPanel";
 import { MobileNav } from "./MobileNav";
+import { TopInfoBar } from "./TopInfoBar";
 import { primarySections, secondarySections } from "../data/navigation";
 import type { Lang } from "../types/navigation";
 
@@ -97,6 +98,10 @@ export function SiteHeader({ variant = "editorial", showBreakingTicker = true }:
 
   return (
     <header className="sticky top-0 z-50">
+      {showBreakingTicker && tickerVisible && !condensed && (
+        <BreakingTicker lang={lang} onDismiss={() => setTickerVisible(false)} />
+      )}
+      {!condensed && <TopInfoBar />}
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-white"
@@ -104,11 +109,7 @@ export function SiteHeader({ variant = "editorial", showBreakingTicker = true }:
         {lang === "np" ? "मुख्य सामग्रीमा जानुहोस्" : "Skip to main content"}
       </a>
 
-      {showBreakingTicker && tickerVisible && !condensed && (
-        <BreakingTicker lang={lang} onDismiss={() => setTickerVisible(false)} />
-      )}
-
-      <div className="border-b border-paper-200 bg-white/90 backdrop-blur-md dark:border-ink-700 dark:bg-ink/90">
+      <div className="border-b border-paper-200 bg-white dark:border-ink-700 dark:bg-ink">
         {/* transition-[height] rather than transition-all: condensing remounts
             the nav inline and adds the live badge, and transition-all kept
             restarting on that churn so the height never settled — the row

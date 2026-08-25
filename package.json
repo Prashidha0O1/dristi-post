@@ -20,8 +20,11 @@
     "nepali-date-converter": "^3.4.0",
     "next": "16.3.1",
     "pg": "^8.23.0",
+    "preeti": "^1.0.3",
+    "preeti-to-unicode": "^1.0.12",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "react-transliterate": "^1.1.9"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

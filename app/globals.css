@@ -27,8 +27,8 @@
 :root {
   --font-mukta: "Mukta", sans-serif;
   --font-poppins: "Poppins", sans-serif;
-  --color-brand: #b62411;
-  --color-nav: #1a1a2e;
+  --color-brand: #da0a10;
+  --color-nav: #012861;
   --color-headline: #1a1a1a;
   --color-body: #333333;
   --color-muted: #6b7280;
@@ -49,7 +49,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-nav: #0f1320;
+    --color-nav: #012861;
     --color-headline: #e5e7eb;
     --color-body: #d1d5db;
     --color-muted: #9ca3af;
@@ -68,7 +68,7 @@
 }
 
 :root[data-theme="dark"] {
-  --color-nav: #0f1320;
+  --color-nav: #012861;
   --color-headline: #e5e7eb;
   --color-body: #d1d5db;
   --color-muted: #9ca3af;
@@ -102,10 +102,10 @@
   --font-mono: var(--font-poppins);
   --font-np: var(--font-mukta);
 
-  --color-crimson: #b91c1c;
+  --color-crimson: #da0a10;
   --color-crimson-50: #fef2f2;
 
-  --color-ink: #1a1a2e;
+  --color-ink: #012861;
   --color-ink-400: #8b8ba0;
   --color-ink-500: #6b6b80;
   --color-ink-600: #4a4a5e;
@@ -452,4 +452,44 @@
   .dp-footer {
     padding-top: 28px !important;
   }
+}
+
+@font-face {
+  font-family: 'Preeti';
+  src: url('/font/preeti.ttf?v=2') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.dp-preeti-font {
+  font-family: 'Preeti', sans-serif !important;
+}
+
+
+
+
+
+
+/* React Transliterate Suggestions Theme */
+[class*="_ReactTransliterate"] {
+  border-radius: 8px !important;
+  border: 1px solid var(--color-brand) !important;
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.15) !important;
+  font-family: var(--font-mukta), sans-serif !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+[class*="_ReactTransliterate"] > li {
+  padding: 8px 12px !important;
+  font-size: 16px !important;
+  color: var(--color-body) !important;
+  transition: background-color 0.1s ease !important;
+}
+
+[class*="_ReactTransliterate"] > li[class*="_Active"],
+[class*="_Active"] {
+  background-color: var(--color-brand) !important;
+  color: white !important;
 }

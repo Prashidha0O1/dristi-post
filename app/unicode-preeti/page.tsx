@@ -6,6 +6,8 @@ import { PageShell } from "@/components/pageShell";
 import { SectionHeader } from "@/components/sectionHeader";
 import { useLocale } from "@/lib/localeContext";
 import { unicodeToPreeti } from "@/lib/unicodeToPreeti";
+import { ReactTransliterate } from "react-transliterate";
+import "react-transliterate/dist/index.css";
 
 export default function UnicodePreetiPage() {
   const { locale } = useLocale();
@@ -24,36 +26,49 @@ export default function UnicodePreetiPage() {
   return (
     <PageShell>
       <SectionHeader
-        title={locale === "ne" ? "युनिकोड → प्रिती रूपान्तरक" : "Unicode → Preeti Converter"}
+        title={locale === "ne" ? "नेपाली टाइपिंग → प्रिती रूपान्तरक" : "Nepali Typing → Preeti Converter"}
         accent="var(--color-brand)"
       />
 
       <Box maxW="700px" mx="auto" py="20px">
         <Text fontSize="14px" color="var(--color-subtle)" mb="20px" lineHeight="1.7">
           {locale === "ne"
-            ? "तलको बक्समा युनिकोड नेपाली टाइप गर्नुहोस् वा पेस्ट गर्नुहोस्। प्रिती फन्टमा रूपान्तरित पाठ तल देखिनेछ।"
-            : "Type or paste Unicode Nepali text in the box below. The converted Preeti font text will appear underneath."}
+            ? "तलको बक्समा नेपाली युनिकोड वा रोमन (Mero) टाइप गर्नुहोस्। प्रिती फन्टमा रूपान्तरित पाठ तल देखिनेछ।"
+            : "Type or paste Nepali Unicode or Romanized (Mero) text below. The converted Preeti font text will appear underneath."}
         </Text>
 
         <Box mb="16px">
           <Text fontSize="12px" fontWeight="600" color="var(--color-subtle)" mb="6px">
-            {locale === "ne" ? "युनिकोड इनपुट" : "Unicode Input"}
+            {locale === "ne" ? "इनपुट" : "Input"}
           </Text>
-          <chakra.textarea
-            w="full"
-            h="150px"
-            p="12px"
-            border="1px solid var(--color-input-border)"
-            borderRadius="4px"
-            fontSize="15px"
-            lineHeight="1.8"
-            fontFamily="var(--font-mukta), sans-serif"
-            bg="var(--color-input-bg)"
-            color="var(--color-body)"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={locale === "ne" ? "यहाँ नेपाली टाइप गर्नुहोस्..." : "Type Nepali text here..."}
-          />
+          <Box w="full">
+            <ReactTransliterate
+              value={input}
+              onChangeText={(text) => setInput(text)}
+              lang="ne"
+              placeholder={locale === "ne" ? "यहाँ टाइप गर्नुहोस् (मेरो नाम वा mero naam)..." : "Type here (मेरो नाम or mero naam)..."}
+              renderComponent={(props) => (
+                <chakra.textarea
+                  w="full"
+                  h="150px"
+                  p="12px"
+                  border="1px solid var(--color-input-border)"
+                  borderRadius="4px"
+                  fontSize="15px"
+                  lineHeight="1.8"
+                  fontFamily="var(--font-mukta), sans-serif"
+                  bg="var(--color-input-bg)"
+                  color="var(--color-body)"
+                  resize="vertical"
+                  _focus={{
+                    outline: "2px solid var(--color-brand)",
+                    outlineOffset: "-1px",
+                  }}
+                  {...props}
+                />
+              )}
+            />
+          </Box>
         </Box>
 
         <Box mb="16px">
@@ -81,11 +96,11 @@ export default function UnicodePreetiPage() {
             p="12px"
             border="1px solid var(--color-input-border)"
             borderRadius="4px"
-            fontSize="15px"
-            lineHeight="1.8"
+            fontSize="20px"
+            lineHeight="1.5"
             bg="var(--color-card-alt)"
             color="var(--color-body)"
-            fontFamily="Preeti, sans-serif"
+            className="dp-preeti-font"
             value={output}
             readOnly
           />
