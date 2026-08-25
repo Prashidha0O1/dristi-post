@@ -433,24 +433,7 @@
   }
 
   .dp-utility-rail {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
     border: 0 !important;
-  }
-
-  .dp-utility-title {
-    grid-column: 1 / -1;
-  }
-
-  .dp-utility-block {
-    min-height: 132px;
-    border: 1px solid var(--color-border);
-    border-radius: 3px;
-  }
-
-  .dp-calendar-grid {
-    display: none !important;
   }
 
   .dp-widget-detail {

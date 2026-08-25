@@ -21,6 +21,16 @@ const SOCIALS = [
     href: "https://instagram.com/",
     path: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.014-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z",
   },
+  {
+    name: "X",
+    href: "https://x.com/",
+    path: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z",
+  },
+  {
+    name: "TikTok",
+    href: "https://tiktok.com/",
+    path: "M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z",
+  },
 ];
 
 function FooterHeading({ children }: { children: React.ReactNode }) {
@@ -33,7 +43,7 @@ function FooterHeading({ children }: { children: React.ReactNode }) {
 
 export function Footer() {
   const { t, localized, locale } = useLocale();
-  const footerCategories = [...categories.slice(0, 5), { id: "province", slug: "province", name: { ne: "प्रदेश", en: "Provinces" } }];
+  const footerCategories = [...categories.slice(0, 8), { id: "province", slug: "province", name: { ne: "प्रदेश", en: "Provinces" } }];
 
   return (
     <Box as="footer" className="dp-footer" bg="var(--color-nav)" color="rgba(255,255,255,0.7)">
@@ -49,6 +59,10 @@ export function Footer() {
                 ? "नेपालका समाचार, विचार र उपयोगी जानकारीलाई स्पष्ट र जिम्मेवार ढंगले प्रस्तुत गर्ने डिजिटल न्यूजरुम।"
                 : "A digital newsroom presenting Nepal's news, ideas, and useful information with clarity and responsibility."}
             </Text>
+            <Box mt="16px" fontSize="11px" color="rgba(255,255,255,0.4)" lineHeight="1.6">
+              <Text>{locale === "ne" ? "कम्पनी दर्ता नं.:" : "Company Reg. No.:"} 123456/080/081</Text>
+              <Text>{locale === "ne" ? "सूचना विभाग दर्ता नं.:" : "Media Reg. No.:"} 6789/080/081</Text>
+            </Box>
             <Text className="dp-english" mt="16px" color="rgba(255,255,255,0.4)" fontSize="10px" textTransform="uppercase" letterSpacing="0.14em">
               Nepal&apos;s trusted newsroom
             </Text>
@@ -71,18 +85,29 @@ export function Footer() {
               <Link href="/latest"><Text _hover={{ color: "white" }} transition="color 150ms ease">{t("latest")}</Text></Link>
               <Link href="/date-converter"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "मिति रूपान्तरक" : "Date converter"}</Text></Link>
               <Link href="/unicode-preeti"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "युनिकोड → प्रिती" : "Unicode → Preeti"}</Text></Link>
+              <Link href="/forex"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "विदेशी मुद्रा" : "Forex"}</Text></Link>
               <Link href="/contact"><Text _hover={{ color: "white" }} transition="color 150ms ease">{t("contactUs")}</Text></Link>
             </Flex>
           </Box>
 
           <Box>
+            <Box mb="24px">
+              <FooterHeading>{locale === "ne" ? "विज्ञापनका लागि सम्पर्क" : "Contact for advertisement"}</FooterHeading>
+              <Flex direction="column" gap="6px" fontSize="13px" color="rgba(255,255,255,0.7)">
+                <a href="mailto:ads@dristipost.com" style={{ display: "inline-block" }}>
+                  <Text _hover={{ color: "white" }} transition="color 150ms ease">Email: ads@dristipost.com</Text>
+                </a>
+                <a href="tel:+97714123456" style={{ display: "inline-block" }}>
+                  <Text className="dp-english" _hover={{ color: "white" }} transition="color 150ms ease">Phone: +977-1-4123456</Text>
+                </a>
+                <a href="https://wa.me/9779800000000" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block" }}>
+                  <Text className="dp-english" _hover={{ color: "white" }} transition="color 150ms ease">WhatsApp: +977-9800000000</Text>
+                </a>
+              </Flex>
+            </Box>
+
             <FooterHeading>{locale === "ne" ? "हामीसँग जोडिनुहोस्" : "Stay connected"}</FooterHeading>
-            <Text color="rgba(255,255,255,0.55)" fontSize="13px" lineHeight="1.6">
-              {locale === "ne"
-                ? "समाचार सुझाव वा विज्ञापनसम्बन्धी जानकारीका लागि सम्पादकीय डेस्कमा सम्पर्क गर्नुहोस्।"
-                : "Contact the editorial desk for story tips, partnerships, or advertising information."}
-            </Text>
-            <Flex mt="16px" gap="8px">
+            <Flex gap="8px">
               {SOCIALS.map((social) => (
                 <a
                   key={social.name}

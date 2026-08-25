@@ -1,0 +1,103 @@
+"use client";
+
+import { Box, Flex, Heading, Text, Skeleton } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { PageShell } from "@/components/pageShell";
+import { useLocale } from "@/lib/localeContext";
+
+interface Rate {
+  name: string;
+  iso3: string;
+  unit: number;
+  buy: string;
+  sell: string;
+}
+
+export default function ForexPageClient() {
+  const { locale } = useLocale();
+  const [rates, setRates] = useState<Rate[]>([]);
+  const [date, setDate] = useState("");
+  const [loaded, setLoaded] = useState(false);
+
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    fetch("/api/forex")
+      .then((response) => response.json())
+      .then((data) => {
+        setRates(data.rates || []);
+        setDate(data.date || "");
+        setLoaded(true);
+      })
+      .catch(() => setLoaded(true));
+  }, []);
+
+  const filteredRates = rates.filter(
+    (rate) =>
+      rate.name.toLowerCase().includes(search.toLowerCase()) ||
+      rate.iso3.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <PageShell>
+      <Box maxW="800px" mx="auto" pt="20px">
+        <Heading as="h1" fontSize="32px" fontWeight="700" color="var(--color-headline)" mb="8px">
+          {locale === "ne" ? "विदेशी मुद्रा विनिमय दर" : "Foreign Exchange Rates"}
+        </Heading>
+        <Flex justify="space-between" align="center" mb="24px" wrap="wrap" gap="16px">
+          <Text fontSize="14px" color="var(--color-muted)">
+            {locale === "ne" ? "स्रोत: नेपाल राष्ट्र बैंक" : "Source: Nepal Rastra Bank"}
+            {date ? ` · ${date}` : ""}
+          </Text>
+          <input
+            type="text"
+            placeholder={locale === "ne" ? "मुद्रा खोज्नुहोस्..." : "Search currency..."}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            style={{
+              padding: "8px 12px",
+              borderRadius: "4px",
+              border: "1px solid var(--color-border)",
+              backgroundColor: "var(--color-surface)",
+              color: "var(--color-headline)",
+              fontSize: "14px",
+              width: "100%",
+              maxWidth: "250px",
+            }}
+          />
+        </Flex>
+
+        {!loaded ? (
+          <Flex direction="column" gap="16px">
+            <Skeleton h="48px" />
+            <Skeleton h="48px" />
+            <Skeleton h="48px" />
+          </Flex>
+        ) : filteredRates.length === 0 ? (
+          <Text py="32px" textAlign="center" color="var(--color-muted)">No currencies found.</Text>
+        ) : (
+          <Box overflowX="auto" pb="16px">
+            <Box border="1px solid var(--color-border)" borderRadius="4px" overflow="hidden" fontSize="14px" minW="600px">
+              <Flex bg="var(--color-table-header)" fontWeight="700" color="var(--color-subtle)" px="16px" py="12px">
+                <Text flex="2">{locale === "ne" ? "मुद्रा" : "Currency"}</Text>
+                <Text flex="1" textAlign="center">{locale === "ne" ? "प्रतीक" : "Symbol"}</Text>
+                <Text flex="1" textAlign="right">{locale === "ne" ? "एकाइ" : "Unit"}</Text>
+                <Text flex="1" textAlign="right">{locale === "ne" ? "किन्ने" : "Buy"}</Text>
+                <Text flex="1" textAlign="right">{locale === "ne" ? "बेच्ने" : "Sell"}</Text>
+              </Flex>
+              {filteredRates.map((rate, index) => (
+                <Flex key={rate.iso3} px="16px" py="12px" borderTop="1px solid var(--color-border)" bg={index % 2 === 0 ? "var(--color-surface)" : "var(--color-card-alt)"} align="center">
+                  <Text flex="2" fontWeight="500" color="var(--color-body)">{rate.name}</Text>
+                  <Text className="dp-english" flex="1" textAlign="center" fontWeight="600" color="var(--color-subtle)">{rate.iso3}</Text>
+                  <Text className="dp-number" flex="1" textAlign="right" color="var(--color-muted)">{rate.unit}</Text>
+                  <Text className="dp-number" flex="1" textAlign="right" color="#16a34a" fontWeight="700">{rate.buy}</Text>
+                  <Text className="dp-number" flex="1" textAlign="right" color="#dc2626" fontWeight="700">{rate.sell}</Text>
+                </Flex>
+              ))}
+            </Box>
+          </Box>
+        )}
+      </Box>
+    </PageShell>
+  );
+}

@@ -68,7 +68,13 @@ export function SiteHeader({ variant = "editorial", showBreakingTicker = true }:
   }, [pathname]);
 
   useEffect(() => {
-    const onScroll = () => setCondensed(window.scrollY > 120);
+    const onScroll = () => {
+      if (window.scrollY > 150) {
+        setCondensed(true);
+      } else if (window.scrollY < 50) {
+        setCondensed(false);
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -108,7 +114,7 @@ export function SiteHeader({ variant = "editorial", showBreakingTicker = true }:
             restarting on that churn so the height never settled — the row
             stayed visually at 72px even though h-14 had already applied. */}
         <div
-          className={`mx-auto flex max-w-[1400px] items-center gap-4 px-4 transition-[height] duration-300 sm:px-6 lg:px-10 ${
+          className={`mx-auto flex max-w-[var(--max-content)] items-center gap-4 px-[var(--side-pad)] transition-[height] duration-300 ${
             condensed ? "h-14" : stacked ? "h-[72px]" : "h-[68px]"
           }`}
         >
@@ -214,7 +220,7 @@ export function SiteHeader({ variant = "editorial", showBreakingTicker = true }:
 
         {stacked && (
           <div className="hidden border-t border-paper-100 lg:block dark:border-ink-700">
-            <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
+            <div className="mx-auto max-w-[var(--max-content)] px-[var(--side-pad)]">
               <CategoryNav lang={lang} activeId={activeId} onSelect={setActiveId} layoutScope="stacked" />
             </div>
           </div>

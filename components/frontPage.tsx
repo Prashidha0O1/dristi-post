@@ -38,10 +38,12 @@ function FrontPageSectionHeader({
     <Box mb="20px">
       <Flex align="flex-end" justify="space-between" gap="16px" mb="8px">
         <Box>
-          <Text className="dp-english" mb="4px" fontSize="10px" fontWeight="600" textTransform="uppercase" letterSpacing="0.15em" color="var(--color-muted)">
-            {eyebrow}
-          </Text>
-          <Heading as={headingLevel} fontSize="25px" fontWeight="700" lineHeight="1" color="var(--color-headline)">
+          {eyebrow && (
+            <Text className="dp-english" fontSize="11px" fontWeight="600" textTransform="uppercase" letterSpacing="0.12em" color="var(--color-muted)" mb="4px">
+              {eyebrow}
+            </Text>
+          )}
+          <Heading as={headingLevel} fontSize={{ base: "24px", lg: "28px" }} fontWeight="700" color="var(--color-headline)" m="0" lineHeight="1.2">
             {title}
           </Heading>
         </Box>
@@ -57,7 +59,15 @@ function FrontPageSectionHeader({
   );
 }
 
-function AdSlot({ variant = "quiet" }: { variant?: "quiet" | "between" }) {
+function AdSlot({ variant = "quiet" }: { variant?: "quiet" | "between" | "rectangle" }) {
+  if (variant === "rectangle") {
+    return (
+      <Flex className="dp-ad-slot-rect" mt="24px" align="center" justify="center" bg="var(--color-surface)" border="1px solid var(--color-border)" borderRadius="4px" minH="250px" color="var(--color-faint)" fontSize="10px" textTransform="uppercase" letterSpacing="0.22em">
+        विज्ञापन / Advertisement
+      </Flex>
+    );
+  }
+
   return (
     <Flex className="dp-ad-slot" mb={variant === "between" ? "40px" : "28px"} align="center" justify="center" color="var(--color-faint)" fontSize="10px" textTransform="uppercase" letterSpacing="0.22em">
       विज्ञापन / Advertisement
@@ -153,6 +163,7 @@ function LeadDesk() {
             <span>{locale === "ne" ? "समाचारका थप शीर्षक" : "More headlines"}</span>
             <span aria-hidden="true" style={{ fontSize: "16px" }}>↗</span>
           </Link>
+          <AdSlot variant="rectangle" />
         </Box>
       </Grid>
     </Box>
@@ -195,8 +206,10 @@ function UtilityRail() {
         <Info size={18} strokeWidth={1.8} color="rgba(255,255,255,0.65)" aria-hidden="true" />
       </Flex>
       <NepaliCalendar variant="compact" />
-      <GoldSilverWidget variant="compact" />
-      <ForexWidget variant="compact" />
+      <Grid templateColumns={{ base: "1fr", sm: "1fr 1fr", lg: "1fr" }} gap="0">
+        <GoldSilverWidget variant="compact" />
+        <ForexWidget variant="compact" />
+      </Grid>
     </Box>
   );
 }
@@ -222,6 +235,7 @@ function LatestSection() {
             {locale === "ne" ? "सबै ताजा अपडेट" : "All latest updates"}
             <Text as="span" fontSize="15px" aria-hidden="true">→</Text>
           </Link>
+          <AdSlot variant="rectangle" />
         </Box>
         <UtilityRail />
       </Grid>
@@ -295,22 +309,81 @@ function MostReadList() {
   );
 }
 
-function PublicAffairsSection() {
-  const { locale } = useLocale();
-  const politics = getArticlesByCategory("politics");
-  const feature = politics[1] || politics[0];
-  if (!feature) return null;
 
+function CategoryBlock({ categorySlug, title, eyebrow }: { categorySlug: string, title: string, eyebrow?: string }) {
+  const { locale, localized } = useLocale();
+  let articles = getArticlesByCategory(categorySlug);
+  
+  // Pad with latest + trending articles if the specific category doesn't have enough
+  if (articles.length < 5) {
+    const all = [...getLatestArticles(), ...getTrendingArticles()];
+    const existing = new Set(articles.map(a => a.id));
+    for (const a of all) {
+      if (!existing.has(a.id)) {
+        articles.push(a);
+        existing.add(a.id);
+      }
+      if (articles.length >= 5) break;
+    }
+  }
+  
+  const feature = articles[0];
+  const list = articles.slice(1, 5); // Next 4 articles
+  
   return (
-    <Box as="section" id="public-affairs" aria-labelledby="public-affairs-heading" mb="48px">
-      <FrontPageSectionHeader eyebrow="Public affairs & economy" title={locale === "ne" ? "सार्वजनिक जीवन र अर्थतन्त्र" : "Public affairs & economy"} href="/category/politics" actionLabel={locale === "ne" ? "सबै हेर्नुहोस्" : "See all"} />
-      <Grid className="dp-public-grid" templateColumns={{ base: "1fr", lg: "minmax(0, 1.95fr) minmax(300px, 1fr)" }} gap="32px">
-        <Grid templateColumns={{ base: "1fr", md: "minmax(0, 1.25fr) minmax(250px, 0.85fr)" }} gap="28px">
-          <FeatureStory article={feature} />
-          <BusinessDigest />
-        </Grid>
-        <MostReadList />
+    <Box>
+      <FrontPageSectionHeader eyebrow={locale === "ne" ? "" : (eyebrow || "")} title={title} href={`/category/${categorySlug}`} actionLabel={locale === "ne" ? "सबै हेर्नुहोस्" : "See all"} />
+      <Grid templateColumns={{ base: "1fr", lg: "minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr)" }} gap="28px">
+        
+        {/* Left: Title + Excerpt */}
+        <Flex direction="column" justify="flex-start">
+          <Link href={`/article/${feature.slug}`} className="dp-story-link" style={{ display: "block", color: "var(--color-headline)", fontSize: "22px", fontWeight: 700, lineHeight: 1.28, marginBottom: "12px" }}>
+            {localized(feature.title)}
+          </Link>
+          <Text fontSize="14px" lineHeight="1.6" color="var(--color-muted)" lineClamp={4}>
+            {localized(feature.excerpt)}
+          </Text>
+        </Flex>
+
+        {/* Center: Image */}
+        <Link href={`/article/${feature.slug}`} style={{ display: "block" }}>
+          <StoryImage article={feature} alt={localized(feature.title)} height="280px" sizes="(max-width: 992px) 100vw, 34vw" />
+        </Link>
+
+        {/* Right: 4 small articles */}
+        <Flex direction="column" justify="space-between" borderLeft={{ lg: "1px solid var(--color-border)" }} pl={{ lg: "20px" }}>
+          {list.map((item, index) => (
+            <Flex key={item.id} gap="12px" align="center" borderBottom={index < list.length - 1 ? "1px solid var(--color-border)" : "none"} pb={index < list.length - 1 ? "12px" : "0"} pt={index > 0 ? "12px" : "0"}>
+              <Box flex="1">
+                <Link href={`/article/${item.slug}`} className="dp-story-link" style={{ display: "block", fontSize: "14px", fontWeight: 700, color: "var(--color-headline)", lineHeight: 1.35 }}>
+                  {localized(item.title)}
+                </Link>
+                <TimeAgo date={item.publishedAt} className="dp-number" mt="4px" fontSize="10px" color="var(--color-muted)" />
+              </Box>
+              <Box w="80px" h="54px" flexShrink={0} borderRadius="3px" overflow="hidden" bg="var(--color-surface)">
+                <StoryImage article={item} alt={localized(item.title)} height="54px" sizes="80px" />
+              </Box>
+            </Flex>
+          ))}
+        </Flex>
+
       </Grid>
+    </Box>
+  );
+}
+
+function AllCategoriesSection() {
+  const { locale } = useLocale();
+  return (
+    <Box as="section" mb="48px">
+      <Flex direction="column" gap="48px">
+        <CategoryBlock categorySlug="business" title={locale === "ne" ? "अर्थ / वाणिज्य" : "Economy & Business"} eyebrow="Finance" />
+        <CategoryBlock categorySlug="politics" title={locale === "ne" ? "राजनीति" : "Politics"} eyebrow="National Affairs" />
+        <CategoryBlock categorySlug="economy" title={locale === "ne" ? "अर्थतन्त्र" : "Economy"} eyebrow="Economy" />
+        <CategoryBlock categorySlug="education" title={locale === "ne" ? "शिक्षा" : "Education"} eyebrow="Education" />
+        <CategoryBlock categorySlug="sports" title={locale === "ne" ? "खेलकुद" : "Sports"} eyebrow="Sports" />
+        <CategoryBlock categorySlug="science-tech" title={locale === "ne" ? "विज्ञान र प्रविधि" : "Science & Tech"} eyebrow="Technology" />
+      </Flex>
     </Box>
   );
 }
@@ -337,7 +410,7 @@ function ProvinceRail() {
   );
 }
 
-const CLOSING_FALLBACKS: Record<"sports" | "technology", Array<{ title: Record<Locale, string>; time: Record<Locale, string> }>> = {
+const CLOSING_FALLBACKS: Record<string, Array<{ title: Record<Locale, string>; time: Record<Locale, string> }>> = {
   sports: [
     { title: { ne: "ऐतिहासिक जितपछि टोलीको अर्को लक्ष्य", en: "The team's next target after a historic win" }, time: { ne: "२ घण्टा अगाडि", en: "2h ago" } },
     { title: { ne: "स्थानीय मैदानमा नयाँ प्रतिभाको खोजी", en: "Finding new talent on local grounds" }, time: { ne: "आज", en: "Today" } },
@@ -350,10 +423,10 @@ const CLOSING_FALLBACKS: Record<"sports" | "technology", Array<{ title: Record<L
   ],
 };
 
-function CompactTopicList({ slug, title, englishTitle, accent }: { slug: "sports" | "technology"; title: string; englishTitle: string; accent: string }) {
+function CompactTopicList({ slug, title, englishTitle, accent }: { slug: string; title: string; englishTitle: string; accent: string }) {
   const { localized } = useLocale();
   const articles = getArticlesByCategory(slug);
-  const fallbacks = CLOSING_FALLBACKS[slug];
+  const fallbacks = CLOSING_FALLBACKS[slug as keyof typeof CLOSING_FALLBACKS] || CLOSING_FALLBACKS.sports;
   return (
     <Box>
       <Flex align="center" justify="space-between" borderBottom={`2px solid ${accent}`} pb="8px" mb="0">
@@ -412,7 +485,7 @@ export default function FrontPage() {
       <LeadDesk />
       <LatestSection />
       <AdSlot variant="between" />
-      <PublicAffairsSection />
+      <AllCategoriesSection />
       <ProvinceRail />
       <ClosingDesk />
     </PageShell>

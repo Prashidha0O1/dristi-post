@@ -2,6 +2,7 @@
 
 import { Box, Flex, Skeleton, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { SectionHeader } from "@/components/sectionHeader";
 import { useLocale } from "@/lib/localeContext";
 
@@ -41,12 +42,14 @@ export function ForexWidget({ variant = "default" }: { variant?: WidgetVariant }
     const inr = rates.find((rate) => rate.iso3 === "INR");
     return (
       <Box className="dp-utility-block" p="16px">
-        <Flex mb="16px" align="center" justify="space-between" gap="8px">
+        <Flex mb="16px" align="center" justify="space-between" gap="8px" wrap="wrap">
           <Box>
             <Text fontSize="14px" fontWeight="700" color="var(--color-headline)">{locale === "ne" ? "विदेशी मुद्रा" : "Foreign exchange"}</Text>
             <Text className="dp-english" fontSize="9px" textTransform="uppercase" letterSpacing="0.12em" color="var(--color-muted)">Foreign exchange</Text>
           </Box>
-          <Text className="dp-number" fontSize="10px" color="var(--color-muted)">Updated</Text>
+          <Link href="/forex" style={{ fontSize: "11px", color: "var(--color-brand)", textDecoration: "underline", fontWeight: 600 }}>
+            {locale === "ne" ? "सबै हेर्नुहोस्" : "See all"}
+          </Link>
         </Flex>
         {!loaded ? (
           <Flex direction="column" gap="10px"><Skeleton h="16px" /><Skeleton h="16px" /></Flex>

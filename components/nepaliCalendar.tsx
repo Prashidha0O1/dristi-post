@@ -101,7 +101,15 @@ export function NepaliCalendar({ variant = "default" }: { variant?: CalendarVari
             <Text fontSize="14px" fontWeight="700" color="var(--color-headline)">{locale === "ne" ? "नेपाली पात्रो" : "Nepali calendar"}</Text>
             <Text className="dp-english" fontSize="9px" textTransform="uppercase" letterSpacing="0.12em" color="var(--color-muted)">Calendar</Text>
           </Box>
-          <Text className="dp-number" fontSize="10px" color="var(--color-muted)">{locale === "ne" ? "आज" : "Today"}</Text>
+          <Flex align="center" gap="4px">
+            <IconButton aria-label="Previous month" size="xs" variant="ghost" onClick={prevMonth}>
+              <ChevronLeft size={14} strokeWidth={1.8} color="currentColor" aria-hidden="true" />
+            </IconButton>
+            <Text className="dp-number" fontSize="11px" fontWeight="600" color="var(--color-headline)">{monthLabel}</Text>
+            <IconButton aria-label="Next month" size="xs" variant="ghost" onClick={nextMonth}>
+              <ChevronRight size={14} strokeWidth={1.8} color="currentColor" aria-hidden="true" />
+            </IconButton>
+          </Flex>
         </Flex>
         {calendarGrid}
         <Flex className="dp-widget-detail" mt="12px" pt="12px" borderTop="1px solid var(--color-border)" justify="center" textAlign="center">
