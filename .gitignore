@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# .env* above doesn't match this extensionless variant, which is how a real
+# Supabase DB password ended up committed at edf095a — block it explicitly.
+env
 
 # vercel
 .vercel
@@ -41,11 +44,13 @@ yarn-error.log*
 next-env.d.ts
 
 AGENTS.md
-CLAUDE.md 
-.claude/ 
+CLAUDE.md
+.claude/
 .agents
 .forgejo
+.windsurf
 .kombai
+skills-lock.json
 
 
 /lib/generated/prisma
