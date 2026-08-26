@@ -3,8 +3,7 @@ import type { Category } from "./types";
 export const categories: Category[] = [
   { id: "1", slug: "politics", name: { ne: "राजनीति", en: "Politics" }, color: "#dc2626" },
   { id: "2", slug: "society", name: { ne: "समाज", en: "Society" }, color: "#f59e0b" },
-  { id: "3", slug: "economy", name: { ne: "अर्थतन्त्र", en: "Economy" }, color: "#10b981" },
-  { id: "4", slug: "business", name: { ne: "व्यापार", en: "Business" }, color: "#2563eb" },
+  { id: "3", slug: "economy", name: { ne: "अर्थ/वाणिज्य", en: "Economy/Business" }, color: "#10b981" },
   { id: "5", slug: "education", name: { ne: "शिक्षा", en: "Education" }, color: "#8b5cf6" },
   { id: "6", slug: "health", name: { ne: "स्वास्थ्य", en: "Health" }, color: "#ec4899" },
   { id: "7", slug: "agriculture", name: { ne: "कृषि", en: "Agriculture" }, color: "#84cc16" },

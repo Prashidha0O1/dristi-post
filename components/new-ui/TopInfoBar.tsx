@@ -148,21 +148,19 @@ export function TopInfoBar() {
   return (
     <div className="bg-[#012861] text-white/85 text-[12px] font-sans border-b border-white/10 transition-opacity duration-300">
       <div className="mx-auto max-w-[var(--max-content)] h-[30px] px-[var(--side-pad)]">
-        <style dangerouslySetInnerHTML={{ __html: `
-          .hide-scroll::-webkit-scrollbar { display: none; }
-          .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-        `}} />
-        <div className="flex items-center h-full gap-3 overflow-x-auto whitespace-nowrap hide-scroll">
-          <span className="font-semibold shrink-0 text-[12px]">{info.nepaliDate}</span>
-          {info.adDate && <span className="text-white/30 shrink-0">·</span>}
-          <span className="shrink-0 text-[12px]">{info.adDate}</span>
-          {info.weather && <span className="text-white/30 shrink-0">·</span>}
-          <span className="shrink-0 text-[12px]">{info.weather ? `☁ ${info.weather}` : ""}</span>
+        <div className="flex items-center justify-between h-full gap-3">
+          <div className="flex items-center gap-3 shrink-0">
+            <span className="font-semibold text-[12px]">
+              {locale === "ne" ? info.nepaliDate : info.adDate}
+            </span>
+            {info.weather && <span className="text-white/30">·</span>}
+            <span className="text-[12px]">{info.weather ? `☁ ${info.weather}` : ""}</span>
+          </div>
           
-          <div className="flex-1 min-w-[16px]"></div>
-          
-          <span className="text-white/70 shrink-0 text-[12px]">{info.usd}</span>
-          <span className="text-white/70 shrink-0 text-[12px]">{info.inr}</span>
+          <div className="flex items-center gap-3 shrink-0">
+            <span className="text-white/70 text-[12px]">{info.usd}</span>
+            <span className="text-white/70 text-[12px]">{info.inr}</span>
+          </div>
         </div>
       </div>
     </div>

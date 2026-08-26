@@ -161,12 +161,13 @@ export function SiteHeader({ variant = "editorial", showBreakingTicker = true }:
 
             <Link
               href="/calendar"
-              className={`hidden items-center gap-1.5 rounded-full px-3 py-1.5 text-sm text-ink-500 transition hover:bg-paper-100 hover:text-ink sm:inline-flex dark:text-ink-400 dark:hover:bg-ink-700 dark:hover:text-white ${
+              title={lang === "np" ? "पात्रो" : "Calendar"}
+              className={`flex items-center gap-1.5 rounded-full p-2 sm:px-3 sm:py-1.5 text-sm text-ink-500 transition hover:bg-paper-100 hover:text-ink dark:text-ink-400 dark:hover:bg-ink-700 dark:hover:text-white ${
                 lang === "np" ? "font-np" : ""
               }`}
             >
-              <CalendarDaysIcon className="h-4 w-4" />
-              {lang === "np" ? "पात्रो" : "Calendar"}
+              <CalendarDaysIcon className="h-[18px] w-[18px] sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">{lang === "np" ? "पात्रो" : "Calendar"}</span>
             </Link>
 
             <button
