@@ -3,6 +3,7 @@
 import { getContainer } from "@/lib/container";
 import { getSupabaseServerClient } from "@/lib/infrastructure/supabaseServer";
 import { redirect } from "next/navigation";
+import { updateTag } from "next/cache";
 import type { ProvinceSlug } from "@/lib/domain/province";
 
 async function requireAuth() {
@@ -27,9 +28,11 @@ export async function createArticleAction(formData: FormData) {
     tagSlugs: (formData.get("tagSlugs") as string)?.split(",").filter(Boolean) || [],
     isFeatured: formData.get("isFeatured") === "on",
     isBreaking: formData.get("isBreaking") === "on",
+    isTrending: formData.get("isTrending") === "on",
     publish: formData.get("publish") === "on",
   });
 
+  updateTag("articles");
   redirect("/admin/articles");
 }
 
@@ -47,8 +50,10 @@ export async function updateArticleAction(id: string, formData: FormData) {
     tagSlugs: (formData.get("tagSlugs") as string)?.split(",").filter(Boolean) || [],
     isFeatured: formData.get("isFeatured") === "on",
     isBreaking: formData.get("isBreaking") === "on",
+    isTrending: formData.get("isTrending") === "on",
   });
 
+  updateTag("articles");
   redirect("/admin/articles");
 }
 
@@ -56,17 +61,20 @@ export async function publishArticleAction(id: string) {
   await requireAuth();
   const container = getContainer();
   await container.changeArticleStatus.publish(id);
+  updateTag("articles");
 }
 
 export async function unpublishArticleAction(id: string) {
   await requireAuth();
   const container = getContainer();
   await container.changeArticleStatus.unpublish(id);
+  updateTag("articles");
 }
 
 export async function deleteArticleAction(id: string) {
   await requireAuth();
   const container = getContainer();
   await container.deleteArticle.execute(id);
+  updateTag("articles");
   redirect("/admin/articles");
 }

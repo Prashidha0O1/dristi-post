@@ -1,4 +1,5 @@
 import { categories } from "@/lib/config";
+import { getArticlesByCategory, getTrendingArticles } from "@/lib/publicQueries";
 import CategoryPageClient from "./CategoryPageClient";
 import type { Metadata } from "next";
 
@@ -9,7 +10,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const category = categories.find((c) => c.slug === slug);
-  
+
   if (!category) return { title: "Category Not Found - Dristi Post" };
 
   return {
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: `${category.name.ne} समाचार | Dristi Post`,
       description: `Read the latest ${category.name.en} news on Dristi Post.`,
       type: "website",
-    }
+    },
   };
 }
 
@@ -29,5 +30,9 @@ export default async function CategoryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  return <CategoryPageClient slug={slug} />;
+  const [articles, trending] = await Promise.all([
+    getArticlesByCategory(slug),
+    getTrendingArticles(6),
+  ]);
+  return <CategoryPageClient slug={slug} articles={articles} trending={trending} />;
 }

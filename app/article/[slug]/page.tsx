@@ -1,15 +1,17 @@
-import { mockArticles } from "@/lib/mockData";
-import ArticlePageClient from "./ArticlePageClient";
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { getArticleBySlug, getRecentArticles, getRelatedArticles, getTrendingArticles } from "@/lib/publicQueries";
+import ArticlePageClient from "./ArticlePageClient";
 
-export function generateStaticParams() {
-  return mockArticles.map((article) => ({ slug: article.slug }));
+export async function generateStaticParams() {
+  const articles = await getRecentArticles();
+  return articles.map((article) => ({ slug: article.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const article = mockArticles.find((a) => a.slug === slug);
-  
+  const article = await getArticleBySlug(slug);
+
   if (!article) {
     return { title: "Article Not Found - Dristi Post" };
   }
@@ -29,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: article.title.ne,
       description: article.excerpt.ne,
       images: [article.image],
-    }
+    },
   };
 }
 
@@ -39,5 +41,13 @@ export default async function ArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  return <ArticlePageClient slug={slug} />;
+  const article = await getArticleBySlug(slug);
+  if (!article) notFound();
+
+  const [related, trending] = await Promise.all([
+    getRelatedArticles(article),
+    getTrendingArticles(6),
+  ]);
+
+  return <ArticlePageClient article={article} related={related} trending={trending} />;
 }

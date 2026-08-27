@@ -44,6 +44,7 @@ export class CreateArticle {
       tagSlugs: input.tagSlugs ?? [],
       isFeatured: input.isFeatured ?? false,
       isBreaking: input.isBreaking ?? false,
+      isTrending: input.isTrending ?? false,
       createdAt: now,
       updatedAt: now,
       publishedAt: publish ? now : undefined,

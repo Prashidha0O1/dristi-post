@@ -32,10 +32,18 @@ export interface ArticleRecord {
   tagSlugs: string[];
   isFeatured: boolean;
   isBreaking: boolean;
+  isTrending: boolean;
   createdAt: string;
   updatedAt: string;
   /** Set when the article first transitions to `published`. */
   publishedAt?: string;
+  /**
+   * Denormalised from the author join at read time (see
+   * `SupabaseArticleRepository`'s `SELECT_FIELDS`) so the presenter doesn't
+   * need a second query or a static id-lookup fixture to render a byline.
+   * Absent for repositories that don't populate it (e.g. the in-memory one).
+   */
+  authorName?: LocalisedText;
 }
 
 /** Fields an editor supplies when creating an article. */
@@ -50,6 +58,7 @@ export interface NewArticleInput {
   tagSlugs?: string[];
   isFeatured?: boolean;
   isBreaking?: boolean;
+  isTrending?: boolean;
   /** Publish immediately, or leave as a draft (the default). */
   publish?: boolean;
 }

@@ -30,7 +30,15 @@ function toTag(slug: string): Tag {
 
 export function toArticleViewModel(record: ArticleRecord): Article {
   const category = categories.find((c) => c.slug === record.categorySlug) ?? FALLBACK_CATEGORY;
-  const author = authors.find((a) => a.id === record.authorId) ?? FALLBACK_AUTHOR;
+  // Prefer the name resolved by the repository's author join over the static
+  // `lib/authors.ts` fixture: real Supabase authors have UUID ids that never
+  // match that fixture's "a1".."a4", so an id-lookup here would silently show
+  // every real article's byline as the generic fallback. The in-memory
+  // repository (mock-data fallback path) doesn't populate `authorName`, so the
+  // id-lookup fixture stays as the fallback for that path.
+  const author = record.authorName
+    ? { id: record.authorId, name: localisedTextToRecord(record.authorName) }
+    : authors.find((a) => a.id === record.authorId) ?? FALLBACK_AUTHOR;
 
   return {
     id: record.id,
@@ -46,6 +54,7 @@ export function toArticleViewModel(record: ArticleRecord): Article {
     tags: record.tagSlugs.map(toTag),
     isFeatured: record.isFeatured,
     isBreaking: record.isBreaking,
+    isTrending: record.isTrending,
   };
 }
 

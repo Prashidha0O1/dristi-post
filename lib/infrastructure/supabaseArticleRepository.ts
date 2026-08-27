@@ -17,6 +17,7 @@ const PROVINCE_REVERSE: Record<string, ProvinceSlug> = Object.fromEntries(
 
 function toDomain(row: Row): ArticleRecord {
   const category = row.category as Row | null;
+  const author = row.author as Row | null;
   const tagJoins = (row.article_tags ?? []) as Row[];
   return {
     id: row.id as string,
@@ -35,13 +36,18 @@ function toDomain(row: Row): ArticleRecord {
     }).filter(Boolean),
     isFeatured: row.isFeatured as boolean,
     isBreaking: row.isBreaking as boolean,
+    isTrending: (row.isTrending as boolean) ?? false,
     createdAt: row.createdAt as string,
     updatedAt: row.updatedAt as string,
     publishedAt: (row.publishedAt as string) ?? undefined,
+    authorName: author
+      ? { ne: author.nameNe as string, en: (author.nameEn as string) ?? undefined }
+      : undefined,
   };
 }
 
-const SELECT_FIELDS = "*, category:categories!categoryId(slug), article_tags:_ArticleTags(tag:tags!B(slug))";
+const SELECT_FIELDS =
+  "*, category:categories!categoryId(slug), author:authors!authorId(nameNe,nameEn), article_tags:_ArticleTags(tag:tags!B(slug))";
 
 let _client: SupabaseClient | null = null;
 function getClient(): SupabaseClient {
@@ -129,6 +135,7 @@ export class SupabaseArticleRepository implements ArticleRepository {
       authorId: article.authorId,
       isFeatured: article.isFeatured,
       isBreaking: article.isBreaking,
+      isTrending: article.isTrending,
       publishedAt: article.publishedAt ?? null,
       updatedAt: article.updatedAt,
     };
