@@ -3,8 +3,7 @@ import type { NavSection, ProvinceItem, BreakingItem, TrendingItem } from "../ty
 export const primarySections: NavSection[] = [
   { id: "home", np: "गृहपृष्ठ", en: "Home", href: "/" },
   { id: "politics", np: "राजनीति", en: "Politics", href: "/category/politics" },
-  { id: "business", np: "व्यापार", en: "Business", href: "/category/business" },
-  { id: "economy", np: "अर्थतन्त्र", en: "Economy", href: "/category/economy" },
+  { id: "economy", np: "अर्थ/वाणिज्य", en: "Economy/Business", href: "/category/economy" },
   { id: "education", np: "शिक्षा", en: "Education", href: "/category/education" },
   { id: "sports", np: "खेलकुद", en: "Sports", href: "/category/sports" },
   { id: "science-tech", np: "विज्ञान र प्रविधि", en: "Science & Tech", href: "/category/science-tech" },
