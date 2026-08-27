@@ -1,7 +1,7 @@
-"use client";
+import FrontPage from "@/components/frontPage";
+import { getRecentArticles } from "@/lib/publicQueries";
 
-import HomePage from "@/components/homePage";
-
-export default function Page() {
-  return <HomePage />;
+export default async function Page() {
+  const articles = await getRecentArticles();
+  return <FrontPage articles={articles} />;
 }

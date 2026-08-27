@@ -39,6 +39,7 @@ export const seedArticles: readonly ArticleRecord[] = mockArticles.map((a) => ({
   tagSlugs: a.tags.map((t) => t.slug),
   isFeatured: a.isFeatured ?? false,
   isBreaking: a.isBreaking ?? false,
+  isTrending: a.isTrending ?? false,
   createdAt: a.publishedAt,
   updatedAt: a.updatedAt ?? a.publishedAt,
   publishedAt: a.publishedAt,

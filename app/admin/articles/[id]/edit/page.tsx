@@ -1,5 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 import { getContainer } from "@/lib/container";
+import { listAuthorOptions } from "@/lib/adminQueries";
 import { ArticleForm } from "../../ArticleForm";
 import { updateArticleAction } from "../../../actions";
 import { notFound } from "next/navigation";
@@ -7,7 +8,10 @@ import { notFound } from "next/navigation";
 export default async function EditArticlePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const container = getContainer();
-  const article = await container.listArticles.execute({ limit: 1000 });
+  const [article, authorOptions] = await Promise.all([
+    container.listArticles.execute({ limit: 1000 }),
+    listAuthorOptions(),
+  ]);
   const found = article.items.find((a) => a.id === id);
 
   if (!found) notFound();
@@ -22,6 +26,7 @@ export default async function EditArticlePage({ params }: { params: Promise<{ id
       <Box bg="var(--color-surface)" border="1px solid var(--color-border)" borderRadius="8px" p="24px">
         <ArticleForm
           action={boundAction}
+          authorOptions={authorOptions}
           submitLabel="Save Changes"
           defaultValues={{
             titleNe: found.title.ne,
@@ -37,6 +42,7 @@ export default async function EditArticlePage({ params }: { params: Promise<{ id
             tagSlugs: found.tagSlugs.join(","),
             isFeatured: found.isFeatured,
             isBreaking: found.isBreaking,
+            isTrending: found.isTrending,
           }}
         />
       </Box>

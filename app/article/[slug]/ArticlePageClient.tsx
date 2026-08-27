@@ -8,11 +8,12 @@ import { NewsCard } from "@/components/newsCard";
 import { SectionHeader } from "@/components/sectionHeader";
 import { TimeAgo } from "@/components/timeAgo";
 import { useLocale } from "@/lib/localeContext";
-import { getArticleBySlug, getRelatedArticles, getTrendingArticles } from "@/lib/mockData";
+import type { Article } from "@/lib/types";
 
-function TrendingSidebar() {
+function TrendingSidebar({ trending }: { trending: Article[] }) {
   const { locale } = useLocale();
-  const trending = getTrendingArticles();
+
+  if (trending.length === 0) return null;
 
   return (
     <Box>
@@ -57,29 +58,17 @@ function TrendingSidebar() {
   );
 }
 
-export default function ArticlePageClient({ slug }: { slug: string }) {
+export default function ArticlePageClient({
+  article,
+  related,
+  trending,
+}: {
+  article: Article;
+  related: Article[];
+  trending: Article[];
+}) {
   const { localized, locale } = useLocale();
 
-  const article = getArticleBySlug(slug);
-
-  if (!article) {
-    return (
-      <PageShell>
-        <Box py="60px" textAlign="center">
-          <Text fontSize="24px" fontWeight="700" color="var(--color-headline)" mb="8px">
-            {locale === "ne" ? "समाचार भेटिएन" : "Article Not Found"}
-          </Text>
-          <Link href="/">
-            <Text color="var(--color-brand)" fontWeight="600" fontSize="15px" _hover={{ textDecoration: "underline" }}>
-              {locale === "ne" ? "गृहपृष्ठमा फर्कनुहोस्" : "Back to Home"}
-            </Text>
-          </Link>
-        </Box>
-      </PageShell>
-    );
-  }
-
-  const related = getRelatedArticles(article);
   const title = localized(article.title);
   const excerpt = localized(article.excerpt);
   const categoryName = localized(article.category.name);
@@ -135,17 +124,14 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
           </Box>
 
           <Box mb="40px" fontSize={{ base: "19px", md: "17px" }} lineHeight="1.9" color="var(--color-body)">
-            <Text mb="16px">{excerpt}</Text>
-            <Text mb="16px">
-              {locale === "ne"
-                ? "यो समाचारको विस्तृत विवरण यहाँ प्रकाशित हुनेछ। हाल यो डेमो संस्करण हो र वास्तविक सामग्री API बाट लोड हुनेछ।"
-                : "The full article content will be published here. This is currently a demo version and actual content will be loaded from an API."}
-            </Text>
-            <Text mb="16px">
-              {locale === "ne"
-                ? "दृष्टि पोस्टले नेपालका विभिन्न क्षेत्रका समाचारहरू तपाईंसम्म पुर्‍याउँछ। हामीसँग जोडिएर रहनुहोस्।"
-                : "Dristi Post brings you news from various sectors of Nepal. Stay connected with us."}
-            </Text>
+            {localized(article.content)
+              .split(/\n{2,}/)
+              .map((s) => s.trim())
+              .filter(Boolean)
+              .map((paragraph, i) => (
+                <Text key={i} mb="16px">{paragraph}</Text>
+              ))}
+
           </Box>
 
           {article.tags.length > 0 && (
@@ -194,7 +180,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
               विज्ञापन
             </Text>
           </Box>
-          <TrendingSidebar />
+          <TrendingSidebar trending={trending} />
         </Box>
       </SimpleGrid>
     </PageShell>

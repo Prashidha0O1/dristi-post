@@ -6,7 +6,6 @@ import { PageShell } from "@/components/pageShell";
 import { NewsCard } from "@/components/newsCard";
 import { SectionHeader } from "@/components/sectionHeader";
 import { useLocale } from "@/lib/localeContext";
-import { categories } from "@/lib/config";
 import type { Article } from "@/lib/types";
 
 function TrendingSidebar({ trending }: { trending: Article[] }) {
@@ -56,38 +55,8 @@ function TrendingSidebar({ trending }: { trending: Article[] }) {
   );
 }
 
-export default function CategoryPageClient({
-  slug,
-  articles,
-  trending,
-}: {
-  slug: string;
-  articles: Article[];
-  trending: Article[];
-}) {
-  const { localized, locale } = useLocale();
-
-  const category = categories.find((c) => c.slug === slug);
-
-  if (!category) {
-    return (
-      <PageShell>
-        <Box py="60px" textAlign="center">
-          <Text fontSize="24px" fontWeight="700" color="var(--color-headline)" mb="8px">
-            {locale === "ne" ? "विषय भेटिएन" : "Category Not Found"}
-          </Text>
-          <Link href="/">
-            <Text color="var(--color-brand)" fontWeight="600" fontSize="15px" _hover={{ textDecoration: "underline" }}>
-              {locale === "ne" ? "गृहपृष्ठमा फर्कनुहोस्" : "Back to Home"}
-            </Text>
-          </Link>
-        </Box>
-      </PageShell>
-    );
-  }
-
-  const categoryName = localized(category.name);
-  const catColor = category.color || "var(--color-brand)";
+export default function LatestPageClient({ articles, trending }: { articles: Article[]; trending: Article[] }) {
+  const { locale, t } = useLocale();
   const lead = articles[0];
   const rest = articles.slice(1);
 
@@ -100,10 +69,10 @@ export default function CategoryPageClient({
           </Text>
         </Link>
         <Text>›</Text>
-        <Text color={catColor} fontWeight="600">{categoryName}</Text>
+        <Text color="var(--color-headline)" fontWeight="600">{t("latest")}</Text>
       </Flex>
 
-      <SectionHeader title={categoryName} accent={catColor} />
+      <SectionHeader title={t("latest")} accent="var(--color-nav)" />
 
       <SimpleGrid columns={{ base: 1, lg: 3 }} gap="32px">
         <Box gridColumn={{ lg: "span 2" }}>
@@ -112,17 +81,15 @@ export default function CategoryPageClient({
               <NewsCard article={lead} variant="hero" showExcerpt showAuthor imageHeight="380px" />
             </Box>
           )}
-          {rest.length > 0 && (
-            <SimpleGrid columns={{ base: 1, sm: 2 }} gap="20px">
-              {rest.map((a) => (
-                <NewsCard key={a.id} article={a} variant="featured" showCategory={false} imageHeight="170px" />
-              ))}
-            </SimpleGrid>
-          )}
+          <SimpleGrid columns={{ base: 1, sm: 2 }} gap="20px">
+            {rest.map((a) => (
+              <NewsCard key={a.id} article={a} variant="featured" imageHeight="170px" />
+            ))}
+          </SimpleGrid>
           {articles.length === 0 && (
             <Box py="40px" textAlign="center">
               <Text fontSize="16px" color="var(--color-muted)">
-                {locale === "ne" ? "यस विषयमा समाचार भेटिएन।" : "No articles found in this category."}
+                {locale === "ne" ? "हाल कुनै समाचार छैन।" : "No articles yet."}
               </Text>
             </Box>
           )}

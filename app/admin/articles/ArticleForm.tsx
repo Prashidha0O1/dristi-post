@@ -4,8 +4,15 @@ import { Flex, Text, Input, SimpleGrid, chakra } from "@chakra-ui/react";
 import { categories } from "@/lib/config";
 import { provinces } from "@/lib/domain/province";
 
+interface AuthorOption {
+  id: string;
+  nameNe: string;
+  nameEn?: string;
+}
+
 interface Props {
   action: (formData: FormData) => Promise<void>;
+  authorOptions: AuthorOption[];
   defaultValues?: {
     titleNe?: string;
     titleEn?: string;
@@ -20,6 +27,7 @@ interface Props {
     tagSlugs?: string;
     isFeatured?: boolean;
     isBreaking?: boolean;
+    isTrending?: boolean;
   };
   submitLabel: string;
   showPublish?: boolean;
@@ -38,7 +46,7 @@ const inputStyle = { h: "40px", border: "1px solid var(--color-border)", borderR
 const textareaStyle = { w: "full" as const, p: "12px", border: "1px solid var(--color-border)", borderRadius: "4px", fontSize: "14px" };
 const selectStyle = { w: "full" as const, h: "40px", border: "1px solid var(--color-border)", borderRadius: "4px", px: "8px", fontSize: "14px", bg: "var(--color-surface)" };
 
-export function ArticleForm({ action, defaultValues: d = {}, submitLabel, showPublish }: Props) {
+export function ArticleForm({ action, authorOptions, defaultValues: d = {}, submitLabel, showPublish }: Props) {
   return (
     <form action={action}>
       <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
@@ -85,8 +93,13 @@ export function ArticleForm({ action, defaultValues: d = {}, submitLabel, showPu
             ))}
           </chakra.select>
         </Field>
-        <Field label="Author ID *">
-          <Input name="authorId" defaultValue={d.authorId} required {...inputStyle} />
+        <Field label="Author *">
+          <chakra.select name="authorId" defaultValue={d.authorId} required {...selectStyle}>
+            <option value="">Select...</option>
+            {authorOptions.map((a) => (
+              <option key={a.id} value={a.id}>{a.nameEn ? `${a.nameEn} / ${a.nameNe}` : a.nameNe}</option>
+            ))}
+          </chakra.select>
         </Field>
       </SimpleGrid>
 
@@ -105,6 +118,9 @@ export function ArticleForm({ action, defaultValues: d = {}, submitLabel, showPu
         </chakra.label>
         <chakra.label display="flex" alignItems="center" gap="6px" fontSize="14px" color="var(--color-body)" cursor="pointer">
           <input type="checkbox" name="isBreaking" defaultChecked={d.isBreaking} /> Breaking
+        </chakra.label>
+        <chakra.label display="flex" alignItems="center" gap="6px" fontSize="14px" color="var(--color-body)" cursor="pointer">
+          <input type="checkbox" name="isTrending" defaultChecked={d.isTrending} /> Trending
         </chakra.label>
         {showPublish && (
           <chakra.label display="flex" alignItems="center" gap="6px" fontSize="14px" color="var(--color-body)" cursor="pointer">
