@@ -119,7 +119,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
             {title}
           </Text>
 
-          <Text fontSize="17px" color="var(--color-subtle)" lineHeight="1.7" mb="16px">
+          <Text fontSize={{ base: "19px", md: "17px" }} color="var(--color-subtle)" lineHeight="1.7" mb="16px">
             {excerpt}
           </Text>
 
@@ -134,7 +134,7 @@ export default function ArticlePageClient({ slug }: { slug: string }) {
             <Image src={article.image} alt={title} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 66vw" priority />
           </Box>
 
-          <Box mb="40px" fontSize="17px" lineHeight="1.9" color="var(--color-body)">
+          <Box mb="40px" fontSize={{ base: "19px", md: "17px" }} lineHeight="1.9" color="var(--color-body)">
             <Text mb="16px">{excerpt}</Text>
             <Text mb="16px">
               {locale === "ne"

@@ -79,7 +79,7 @@ export function MobileNav({ open, lang, activeId, onSelect, onClose, onLangChang
                         onClose();
                       }}
                       aria-current={s.id === activeId ? "page" : undefined}
-                      className={`flex items-center justify-between rounded-lg px-3 py-3 text-base transition ${
+                      className={`flex items-center justify-between rounded-lg px-3 py-3 text-[18px] transition ${
                         lang === "np" ? "font-np font-semibold" : "font-medium"
                       } ${
                         s.id === activeId
@@ -103,7 +103,7 @@ export function MobileNav({ open, lang, activeId, onSelect, onClose, onLangChang
                     key={p.id}
                     href={p.href}
                     onClick={onClose}
-                    className={`rounded-full border border-paper-200 px-3 py-1.5 text-xs text-ink-600 dark:border-ink-600 dark:text-ink-400 ${
+                    className={`rounded-full border border-paper-200 px-3 py-1.5 text-[14px] text-ink-600 dark:border-ink-600 dark:text-ink-400 ${
                       lang === "np" ? "font-np" : ""
                     }`}
                   >
