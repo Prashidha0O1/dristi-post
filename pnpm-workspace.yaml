@@ -1,4 +1,4 @@
 allowBuilds:
-  '@prisma/engines': set this to true or false
-  prisma: set this to true or false
+  # @prisma/engines and prisma were removed along with the rest of the Prisma
+  # stack; unrs-resolver comes in via eslint and still builds.
   unrs-resolver: set this to true or false
