@@ -4,12 +4,14 @@ import { Flex, chakra } from "@chakra-ui/react";
 import Link from "next/link";
 
 /**
- * Publish / unpublish / delete controls for one row.
+ * Publish / unpublish / delete for one article row.
  *
- * A Client Component so the destructive action can confirm first; the actual
- * work stays in Server Actions, which are passed in already bound to an id.
+ * A Client Component purely so delete can confirm first; the work itself stays
+ * in Server Actions, passed in already bound to an id. These actions existed in
+ * app/admin/actions.ts from the start but had no UI, so publishing from the
+ * console was impossible until now.
  */
-export function JobRowActions({
+export function ArticleRowActions({
   id,
   status,
   publishAction,
@@ -22,7 +24,7 @@ export function JobRowActions({
   unpublishAction: () => Promise<void>;
   deleteAction: () => Promise<void>;
 }) {
-  const linkStyle = {
+  const base = {
     fontSize: "12px",
     fontWeight: "600",
     cursor: "pointer",
@@ -34,8 +36,8 @@ export function JobRowActions({
 
   return (
     <Flex gap="12px" align="center" justify="flex-end">
-      <Link href={`/admin/jobs/${id}/edit`}>
-        <chakra.span {...linkStyle} color="var(--color-brand)" _hover={{ textDecoration: "underline" }}>
+      <Link href={`/admin/articles/${id}/edit`}>
+        <chakra.span {...base} color="var(--color-brand)" _hover={{ textDecoration: "underline" }}>
           Edit
         </chakra.span>
       </Link>
@@ -43,7 +45,7 @@ export function JobRowActions({
       <form action={status === "published" ? unpublishAction : publishAction}>
         <chakra.button
           type="submit"
-          {...linkStyle}
+          {...base}
           color="var(--color-muted)"
           _hover={{ color: "var(--color-headline)", textDecoration: "underline" }}
         >
@@ -54,14 +56,14 @@ export function JobRowActions({
       <form
         action={deleteAction}
         onSubmit={(e) => {
-          if (!window.confirm("Delete this job listing permanently? This cannot be undone.")) {
+          if (!window.confirm("Delete this article permanently? This cannot be undone.")) {
             e.preventDefault();
           }
         }}
       >
         <chakra.button
           type="submit"
-          {...linkStyle}
+          {...base}
           color="var(--color-danger-fg)"
           _hover={{ textDecoration: "underline" }}
         >

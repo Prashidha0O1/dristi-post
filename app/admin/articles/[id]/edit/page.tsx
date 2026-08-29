@@ -1,8 +1,9 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { getContainer } from "@/lib/container";
 import { listAuthorOptions } from "@/lib/adminQueries";
 import { ArticleForm } from "../../ArticleForm";
 import { updateArticleAction } from "../../../actions";
+import { Card, PageHeader } from "../../../ui";
 import { notFound } from "next/navigation";
 
 export default async function EditArticlePage({ params }: { params: Promise<{ id: string }> }) {
@@ -20,10 +21,8 @@ export default async function EditArticlePage({ params }: { params: Promise<{ id
 
   return (
     <Box>
-      <Text fontSize="24px" fontWeight="800" color="var(--color-headline)" mb="24px">
-        Edit Article
-      </Text>
-      <Box bg="var(--color-surface)" border="1px solid var(--color-border)" borderRadius="8px" p="24px">
+      <PageHeader title="Edit Article" subtitle={found.title.ne} />
+      <Card p="24px">
         <ArticleForm
           action={boundAction}
           authorOptions={authorOptions}
@@ -45,7 +44,7 @@ export default async function EditArticlePage({ params }: { params: Promise<{ id
             isTrending: found.isTrending,
           }}
         />
-      </Box>
+      </Card>
     </Box>
   );
 }

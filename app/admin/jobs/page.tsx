@@ -1,7 +1,17 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import Link from "next/link";
+import { Briefcase, Plus } from "lucide-react";
 import { getContainer } from "@/lib/container";
 import { employmentTypes, isExpired } from "@/lib/domain/job";
+import {
+  Badge,
+  ButtonLink,
+  Card,
+  EmptyState,
+  PageHeader,
+  StatusBadge,
+  TableHead,
+  TableRow,
+} from "../ui";
 import { deleteJobAction, publishJobAction, unpublishJobAction } from "../jobActions";
 import { JobRowActions } from "./JobRowActions";
 
@@ -9,84 +19,96 @@ const TYPE_LABEL = new Map(employmentTypes.map((t) => [t.value, t.name.en]));
 
 export default async function JobsListPage() {
   const container = getContainer();
-  const { items: jobs, total } = await container.listJobs.execute({ limit: 50 });
+
+  // The jobs table may not exist yet (migration unrun). Surface that as an
+  // explanation rather than a 500 — the admin is exactly where someone would
+  // go to find out why the board is empty.
+  const result = await container.listJobs
+    .execute({ limit: 50 })
+    .then((r) => ({ ok: true as const, ...r }))
+    .catch((e: unknown) => ({
+      ok: false as const,
+      items: [],
+      total: 0,
+      message: e instanceof Error ? e.message : String(e),
+    }));
+
   const now = new Date();
 
   return (
     <Box>
-      <Flex justify="space-between" align="center" mb="24px">
-        <Box>
-          <Text fontSize="24px" fontWeight="800" color="var(--color-headline)">Jobs</Text>
-          <Text fontSize="13px" color="var(--color-muted)">{total} total</Text>
+      <PageHeader
+        title="Jobs"
+        subtitle={result.ok ? `${result.total} total` : undefined}
+        action={
+          <ButtonLink href="/admin/jobs/new" icon={<Plus size={15} strokeWidth={2.2} aria-hidden="true" />}>
+            New Job
+          </ButtonLink>
+        }
+      />
+
+      {!result.ok && (
+        <Box
+          mb="20px"
+          px="16px"
+          py="13px"
+          borderRadius="8px"
+          bg="var(--color-danger-bg)"
+          color="var(--color-danger-fg)"
+          fontSize="13px"
+          lineHeight="1.6"
+        >
+          <Text fontWeight="700" mb="2px">Could not load jobs</Text>
+          <Text>{result.message}</Text>
+          <Text mt="6px" opacity={0.85}>
+            If this says the table is missing, the job board schema hasn&apos;t been applied to
+            Supabase yet.
+          </Text>
         </Box>
-        <Link href="/admin/jobs/new">
-          <Box
-            as="span"
-            px="16px"
-            py="8px"
-            bg="var(--color-brand)"
-            color="white"
-            borderRadius="4px"
-            fontSize="13px"
-            fontWeight="600"
-            cursor="pointer"
-          >
-            + New Job
-          </Box>
-        </Link>
-      </Flex>
+      )}
 
-      <Box bg="var(--color-surface)" border="1px solid var(--color-border)" borderRadius="8px" overflow="hidden">
-        <Flex bg="var(--color-card-alt)" px="16px" py="10px" fontWeight="700" fontSize="12px" color="var(--color-muted)" textTransform="uppercase" letterSpacing="0.5px">
+      <Card>
+        <TableHead>
           <Text flex="2">Title</Text>
-          <Text flex="1">Company</Text>
-          <Text w="100px">Type</Text>
-          <Text w="110px" textAlign="center">Status</Text>
-          <Text w="190px" textAlign="right">Actions</Text>
-        </Flex>
+          <Text flex="1" display={{ base: "none", md: "block" }}>Company</Text>
+          <Text w="90px" display={{ base: "none", lg: "block" }}>Type</Text>
+          <Text w="140px" textAlign="center">Status</Text>
+          <Text w="180px" textAlign="right">Actions</Text>
+        </TableHead>
 
-        {jobs.map((job) => {
+        {result.items.map((job) => {
           const expired = isExpired(job, now);
           return (
-            <Flex key={job.id} px="16px" py="12px" borderTop="1px solid var(--color-border)" align="center" fontSize="14px">
-              <Box flex="2" minW="0">
-                <Text fontWeight="600" color="var(--color-headline)" lineClamp={1}>{job.title.ne}</Text>
-                {job.title.en && (
-                  <Text fontSize="12px" color="var(--color-muted)" lineClamp={1}>{job.title.en}</Text>
-                )}
-              </Box>
-              <Text flex="1" fontSize="13px" color="var(--color-muted)" lineClamp={1}>{job.company}</Text>
-              <Text w="100px" fontSize="12px" color="var(--color-muted)">
-                {TYPE_LABEL.get(job.employmentType) ?? job.employmentType}
-              </Text>
-              <Flex w="110px" justify="center" gap="4px">
-                <Text
-                  fontSize="11px"
-                  fontWeight="600"
-                  px="8px"
-                  py="2px"
-                  borderRadius="4px"
-                  bg={job.status === "published" ? "#dcfce7" : "#fef3c7"}
-                  color={job.status === "published" ? "#16a34a" : "#d97706"}
-                >
-                  {job.status}
+            <TableRow key={job.id}>
+              <Box flex="2" minW="0" pr="12px">
+                <Text fontWeight="600" color="var(--color-headline)" lineClamp={1}>
+                  {job.title.ne}
                 </Text>
-                {expired && (
-                  <Text
-                    fontSize="11px"
-                    fontWeight="600"
-                    px="6px"
-                    py="2px"
-                    borderRadius="4px"
-                    bg="#fee2e2"
-                    color="#dc2626"
-                    title={`Deadline ${job.deadline} has passed — hidden from the public board`}
-                  >
-                    expired
+                {job.title.en && (
+                  <Text fontSize="12px" color="var(--color-muted)" lineClamp={1} mt="1px">
+                    {job.title.en}
                   </Text>
                 )}
+              </Box>
+
+              <Text flex="1" fontSize="13px" color="var(--color-muted)" lineClamp={1} display={{ base: "none", md: "block" }}>
+                {job.company}
+              </Text>
+
+              <Text w="90px" fontSize="12px" color="var(--color-muted)" display={{ base: "none", lg: "block" }}>
+                {TYPE_LABEL.get(job.employmentType) ?? job.employmentType}
+              </Text>
+
+              <Flex w="140px" justify="center" gap="5px" flexWrap="wrap">
+                <StatusBadge status={job.status} />
+                {expired && (
+                  <Badge tone="danger" title={`Deadline ${job.deadline} has passed — hidden from the public board`}>
+                    expired
+                  </Badge>
+                )}
               </Flex>
-              <Box w="190px">
+
+              <Box w="180px">
                 <JobRowActions
                   id={job.id}
                   status={job.status}
@@ -95,16 +117,23 @@ export default async function JobsListPage() {
                   deleteAction={deleteJobAction.bind(null, job.id)}
                 />
               </Box>
-            </Flex>
+            </TableRow>
           );
         })}
 
-        {jobs.length === 0 && (
-          <Box py="40px" textAlign="center">
-            <Text color="var(--color-muted)">No job listings yet.</Text>
-          </Box>
+        {result.ok && result.items.length === 0 && (
+          <EmptyState
+            icon={<Briefcase size={30} strokeWidth={1.5} aria-hidden="true" />}
+            title="No job listings yet"
+            hint="Published listings appear on the public job board at /jobs."
+            action={
+              <ButtonLink href="/admin/jobs/new" icon={<Plus size={15} strokeWidth={2.2} aria-hidden="true" />}>
+                New Job
+              </ButtonLink>
+            }
+          />
         )}
-      </Box>
+      </Card>
     </Box>
   );
 }

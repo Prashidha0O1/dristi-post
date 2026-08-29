@@ -1,8 +1,16 @@
 "use client";
 
-import { Flex, Text, Input, SimpleGrid, chakra } from "@chakra-ui/react";
+import { Flex, SimpleGrid, chakra } from "@chakra-ui/react";
 import { categories } from "@/lib/config";
 import { provinces } from "@/lib/domain/province";
+import { ImageUploadField } from "../ImageUploadField";
+import {
+  CheckboxField,
+  Field,
+  FormSection,
+  SubmitButton,
+  fieldStyles,
+} from "../formUi";
 
 interface AuthorOption {
   id: string;
@@ -33,117 +41,89 @@ interface Props {
   showPublish?: boolean;
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <chakra.div mb="16px">
-      <Text fontSize="13px" fontWeight="600" color="var(--color-body)" mb="4px">{label}</Text>
-      {children}
-    </chakra.div>
-  );
-}
-
-const inputStyle = { h: "40px", border: "1px solid var(--color-border)", borderRadius: "4px", px: "12px", fontSize: "14px" } as const;
-const textareaStyle = { w: "full" as const, p: "12px", border: "1px solid var(--color-border)", borderRadius: "4px", fontSize: "14px" };
-const selectStyle = { w: "full" as const, h: "40px", border: "1px solid var(--color-border)", borderRadius: "4px", px: "8px", fontSize: "14px", bg: "var(--color-surface)" };
-
 export function ArticleForm({ action, authorOptions, defaultValues: d = {}, submitLabel, showPublish }: Props) {
   return (
     <form action={action}>
-      <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
-        <Field label="Title (Nepali) *">
-          <Input name="titleNe" defaultValue={d.titleNe} required {...inputStyle} />
-        </Field>
-        <Field label="Title (English)">
-          <Input name="titleEn" defaultValue={d.titleEn} {...inputStyle} />
-        </Field>
-      </SimpleGrid>
+      <FormSection title="Headline" description="Nepali is required; English is optional and used for the URL when present.">
+        <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
+          <Field label="Title (Nepali)" required>
+            <chakra.input name="titleNe" defaultValue={d.titleNe} required {...fieldStyles.input} />
+          </Field>
+          <Field label="Title (English)">
+            <chakra.input name="titleEn" defaultValue={d.titleEn} {...fieldStyles.input} />
+          </Field>
+        </SimpleGrid>
 
-      <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
-        <Field label="Excerpt (Nepali) *">
-          <chakra.textarea name="excerptNe" defaultValue={d.excerptNe} required h="80px" {...textareaStyle} />
-        </Field>
-        <Field label="Excerpt (English)">
-          <chakra.textarea name="excerptEn" defaultValue={d.excerptEn} h="80px" {...textareaStyle} />
-        </Field>
-      </SimpleGrid>
+        <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
+          <Field label="Excerpt (Nepali)" required>
+            <chakra.textarea name="excerptNe" defaultValue={d.excerptNe} required h="86px" {...fieldStyles.textarea} />
+          </Field>
+          <Field label="Excerpt (English)">
+            <chakra.textarea name="excerptEn" defaultValue={d.excerptEn} h="86px" {...fieldStyles.textarea} />
+          </Field>
+        </SimpleGrid>
+      </FormSection>
 
-      <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
-        <Field label="Body (Nepali) *">
-          <chakra.textarea name="bodyNe" defaultValue={d.bodyNe} required h="200px" {...textareaStyle} />
-        </Field>
-        <Field label="Body (English)">
-          <chakra.textarea name="bodyEn" defaultValue={d.bodyEn} h="200px" {...textareaStyle} />
-        </Field>
-      </SimpleGrid>
+      <FormSection title="Body" description="Separate paragraphs with a blank line.">
+        <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
+          <Field label="Body (Nepali)" required>
+            <chakra.textarea name="bodyNe" defaultValue={d.bodyNe} required h="240px" {...fieldStyles.textarea} />
+          </Field>
+          <Field label="Body (English)">
+            <chakra.textarea name="bodyEn" defaultValue={d.bodyEn} h="240px" {...fieldStyles.textarea} />
+          </Field>
+        </SimpleGrid>
+      </FormSection>
 
-      <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} gap="16px">
-        <Field label="Category *">
-          <chakra.select name="categorySlug" defaultValue={d.categorySlug} required {...selectStyle}>
-            <option value="">Select...</option>
-            {categories.map((c) => (
-              <option key={c.slug} value={c.slug}>{c.name.en} / {c.name.ne}</option>
-            ))}
-          </chakra.select>
-        </Field>
-        <Field label="Province">
-          <chakra.select name="provinceSlug" defaultValue={d.provinceSlug ?? ""} {...selectStyle}>
-            <option value="">National</option>
-            {provinces.map((p) => (
-              <option key={p.slug} value={p.slug}>{p.name.en} / {p.name.ne}</option>
-            ))}
-          </chakra.select>
-        </Field>
-        <Field label="Author *">
-          <chakra.select name="authorId" defaultValue={d.authorId} required {...selectStyle}>
-            <option value="">Select...</option>
-            {authorOptions.map((a) => (
-              <option key={a.id} value={a.id}>{a.nameEn ? `${a.nameEn} / ${a.nameNe}` : a.nameNe}</option>
-            ))}
-          </chakra.select>
-        </Field>
-      </SimpleGrid>
+      <FormSection title="Classification">
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} gap="16px">
+          <Field label="Category" required>
+            <chakra.select name="categorySlug" defaultValue={d.categorySlug} required {...fieldStyles.select}>
+              <option value="">Select...</option>
+              {categories.map((c) => (
+                <option key={c.slug} value={c.slug}>{c.name.en} / {c.name.ne}</option>
+              ))}
+            </chakra.select>
+          </Field>
+          <Field label="Province" hint="Leave as National if not region-specific">
+            <chakra.select name="provinceSlug" defaultValue={d.provinceSlug ?? ""} {...fieldStyles.select}>
+              <option value="">National</option>
+              {provinces.map((p) => (
+                <option key={p.slug} value={p.slug}>{p.name.en} / {p.name.ne}</option>
+              ))}
+            </chakra.select>
+          </Field>
+          <Field label="Author" required>
+            <chakra.select name="authorId" defaultValue={d.authorId} required {...fieldStyles.select}>
+              <option value="">Select...</option>
+              {authorOptions.map((a) => (
+                <option key={a.id} value={a.id}>{a.nameEn ? `${a.nameEn} / ${a.nameNe}` : a.nameNe}</option>
+              ))}
+            </chakra.select>
+          </Field>
+        </SimpleGrid>
 
-      <SimpleGrid columns={{ base: 1, sm: 2 }} gap="16px">
-        <Field label="Image URL *">
-          <Input name="imageUrl" defaultValue={d.imageUrl} required {...inputStyle} />
+        <Field label="Featured image" required>
+          <ImageUploadField folder="articles" defaultValue={d.imageUrl} />
         </Field>
-        <Field label="Tags (comma-separated slugs)">
-          <Input name="tagSlugs" defaultValue={d.tagSlugs} {...inputStyle} placeholder="politics,breaking" />
+
+        <Field label="Tags" hint="Comma-separated slugs">
+          <chakra.input name="tagSlugs" defaultValue={d.tagSlugs} placeholder="politics,breaking" {...fieldStyles.input} />
         </Field>
-      </SimpleGrid>
+      </FormSection>
 
-      <Flex gap="20px" mb="24px" flexWrap="wrap">
-        <chakra.label display="flex" alignItems="center" gap="6px" fontSize="14px" color="var(--color-body)" cursor="pointer">
-          <input type="checkbox" name="isFeatured" defaultChecked={d.isFeatured} /> Featured
-        </chakra.label>
-        <chakra.label display="flex" alignItems="center" gap="6px" fontSize="14px" color="var(--color-body)" cursor="pointer">
-          <input type="checkbox" name="isBreaking" defaultChecked={d.isBreaking} /> Breaking
-        </chakra.label>
-        <chakra.label display="flex" alignItems="center" gap="6px" fontSize="14px" color="var(--color-body)" cursor="pointer">
-          <input type="checkbox" name="isTrending" defaultChecked={d.isTrending} /> Trending
-        </chakra.label>
-        {showPublish && (
-          <chakra.label display="flex" alignItems="center" gap="6px" fontSize="14px" color="var(--color-body)" cursor="pointer">
-            <input type="checkbox" name="publish" /> Publish immediately
-          </chakra.label>
-        )}
-      </Flex>
+      <FormSection title="Placement" description="Controls where this appears on the public site.">
+        <Flex gap="12px" flexWrap="wrap">
+          <CheckboxField name="isFeatured" label="Featured" hint="Top stories on the homepage" defaultChecked={d.isFeatured} />
+          <CheckboxField name="isBreaking" label="Breaking" hint="Shows in the ticker" defaultChecked={d.isBreaking} />
+          <CheckboxField name="isTrending" label="Trending" hint="Appears on /trending" defaultChecked={d.isTrending} />
+          {showPublish && (
+            <CheckboxField name="publish" label="Publish immediately" hint="Otherwise saved as a draft" />
+          )}
+        </Flex>
+      </FormSection>
 
-      <chakra.button
-        type="submit"
-        px="24px"
-        py="10px"
-        bg="var(--color-brand)"
-        color="white"
-        border="none"
-        borderRadius="4px"
-        fontSize="15px"
-        fontWeight="700"
-        cursor="pointer"
-        _hover={{ opacity: 0.9 }}
-      >
-        {submitLabel}
-      </chakra.button>
+      <SubmitButton>{submitLabel}</SubmitButton>
     </form>
   );
 }

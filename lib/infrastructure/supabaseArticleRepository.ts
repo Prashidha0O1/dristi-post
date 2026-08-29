@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { getSupabaseServerClient } from "./supabaseServer";
 import type { ArticleRepository } from "@/lib/domain/ports";
 import type { ArticleRecord, ArticleQuery, Paginated, ArticleStatus } from "@/lib/domain/article";
 import type { ProvinceSlug } from "@/lib/domain/province";
@@ -61,7 +62,20 @@ function getClient(): SupabaseClient {
 }
 
 export class SupabaseArticleRepository implements ArticleRepository {
+  // Reads use a shared anon-key client: it works both for anonymous public
+  // visitors and at build time inside generateStaticParams, where there is no
+  // request/cookies to build a session-aware client from.
   private get db() { return getClient(); }
+
+  // Writes go through RLS, whose "authenticated" policies check the caller's
+  // own JWT via auth.role(). The anon client above never carries one, so every
+  // write ran as Postgres role `anon` and RLS silently rejected it ("new row
+  // violates row-level security policy") — this is what made publishing fail.
+  // Built fresh per call, not cached: the container's repository instance is a
+  // long-lived singleton shared across requests, and caching a signed-in
+  // client on it would leak one admin's session into another request on the
+  // same warm instance.
+  private async writeDb() { return getSupabaseServerClient(); }
 
   async findById(id: string): Promise<ArticleRecord | null> {
     const { data, error } = await this.db
@@ -112,7 +126,9 @@ export class SupabaseArticleRepository implements ArticleRepository {
   }
 
   async save(article: ArticleRecord): Promise<void> {
-    const { data: cat } = await this.db
+    const db = await this.writeDb();
+
+    const { data: cat } = await db
       .from("categories")
       .select("id")
       .eq("slug", article.categorySlug)
@@ -140,15 +156,15 @@ export class SupabaseArticleRepository implements ArticleRepository {
       updatedAt: article.updatedAt,
     };
 
-    const { error } = await this.db.from("articles").upsert(row, { onConflict: "id" });
+    const { error } = await db.from("articles").upsert(row, { onConflict: "id" });
     if (error) throw new Error(error.message);
 
     // Sync tags
-    await this.db.from("_ArticleTags").delete().eq("A", article.id);
+    await db.from("_ArticleTags").delete().eq("A", article.id);
     if (article.tagSlugs.length > 0) {
-      const { data: tags } = await this.db.from("tags").select("id").in("slug", article.tagSlugs);
+      const { data: tags } = await db.from("tags").select("id").in("slug", article.tagSlugs);
       if (tags?.length) {
-        await this.db.from("_ArticleTags").insert(
+        await db.from("_ArticleTags").insert(
           tags.map((t) => ({ A: article.id, B: t.id }))
         );
       }
@@ -156,8 +172,9 @@ export class SupabaseArticleRepository implements ArticleRepository {
   }
 
   async delete(id: string): Promise<void> {
-    await this.db.from("_ArticleTags").delete().eq("A", id);
-    const { error } = await this.db.from("articles").delete().eq("id", id);
+    const db = await this.writeDb();
+    await db.from("_ArticleTags").delete().eq("A", id);
+    const { error } = await db.from("articles").delete().eq("id", id);
     if (error) throw new Error(error.message);
   }
 }
