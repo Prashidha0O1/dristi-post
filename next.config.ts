@@ -12,11 +12,18 @@ const basePath = process.env.SITE_BASE_PATH || "";
 const nextConfig: NextConfig = {
   basePath,
   images: {
+    // Editors paste a featured-image URL by hand (see admin/articles/ArticleForm.tsx
+    // and admin/jobs/JobForm.tsx) — there's no fixed set of source domains, since a
+    // real newsroom hotlinks photos from wire services, other outlets, and anywhere
+    // else a story's image comes from. next/image throws for any host not listed
+    // here, and that throw isn't caught anywhere in the render tree, so a single
+    // unlisted host 500s the entire page it's on (this happened with an
+    // nbcnews.com URL — https://nextjs.org/docs/messages/next-image-unconfigured-host).
+    // A wildcard is the correct fit for "any editor, any external source" rather
+    // than allow-listing hosts one at a time as they come up.
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "picsum.photos",
-      },
+      { protocol: "https", hostname: "**" },
+      { protocol: "http", hostname: "**" },
     ],
   },
 };

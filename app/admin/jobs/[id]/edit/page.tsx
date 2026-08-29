@@ -1,8 +1,9 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { notFound } from "next/navigation";
 import { getContainer } from "@/lib/container";
 import { JobForm } from "../../JobForm";
 import { updateJobAction } from "../../../jobActions";
+import { Card, PageHeader } from "../../../ui";
 
 export default async function EditJobPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -15,10 +16,8 @@ export default async function EditJobPage({ params }: { params: Promise<{ id: st
 
   return (
     <Box>
-      <Text fontSize="24px" fontWeight="800" color="var(--color-headline)" mb="24px">
-        Edit Job
-      </Text>
-      <Box bg="var(--color-surface)" border="1px solid var(--color-border)" borderRadius="8px" p="24px">
+      <PageHeader title="Edit Job" subtitle={`${found.title.ne} · ${found.company}`} />
+      <Card p="24px">
         <JobForm
           action={boundAction}
           submitLabel="Save Changes"
@@ -37,7 +36,7 @@ export default async function EditJobPage({ params }: { params: Promise<{ id: st
             isFeatured: found.isFeatured,
           }}
         />
-      </Box>
+      </Card>
     </Box>
   );
 }

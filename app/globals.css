@@ -9,6 +9,12 @@
 
 @import "tailwindcss";
 
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Tailwind's `dark:` variant must follow the same signal as the Chakra-side
    tokens below: an explicit [data-theme] wins, otherwise fall back to the OS
    preference. Without this, `dark:` would only ever read prefers-color-scheme
@@ -43,6 +49,22 @@
   --color-tag-bg: #f0f0f0;
   --color-tag-text: #666666;
   --color-table-header: #f5f5f5;
+
+  /* Status colours, used by the admin badges. Defined as tokens (rather than
+     the hex literals that were inlined at each call site) so the dark
+     overrides below can swap them — a light-green chip on a dark card reads
+     as a rendering bug. */
+  --color-success-bg: #dcfce7;
+  --color-success-fg: #15803d;
+  --color-warning-bg: #fef3c7;
+  --color-warning-fg: #b45309;
+  --color-danger-bg: #fee2e2;
+  --color-danger-fg: #b91c1c;
+  --color-info-bg: #dbeafe;
+  --color-info-fg: #1d4ed8;
+  --color-neutral-bg: #f1f5f9;
+  --color-neutral-fg: #475569;
+
   --max-content: 1320px;
   --side-pad: 32px;
 }
@@ -64,6 +86,17 @@
     --color-tag-bg: #2d3748;
     --color-tag-text: #b0b8c4;
     --color-table-header: #1a2332;
+
+    --color-success-bg: rgba(34, 197, 94, 0.16);
+    --color-success-fg: #4ade80;
+    --color-warning-bg: rgba(245, 158, 11, 0.16);
+    --color-warning-fg: #fbbf24;
+    --color-danger-bg: rgba(239, 68, 68, 0.16);
+    --color-danger-fg: #f87171;
+    --color-info-bg: rgba(59, 130, 246, 0.16);
+    --color-info-fg: #60a5fa;
+    --color-neutral-bg: rgba(148, 163, 184, 0.16);
+    --color-neutral-fg: #cbd5e1;
   }
 }
 
@@ -83,6 +116,17 @@
   --color-tag-bg: #2d3748;
   --color-tag-text: #b0b8c4;
   --color-table-header: #1a2332;
+
+  --color-success-bg: rgba(34, 197, 94, 0.16);
+  --color-success-fg: #4ade80;
+  --color-warning-bg: rgba(245, 158, 11, 0.16);
+  --color-warning-fg: #fbbf24;
+  --color-danger-bg: rgba(239, 68, 68, 0.16);
+  --color-danger-fg: #f87171;
+  --color-info-bg: rgba(59, 130, 246, 0.16);
+  --color-info-fg: #60a5fa;
+  --color-neutral-bg: rgba(148, 163, 184, 0.16);
+  --color-neutral-fg: #cbd5e1;
 }
 
 @media (max-width: 980px) {

@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { getSupabaseServerClient } from "./supabaseServer";
 import type { JobRepository } from "@/lib/domain/ports";
 import type { Paginated } from "@/lib/domain/article";
 import type { EmploymentType, JobQuery, JobRecord, JobStatus } from "@/lib/domain/job";
@@ -64,7 +65,22 @@ function getClient(): SupabaseClient {
 }
 
 export class SupabaseJobRepository implements JobRepository {
+  // Reads use a shared anon-key client: it works both for anonymous public
+  // visitors and at build time inside generateStaticParams, where there is no
+  // request/cookies to build a session-aware client from.
   private get db() { return getClient(); }
+
+  // Writes go through Supabase's Row Level Security, whose "authenticated"
+  // policies check auth.role() against the caller's own JWT. The anon-key
+  // client above never carries one — every write through it was silently
+  // running as Postgres role `anon`, which is why creating a job (or an
+  // article; SupabaseArticleRepository had the identical bug) failed with
+  // "new row violates row-level security policy". Built fresh per call rather
+  // than cached: the container's repository instances are long-lived
+  // singletons shared across requests, so caching a signed-in client here
+  // would leak one admin's session into another request on the same
+  // warm instance.
+  private async writeDb() { return getSupabaseServerClient(); }
 
   async findById(id: string): Promise<JobRecord | null> {
     const { data, error } = await this.db.from("jobs").select("*").eq("id", id).single();
@@ -128,12 +144,14 @@ export class SupabaseJobRepository implements JobRepository {
       updatedAt: job.updatedAt,
     };
 
-    const { error } = await this.db.from("jobs").upsert(row, { onConflict: "id" });
+    const db = await this.writeDb();
+    const { error } = await db.from("jobs").upsert(row, { onConflict: "id" });
     if (error) throw new Error(error.message);
   }
 
   async delete(id: string): Promise<void> {
-    const { error } = await this.db.from("jobs").delete().eq("id", id);
+    const db = await this.writeDb();
+    const { error } = await db.from("jobs").delete().eq("id", id);
     if (error) throw new Error(error.message);
   }
 }
