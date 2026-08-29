@@ -52,5 +52,6 @@ CLAUDE.md
 .kombai
 skills-lock.json
 
-
-/lib/generated/prisma
+# Any future codegen output. (The Prisma client that used to live under
+# lib/generated/prisma is gone — the app talks to Supabase via its JS client.)
+/lib/generated

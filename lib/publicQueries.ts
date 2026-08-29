@@ -1,5 +1,6 @@
 import { unstable_cache } from "next/cache";
 import type { Article } from "./types";
+import type { EmploymentType, JobRecord } from "./domain/job";
 import type { ProvinceSlug } from "./domain/province";
 import { getContainer } from "./container";
 import { toArticleViewModels } from "./presenters/articlePresenter";
@@ -113,4 +114,51 @@ export async function getTrendingArticles(limit?: number): Promise<Article[]> {
   const recent = await getRecentArticles();
   const trending = recent.filter((a) => a.isTrending);
   return limit ? trending.slice(0, limit) : trending;
+}
+
+/* ---------------------------------------------------------------------------
+ * Job board
+ *
+ * Tagged "jobs" rather than "articles" so publishing a listing doesn't
+ * needlessly invalidate every news page (and vice versa). `app/admin/
+ * jobActions.ts` calls updateTag("jobs") after each mutation.
+ *
+ * These hand back `JobRecord` directly instead of going through a presenter:
+ * unlike articles there's no legacy view-model shape to satisfy, so the domain
+ * record is already what the pages want.
+ * ------------------------------------------------------------------------- */
+
+const getPublishedJobsCached = unstable_cache(
+  async (
+    provinceSlug: ProvinceSlug | undefined,
+    employmentType: EmploymentType | undefined,
+    limit: number | undefined,
+  ): Promise<JobRecord[]> => {
+    const { listPublishedJobs } = getContainer();
+    const { items } = await listPublishedJobs.execute({ provinceSlug, employmentType, limit });
+    return items;
+  },
+  ["public-published-jobs"],
+  { tags: ["jobs"] },
+);
+
+export async function getPublishedJobs(options: {
+  provinceSlug?: ProvinceSlug;
+  employmentType?: EmploymentType;
+  limit?: number;
+} = {}): Promise<JobRecord[]> {
+  return getPublishedJobsCached(options.provinceSlug, options.employmentType, options.limit ?? 100);
+}
+
+const getJobBySlugCached = unstable_cache(
+  async (slug: string): Promise<JobRecord | null> => {
+    const { getPublishedJob } = getContainer();
+    return getPublishedJob.execute(slug);
+  },
+  ["public-job-by-slug"],
+  { tags: ["jobs"] },
+);
+
+export async function getJobBySlug(slug: string): Promise<JobRecord | null> {
+  return getJobBySlugCached(slug);
 }

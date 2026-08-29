@@ -8,6 +8,7 @@ import { getSupabaseBrowserClient } from "@/lib/infrastructure/supabaseClient";
 const NAV = [
   { label: "Dashboard", href: "/admin", icon: "📊" },
   { label: "Articles", href: "/admin/articles", icon: "📰" },
+  { label: "Jobs", href: "/admin/jobs", icon: "💼" },
   { label: "Categories", href: "/admin/categories", icon: "📁" },
 ];
 

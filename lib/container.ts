@@ -1,6 +1,8 @@
-import type { ArticleRepository, Clock, IdGenerator, Slugger } from "./domain/ports";
+import type { ArticleRepository, Clock, IdGenerator, JobRepository, Slugger } from "./domain/ports";
 import { InMemoryArticleRepository } from "./infrastructure/inMemoryArticleRepository";
 import { SupabaseArticleRepository } from "./infrastructure/supabaseArticleRepository";
+import { InMemoryJobRepository } from "./infrastructure/inMemoryJobRepository";
+import { SupabaseJobRepository } from "./infrastructure/supabaseJobRepository";
 import { RandomIdGenerator, SlugGenerator, SystemClock } from "./infrastructure/services";
 import { CreateArticle } from "./application/createArticle";
 import { UpdateArticle } from "./application/updateArticle";
@@ -11,6 +13,15 @@ import {
   ListArticles,
   ListPublishedArticles,
 } from "./application/listArticles";
+import {
+  ChangeJobStatus,
+  CreateJob,
+  DeleteJob,
+  GetPublishedJob,
+  ListJobs,
+  ListPublishedJobs,
+  UpdateJob,
+} from "./application/jobUseCases";
 import { seedArticles } from "./infrastructure/seedArticles";
 
 /**
@@ -22,6 +33,7 @@ import { seedArticles } from "./infrastructure/seedArticles";
  */
 export interface Container {
   articles: ArticleRepository;
+  jobs: JobRepository;
   clock: Clock;
   ids: IdGenerator;
   slugger: Slugger;
@@ -33,19 +45,32 @@ export interface Container {
   listArticles: ListArticles;
   listPublishedArticles: ListPublishedArticles;
   getPublishedArticle: GetPublishedArticle;
+
+  createJob: CreateJob;
+  updateJob: UpdateJob;
+  changeJobStatus: ChangeJobStatus;
+  deleteJob: DeleteJob;
+  listJobs: ListJobs;
+  listPublishedJobs: ListPublishedJobs;
+  getPublishedJob: GetPublishedJob;
 }
 
 export function buildContainer(
-  overrides: Partial<Pick<Container, "articles" | "clock" | "ids" | "slugger">> = {},
+  overrides: Partial<Pick<Container, "articles" | "jobs" | "clock" | "ids" | "slugger">> = {},
 ): Container {
   const useSupabase = !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
   const articles = overrides.articles ?? (useSupabase ? new SupabaseArticleRepository() : new InMemoryArticleRepository(seedArticles));
+  // No seed data for jobs: unlike articles there is no mock fixture to fall
+  // back on, so the in-memory path starts empty and the board shows its
+  // empty state rather than inventing listings.
+  const jobs = overrides.jobs ?? (useSupabase ? new SupabaseJobRepository() : new InMemoryJobRepository());
   const clock = overrides.clock ?? new SystemClock();
   const ids = overrides.ids ?? new RandomIdGenerator();
   const slugger = overrides.slugger ?? new SlugGenerator();
 
   return {
     articles,
+    jobs,
     clock,
     ids,
     slugger,
@@ -57,6 +82,14 @@ export function buildContainer(
     listArticles: new ListArticles(articles),
     listPublishedArticles: new ListPublishedArticles(articles),
     getPublishedArticle: new GetPublishedArticle(articles),
+
+    createJob: new CreateJob(jobs, ids, clock, slugger),
+    updateJob: new UpdateJob(jobs, clock),
+    changeJobStatus: new ChangeJobStatus(jobs, clock),
+    deleteJob: new DeleteJob(jobs),
+    listJobs: new ListJobs(jobs),
+    listPublishedJobs: new ListPublishedJobs(jobs),
+    getPublishedJob: new GetPublishedJob(jobs),
   };
 }
 
