@@ -357,7 +357,12 @@
   }
 }
 
-@media (max-width: 760px) {
+/* 767px, not 760px: must line up exactly with Chakra's `md` breakpoint (768px)
+   that .dp-ledger-row now switches to. An 8px gap here would mean the
+   category/thumbnail-hiding rules below stop applying just before the
+   4-column layout starts, briefly showing the same cramped wrap this block
+   exists to prevent. */
+@media (max-width: 767px) {
   .dp-masthead-locale,
   .dp-nav-label {
     display: none !important;

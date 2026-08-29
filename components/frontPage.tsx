@@ -166,7 +166,13 @@ function LatestLedgerRow({ article }: { article: Article }) {
   const { localized } = useLocale();
   return (
     <Box as="li">
-      <Grid className="dp-ledger-row" templateColumns={{ base: "70px minmax(0, 1fr)", lg: "76px 110px minmax(0, 1fr) 76px" }} gap="12px" alignItems="center" borderBottom="1px solid var(--color-border)" py="12px">
+      {/* The 2-column `base` layout only looks right below 760px, where the
+          CSS in globals.css hides the category/thumbnail columns to match.
+          Jumping straight to `lg` (992px) left everything from 760-992px on
+          that cramped 2-column grid with all 4 items still rendered — the
+          title got shoved into the 70px column and wrapped one word per
+          line. `md` (768px) closes that gap. */}
+      <Grid className="dp-ledger-row" templateColumns={{ base: "70px minmax(0, 1fr)", md: "76px 110px minmax(0, 1fr) 76px" }} gap="12px" alignItems="center" borderBottom="1px solid var(--color-border)" py="12px">
         <TimeAgo date={article.publishedAt} className="dp-number" fontSize="11px" color="var(--color-muted)" />
         <Text className="dp-ledger-subject" fontSize="12px" fontWeight="600" color={article.category.color || BRAND}>
           {localized(article.category.name)}
