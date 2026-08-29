@@ -3,6 +3,7 @@ import type {
   ArticleRecord,
   Paginated,
 } from "./article";
+import type { JobQuery, JobRecord } from "./job";
 
 /**
  * Ports (in the hexagonal-architecture sense): the interfaces the application
@@ -19,6 +20,16 @@ export interface ArticleRepository {
   findBySlug(slug: string): Promise<ArticleRecord | null>;
   list(query: ArticleQuery): Promise<Paginated<ArticleRecord>>;
   save(article: ArticleRecord): Promise<void>;
+  delete(id: string): Promise<void>;
+}
+
+/** Same shape as `ArticleRepository`, kept as its own port so a use case that
+ * only deals in jobs cannot reach article storage (and vice versa). */
+export interface JobRepository {
+  findById(id: string): Promise<JobRecord | null>;
+  findBySlug(slug: string): Promise<JobRecord | null>;
+  list(query: JobQuery): Promise<Paginated<JobRecord>>;
+  save(job: JobRecord): Promise<void>;
   delete(id: string): Promise<void>;
 }
 

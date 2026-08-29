@@ -1,4 +1,6 @@
 import type { ArticleUpdateInput, NewArticleInput } from "../domain/article";
+import type { JobUpdateInput, NewJobInput } from "../domain/job";
+import { isEmploymentType } from "../domain/job";
 import { isProvinceSlug } from "../domain/province";
 import { categories } from "../config";
 
@@ -98,6 +100,91 @@ export function validateArticleUpdate(input: ArticleUpdateInput): void {
   }
   if (input.imageUrl !== undefined && !input.imageUrl.trim()) {
     issues.imageUrl = "Featured image URL cannot be emptied";
+  }
+
+  if (Object.keys(issues).length > 0) throw new ValidationError(issues);
+}
+
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+/** Accepts an absolute http(s) URL or a bare email address (rendered as mailto:). */
+function isValidApplyTarget(value: string): boolean {
+  return /^https?:\/\//i.test(value) || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+export function validateNewJob(input: NewJobInput): void {
+  const issues: Record<string, string> = {};
+
+  if (!input.title?.ne?.trim()) {
+    issues["title.ne"] = "Nepali title is required";
+  } else if (input.title.ne.trim().length > MAX_TITLE) {
+    issues["title.ne"] = `Nepali title must be at most ${MAX_TITLE} characters`;
+  }
+
+  if (input.title?.en && input.title.en.length > MAX_TITLE) {
+    issues["title.en"] = `English title must be at most ${MAX_TITLE} characters`;
+  }
+
+  if (!input.company?.trim()) issues.company = "Company is required";
+  if (!input.location?.trim()) issues.location = "Location is required";
+
+  if (!input.description?.ne?.trim()) {
+    issues["description.ne"] = "Nepali description is required";
+  }
+
+  if (!input.employmentType) {
+    issues.employmentType = "Employment type is required";
+  } else if (!isEmploymentType(input.employmentType)) {
+    issues.employmentType = `Unknown employment type "${input.employmentType}"`;
+  }
+
+  if (input.provinceSlug !== undefined && !isProvinceSlug(input.provinceSlug)) {
+    issues.provinceSlug = `Unknown province "${input.provinceSlug}"`;
+  }
+
+  if (input.deadline !== undefined && input.deadline !== "" && !ISO_DATE.test(input.deadline)) {
+    issues.deadline = "Deadline must be a YYYY-MM-DD date";
+  }
+
+  if (!input.applyUrl?.trim()) {
+    issues.applyUrl = "An application link or email is required";
+  } else if (!isValidApplyTarget(input.applyUrl.trim())) {
+    issues.applyUrl = "Must be a full http(s) URL or an email address";
+  }
+
+  if (Object.keys(issues).length > 0) throw new ValidationError(issues);
+}
+
+export function validateJobUpdate(input: JobUpdateInput): void {
+  const issues: Record<string, string> = {};
+
+  if (input.title !== undefined && !input.title.ne?.trim()) {
+    issues["title.ne"] = "Nepali title cannot be emptied";
+  }
+  if (input.company !== undefined && !input.company.trim()) {
+    issues.company = "Company cannot be emptied";
+  }
+  if (input.location !== undefined && !input.location.trim()) {
+    issues.location = "Location cannot be emptied";
+  }
+  if (input.description !== undefined && !input.description.ne?.trim()) {
+    issues["description.ne"] = "Nepali description cannot be emptied";
+  }
+  if (input.employmentType !== undefined && !isEmploymentType(input.employmentType)) {
+    issues.employmentType = `Unknown employment type "${input.employmentType}"`;
+  }
+  if (input.provinceSlug !== undefined && !isProvinceSlug(input.provinceSlug)) {
+    issues.provinceSlug = `Unknown province "${input.provinceSlug}"`;
+  }
+  if (input.deadline !== undefined && input.deadline !== "" && !ISO_DATE.test(input.deadline)) {
+    issues.deadline = "Deadline must be a YYYY-MM-DD date";
+  }
+  if (input.applyUrl !== undefined) {
+    if (!input.applyUrl.trim()) {
+      issues.applyUrl = "Application link cannot be emptied";
+    } else if (!isValidApplyTarget(input.applyUrl.trim())) {
+      issues.applyUrl = "Must be a full http(s) URL or an email address";
+    }
   }
 
   if (Object.keys(issues).length > 0) throw new ValidationError(issues);

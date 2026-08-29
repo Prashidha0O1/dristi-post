@@ -20,6 +20,7 @@ export const secondarySections: NavSection[] = [
   { id: "lifestyle", np: "जीवनशैली", en: "Lifestyle", href: "/category/lifestyle", blurb: "खाना, यात्रा र सम्बन्ध" },
   { id: "opinion", np: "विचार", en: "Opinion", href: "/category/opinion", blurb: "सम्पादकीय र स्तम्भहरू" },
   { id: "interview", np: "अन्तर्वार्ता", en: "Interview", href: "/category/interview", blurb: "विशेष कुराकानी" },
+  { id: "jobs", np: "रोजगार", en: "Jobs", href: "/jobs", blurb: "रोजगारीका अवसरहरू" },
 ];
 
 export const provinces: ProvinceItem[] = [
