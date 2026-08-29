@@ -103,7 +103,7 @@ export default function TrendingPageClient({ trending, latest }: { trending: Art
             </Text>
           </Box>
 
-          <SectionHeader title={t("latest")} accent="var(--color-nav)" href="/latest" />
+          <SectionHeader title={t("latest")} accent="var(--color-brand)" href="/latest" />
           {latest.map((a) => (
             <NewsCard key={a.id} article={a} variant="list" showCategory />
           ))}

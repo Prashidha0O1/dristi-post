@@ -151,7 +151,7 @@ function LeadDesk({ articles }: { articles: Article[] }) {
               </Link>
             </Box>
           ))}
-          <Link href="/latest" className="dp-story-link" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "12px", paddingTop: "12px", borderTop: "2px solid var(--color-nav)", color: "var(--color-nav)", fontSize: "13px", fontWeight: 600 }}>
+          <Link href="/latest" className="dp-story-link" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "12px", paddingTop: "12px", borderTop: "2px solid var(--color-brand)", color: "var(--color-brand)", fontSize: "13px", fontWeight: 600 }}>
             <span>{locale === "ne" ? "समाचारका थप शीर्षक" : "More headlines"}</span>
             <span aria-hidden="true" style={{ fontSize: "16px" }}>↗</span>
           </Link>
@@ -189,26 +189,16 @@ function LatestLedgerRow({ article }: { article: Article }) {
 }
 
 function UtilityRail() {
-  const { locale } = useLocale();
   return (
-    <Box className="dp-utility-rail" border="1px solid var(--color-border)" bg="var(--color-surface)">
-      <Flex className="dp-utility-title" align="center" justify="space-between" bg="var(--color-nav)" color="white" px="16px" py="12px">
-        <Box>
-          <Text className="dp-english" fontSize="10px" fontWeight="600" textTransform="uppercase" letterSpacing="0.14em" color="rgba(255,255,255,0.6)">
-            Nepal at a glance
-          </Text>
-          <Text fontSize="20px" fontWeight="700" lineHeight="1.1">
-            {locale === "ne" ? "नेपालको अवस्था" : "Nepal at a glance"}
-          </Text>
-        </Box>
-        <Info size={18} strokeWidth={1.8} color="rgba(255,255,255,0.65)" aria-hidden="true" />
-      </Flex>
-      <NepaliCalendar variant="compact" />
-      <Grid templateColumns={{ base: "1fr", sm: "1fr 1fr", lg: "1fr" }} gap="0">
-        <GoldSilverWidget variant="compact" />
-        <ForexWidget variant="compact" />
-      </Grid>
-    </Box>
+    <Flex direction="column" gap="0" className="dp-utility-rail-standalone">
+      <NepaliCalendar variant="default" />
+      <Box border="1px solid var(--color-border)" borderTop="none" borderRadius="0 0 4px 4px" overflow="hidden" bg="var(--color-surface)">
+        <Grid templateColumns={{ base: "1fr", sm: "1fr 1fr", lg: "1fr" }} gap="0">
+          <GoldSilverWidget variant="compact" />
+          <ForexWidget variant="compact" />
+        </Grid>
+      </Box>
+    </Flex>
   );
 }
 
@@ -326,8 +316,8 @@ function AllCategoriesSection({ articles }: { articles: Article[] }) {
 function ProvinceRail() {
   const { localized, locale } = useLocale();
   return (
-    <Box as="section" id="provinces" mb="48px" borderTop="1px solid var(--color-border)" borderBottom="1px solid var(--color-border)" py="20px">
-      <Grid templateColumns={{ base: "1fr", md: "248px minmax(0, 1fr)" }} gap="16px" alignItems="center">
+    <Box as="section" id="provinces" mb="0" borderTop="1px solid var(--color-border)" borderBottom="1px solid var(--color-border)" py="16px">
+      <Grid templateColumns={{ base: "1fr", md: "170px minmax(0, 1fr)", lg: "200px minmax(0, 1fr)" }} gap="16px" alignItems="center">
         <Box>
           <Text className="dp-english" mb="4px" fontSize="10px" fontWeight="600" textTransform="uppercase" letterSpacing="0.14em" color="var(--color-muted)">Browse by province</Text>
           <Heading as="h2" fontSize="21px" fontWeight="700" color="var(--color-headline)">{locale === "ne" ? "प्रदेश अनुसार समाचार" : "News by province"}</Heading>
@@ -374,7 +364,7 @@ function ClosingDesk({ articles }: { articles: Article[] }) {
   const feature = articles.find((a) => a.category.slug === "entertainment");
   if (!feature) return null;
   return (
-    <Box as="section" id="closing" aria-labelledby="closing-heading">
+    <Box as="section" id="closing" aria-labelledby="closing-heading" mt={{ base: "24px", lg: "32px" }}>
       <Box mb="20px">
         <Text className="dp-english" mb="4px" fontSize="10px" fontWeight="600" textTransform="uppercase" letterSpacing="0.15em" color="var(--color-muted)">Culture, sport & technology</Text>
         <Heading as="h2" id="closing-heading" fontSize="25px" fontWeight="700" lineHeight="1" color="var(--color-headline)">{locale === "ne" ? "दिनको बाँकी डेस्क" : "The rest of the day"}</Heading>
