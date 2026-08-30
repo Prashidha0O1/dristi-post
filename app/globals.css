@@ -331,7 +331,7 @@
   }
 
   .dp-ledger-head {
-    border-bottom: 1px solid var(--color-nav);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .dp-supporting-desk,
@@ -365,7 +365,7 @@
   }
 
   .dp-province-link.is-active {
-    border-left-color: var(--color-nav);
+    border-left-color: var(--color-brand);
   }
 
   .dp-social-link {
@@ -497,10 +497,8 @@
     min-height: 40px;
   }
 
-  .dp-footer-grid {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-  }
+  /* Removed brute-force 1-column override so Chakra UI's responsive grid props take effect */
+  /* .dp-footer-grid { ... } */
 
   .dp-footer {
     padding-top: 28px !important;

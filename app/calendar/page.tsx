@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Flex, SimpleGrid, Text, IconButton } from "@chakra-ui/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import NepaliDate from "nepali-date-converter";
 import { PageShell } from "@/components/pageShell";
@@ -58,6 +58,59 @@ export default function CalendarPage() {
   const [viewMonth, setViewMonth] = useState(todayM);
   const [yearData, setYearData] = useState<MonthData[] | null>(null);
   const [selectedDay, setSelectedDay] = useState<DayData | null>(null);
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [pickerY, setPickerY] = useState(todayY);
+  const [pickerM, setPickerM] = useState(todayM);
+  const [pickerD, setPickerD] = useState(todayD);
+  const [autoSelectDay, setAutoSelectDay] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const y = params.get('y');
+      const m = params.get('m');
+      const d = params.get('d');
+      if (y && m && d) {
+        setViewYear(parseInt(y, 10));
+        setViewMonth(parseInt(m, 10));
+        setAutoSelectDay(parseInt(d, 10));
+        // Clean up URL so it doesn't stay there if they refresh or navigate
+        window.history.replaceState(null, '', '/calendar');
+      }
+    }
+  }, []);
+
+  const daysInPickerMonth = useMemo(() => {
+    for (let day = 32; day >= 28; day -= 1) {
+      try {
+        new NepaliDate(pickerY, pickerM, day);
+        return day;
+      } catch {
+        continue;
+      }
+    }
+    return 30;
+  }, [pickerY, pickerM]);
+
+  useEffect(() => {
+    if (pickerD > daysInPickerMonth) setPickerD(daysInPickerMonth);
+  }, [daysInPickerMonth, pickerD]);
+
+
+
+  const handleOpenPicker = () => {
+    setPickerY(viewYear);
+    setPickerM(viewMonth);
+    setPickerD(selectedDay ? selectedDay.bs.day : 1);
+    setPickerOpen(!pickerOpen);
+  };
+
+  const handleGo = () => {
+    setViewYear(pickerY);
+    setViewMonth(pickerM);
+    setAutoSelectDay(pickerD);
+    setPickerOpen(false);
+  };
 
   useEffect(() => {
     fetch(`/years/${viewYear}.json`)
@@ -70,6 +123,14 @@ export default function CalendarPage() {
     if (!yearData) return null;
     return yearData.find((m) => m.month === viewMonth + 1) ?? null;
   }, [yearData, viewMonth]);
+
+  useEffect(() => {
+    if (autoSelectDay !== null && monthData) {
+      const info = monthData.days.find(d => d.bs.day === autoSelectDay);
+      if (info) setSelectedDay(info);
+      setAutoSelectDay(null);
+    }
+  }, [autoSelectDay, monthData]);
 
   const firstDayOfWeek = useMemo(() => {
     try {
@@ -95,6 +156,10 @@ export default function CalendarPage() {
   const cells: (number | null)[] = [];
   for (let i = 0; i < firstDayOfWeek; i++) cells.push(null);
   for (let d = 1; d <= daysInMonth; d++) cells.push(d);
+  const remaining = cells.length % 7;
+  if (remaining > 0) {
+    for (let i = 0; i < 7 - remaining; i++) cells.push(null);
+  }
 
   const prevMonth = useCallback(() => {
     if (viewMonth === 0) {
@@ -116,7 +181,28 @@ export default function CalendarPage() {
     setSelectedDay(null);
   }, [viewMonth]);
 
-  function getDayInfo(day: number): DayData | undefined {
+  
+  const goToToday = useCallback(() => {
+    setViewYear(todayY);
+    setViewMonth(todayM);
+    setSelectedDay(null);
+  }, [todayY, todayM]);
+
+  const adSubtitle = useMemo(() => {
+    try {
+      const d1 = new NepaliDate(viewYear, viewMonth, 1).toJsDate();
+      const d2 = new NepaliDate(viewYear, viewMonth, daysInMonth).toJsDate();
+      const m1 = AD_MONTHS[d1.getMonth()];
+      const m2 = AD_MONTHS[d2.getMonth()];
+      const y2 = d2.getFullYear();
+      if (m1 === m2) return `${BS_MONTHS_EN[viewMonth]} · ${m1} ${y2}`;
+      return `${BS_MONTHS_EN[viewMonth]} · ${m1}/${m2} ${y2}`;
+    } catch {
+      return "";
+    }
+  }, [viewYear, viewMonth, daysInMonth]);
+
+function getDayInfo(day: number): DayData | undefined {
     return monthData?.days.find((d) => d.bs.day === day);
   }
 
@@ -127,93 +213,226 @@ export default function CalendarPage() {
 
   return (
     <PageShell>
-      <Box maxW="900px" mx="auto">
-        <Text fontSize={{ base: "22px", md: "28px" }} fontWeight="800" color="var(--color-headline)" mb="24px" textAlign="center">
-          {locale === "ne" ? "नेपाली पात्रो" : "Nepali Calendar"}
-        </Text>
-
-        <Box border="1px solid var(--color-border)" borderRadius="8px" overflow="hidden" bg="var(--color-surface)">
-          {/* Month nav */}
-          <Flex justify="space-between" align="center" px="16px" py="12px" bg={BRAND} color="white">
-            <IconButton aria-label="Previous month" size="sm" variant="ghost" color="white" _hover={{ bg: "rgba(255,255,255,0.15)" }} onClick={prevMonth}>
-              <ChevronLeft size={20} strokeWidth={2} color="currentColor" aria-hidden="true" />
-            </IconButton>
-            <Text fontWeight="700" fontSize={{ base: "16px", md: "20px" }}>{monthLabel}</Text>
-            <IconButton aria-label="Next month" size="sm" variant="ghost" color="white" _hover={{ bg: "rgba(255,255,255,0.15)" }} onClick={nextMonth}>
-              <ChevronRight size={20} strokeWidth={2} color="currentColor" aria-hidden="true" />
-            </IconButton>
-          </Flex>
-
-          {/* Day headers */}
-          <SimpleGrid columns={7} bg="var(--color-card-alt)" borderBottom="1px solid var(--color-border)">
-            {dayHeaders.map((day, i) => (
-              <Text
-                key={day}
-                textAlign="center"
-                py="10px"
-                fontSize={{ base: "11px", md: "13px" }}
-                fontWeight="700"
-                color={i === 6 ? "#dc2626" : "var(--color-muted)"}
-              >
-                {day}
+      <Box maxW="900px" mx="auto" px={{ base: "0px", md: "16px" }}>
+        {/* Header Area */}
+        <Flex justify="space-between" align="center" mb="16px" flexWrap="wrap" gap="16px" px={{ base: "16px", md: "0" }}>
+          
+          <Box position="relative">
+            <Flex align="baseline" gap="8px" cursor="pointer" onClick={handleOpenPicker} _hover={{ opacity: 0.8 }} transition="opacity 0.2s" flexWrap="wrap">
+              <Text fontSize={{ base: "24px", md: "32px" }} fontWeight="800" color="var(--color-headline)" lineHeight="1">
+                {locale === "ne" ? `${BS_MONTHS_NE[viewMonth]} ${toNepaliNum(viewYear)}` : `${BS_MONTHS_EN[viewMonth]} ${viewYear}`}
               </Text>
-            ))}
+              <ChevronDown size={22} strokeWidth={2.5} color="var(--color-headline)" style={{ transform: "translateY(2px)" }} />
+              <Text fontSize={{ base: "13px", md: "15px" }} fontWeight="500" color="var(--color-muted)" ml="4px">
+                {adSubtitle}
+              </Text>
+            </Flex>
+
+            {pickerOpen && (
+              <>
+                <Box position="fixed" top="0" left="0" w="100vw" h="100vh" zIndex={9} onClick={() => setPickerOpen(false)} />
+                <Box position="absolute" top="100%" left="0" mt="8px" p="16px" w="320px" bg="var(--color-surface)" border="1px solid var(--color-border)" borderRadius="8px" boxShadow="lg" zIndex={10}>
+                  <Text fontSize="13px" fontWeight="700" mb="12px" color="var(--color-headline)">
+                    {locale === "ne" ? "मिति छान्नुहोस्" : "Select Date"}
+                  </Text>
+                  
+                  <Flex gap="8px" flexDir="column">
+                    <Flex gap="8px">
+                      <select
+                        value={pickerY}
+                        onChange={(e) => setPickerY(Number(e.target.value))}
+                        style={{ padding: "8px", fontSize: "14px", borderRadius: "6px", backgroundColor: "var(--color-page)", border: "1px solid var(--color-border)", color: "var(--color-body)", outline: "none", cursor: "pointer", flex: "1" }}
+                      >
+                        {Array.from({ length: 101 }, (_, i) => 2000 + i).map(y => (
+                          <option key={y} value={y}>{locale === "ne" ? toNepaliNum(y) : y}</option>
+                        ))}
+                      </select>
+                      <select
+                        value={pickerM}
+                        onChange={(e) => setPickerM(Number(e.target.value))}
+                        style={{ padding: "8px", fontSize: "14px", borderRadius: "6px", backgroundColor: "var(--color-page)", border: "1px solid var(--color-border)", color: "var(--color-body)", outline: "none", cursor: "pointer", flex: "1" }}
+                      >
+                        {BS_MONTHS_EN.map((m, i) => (
+                          <option key={i} value={i}>{locale === "ne" ? BS_MONTHS_NE[i] : m}</option>
+                        ))}
+                      </select>
+                      <select
+                        value={pickerD}
+                        onChange={(e) => setPickerD(Number(e.target.value))}
+                        style={{ padding: "8px", fontSize: "14px", borderRadius: "6px", backgroundColor: "var(--color-page)", border: "1px solid var(--color-border)", color: "var(--color-body)", outline: "none", cursor: "pointer", width: "70px" }}
+                      >
+                        {Array.from({ length: daysInPickerMonth }, (_, i) => i + 1).map(d => (
+                          <option key={d} value={d}>{locale === "ne" ? toNepaliNum(d) : d}</option>
+                        ))}
+                      </select>
+                    </Flex>
+                    
+                    <Box
+                      as="button"
+                      onClick={handleGo}
+                      bg="var(--color-brand)"
+                      color="white"
+                      w="full"
+                      py="8px"
+                      mt="4px"
+                      borderRadius="6px"
+                      fontWeight="700"
+                      fontSize="14px"
+                      _hover={{ opacity: 0.9 }}
+                      transition="opacity 0.2s"
+                    >
+                      {locale === "ne" ? "खोज्नुहोस्" : "Go to Date"}
+                    </Box>
+                  </Flex>
+                </Box>
+              </>
+            )}
+          </Box>
+
+
+          <Flex align="center" gap="12px">
+            <Box
+              as="button"
+              onClick={goToToday}
+              bg="#b91c1c"
+              color="white"
+              px="16px"
+              py="4px"
+              borderRadius="4px"
+              fontSize="14px"
+              fontWeight="700"
+              _hover={{ bg: "#991b1b" }}
+              transition="background 0.2s"
+            >
+              {locale === "ne" ? "आज" : "Today"}
+            </Box>
+            <Flex gap="8px">
+              <IconButton aria-label="Previous month" size="sm" borderRadius="full" variant="outline" borderColor="var(--color-border)" color="var(--color-headline)" _hover={{ bg: "var(--color-card-alt)" }} onClick={prevMonth}>
+                <ChevronLeft size={18} strokeWidth={2.5} />
+              </IconButton>
+              <IconButton aria-label="Next month" size="sm" borderRadius="full" variant="outline" borderColor="var(--color-border)" color="var(--color-headline)" _hover={{ bg: "var(--color-card-alt)" }} onClick={nextMonth}>
+                <ChevronRight size={18} strokeWidth={2.5} />
+              </IconButton>
+            </Flex>
+          </Flex>
+        </Flex>
+
+        <Box border="1px solid var(--color-border)" borderRadius={{ base: "0", md: "8px" }} overflow="hidden" bg="var(--color-surface)">
+          {/* Weekday Headers */}
+          <SimpleGrid columns={7} borderBottom="1px solid var(--color-border)">
+            {dayHeaders.map((day, idx) => {
+              const isWeekend = idx === 0 || idx === 6;
+              const shortDayNe = ["आइ", "सो", "मं", "बु", "बि", "शु", "शन"][idx];
+              const shortDayEn = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"][idx];
+              return (
+                <Text
+                  key={day}
+                  py={{ base: "8px", md: "12px" }}
+                  textAlign="center"
+                  fontSize={{ base: "13px", md: "15px" }}
+                  fontWeight="800"
+                  color={isWeekend ? "#b91c1c" : "var(--color-headline)"}
+                  borderRight={idx < 6 ? "1px solid var(--color-border)" : "none"}
+                >
+                  <Box as="span" display={{ base: "none", md: "inline" }}>{day}</Box>
+                  <Box as="span" display={{ base: "inline", md: "none" }}>{locale === "ne" ? shortDayNe : shortDayEn}</Box>
+                </Text>
+              );
+            })}
           </SimpleGrid>
 
-          {/* Calendar grid */}
+          {/* Calendar Grid */}
           <SimpleGrid columns={7}>
             {cells.map((day, idx) => {
               if (day === null) {
-                return <Box key={`empty-${idx}`} borderBottom="1px solid var(--color-border)" borderRight="1px solid var(--color-border)" minH={{ base: "52px", md: "80px" }} />;
+                return <Box key={`empty-${idx}`} borderBottom="1px solid var(--color-border)" borderRight={idx % 7 < 6 ? "1px solid var(--color-border)" : "none"} minH={{ base: "65px", md: "105px" }} bg="rgba(0,0,0,0.01)" />;
               }
               const info = getDayInfo(day);
               const isToday = viewYear === todayY && viewMonth === todayM && day === todayD;
-              const isSaturday = idx % 7 === 6;
-              const isHoliday = info?.isHoliday || isSaturday;
+              const isWeekend = idx % 7 === 0 || idx % 7 === 6;
+              const hasHoliday = info?.isHoliday;
+              const isRedDay = isWeekend || hasHoliday;
               const adDate = getAdDate(viewYear, viewMonth, day);
               const hasEvents = info && info.events.length > 0;
               const isSelected = selectedDay?.bs.day === day && selectedDay?.bs.month === viewMonth + 1;
+              
+              const bgColor = isToday ? BRAND : isSelected ? "var(--color-card-alt)" : "transparent";
+              const textColor = isToday ? "white" : isRedDay ? "#b91c1c" : "var(--color-headline)";
 
               return (
                 <Box
                   key={`day-${day}`}
+                  boxShadow={isSelected && !isToday ? "inset 0 0 0 1px var(--color-brand)" : undefined}
                   borderBottom="1px solid var(--color-border)"
-                  borderRight="1px solid var(--color-border)"
-                  minH={{ base: "52px", md: "80px" }}
-                  p={{ base: "2px", md: "4px" }}
+                  borderRight={idx % 7 < 6 ? "1px solid var(--color-border)" : "none"}
+                  minH={{ base: "65px", md: "105px" }}
+                  p="4px"
                   position="relative"
-                  cursor={info ? "pointer" : "default"}
-                  bg={isSelected ? "var(--color-card-alt)" : isToday ? "rgba(185,28,28,0.06)" : "transparent"}
-                  _hover={info ? { bg: "var(--color-card-alt)" } : undefined}
+                  bg={bgColor}
+                  cursor="pointer"
+                  _hover={!isToday ? { bg: "var(--color-card-alt)" } : undefined}
                   onClick={() => info && setSelectedDay(isSelected ? null : info)}
                   transition="background 0.1s"
                 >
-                  {/* BS day number */}
-                  <Text
-                    fontSize={{ base: "14px", md: "16px" }}
-                    fontWeight={isToday ? "800" : "600"}
-                    color={isToday ? BRAND : isHoliday ? "#dc2626" : "var(--color-headline)"}
-                    lineHeight="1"
-                    px="2px"
-                  >
-                    {locale === "ne" ? toNepaliNum(day) : day}
-                  </Text>
+                  {/* AD Date (Top Right) */}
+                  {adDate && (
+                    <Text
+                      position="absolute"
+                      top="4px"
+                      right="4px"
+                      fontSize={{ base: "10px", md: "13px" }}
+                      fontWeight="700"
+                      color={isToday ? "rgba(255,255,255,0.9)" : "var(--color-muted)"}
+                      lineHeight="1"
+                    >
+                      {adDate.getDate()}
+                    </Text>
+                  )}
 
-                  {/* Tithi */}
+                  {/* Desktop Events / Festivals (Top Center) */}
+                  {hasEvents && (
+                    <Box display={{ base: "none", md: "block" }} position="absolute" top="16px" left="0" w="full" px="2px" textAlign="center">
+                      <Text
+                        fontSize="9px"
+                        fontWeight="600"
+                        lineHeight="1.4"
+                        lineClamp={2}
+                        color={isToday ? "white" : hasHoliday ? "#b91c1c" : "var(--color-subtle)"}
+                      >
+                        {info.events.map((e) => (locale === "ne" ? e.titleNp : e.titleEn)).join(" / ")}
+                      </Text>
+                    </Box>
+                  )}
+
+                  {/* BS Date (Center) */}
+                  <Flex h="full" align="center" justify="center" pt={{ base: "4px", md: "20px" }}>
+                    <Text
+                      fontSize={{ base: "28px", md: "40px" }}
+                      fontWeight="500"
+                      lineHeight="1"
+                      color={textColor}
+                    >
+                      {locale === "ne" ? toNepaliNum(day) : day}
+                    </Text>
+                  </Flex>
+
+                  {/* Tithi (Bottom Center) */}
                   {info?.tithiShort && (
                     <Text
-                      fontSize={{ base: "7px", md: "9px" }}
-                      color="var(--color-muted)"
-                      lineHeight="1.2"
-                      mt="1px"
-                      px="2px"
-                      display={{ base: "none", sm: "block" }}
+                      position="absolute"
+                      bottom={{ base: "6px", md: "6px" }}
+                      left="0"
+                      w="full"
+                      textAlign="center"
+                      fontSize={{ base: "9px", md: "11px" }}
+                      fontWeight="500"
+                      color={textColor}
                     >
                       {info.tithiShort}
                     </Text>
                   )}
 
-                  {/* Event dot indicator on mobile */}
+                  {/* Mobile Event Dot (Bottom Center below Tithi) */}
                   {hasEvents && (
                     <Box
                       display={{ base: "block", md: "none" }}
@@ -221,44 +440,11 @@ export default function CalendarPage() {
                       bottom="2px"
                       left="50%"
                       transform="translateX(-50%)"
-                      w="4px"
-                      h="4px"
+                      w="3px"
+                      h="3px"
                       borderRadius="full"
-                      bg={info.events.some((e) => e.isHoliday) ? "#dc2626" : BRAND}
+                      bg={isToday ? "white" : "#b91c1c"}
                     />
-                  )}
-
-                  {/* Event names on desktop */}
-                  {hasEvents && (
-                    <Box display={{ base: "none", md: "block" }} mt="2px">
-                      {info.events.slice(0, 2).map((ev, i) => (
-                        <Text
-                          key={i}
-                          fontSize="8px"
-                          lineHeight="1.3"
-                          color={ev.isHoliday ? "#dc2626" : "var(--color-subtle)"}
-                          fontWeight={ev.isHoliday ? "600" : "400"}
-                          px="2px"
-                          truncate
-                        >
-                          {locale === "ne" ? ev.titleNp : ev.titleEn}
-                        </Text>
-                      ))}
-                    </Box>
-                  )}
-
-                  {/* AD date bottom-right */}
-                  {adDate && (
-                    <Text
-                      position="absolute"
-                      bottom={{ base: "1px", md: "3px" }}
-                      right={{ base: "2px", md: "4px" }}
-                      fontSize={{ base: "7px", md: "9px" }}
-                      color="var(--color-faint)"
-                      lineHeight="1"
-                    >
-                      {adDate.getDate()} {AD_MONTHS[adDate.getMonth()]}
-                    </Text>
                   )}
                 </Box>
               );
@@ -291,11 +477,13 @@ export default function CalendarPage() {
               )}
             </Flex>
 
-            <SimpleGrid columns={{ base: 1, sm: 2 }} gap="12px" mb={selectedDay.events.length > 0 ? "16px" : "0"}>
-              <DetailRow label={locale === "ne" ? "तिथि" : "Tithi"} value={selectedDay.tithi} />
+            <SimpleGrid columns={{ base: 2, sm: 3 }} gap="12px" mb={selectedDay.events.length > 0 ? "16px" : "0"}>
+              <DetailRow label={locale === "ne" ? "तिथि" : "Tithi"} value={selectedDay.tithi || "—"} />
               <DetailRow label={locale === "ne" ? "नक्षत्र" : "Nakshatra"} value={selectedDay.nakshatra || "—"} />
               <DetailRow label={locale === "ne" ? "योग" : "Yoga"} value={selectedDay.yoga || "—"} />
               <DetailRow label={locale === "ne" ? "करण" : "Karana"} value={selectedDay.karana || "—"} />
+              <DetailRow label={locale === "ne" ? "सूर्योदय" : "Sunrise"} value={selectedDay.sunriseNp || "—"} />
+              <DetailRow label={locale === "ne" ? "सूर्यास्त" : "Sunset"} value={selectedDay.sunsetNp || "—"} />
             </SimpleGrid>
 
             {selectedDay.events.length > 0 && (

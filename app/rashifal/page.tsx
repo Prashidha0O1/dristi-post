@@ -55,7 +55,8 @@ export default function RashifalPage() {
         >
           <IframeEmbed
             src="https://nepalicalendar.rat32.com/rashifal/embed.php"
-            height="3220px"
+            height={{ base: "600px", md: "800px", lg: "1000px" }}
+            scrolling="auto"
             borderRadius="0"
           />
         </Box>

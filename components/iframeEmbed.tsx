@@ -4,11 +4,12 @@ import { Box } from "@chakra-ui/react";
 
 interface IframeEmbedProps {
   src: string;
-  height: string;
+  height: string | Record<string, string>;
   width?: string;
   borderRadius?: string;
   blockClicks?: boolean;
   iframeWidth?: string;
+  scrolling?: "auto" | "no" | "yes";
 }
 
 export function IframeEmbed({
@@ -18,16 +19,17 @@ export function IframeEmbed({
   borderRadius = "4px",
   blockClicks = false,
   iframeWidth,
+  scrolling = "no",
 }: IframeEmbedProps) {
   return (
     <Box position="relative" w={width} h={height} overflow="hidden" borderRadius={borderRadius}>
       <iframe
         src={src}
         frameBorder="0"
-        scrolling="no"
+        scrolling={scrolling}
         style={{
           border: "none",
-          overflow: "hidden",
+          overflow: scrolling === "no" ? "hidden" : "auto",
           width: iframeWidth ?? "100%",
           height: "100%",
           borderRadius,
