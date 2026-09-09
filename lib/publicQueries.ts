@@ -1,7 +1,9 @@
 import { unstable_cache } from "next/cache";
 import type { Article } from "./types";
 import type { EmploymentType, JobRecord } from "./domain/job";
+import type { AdRecord } from "./domain/ad";
 import type { ProvinceSlug } from "./domain/province";
+import { adPlacements, type AdPlacement } from "./adSlots";
 import { getContainer } from "./container";
 import { toArticleViewModels } from "./presenters/articlePresenter";
 
@@ -161,4 +163,41 @@ const getJobBySlugCached = unstable_cache(
 
 export async function getJobBySlug(slug: string): Promise<JobRecord | null> {
   return getJobBySlugCached(slug);
+}
+
+/* ---------------------------------------------------------------------------
+ * Advertisements
+ *
+ * Tagged "ads", separate from "articles" and "jobs". Ads appear on nearly every
+ * page, so sharing a tag would mean swapping one banner invalidated the entire
+ * article cache — and equally, publishing a story would needlessly re-fetch ads.
+ *
+ * One call returns every slot, including the unsold ones as explicit nulls, so
+ * a page renders all its positions from a single lookup.
+ * ------------------------------------------------------------------------- */
+
+const getActiveAdsCached = unstable_cache(
+  async (): Promise<Record<AdPlacement, AdRecord | null>> => {
+    const { getActiveAds } = getContainer();
+    return getActiveAds.execute();
+  },
+  ["public-active-ads"],
+  { tags: ["ads"] },
+);
+
+export async function getActiveAds(): Promise<AdSlots> {
+  try {
+    return await getActiveAdsCached();
+  } catch {
+    // An unrun migration (or any transient read failure) must not take down a
+    // public page over an advertisement. Every slot falls back to its
+    // placeholder, exactly as it looks when nothing is sold.
+    return emptyAdSlots();
+  }
+}
+
+export type AdSlots = Record<AdPlacement, AdRecord | null>;
+
+export function emptyAdSlots(): AdSlots {
+  return Object.fromEntries(adPlacements.map((p) => [p, null])) as AdSlots;
 }

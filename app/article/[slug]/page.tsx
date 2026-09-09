@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getArticleBySlug, getRecentArticles, getRelatedArticles, getTrendingArticles } from "@/lib/publicQueries";
+import { getActiveAds, getArticleBySlug, getRecentArticles, getRelatedArticles, getTrendingArticles } from "@/lib/publicQueries";
 import ArticlePageClient from "./ArticlePageClient";
 
 export async function generateStaticParams() {
@@ -44,10 +44,11 @@ export default async function ArticlePage({
   const article = await getArticleBySlug(slug);
   if (!article) notFound();
 
-  const [related, trending] = await Promise.all([
+  const [related, trending, ads] = await Promise.all([
     getRelatedArticles(article),
     getTrendingArticles(6),
+    getActiveAds(),
   ]);
 
-  return <ArticlePageClient article={article} related={related} trending={trending} />;
+  return <ArticlePageClient article={article} related={related} trending={trending} ads={ads} />;
 }

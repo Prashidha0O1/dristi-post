@@ -12,6 +12,8 @@ import { ForexWidget } from "@/components/forexWidget";
 import { GoldSilverWidget } from "@/components/goldSilverWidget";
 import { PageShell } from "@/components/pageShell";
 import { TimeAgo } from "@/components/timeAgo";
+import { AdSlot } from "@/components/adSlot";
+import type { AdSlots } from "@/lib/publicQueries";
 
 const BRAND = "var(--color-brand)";
 
@@ -53,22 +55,6 @@ function FrontPageSectionHeader({
   );
 }
 
-function AdSlot({ variant = "quiet" }: { variant?: "quiet" | "between" | "rectangle" }) {
-  if (variant === "rectangle") {
-    return (
-      <Flex className="dp-ad-slot-rect" mt="24px" align="center" justify="center" bg="var(--color-surface)" border="1px solid var(--color-border)" borderRadius="4px" minH="250px" color="var(--color-faint)" fontSize="10px" textTransform="uppercase" letterSpacing="0.22em">
-        विज्ञापन / Advertisement
-      </Flex>
-    );
-  }
-
-  return (
-    <Flex className="dp-ad-slot" mb={variant === "between" ? "40px" : "28px"} align="center" justify="center" color="var(--color-faint)" fontSize="10px" textTransform="uppercase" letterSpacing="0.22em">
-      विज्ञापन / Advertisement
-    </Flex>
-  );
-}
-
 function StoryImage({
   article,
   alt,
@@ -91,7 +77,7 @@ function StoryImage({
   );
 }
 
-function LeadDesk({ articles }: { articles: Article[] }) {
+function LeadDesk({ articles, ads }: { articles: Article[]; ads: AdSlots }) {
   const { locale, localized } = useLocale();
   const featured = articles.filter((a) => a.isFeatured);
   const lead = featured[0];
@@ -155,7 +141,7 @@ function LeadDesk({ articles }: { articles: Article[] }) {
             <span>{locale === "ne" ? "समाचारका थप शीर्षक" : "More headlines"}</span>
             <span aria-hidden="true" style={{ fontSize: "16px" }}>↗</span>
           </Link>
-          <AdSlot variant="rectangle" />
+          <AdSlot placement="home-lead-rail" ad={ads["home-lead-rail"]} mt="24px" />
         </Box>
       </Grid>
     </Box>
@@ -212,7 +198,7 @@ function UtilityRail() {
   );
 }
 
-function LatestSection({ articles }: { articles: Article[] }) {
+function LatestSection({ articles, ads }: { articles: Article[]; ads: AdSlots }) {
   const { locale } = useLocale();
   const latest = articles.slice(0, 5);
   return (
@@ -233,7 +219,7 @@ function LatestSection({ articles }: { articles: Article[] }) {
             {locale === "ne" ? "सबै ताजा अपडेट" : "All latest updates"}
             <Text as="span" fontSize="15px" aria-hidden="true">→</Text>
           </Link>
-          <AdSlot variant="rectangle" />
+          <AdSlot placement="home-latest-rail" ad={ads["home-latest-rail"]} mt="24px" />
         </Box>
         <UtilityRail />
       </Grid>
@@ -398,13 +384,19 @@ function ClosingDesk({ articles }: { articles: Article[] }) {
   );
 }
 
-export default function FrontPage({ articles }: { articles: Article[] }) {
+export default function FrontPage({
+  articles,
+  ads,
+}: {
+  articles: Article[];
+  ads: AdSlots;
+}) {
   return (
     <PageShell>
-      <AdSlot />
-      <LeadDesk articles={articles} />
-      <LatestSection articles={articles} />
-      <AdSlot variant="between" />
+      <AdSlot placement="home-top" ad={ads["home-top"]} mb="28px" />
+      <LeadDesk articles={articles} ads={ads} />
+      <LatestSection articles={articles} ads={ads} />
+      <AdSlot placement="home-mid" ad={ads["home-mid"]} mb="40px" />
       <AllCategoriesSection articles={articles} />
       <ProvinceRail />
       <ClosingDesk articles={articles} />

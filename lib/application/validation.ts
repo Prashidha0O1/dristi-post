@@ -1,6 +1,8 @@
 import type { ArticleUpdateInput, NewArticleInput } from "../domain/article";
 import type { JobUpdateInput, NewJobInput } from "../domain/job";
+import type { AdUpdateInput, NewAdInput } from "../domain/ad";
 import { isEmploymentType } from "../domain/job";
+import { isAdPlacement } from "../adSlots";
 import { isProvinceSlug } from "../domain/province";
 import { categories } from "../config";
 
@@ -185,6 +187,64 @@ export function validateJobUpdate(input: JobUpdateInput): void {
     } else if (!isValidApplyTarget(input.applyUrl.trim())) {
       issues.applyUrl = "Must be a full http(s) URL or an email address";
     }
+  }
+
+  if (Object.keys(issues).length > 0) throw new ValidationError(issues);
+}
+
+const MAX_ALT_TEXT = 160;
+
+/**
+ * Ads carry no free-text image URL — the uploader produces it — so the URL
+ * rules here only guard the click-through, plus the alt text that the public
+ * `<img>` needs to be accessible at all.
+ */
+export function validateNewAd(input: NewAdInput): void {
+  const issues: Record<string, string> = {};
+
+  if (!input.placement) {
+    issues.placement = "Choose which slot this ad fills";
+  } else if (!isAdPlacement(input.placement)) {
+    issues.placement = `Unknown ad slot "${input.placement}"`;
+  }
+
+  if (!input.imageUrl?.trim()) {
+    issues.imageUrl = "Upload an image for this ad";
+  }
+
+  if (!input.linkUrl?.trim()) {
+    issues.linkUrl = "A click-through link is required";
+  } else if (!/^https?:\/\//i.test(input.linkUrl.trim())) {
+    issues.linkUrl = "The link must be a full http(s):// URL";
+  }
+
+  if (!input.altText?.trim()) {
+    issues.altText = "Alt text is required so the ad is accessible";
+  } else if (input.altText.trim().length > MAX_ALT_TEXT) {
+    issues.altText = `Alt text must be at most ${MAX_ALT_TEXT} characters`;
+  }
+
+  if (Object.keys(issues).length > 0) throw new ValidationError(issues);
+}
+
+export function validateAdUpdate(input: AdUpdateInput): void {
+  const issues: Record<string, string> = {};
+
+  if (input.placement !== undefined && !isAdPlacement(input.placement)) {
+    issues.placement = `Unknown ad slot "${input.placement}"`;
+  }
+  if (input.imageUrl !== undefined && !input.imageUrl.trim()) {
+    issues.imageUrl = "Image cannot be removed — upload a replacement instead";
+  }
+  if (input.linkUrl !== undefined) {
+    if (!input.linkUrl.trim()) {
+      issues.linkUrl = "Click-through link cannot be emptied";
+    } else if (!/^https?:\/\//i.test(input.linkUrl.trim())) {
+      issues.linkUrl = "The link must be a full http(s):// URL";
+    }
+  }
+  if (input.altText !== undefined && !input.altText.trim()) {
+    issues.altText = "Alt text cannot be emptied";
   }
 
   if (Object.keys(issues).length > 0) throw new ValidationError(issues);

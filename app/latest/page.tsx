@@ -1,10 +1,11 @@
-import { getRecentArticles, getTrendingArticles } from "@/lib/publicQueries";
+import { getActiveAds, getRecentArticles, getTrendingArticles } from "@/lib/publicQueries";
 import LatestPageClient from "./LatestPageClient";
 
 export default async function LatestPage() {
-  const [articles, trending] = await Promise.all([
+  const [articles, trending, ads] = await Promise.all([
     getRecentArticles(),
     getTrendingArticles(6),
+    getActiveAds(),
   ]);
-  return <LatestPageClient articles={articles} trending={trending} />;
+  return <LatestPageClient articles={articles} trending={trending} ads={ads} />;
 }

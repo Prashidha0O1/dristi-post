@@ -5,6 +5,21 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import { ImageOff, Loader2, Upload } from "lucide-react";
 import { uploadImageAction } from "./uploadActions";
+import { describeAdSlotMismatch, type AdPlacement } from "@/lib/adSlots";
+
+/** Best-effort browser-side decode; `null` when the format isn't decodable here. */
+async function readLocalDimensions(
+  file: File,
+): Promise<{ width: number; height: number } | null> {
+  try {
+    const bitmap = await createImageBitmap(file);
+    const { width, height } = bitmap;
+    bitmap.close();
+    return { width, height };
+  } catch {
+    return null;
+  }
+}
 
 /**
  * Replaces the old free-text "image URL" input. Uploads on file selection
@@ -17,10 +32,16 @@ export function ImageUploadField({
   name = "imageUrl",
   folder,
   defaultValue,
+  placement,
+  hint,
 }: {
   name?: string;
-  folder: "articles" | "jobs";
+  folder: "articles" | "jobs" | "ads";
   defaultValue?: string;
+  /** Ads only — the slot this image is for, which sets the size it must match. */
+  placement?: AdPlacement;
+  /** Overrides the default "JPEG, PNG..." line, e.g. to state a required size. */
+  hint?: string;
 }) {
   const [url, setUrl] = useState(defaultValue ?? "");
   const [status, setStatus] = useState<"idle" | "uploading" | "error">("idle");
@@ -31,13 +52,32 @@ export function ImageUploadField({
   async function handleFile(file: File | undefined) {
     if (!file) return;
 
-    setStatus("uploading");
     setError("");
     setPreviewFailed(false);
+
+    // Pre-flight the slot fit in the browser so a mismatch is reported the
+    // instant a file is chosen, rather than after a multi-megabyte upload has
+    // already gone over the wire. Purely a UX shortcut — the Server Action
+    // re-runs the same check, since anything done here is trivially bypassed.
+    if (placement) {
+      const local = await readLocalDimensions(file);
+      if (local) {
+        const mismatch = describeAdSlotMismatch(placement, local);
+        if (mismatch) {
+          setStatus("error");
+          setError(mismatch);
+          return;
+        }
+      }
+      // Undecodable locally: say nothing and let the server be the judge.
+    }
+
+    setStatus("uploading");
 
     const formData = new FormData();
     formData.set("file", file);
     formData.set("folder", folder);
+    if (placement) formData.set("placement", placement);
 
     const result = await uploadImageAction(formData);
     if ("error" in result) {
@@ -128,7 +168,7 @@ export function ImageUploadField({
           </chakra.button>
 
           <Text fontSize="11px" color="var(--color-muted)" mt="7px" lineHeight="1.5">
-            JPEG, PNG, WebP or GIF, up to 5MB.
+            {hint ?? "JPEG, PNG, WebP or GIF, up to 5MB."}
           </Text>
 
           {status === "error" && (

@@ -47,13 +47,11 @@ export interface NavItem {
   children?: NavItem[];
 }
 
-export interface AdPlacement {
-  id: string;
-  position: "header" | "sidebar" | "inline" | "footer" | "between-sections";
-  image?: string;
-  link?: string;
-  isActive: boolean;
-}
+// An unused `AdPlacement` interface sat here, never imported anywhere, with a
+// `position` union that matched none of the site's real ad positions. Ads now
+// live in `lib/domain/ad.ts` with the slot table in `lib/adSlots.ts`, where
+// `AdPlacement` is the union of actual placements — this stale duplicate was
+// removed so the name resolves to one thing.
 
 export interface HomepageSection {
   id: string;

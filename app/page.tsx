@@ -1,7 +1,7 @@
 import FrontPage from "@/components/frontPage";
-import { getRecentArticles } from "@/lib/publicQueries";
+import { getActiveAds, getRecentArticles } from "@/lib/publicQueries";
 
 export default async function Page() {
-  const articles = await getRecentArticles();
-  return <FrontPage articles={articles} />;
+  const [articles, ads] = await Promise.all([getRecentArticles(), getActiveAds()]);
+  return <FrontPage articles={articles} ads={ads} />;
 }

@@ -1,5 +1,5 @@
 import { categories } from "@/lib/config";
-import { getArticlesByCategory, getTrendingArticles } from "@/lib/publicQueries";
+import { getActiveAds, getArticlesByCategory, getTrendingArticles } from "@/lib/publicQueries";
 import CategoryPageClient from "./CategoryPageClient";
 import type { Metadata } from "next";
 
@@ -30,9 +30,10 @@ export default async function CategoryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const [articles, trending] = await Promise.all([
+  const [articles, trending, ads] = await Promise.all([
     getArticlesByCategory(slug),
     getTrendingArticles(6),
+    getActiveAds(),
   ]);
-  return <CategoryPageClient slug={slug} articles={articles} trending={trending} />;
+  return <CategoryPageClient slug={slug} articles={articles} trending={trending} ads={ads} />;
 }

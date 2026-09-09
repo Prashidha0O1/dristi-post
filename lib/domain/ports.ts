@@ -4,6 +4,8 @@ import type {
   Paginated,
 } from "./article";
 import type { JobQuery, JobRecord } from "./job";
+import type { AdQuery, AdRecord } from "./ad";
+import type { AdPlacement } from "../adSlots";
 
 /**
  * Ports (in the hexagonal-architecture sense): the interfaces the application
@@ -30,6 +32,20 @@ export interface JobRepository {
   findBySlug(slug: string): Promise<JobRecord | null>;
   list(query: JobQuery): Promise<Paginated<JobRecord>>;
   save(job: JobRecord): Promise<void>;
+  delete(id: string): Promise<void>;
+}
+
+/**
+ * Advertisements. No `findBySlug` — ads have no public page — but a
+ * placement-scoped lookup instead, since "the live ad for this slot" is the
+ * only question the public site ever asks.
+ */
+export interface AdRepository {
+  findById(id: string): Promise<AdRecord | null>;
+  list(query: AdQuery): Promise<Paginated<AdRecord>>;
+  /** The single active ad for a slot, or null when the slot is unsold. */
+  findActiveByPlacement(placement: AdPlacement): Promise<AdRecord | null>;
+  save(ad: AdRecord): Promise<void>;
   delete(id: string): Promise<void>;
 }
 

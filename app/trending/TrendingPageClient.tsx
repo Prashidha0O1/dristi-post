@@ -9,8 +9,10 @@ import { TimeAgo } from "@/components/timeAgo";
 import { useLocale } from "@/lib/localeContext";
 import { NewsCard } from "@/components/newsCard";
 import type { Article } from "@/lib/types";
+import { AdSlot } from "@/components/adSlot";
+import type { AdSlots } from "@/lib/publicQueries";
 
-export default function TrendingPageClient({ trending, latest }: { trending: Article[]; latest: Article[] }) {
+export default function TrendingPageClient({ trending, latest, ads }: { trending: Article[]; latest: Article[]; ads: AdSlots }) {
   const { locale, localized, t } = useLocale();
 
   return (
@@ -88,20 +90,7 @@ export default function TrendingPageClient({ trending, latest }: { trending: Art
         </Box>
 
         <Box>
-          <Box
-            bg="var(--color-surface)"
-            border="1px solid var(--color-border)"
-            borderRadius="4px"
-            h="200px"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            mb="28px"
-          >
-            <Text fontSize="11px" color="var(--color-muted)" fontWeight="500" textTransform="uppercase" letterSpacing="2px">
-              विज्ञापन
-            </Text>
-          </Box>
+          <AdSlot placement="sidebar" ad={ads.sidebar} mb="28px" />
 
           <SectionHeader title={t("latest")} accent="var(--color-nav)" href="/latest" />
           {latest.map((a) => (

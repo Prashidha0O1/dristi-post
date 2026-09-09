@@ -8,6 +8,8 @@ import { SectionHeader } from "@/components/sectionHeader";
 import { useLocale } from "@/lib/localeContext";
 import { categories } from "@/lib/config";
 import type { Article } from "@/lib/types";
+import { AdSlot } from "@/components/adSlot";
+import type { AdSlots } from "@/lib/publicQueries";
 
 function TrendingSidebar({ trending }: { trending: Article[] }) {
   const { locale } = useLocale();
@@ -60,10 +62,12 @@ export default function CategoryPageClient({
   slug,
   articles,
   trending,
+  ads,
 }: {
   slug: string;
   articles: Article[];
   trending: Article[];
+  ads: AdSlots;
 }) {
   const { localized, locale } = useLocale();
 
@@ -129,20 +133,7 @@ export default function CategoryPageClient({
         </Box>
 
         <Box>
-          <Box
-            bg="var(--color-surface)"
-            border="1px solid var(--color-border)"
-            borderRadius="4px"
-            h="200px"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            mb="28px"
-          >
-            <Text fontSize="11px" color="var(--color-muted)" fontWeight="500" textTransform="uppercase" letterSpacing="2px">
-              विज्ञापन
-            </Text>
-          </Box>
+          <AdSlot placement="sidebar" ad={ads.sidebar} mb="28px" />
           <TrendingSidebar trending={trending} />
         </Box>
       </SimpleGrid>

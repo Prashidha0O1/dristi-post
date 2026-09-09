@@ -1,8 +1,17 @@
-import type { ArticleRepository, Clock, IdGenerator, JobRepository, Slugger } from "./domain/ports";
+import type {
+  AdRepository,
+  ArticleRepository,
+  Clock,
+  IdGenerator,
+  JobRepository,
+  Slugger,
+} from "./domain/ports";
 import { InMemoryArticleRepository } from "./infrastructure/inMemoryArticleRepository";
 import { SupabaseArticleRepository } from "./infrastructure/supabaseArticleRepository";
 import { InMemoryJobRepository } from "./infrastructure/inMemoryJobRepository";
 import { SupabaseJobRepository } from "./infrastructure/supabaseJobRepository";
+import { InMemoryAdRepository } from "./infrastructure/inMemoryAdRepository";
+import { SupabaseAdRepository } from "./infrastructure/supabaseAdRepository";
 import { RandomIdGenerator, SlugGenerator, SystemClock } from "./infrastructure/services";
 import { CreateArticle } from "./application/createArticle";
 import { UpdateArticle } from "./application/updateArticle";
@@ -22,6 +31,14 @@ import {
   ListPublishedJobs,
   UpdateJob,
 } from "./application/jobUseCases";
+import {
+  CreateAd,
+  DeleteAd,
+  GetActiveAds,
+  ListAds,
+  SetAdActive,
+  UpdateAd,
+} from "./application/adUseCases";
 import { seedArticles } from "./infrastructure/seedArticles";
 
 /**
@@ -34,6 +51,7 @@ import { seedArticles } from "./infrastructure/seedArticles";
 export interface Container {
   articles: ArticleRepository;
   jobs: JobRepository;
+  ads: AdRepository;
   clock: Clock;
   ids: IdGenerator;
   slugger: Slugger;
@@ -53,10 +71,17 @@ export interface Container {
   listJobs: ListJobs;
   listPublishedJobs: ListPublishedJobs;
   getPublishedJob: GetPublishedJob;
+
+  createAd: CreateAd;
+  updateAd: UpdateAd;
+  setAdActive: SetAdActive;
+  deleteAd: DeleteAd;
+  listAds: ListAds;
+  getActiveAds: GetActiveAds;
 }
 
 export function buildContainer(
-  overrides: Partial<Pick<Container, "articles" | "jobs" | "clock" | "ids" | "slugger">> = {},
+  overrides: Partial<Pick<Container, "articles" | "jobs" | "ads" | "clock" | "ids" | "slugger">> = {},
 ): Container {
   const useSupabase = !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
   const articles = overrides.articles ?? (useSupabase ? new SupabaseArticleRepository() : new InMemoryArticleRepository(seedArticles));
@@ -64,6 +89,9 @@ export function buildContainer(
   // back on, so the in-memory path starts empty and the board shows its
   // empty state rather than inventing listings.
   const jobs = overrides.jobs ?? (useSupabase ? new SupabaseJobRepository() : new InMemoryJobRepository());
+  // Also unseeded: an unsold slot renders the existing grey placeholder, so an
+  // empty ad table is a legitimate state rather than something to fake data for.
+  const ads = overrides.ads ?? (useSupabase ? new SupabaseAdRepository() : new InMemoryAdRepository());
   const clock = overrides.clock ?? new SystemClock();
   const ids = overrides.ids ?? new RandomIdGenerator();
   const slugger = overrides.slugger ?? new SlugGenerator();
@@ -71,6 +99,7 @@ export function buildContainer(
   return {
     articles,
     jobs,
+    ads,
     clock,
     ids,
     slugger,
@@ -90,6 +119,13 @@ export function buildContainer(
     listJobs: new ListJobs(jobs),
     listPublishedJobs: new ListPublishedJobs(jobs),
     getPublishedJob: new GetPublishedJob(jobs),
+
+    createAd: new CreateAd(ads, ids, clock),
+    updateAd: new UpdateAd(ads, clock),
+    setAdActive: new SetAdActive(ads, clock),
+    deleteAd: new DeleteAd(ads),
+    listAds: new ListAds(ads),
+    getActiveAds: new GetActiveAds(ads),
   };
 }
 

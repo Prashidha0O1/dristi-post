@@ -1,4 +1,6 @@
 import { getSupabaseServerClient } from "./supabaseServer";
+import { readImageDimensions } from "./imageDimensions";
+import { describeAdSlotMismatch, type AdPlacement } from "../adSlots";
 
 const BUCKET = "media";
 const MAX_BYTES = 5 * 1024 * 1024; // 5MB
@@ -17,7 +19,10 @@ export class UploadError extends Error {}
  * "authenticated" storage policies need the caller's real JWT, not the
  * anon-key client used for public reads.
  */
-export async function uploadImage(file: File, folder: "articles" | "jobs"): Promise<string> {
+export async function uploadImage(
+  file: File,
+  folder: "articles" | "jobs" | "ads",
+): Promise<string> {
   if (!ALLOWED_TYPES.has(file.type)) {
     throw new UploadError("Only JPEG, PNG, WebP or GIF images are allowed.");
   }
@@ -37,4 +42,41 @@ export async function uploadImage(file: File, folder: "articles" | "jobs"): Prom
 
   const { data } = supabase.storage.from(BUCKET).getPublicUrl(path);
   return data.publicUrl;
+}
+
+/**
+ * Rejects an ad image that doesn't suit the slot it's destined for, before it
+ * is uploaded. Ad slots render at fixed proportions, so a mis-sized creative
+ * doesn't just look slightly off — it letterboxes or crops, on every page the
+ * slot appears on.
+ *
+ * Fails **closed** when the header can't be read: all four allowed types carry
+ * their dimensions in the opening bytes, so an unparseable buffer means either
+ * a corrupt file or a lie about `file.type` — and `file.type` is supplied by
+ * the browser, so it is not something to trust. Failing open would make this
+ * whole check bypassable by simply mislabelling the upload. As a side benefit
+ * the parse is real content sniffing, which the mime-string check is not.
+ *
+ * Call this *after* the size check in `uploadImage`'s caller so an oversized
+ * file is rejected without being buffered into memory first.
+ */
+export async function assertAdImageFitsSlot(
+  file: File,
+  placement: AdPlacement,
+): Promise<void> {
+  if (file.size > MAX_BYTES) {
+    throw new UploadError("Image must be smaller than 5MB.");
+  }
+
+  const buffer = Buffer.from(await file.arrayBuffer());
+  const dimensions = readImageDimensions(buffer);
+
+  if (!dimensions) {
+    throw new UploadError(
+      "That file couldn't be read as a JPEG, PNG, WebP or GIF image. Try re-exporting it.",
+    );
+  }
+
+  const mismatch = describeAdSlotMismatch(placement, dimensions);
+  if (mismatch) throw new UploadError(mismatch);
 }

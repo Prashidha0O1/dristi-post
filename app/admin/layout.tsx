@@ -9,6 +9,7 @@ import {
   FolderTree,
   LayoutDashboard,
   LogOut,
+  Megaphone,
   Newspaper,
 } from "lucide-react";
 import { getSupabaseBrowserClient } from "@/lib/infrastructure/supabaseClient";
@@ -17,6 +18,7 @@ const NAV = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { label: "Articles", href: "/admin/articles", icon: Newspaper },
   { label: "Jobs", href: "/admin/jobs", icon: Briefcase },
+  { label: "Ads", href: "/admin/ads", icon: Megaphone },
   { label: "Categories", href: "/admin/categories", icon: FolderTree },
 ];
 

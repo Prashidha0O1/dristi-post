@@ -1,7 +1,21 @@
 "use server";
 
 import { getSupabaseServerClient } from "@/lib/infrastructure/supabaseServer";
-import { uploadImage, UploadError } from "@/lib/infrastructure/supabaseStorage";
+import {
+  assertAdImageFitsSlot,
+  uploadImage,
+  UploadError,
+} from "@/lib/infrastructure/supabaseStorage";
+import { isAdPlacement } from "@/lib/adSlots";
+
+const FOLDERS = ["articles", "jobs", "ads"] as const;
+type Folder = (typeof FOLDERS)[number];
+
+function readFolder(value: FormDataEntryValue | null): Folder {
+  return typeof value === "string" && (FOLDERS as readonly string[]).includes(value)
+    ? (value as Folder)
+    : "articles";
+}
 
 async function requireAuth() {
   const supabase = await getSupabaseServerClient();
@@ -31,9 +45,22 @@ export async function uploadImageAction(
     return { error: "No file provided." };
   }
 
-  const folder = formData.get("folder") === "jobs" ? "jobs" : "articles";
+  // Previously a two-way ternary (`=== "jobs" ? "jobs" : "articles"`), which
+  // silently filed anything else — including "ads" — under articles/.
+  const folder = readFolder(formData.get("folder"));
+
+  // Ads are the only upload with a dimension contract, and it depends on which
+  // slot the image is for, so the placement has to travel with the file.
+  const rawPlacement = formData.get("placement");
+  const placement =
+    typeof rawPlacement === "string" && isAdPlacement(rawPlacement) ? rawPlacement : null;
+
+  if (folder === "ads" && !placement) {
+    return { error: "Choose which ad slot this image is for before uploading." };
+  }
 
   try {
+    if (placement) await assertAdImageFitsSlot(file, placement);
     const url = await uploadImage(file, folder);
     return { url };
   } catch (e) {

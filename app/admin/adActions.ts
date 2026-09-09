@@ -1,0 +1,75 @@
+"use server";
+
+import { getContainer } from "@/lib/container";
+import { getSupabaseServerClient } from "@/lib/infrastructure/supabaseServer";
+import { redirect } from "next/navigation";
+import { updateTag } from "next/cache";
+import { isAdPlacement, type AdPlacement } from "@/lib/adSlots";
+
+async function requireAuth() {
+  const supabase = await getSupabaseServerClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+  return user;
+}
+
+/** Shared FormData mapping, so create and update can't drift apart. */
+function readAdForm(formData: FormData) {
+  const rawPlacement = formData.get("placement");
+  const placement =
+    typeof rawPlacement === "string" && isAdPlacement(rawPlacement)
+      ? rawPlacement
+      : ("" as AdPlacement); // let validateNewAd produce the message
+
+  return {
+    placement,
+    imageUrl: (formData.get("imageUrl") as string) ?? "",
+    linkUrl: (formData.get("linkUrl") as string) ?? "",
+    altText: (formData.get("altText") as string) ?? "",
+  };
+}
+
+export async function createAdAction(formData: FormData) {
+  await requireAuth();
+  const container = getContainer();
+
+  await container.createAd.execute({
+    ...readAdForm(formData),
+    activate: formData.get("activate") === "on",
+  });
+
+  updateTag("ads");
+  redirect("/admin/ads");
+}
+
+export async function updateAdAction(id: string, formData: FormData) {
+  await requireAuth();
+  const container = getContainer();
+
+  await container.updateAd.execute(id, readAdForm(formData));
+
+  updateTag("ads");
+  redirect("/admin/ads");
+}
+
+export async function activateAdAction(id: string) {
+  await requireAuth();
+  const container = getContainer();
+  await container.setAdActive.activate(id);
+  updateTag("ads");
+}
+
+export async function deactivateAdAction(id: string) {
+  await requireAuth();
+  const container = getContainer();
+  await container.setAdActive.deactivate(id);
+  updateTag("ads");
+}
+
+export async function deleteAdAction(id: string) {
+  await requireAuth();
+  const container = getContainer();
+  await container.deleteAd.execute(id);
+  updateTag("ads");
+  redirect("/admin/ads");
+}
