@@ -74,7 +74,7 @@ export default function LatestPageClient({ articles, trending, ads }: { articles
         <Text color="var(--color-headline)" fontWeight="600">{t("latest")}</Text>
       </Flex>
 
-      <SectionHeader title={t("latest")} accent="var(--color-nav)" />
+      <SectionHeader title={t("latest")} accent="var(--color-brand)" />
 
       <SimpleGrid columns={{ base: 1, lg: 3 }} gap="32px">
         <Box gridColumn={{ lg: "span 2" }}>

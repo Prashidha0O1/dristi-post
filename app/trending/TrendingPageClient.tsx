@@ -92,7 +92,7 @@ export default function TrendingPageClient({ trending, latest, ads }: { trending
         <Box>
           <AdSlot placement="sidebar" ad={ads.sidebar} mb="28px" />
 
-          <SectionHeader title={t("latest")} accent="var(--color-nav)" href="/latest" />
+          <SectionHeader title={t("latest")} accent="var(--color-brand)" href="/latest" />
           {latest.map((a) => (
             <NewsCard key={a.id} article={a} variant="list" showCategory />
           ))}

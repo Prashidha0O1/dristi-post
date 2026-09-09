@@ -146,20 +146,20 @@ export function TopInfoBar() {
   }
 
   return (
-    <div className="bg-[#012861] text-white/85 text-[12px] font-sans border-b border-white/10 transition-opacity duration-300">
+    <div className="bg-[#012861] text-white/85 text-[14px] md:text-[12px] font-sans border-b border-white/10 transition-opacity duration-300">
       <div className="mx-auto max-w-[var(--max-content)] h-[30px] px-[var(--side-pad)]">
         <div className="flex items-center justify-between h-full gap-3">
           <div className="flex items-center gap-3 shrink-0">
-            <span className="font-semibold text-[12px]">
+            <span className="font-semibold text-[14px] md:text-[12px]">
               {locale === "ne" ? info.nepaliDate : info.adDate}
             </span>
             {info.weather && <span className="text-white/30">·</span>}
-            <span className="text-[12px]">{info.weather ? `☁ ${info.weather}` : ""}</span>
+            <span className="text-[14px] md:text-[12px]">{info.weather ? `☁ ${info.weather}` : ""}</span>
           </div>
           
           <div className="flex items-center gap-3 shrink-0">
-            <span className="text-white/70 text-[12px]">{info.usd}</span>
-            <span className="text-white/70 text-[12px]">{info.inr}</span>
+            <span className="text-white/70 text-[14px] md:text-[12px]">{info.usd}</span>
+            <span className="text-white/70 text-[14px] md:text-[12px]">{info.inr}</span>
           </div>
         </div>
       </div>

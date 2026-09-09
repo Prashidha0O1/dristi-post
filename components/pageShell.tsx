@@ -15,7 +15,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
         mx="auto"
         px="var(--side-pad)"
         pt="24px"
-        pb="64px"
+        pb="24px"
       >
         {children}
       </Box>

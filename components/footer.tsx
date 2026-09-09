@@ -48,8 +48,8 @@ export function Footer() {
   return (
     <Box as="footer" className="dp-footer" bg="var(--color-nav)" color="rgba(255,255,255,0.7)">
       <Box maxW="var(--max-content)" mx="auto" px="var(--side-pad)" pt="40px" pb="24px">
-        <Grid className="dp-footer-grid" templateColumns={{ base: "1fr", md: "repeat(2, minmax(0, 1fr))", lg: "1.35fr repeat(3, minmax(0, 1fr))" }} gap={{ base: "28px", md: "32px" }} mb="32px">
-          <Box>
+        <Grid className="dp-footer-grid" templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(2, minmax(0, 1fr))", lg: "1.35fr repeat(3, minmax(0, 1fr))" }} gap={{ base: "28px", md: "32px" }} mb="32px">
+          <Box gridColumn={{ base: "1 / -1", md: "auto" }}>
             <Text fontSize="25px" fontWeight="800" lineHeight="1" fontFamily="var(--font-mukta), sans-serif">
               <Text as="span" color="var(--color-brand)">{locale === "ne" ? "दृष्टि" : "Dristi"}</Text>{" "}
               <Text as="span" color="white">{locale === "ne" ? "पोस्ट" : "Post"}</Text>
@@ -68,7 +68,7 @@ export function Footer() {
             </Text>
           </Box>
 
-          <Box>
+          <Box gridColumn={{ base: "1 / -1", md: "auto" }}>
             <FooterHeading>{t("categories")}</FooterHeading>
             <SimpleGrid columns={2} gapY="8px" fontSize="13px">
               {footerCategories.map((category) => (
@@ -80,17 +80,19 @@ export function Footer() {
           </Box>
 
           <Box>
-            <FooterHeading>{locale === "ne" ? "उपयोगी" : "Useful"}</FooterHeading>
+            <FooterHeading>{locale === "ne" ? "उपकरणहरू" : "Tools"}</FooterHeading>
             <Flex direction="column" gap="8px" fontSize="13px">
-              <Link href="/latest"><Text _hover={{ color: "white" }} transition="color 150ms ease">{t("latest")}</Text></Link>
-              <Link href="/date-converter"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "मिति रूपान्तरक" : "Date converter"}</Text></Link>
+              <Link href="/calendar"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "पात्रो" : "Calendar"}</Text></Link>
+              <Link href="/date-converter"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "मिति रूपान्तरक" : "Date Converter"}</Text></Link>
               <Link href="/unicode-preeti"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "युनिकोड → प्रिती" : "Unicode → Preeti"}</Text></Link>
+              <Link href="/rashifal"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "राशिफल" : "Rashifal"}</Text></Link>
               <Link href="/forex"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "विदेशी मुद्रा" : "Forex"}</Text></Link>
-              <Link href="/contact"><Text _hover={{ color: "white" }} transition="color 150ms ease">{t("contactUs")}</Text></Link>
             </Flex>
           </Box>
 
-          <Box>
+          
+
+          <Box wordBreak="break-word">
             <Box mb="24px">
               <FooterHeading>{locale === "ne" ? "विज्ञापनका लागि सम्पर्क" : "Contact for advertisement"}</FooterHeading>
               <Flex direction="column" gap="6px" fontSize="13px" color="rgba(255,255,255,0.7)">
