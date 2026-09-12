@@ -3,9 +3,11 @@ import { getActiveAds, getArticlesByCategory, getTrendingArticles } from "@/lib/
 import CategoryPageClient from "./CategoryPageClient";
 import type { Metadata } from "next";
 
-export function generateStaticParams() {
-  return categories.map((category) => ({ slug: category.slug }));
-}
+// Rendered at request time, not at build: the content comes from the database
+// (only reachable as localhost in production), and a news site wants fresh
+// content on each request. Data reads are still cached via unstable_cache.
+export const dynamic = "force-dynamic";
+
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

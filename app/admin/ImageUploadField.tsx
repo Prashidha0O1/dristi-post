@@ -7,7 +7,7 @@ import { ImageOff, Loader2, Upload } from "lucide-react";
 import { uploadImageAction } from "./uploadActions";
 import { describeAdSlotMismatch, type AdPlacement } from "@/lib/adSlots";
 
-/** Mirrors the 5MB cap enforced in lib/infrastructure/supabaseStorage.ts. */
+/** Mirrors the 5MB cap enforced in lib/infrastructure/fileStorage.ts. */
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
 
 /** Best-effort browser-side decode; `null` when the format isn't decodable here. */
@@ -27,7 +27,7 @@ async function readLocalDimensions(
 /**
  * Replaces the old free-text "image URL" input. Uploads on file selection
  * (before the surrounding form is submitted) and carries the resulting
- * Supabase Storage URL in a hidden `name="imageUrl"` field — the create/update
+ * uploaded file URL in a hidden `name="imageUrl"` field — the create/update
  * Server Actions and their validation are unchanged, since as far as they're
  * concerned this is still just a URL string in the form data.
  */

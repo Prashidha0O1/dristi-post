@@ -14,7 +14,7 @@ import type { AdPlacement } from "../adSlots";
 export interface AdRecord {
   id: string;
   placement: AdPlacement;
-  /** Public Supabase Storage URL, produced by the admin uploader. */
+  /** Public URL of the uploaded image, produced by the admin uploader. */
   imageUrl: string;
   /** Where a click goes. Absolute http(s) URL — an advertiser's own site. */
   linkUrl: string;

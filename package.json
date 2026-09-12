@@ -2,6 +2,10 @@
   "name": "news-portal",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.14.0",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,15 +15,15 @@
   "dependencies": {
     "@chakra-ui/react": "^3.36.1",
     "@emotion/react": "^11.14.0",
-    "@supabase/ssr": "^0.12.4",
-    "@supabase/supabase-js": "^2.109.0",
     "framer-motion": "^13.1.1",
     "lucide-react": "^0.577.0",
+    "mysql2": "^3.24.4",
     "nepali-date-converter": "^3.4.0",
     "next": "16.3.1",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "react-transliterate": "^1.1.9"
+    "react-transliterate": "^1.1.9",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

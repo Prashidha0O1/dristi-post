@@ -1,18 +1,11 @@
 "use server";
 
 import { getContainer } from "@/lib/container";
-import { getSupabaseServerClient } from "@/lib/infrastructure/supabaseServer";
 import { redirect } from "next/navigation";
 import { updateTag } from "next/cache";
 import { isAdPlacement, type AdPlacement } from "@/lib/adSlots";
 import { runFormAction, type FormState } from "./formState";
-
-async function requireAuth() {
-  const supabase = await getSupabaseServerClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Unauthorized");
-  return user;
-}
+import { requireCapability } from "@/lib/auth/guard";
 
 /** Shared FormData mapping, so create and update can't drift apart. */
 function readAdForm(formData: FormData) {
@@ -37,7 +30,7 @@ export async function createAdAction(
   const container = getContainer();
 
   const failure = await runFormAction(async () => {
-    await requireAuth();
+    await requireCapability("ads.manage");
     await container.createAd.execute({
       ...readAdForm(formData),
       activate: formData.get("activate") === "on",
@@ -58,7 +51,7 @@ export async function updateAdAction(
   const container = getContainer();
 
   const failure = await runFormAction(async () => {
-    await requireAuth();
+    await requireCapability("ads.manage");
     await container.updateAd.execute(id, readAdForm(formData));
   });
   if (failure) return failure;
@@ -68,21 +61,21 @@ export async function updateAdAction(
 }
 
 export async function activateAdAction(id: string) {
-  await requireAuth();
+  await requireCapability("ads.manage");
   const container = getContainer();
   await container.setAdActive.activate(id);
   updateTag("ads");
 }
 
 export async function deactivateAdAction(id: string) {
-  await requireAuth();
+  await requireCapability("ads.manage");
   const container = getContainer();
   await container.setAdActive.deactivate(id);
   updateTag("ads");
 }
 
 export async function deleteAdAction(id: string) {
-  await requireAuth();
+  await requireCapability("ads.manage");
   const container = getContainer();
   await container.deleteAd.execute(id);
   updateTag("ads");

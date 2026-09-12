@@ -1,12 +1,12 @@
 "use server";
 
-import { getSupabaseServerClient } from "@/lib/infrastructure/supabaseServer";
 import {
   assertAdImageFitsSlot,
   uploadImage,
   UploadError,
-} from "@/lib/infrastructure/supabaseStorage";
+} from "@/lib/infrastructure/fileStorage";
 import { isAdPlacement } from "@/lib/adSlots";
+import { requireUser } from "@/lib/auth/guard";
 
 const FOLDERS = ["articles", "jobs", "ads"] as const;
 type Folder = (typeof FOLDERS)[number];
@@ -15,13 +15,6 @@ function readFolder(value: FormDataEntryValue | null): Folder {
   return typeof value === "string" && (FOLDERS as readonly string[]).includes(value)
     ? (value as Folder)
     : "articles";
-}
-
-async function requireAuth() {
-  const supabase = await getSupabaseServerClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Unauthorized");
-  return user;
 }
 
 /**
@@ -35,7 +28,7 @@ export async function uploadImageAction(
   formData: FormData,
 ): Promise<{ url: string } | { error: string }> {
   try {
-    await requireAuth();
+    await requireUser();
   } catch {
     return { error: "You must be signed in to upload images." };
   }

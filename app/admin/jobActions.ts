@@ -1,19 +1,12 @@
 "use server";
 
 import { getContainer } from "@/lib/container";
-import { getSupabaseServerClient } from "@/lib/infrastructure/supabaseServer";
 import { redirect } from "next/navigation";
 import { updateTag } from "next/cache";
 import type { EmploymentType } from "@/lib/domain/job";
 import type { ProvinceSlug } from "@/lib/domain/province";
 import { runFormAction, type FormState } from "./formState";
-
-async function requireAuth() {
-  const supabase = await getSupabaseServerClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Unauthorized");
-  return user;
-}
+import { requireCapability } from "@/lib/auth/guard";
 
 /** Shared FormData -> input mapping, so create and update can't drift apart. */
 function readJobForm(formData: FormData) {
@@ -44,7 +37,7 @@ export async function createJobAction(
   const container = getContainer();
 
   const failure = await runFormAction(async () => {
-    await requireAuth();
+    await requireCapability("content.write");
     await container.createJob.execute({
       ...readJobForm(formData),
       publish: formData.get("publish") === "on",
@@ -65,7 +58,7 @@ export async function updateJobAction(
   const container = getContainer();
 
   const failure = await runFormAction(async () => {
-    await requireAuth();
+    await requireCapability("content.write");
     await container.updateJob.execute(id, readJobForm(formData));
   });
   if (failure) return failure;
@@ -75,21 +68,21 @@ export async function updateJobAction(
 }
 
 export async function publishJobAction(id: string) {
-  await requireAuth();
+  await requireCapability("content.write");
   const container = getContainer();
   await container.changeJobStatus.publish(id);
   updateTag("jobs");
 }
 
 export async function unpublishJobAction(id: string) {
-  await requireAuth();
+  await requireCapability("content.write");
   const container = getContainer();
   await container.changeJobStatus.unpublish(id);
   updateTag("jobs");
 }
 
 export async function deleteJobAction(id: string) {
-  await requireAuth();
+  await requireCapability("content.delete");
   const container = getContainer();
   await container.deleteJob.execute(id);
   updateTag("jobs");

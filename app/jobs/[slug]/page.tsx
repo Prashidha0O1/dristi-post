@@ -4,10 +4,11 @@ import { getJobBySlug, getPublishedJobs } from "@/lib/publicQueries";
 import JobDetailClient from "./JobDetailClient";
 import { primaryText } from "@/lib/domain/article";
 
-export async function generateStaticParams() {
-  const jobs = await getPublishedJobs();
-  return jobs.map((job) => ({ slug: job.slug }));
-}
+// Rendered at request time, not at build: the content comes from the database
+// (only reachable as localhost in production), and a news site wants fresh
+// content on each request. Data reads are still cached via unstable_cache.
+export const dynamic = "force-dynamic";
+
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

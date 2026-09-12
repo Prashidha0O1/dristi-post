@@ -5,7 +5,7 @@
  * This module is deliberately free of both the `"use server"` directive and any
  * Supabase import, so it can be pulled into a Client Component. The browser
  * pre-check in `app/admin/ImageUploadField.tsx` and the server enforcement in
- * `lib/infrastructure/supabaseStorage.ts` both call `describeAdSlotMismatch`,
+ * `lib/infrastructure/fileStorage.ts` both call `describeAdSlotMismatch`,
  * which is the only way to guarantee the two can't drift on either the rule or
  * the exact wording an editor sees.
  */

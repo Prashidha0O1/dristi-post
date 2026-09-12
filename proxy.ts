@@ -1,43 +1,28 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { createServerClient } from "@supabase/ssr";
-import { supabaseEnv } from "@/lib/env";
+import { SESSION_COOKIE } from "@/lib/auth/cookie";
 
-export async function proxy(request: NextRequest) {
-  const response = NextResponse.next({ request });
+/**
+ * Cheap edge gate. It only checks whether a session cookie is present — it does
+ * NOT validate it (that needs a database lookup, which the admin layout does via
+ * getCurrentUser). A present-but-invalid cookie still reaches the layout, which
+ * redirects to /login. This keeps the middleware DB-free and fast.
+ */
+export function proxy(request: NextRequest) {
+  const hasSession = Boolean(request.cookies.get(SESSION_COOKIE)?.value);
+  const { pathname } = request.nextUrl;
 
-  const { url, anonKey } = supabaseEnv();
-  const supabase = createServerClient(
-    url,
-    anonKey,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-          cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options),
-          );
-        },
-      },
-    },
-  );
-
-  const { data: { user } } = await supabase.auth.getUser();
-
-  if (request.nextUrl.pathname.startsWith("/admin") && !user) {
+  if (pathname.startsWith("/admin") && !hasSession) {
     const loginUrl = new URL("/login", request.url);
-    loginUrl.searchParams.set("redirect", request.nextUrl.pathname);
+    loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  if (request.nextUrl.pathname === "/login" && user) {
+  if (pathname === "/login" && hasSession) {
     return NextResponse.redirect(new URL("/admin", request.url));
   }
 
-  return response;
+  return NextResponse.next();
 }
 
 export const config = {

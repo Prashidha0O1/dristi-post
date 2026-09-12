@@ -1,18 +1,11 @@
 "use server";
 
 import { getContainer } from "@/lib/container";
-import { getSupabaseServerClient } from "@/lib/infrastructure/supabaseServer";
 import { redirect } from "next/navigation";
 import { updateTag } from "next/cache";
 import type { ProvinceSlug } from "@/lib/domain/province";
 import { runFormAction, type FormState } from "./formState";
-
-async function requireAuth() {
-  const supabase = await getSupabaseServerClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Unauthorized");
-  return user;
-}
+import { requireCapability } from "@/lib/auth/guard";
 
 /** Shared FormData -> input mapping, so create and update can't drift apart. */
 function readArticleForm(formData: FormData) {
@@ -46,7 +39,7 @@ export async function createArticleAction(
   const container = getContainer();
 
   const failure = await runFormAction(async () => {
-    await requireAuth();
+    await requireCapability("content.write");
     await container.createArticle.execute({
       ...readArticleForm(formData),
       authorId: formData.get("authorId") as string,
@@ -69,7 +62,7 @@ export async function updateArticleAction(
   const container = getContainer();
 
   const failure = await runFormAction(async () => {
-    await requireAuth();
+    await requireCapability("content.write");
     await container.updateArticle.execute(id, readArticleForm(formData));
   });
   if (failure) return failure;
@@ -79,21 +72,21 @@ export async function updateArticleAction(
 }
 
 export async function publishArticleAction(id: string) {
-  await requireAuth();
+  await requireCapability("content.write");
   const container = getContainer();
   await container.changeArticleStatus.publish(id);
   updateTag("articles");
 }
 
 export async function unpublishArticleAction(id: string) {
-  await requireAuth();
+  await requireCapability("content.write");
   const container = getContainer();
   await container.changeArticleStatus.unpublish(id);
   updateTag("articles");
 }
 
 export async function deleteArticleAction(id: string) {
-  await requireAuth();
+  await requireCapability("content.delete");
   const container = getContainer();
   await container.deleteArticle.execute(id);
   updateTag("articles");

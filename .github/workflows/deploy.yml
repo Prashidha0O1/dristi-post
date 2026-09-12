@@ -1,0 +1,69 @@
+name: Deploy to cPanel
+
+# Push to main -> build in CI -> ship the standalone bundle to cPanel over SSH
+# -> restart Passenger. The build needs no secrets: DATABASE_URL and friends are
+# runtime-only and are set in cPanel's Node.js App > Environment variables.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+# Never run two deploys at once; a newer push cancels an in-flight one.
+concurrency:
+  group: deploy-cpanel
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4 # version comes from package.json "packageManager"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm exec tsc --noEmit
+
+      - name: Build
+        run: pnpm build
+
+      # Next's standalone output does not include static assets or public/ —
+      # they have to be copied in next to server.js.
+      - name: Assemble standalone bundle
+        run: |
+          cp -r .next/static .next/standalone/.next/static
+          cp -r public .next/standalone/public
+
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.CPANEL_SSH_KEY }}
+
+      - name: Trust host
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "${{ secrets.CPANEL_SSH_PORT }}" "${{ secrets.CPANEL_SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy over rsync
+        run: |
+          rsync -az --delete \
+            --exclude 'public/uploads' \
+            --exclude 'tmp' \
+            -e "ssh -p ${{ secrets.CPANEL_SSH_PORT }}" \
+            .next/standalone/ \
+            "${{ secrets.CPANEL_SSH_USER }}@${{ secrets.CPANEL_SSH_HOST }}:${{ secrets.CPANEL_APP_PATH }}/"
+
+      - name: Restart Passenger
+        run: |
+          ssh -p "${{ secrets.CPANEL_SSH_PORT }}" \
+            "${{ secrets.CPANEL_SSH_USER }}@${{ secrets.CPANEL_SSH_HOST }}" \
+            "mkdir -p '${{ secrets.CPANEL_APP_PATH }}/tmp' && touch '${{ secrets.CPANEL_APP_PATH }}/tmp/restart.txt'"

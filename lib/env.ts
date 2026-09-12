@@ -30,19 +30,20 @@ function required(variable: string, value: string | undefined): string {
   return value;
 }
 
-/** Supabase URL + anon key. Throws a named error when either is absent. */
-export function supabaseEnv(): { url: string; anonKey: string } {
-  return {
-    url: required("NEXT_PUBLIC_SUPABASE_URL", process.env.NEXT_PUBLIC_SUPABASE_URL),
-    anonKey: required("NEXT_PUBLIC_SUPABASE_ANON_KEY", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY),
-  };
+/**
+ * MySQL connection string, e.g.
+ *   mysql://user:password@host:3306/dbname
+ * Server-only (no NEXT_PUBLIC_ prefix): it is never inlined into a client
+ * bundle, and must never be — it carries the database password.
+ */
+export function databaseUrl(): string {
+  return required("DATABASE_URL", process.env.DATABASE_URL);
 }
 
 /**
- * Whether Supabase is configured at all. Used by the container to decide
- * between the real repositories and the in-memory fallback, so it must not
- * throw — absence is a valid state here.
+ * Whether a MySQL database is configured. Non-throwing, for the container's
+ * adapter selection — absence is valid (it falls back to Supabase or in-memory).
  */
-export function hasSupabaseEnv(): boolean {
-  return !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+export function hasDatabaseEnv(): boolean {
+  return !!process.env.DATABASE_URL;
 }

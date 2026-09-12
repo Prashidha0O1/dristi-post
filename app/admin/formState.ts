@@ -1,4 +1,8 @@
 import { NotFoundError, ValidationError } from "@/lib/application/validation";
+// NB: the auth errors are matched by name, not imported. `guard.ts` is
+// server-only (it pulls in next/headers), and this module is also imported by
+// the client forms for the FormState type — importing it here would drag
+// server code into the client bundle.
 
 /**
  * The result an admin form action hands back to its form.
@@ -42,12 +46,16 @@ export async function runFormAction(mutate: () => Promise<void>): Promise<FormSt
       return { status: "error", message: error.message, issues: {} };
     }
 
-    if (error instanceof Error && error.message === "Unauthorized") {
+    if (error instanceof Error && error.name === "UnauthorizedError") {
       return {
         status: "error",
-        message: "Your session has expired. Open the admin in a new tab to sign in, then save again.",
+        message: "Your session has expired. Sign in again, then save.",
         issues: {},
       };
+    }
+
+    if (error instanceof Error && error.name === "ForbiddenError") {
+      return { status: "error", message: error.message, issues: {} };
     }
 
     // Anything else is a genuine fault (a dead database, a missing env var).

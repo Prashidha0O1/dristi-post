@@ -55,3 +55,7 @@ skills-lock.json
 # Any future codegen output. (The Prisma client that used to live under
 # lib/generated/prisma is gone — the app talks to Supabase via its JS client.)
 /lib/generated
+
+# Locally uploaded media (served at /uploads); keep the folder, ignore contents
+/public/uploads/*
+!/public/uploads/.gitkeep

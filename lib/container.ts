@@ -7,11 +7,11 @@ import type {
   Slugger,
 } from "./domain/ports";
 import { InMemoryArticleRepository } from "./infrastructure/inMemoryArticleRepository";
-import { SupabaseArticleRepository } from "./infrastructure/supabaseArticleRepository";
 import { InMemoryJobRepository } from "./infrastructure/inMemoryJobRepository";
-import { SupabaseJobRepository } from "./infrastructure/supabaseJobRepository";
 import { InMemoryAdRepository } from "./infrastructure/inMemoryAdRepository";
-import { SupabaseAdRepository } from "./infrastructure/supabaseAdRepository";
+import { MysqlArticleRepository } from "./infrastructure/mysql/mysqlArticleRepository";
+import { MysqlJobRepository } from "./infrastructure/mysql/mysqlJobRepository";
+import { MysqlAdRepository } from "./infrastructure/mysql/mysqlAdRepository";
 import { RandomIdGenerator, SlugGenerator, SystemClock } from "./infrastructure/services";
 import { CreateArticle } from "./application/createArticle";
 import { UpdateArticle } from "./application/updateArticle";
@@ -40,7 +40,7 @@ import {
   UpdateAd,
 } from "./application/adUseCases";
 import { seedArticles } from "./infrastructure/seedArticles";
-import { hasSupabaseEnv } from "@/lib/env";
+import { hasDatabaseEnv } from "@/lib/env";
 
 /**
  * Composition root: the single place that names concrete implementations.
@@ -84,15 +84,21 @@ export interface Container {
 export function buildContainer(
   overrides: Partial<Pick<Container, "articles" | "jobs" | "ads" | "clock" | "ids" | "slugger">> = {},
 ): Container {
-  const useSupabase = hasSupabaseEnv();
-  const articles = overrides.articles ?? (useSupabase ? new SupabaseArticleRepository() : new InMemoryArticleRepository(seedArticles));
+  // Adapter selection: MySQL when DATABASE_URL is set, else an in-memory store
+  // (local smoke tests, or a first boot before the database is configured).
+  const useMysql = hasDatabaseEnv();
+  const articles =
+    overrides.articles ??
+    (useMysql ? new MysqlArticleRepository() : new InMemoryArticleRepository(seedArticles));
   // No seed data for jobs: unlike articles there is no mock fixture to fall
   // back on, so the in-memory path starts empty and the board shows its
   // empty state rather than inventing listings.
-  const jobs = overrides.jobs ?? (useSupabase ? new SupabaseJobRepository() : new InMemoryJobRepository());
+  const jobs =
+    overrides.jobs ?? (useMysql ? new MysqlJobRepository() : new InMemoryJobRepository());
   // Also unseeded: an unsold slot renders the existing grey placeholder, so an
   // empty ad table is a legitimate state rather than something to fake data for.
-  const ads = overrides.ads ?? (useSupabase ? new SupabaseAdRepository() : new InMemoryAdRepository());
+  const ads =
+    overrides.ads ?? (useMysql ? new MysqlAdRepository() : new InMemoryAdRepository());
   const clock = overrides.clock ?? new SystemClock();
   const ids = overrides.ids ?? new RandomIdGenerator();
   const slugger = overrides.slugger ?? new SlugGenerator();

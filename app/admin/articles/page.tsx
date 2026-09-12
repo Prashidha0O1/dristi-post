@@ -1,3 +1,7 @@
+// Authenticated, per-request admin page: never statically prerendered.
+// (Also keeps `next build` from connecting to the database.)
+export const dynamic = "force-dynamic";
+
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { Newspaper, Plus } from "lucide-react";
 import { getContainer } from "@/lib/container";
