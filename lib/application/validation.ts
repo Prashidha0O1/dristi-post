@@ -5,6 +5,7 @@ import { isEmploymentType } from "../domain/job";
 import { isAdPlacement } from "../adSlots";
 import { isProvinceSlug } from "../domain/province";
 import { categories } from "../config";
+import { hasAnyText, type LocalisedText } from "../domain/article";
 
 /** Raised for input the caller can fix; maps to HTTP 400 at the edge. */
 export class ValidationError extends Error {
@@ -28,31 +29,43 @@ const MAX_EXCERPT = 400;
 const categorySlugs = new Set(categories.map((c) => c.slug));
 
 /**
+ * Either language satisfies a localised field, but at least one must be there.
+ *
+ * The issue is reported against `<field>.ne` because that is the input an
+ * editor sees first; the message names both languages so it doesn't read as
+ * "Nepali is mandatory", which is exactly the rule we removed.
+ */
+function checkLocalised(
+  issues: Record<string, string>,
+  field: string,
+  value: LocalisedText | undefined,
+  label: string,
+  max?: number,
+): void {
+  if (!hasAnyText(value)) {
+    issues[`${field}.ne`] = `${label} is required in Nepali or English`;
+    return;
+  }
+  if (max !== undefined) {
+    if ((value?.ne?.trim().length ?? 0) > max) {
+      issues[`${field}.ne`] = `Nepali ${label.toLowerCase()} must be at most ${max} characters`;
+    }
+    if ((value?.en?.trim().length ?? 0) > max) {
+      issues[`${field}.en`] = `English ${label.toLowerCase()} must be at most ${max} characters`;
+    }
+  }
+}
+
+/**
  * Validation lives here rather than inside the use cases so that the rules are
  * stated once and each use case keeps a single responsibility.
  */
 export function validateNewArticle(input: NewArticleInput): void {
   const issues: Record<string, string> = {};
 
-  if (!input.title?.ne?.trim()) {
-    issues["title.ne"] = "Nepali title is required";
-  } else if (input.title.ne.trim().length > MAX_TITLE) {
-    issues["title.ne"] = `Nepali title must be at most ${MAX_TITLE} characters`;
-  }
-
-  if (input.title?.en && input.title.en.length > MAX_TITLE) {
-    issues["title.en"] = `English title must be at most ${MAX_TITLE} characters`;
-  }
-
-  if (!input.excerpt?.ne?.trim()) {
-    issues["excerpt.ne"] = "Nepali excerpt is required";
-  } else if (input.excerpt.ne.trim().length > MAX_EXCERPT) {
-    issues["excerpt.ne"] = `Nepali excerpt must be at most ${MAX_EXCERPT} characters`;
-  }
-
-  if (!input.body?.ne?.trim()) {
-    issues["body.ne"] = "Nepali body is required";
-  }
+  checkLocalised(issues, "title", input.title, "Title", MAX_TITLE);
+  checkLocalised(issues, "excerpt", input.excerpt, "Excerpt", MAX_EXCERPT);
+  checkLocalised(issues, "body", input.body, "Body");
 
   if (!input.categorySlug?.trim()) {
     issues.categorySlug = "Category is required";
@@ -85,15 +98,11 @@ export function validateNewArticle(input: NewArticleInput): void {
 export function validateArticleUpdate(input: ArticleUpdateInput): void {
   const issues: Record<string, string> = {};
 
-  if (input.title !== undefined && !input.title.ne?.trim()) {
-    issues["title.ne"] = "Nepali title cannot be emptied";
+  if (input.title !== undefined) checkLocalised(issues, "title", input.title, "Title", MAX_TITLE);
+  if (input.excerpt !== undefined) {
+    checkLocalised(issues, "excerpt", input.excerpt, "Excerpt", MAX_EXCERPT);
   }
-  if (input.excerpt !== undefined && !input.excerpt.ne?.trim()) {
-    issues["excerpt.ne"] = "Nepali excerpt cannot be emptied";
-  }
-  if (input.body !== undefined && !input.body.ne?.trim()) {
-    issues["body.ne"] = "Nepali body cannot be emptied";
-  }
+  if (input.body !== undefined) checkLocalised(issues, "body", input.body, "Body");
   if (input.categorySlug !== undefined && !categorySlugs.has(input.categorySlug)) {
     issues.categorySlug = `Unknown category "${input.categorySlug}"`;
   }
@@ -109,6 +118,26 @@ export function validateArticleUpdate(input: ArticleUpdateInput): void {
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
+/** Widest year the date inputs and the UI accept. Mirrored as min/max on the field. */
+const MIN_YEAR = 2000;
+const MAX_YEAR = 2100;
+
+/**
+ * Shape alone is not enough: ISO_DATE happily accepts "9999-99-99". This also
+ * round-trips through Date so impossible days (2025-02-31) are rejected, and
+ * clamps the year to a sane range — an <input type="date"> with no min/max lets
+ * a browser submit years up to 275760.
+ */
+function isRealIsoDate(value: string): boolean {
+  if (!ISO_DATE.test(value)) return false;
+  const [y, m, d] = value.split("-").map(Number);
+  if (y < MIN_YEAR || y > MAX_YEAR) return false;
+  const date = new Date(Date.UTC(y, m - 1, d));
+  return (
+    date.getUTCFullYear() === y && date.getUTCMonth() === m - 1 && date.getUTCDate() === d
+  );
+}
+
 /** Accepts an absolute http(s) URL or a bare email address (rendered as mailto:). */
 function isValidApplyTarget(value: string): boolean {
   return /^https?:\/\//i.test(value) || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -117,22 +146,12 @@ function isValidApplyTarget(value: string): boolean {
 export function validateNewJob(input: NewJobInput): void {
   const issues: Record<string, string> = {};
 
-  if (!input.title?.ne?.trim()) {
-    issues["title.ne"] = "Nepali title is required";
-  } else if (input.title.ne.trim().length > MAX_TITLE) {
-    issues["title.ne"] = `Nepali title must be at most ${MAX_TITLE} characters`;
-  }
-
-  if (input.title?.en && input.title.en.length > MAX_TITLE) {
-    issues["title.en"] = `English title must be at most ${MAX_TITLE} characters`;
-  }
+  checkLocalised(issues, "title", input.title, "Job title", MAX_TITLE);
 
   if (!input.company?.trim()) issues.company = "Company is required";
   if (!input.location?.trim()) issues.location = "Location is required";
 
-  if (!input.description?.ne?.trim()) {
-    issues["description.ne"] = "Nepali description is required";
-  }
+  checkLocalised(issues, "description", input.description, "Description");
 
   if (!input.employmentType) {
     issues.employmentType = "Employment type is required";
@@ -144,8 +163,8 @@ export function validateNewJob(input: NewJobInput): void {
     issues.provinceSlug = `Unknown province "${input.provinceSlug}"`;
   }
 
-  if (input.deadline !== undefined && input.deadline !== "" && !ISO_DATE.test(input.deadline)) {
-    issues.deadline = "Deadline must be a YYYY-MM-DD date";
+  if (input.deadline !== undefined && input.deadline !== "" && !isRealIsoDate(input.deadline)) {
+    issues.deadline = `Deadline must be a real date between ${MIN_YEAR} and ${MAX_YEAR}`;
   }
 
   if (!input.applyUrl?.trim()) {
@@ -160,17 +179,15 @@ export function validateNewJob(input: NewJobInput): void {
 export function validateJobUpdate(input: JobUpdateInput): void {
   const issues: Record<string, string> = {};
 
-  if (input.title !== undefined && !input.title.ne?.trim()) {
-    issues["title.ne"] = "Nepali title cannot be emptied";
-  }
+  if (input.title !== undefined) checkLocalised(issues, "title", input.title, "Job title", MAX_TITLE);
   if (input.company !== undefined && !input.company.trim()) {
     issues.company = "Company cannot be emptied";
   }
   if (input.location !== undefined && !input.location.trim()) {
     issues.location = "Location cannot be emptied";
   }
-  if (input.description !== undefined && !input.description.ne?.trim()) {
-    issues["description.ne"] = "Nepali description cannot be emptied";
+  if (input.description !== undefined) {
+    checkLocalised(issues, "description", input.description, "Description");
   }
   if (input.employmentType !== undefined && !isEmploymentType(input.employmentType)) {
     issues.employmentType = `Unknown employment type "${input.employmentType}"`;
@@ -178,8 +195,8 @@ export function validateJobUpdate(input: JobUpdateInput): void {
   if (input.provinceSlug !== undefined && !isProvinceSlug(input.provinceSlug)) {
     issues.provinceSlug = `Unknown province "${input.provinceSlug}"`;
   }
-  if (input.deadline !== undefined && input.deadline !== "" && !ISO_DATE.test(input.deadline)) {
-    issues.deadline = "Deadline must be a YYYY-MM-DD date";
+  if (input.deadline !== undefined && input.deadline !== "" && !isRealIsoDate(input.deadline)) {
+    issues.deadline = `Deadline must be a real date between ${MIN_YEAR} and ${MAX_YEAR}`;
   }
   if (input.applyUrl !== undefined) {
     if (!input.applyUrl.trim()) {

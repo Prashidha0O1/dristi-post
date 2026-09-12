@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { getContainer } from "@/lib/container";
 import { ButtonLink, Card, EmptyState, PageHeader, StatusBadge } from "./ui";
+import { primaryText } from "@/lib/domain/article";
 
 function StatCard({
   label,
@@ -177,7 +178,7 @@ export default async function AdminDashboard() {
             <Box minW="0">
               <Link href={`/admin/articles/${article.id}/edit`}>
                 <Text fontWeight="600" fontSize="14px" color="var(--color-headline)" lineClamp={1} _hover={{ color: "var(--color-brand)" }}>
-                  {article.title.ne}
+                  {primaryText(article.title)}
                 </Text>
               </Link>
               <Text fontSize="12px" color="var(--color-muted)" mt="1px">{article.categorySlug}</Text>

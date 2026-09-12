@@ -1,18 +1,21 @@
 "use client";
 
 import { Flex, SimpleGrid, chakra } from "@chakra-ui/react";
+import { useActionState } from "react";
 import { employmentTypes } from "@/lib/domain/job";
 import { provinces } from "@/lib/domain/province";
 import {
   CheckboxField,
   Field,
+  FormError,
   FormSection,
   SubmitButton,
   fieldStyles,
 } from "../formUi";
+import { idleFormState, type FormState } from "../formState";
 
 interface Props {
-  action: (formData: FormData) => Promise<void>;
+  action: (state: FormState, formData: FormData) => Promise<FormState>;
   defaultValues?: {
     titleNe?: string;
     titleEn?: string;
@@ -32,23 +35,27 @@ interface Props {
 }
 
 export function JobForm({ action, defaultValues: d = {}, submitLabel, showPublish }: Props) {
+  const [state, formAction] = useActionState(action, idleFormState);
+  const issues = state.status === "error" ? state.issues : {};
+
   return (
-    <form action={action}>
-      <FormSection title="Role" description="Nepali is required; English is optional and used for the URL when present.">
+    <form action={formAction}>
+      <FormError state={state} />
+      <FormSection title="Role" description="Fill in either language — the other is filled in automatically. English is used for the URL when present.">
         <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
-          <Field label="Job title (Nepali)" required>
-            <chakra.input name="titleNe" defaultValue={d.titleNe} required {...fieldStyles.input} />
+          <Field label="Job title (Nepali)" error={issues["title.ne"]}>
+            <chakra.input name="titleNe" defaultValue={d.titleNe} {...fieldStyles.input} />
           </Field>
-          <Field label="Job title (English)">
+          <Field label="Job title (English)" error={issues["title.en"]}>
             <chakra.input name="titleEn" defaultValue={d.titleEn} {...fieldStyles.input} />
           </Field>
         </SimpleGrid>
 
         <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
-          <Field label="Company" required>
+          <Field label="Company" required error={issues.company}>
             <chakra.input name="company" defaultValue={d.company} required {...fieldStyles.input} />
           </Field>
-          <Field label="Location" required hint="City or area, e.g. काठमाडौं or Remote">
+          <Field label="Location" required hint="City or area, e.g. काठमाडौं or Remote" error={issues.location}>
             <chakra.input name="location" defaultValue={d.location} required {...fieldStyles.input} />
           </Field>
         </SimpleGrid>
@@ -56,7 +63,7 @@ export function JobForm({ action, defaultValues: d = {}, submitLabel, showPublis
 
       <FormSection title="Terms">
         <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} gap="16px">
-          <Field label="Employment type" required>
+          <Field label="Employment type" required error={issues.employmentType}>
             <chakra.select name="employmentType" defaultValue={d.employmentType} required {...fieldStyles.select}>
               <option value="">Select...</option>
               {employmentTypes.map((t) => (
@@ -64,7 +71,7 @@ export function JobForm({ action, defaultValues: d = {}, submitLabel, showPublis
               ))}
             </chakra.select>
           </Field>
-          <Field label="Province">
+          <Field label="Province" error={issues.provinceSlug}>
             <chakra.select name="provinceSlug" defaultValue={d.provinceSlug ?? ""} {...fieldStyles.select}>
               <option value="">Not province-specific</option>
               {provinces.map((p) => (
@@ -72,8 +79,16 @@ export function JobForm({ action, defaultValues: d = {}, submitLabel, showPublis
               ))}
             </chakra.select>
           </Field>
-          <Field label="Deadline" hint="Empty means open until filled">
-            <chakra.input type="date" name="deadline" defaultValue={d.deadline} {...fieldStyles.input} />
+          <Field label="Deadline" hint="Empty means open until filled" error={issues.deadline}>
+            {/* min/max matter: without them a date input accepts years up to 275760. */}
+            <chakra.input
+              type="date"
+              name="deadline"
+              min="2000-01-01"
+              max="2100-12-31"
+              defaultValue={d.deadline}
+              {...fieldStyles.input}
+            />
           </Field>
         </SimpleGrid>
 
@@ -81,7 +96,7 @@ export function JobForm({ action, defaultValues: d = {}, submitLabel, showPublis
           <Field label="Salary" hint="Free text, e.g. रु. ५०,०००–७०,००० or Negotiable">
             <chakra.input name="salary" defaultValue={d.salary} {...fieldStyles.input} />
           </Field>
-          <Field label="Apply link or email" required hint="Full https:// URL, or an email address">
+          <Field label="Apply link or email" required hint="Full https:// URL, or an email address" error={issues.applyUrl}>
             <chakra.input name="applyUrl" defaultValue={d.applyUrl} required placeholder="https://... or jobs@company.com" {...fieldStyles.input} />
           </Field>
         </SimpleGrid>
@@ -89,8 +104,8 @@ export function JobForm({ action, defaultValues: d = {}, submitLabel, showPublis
 
       <FormSection title="Description" description="Separate paragraphs with a blank line.">
         <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
-          <Field label="Description (Nepali)" required>
-            <chakra.textarea name="descriptionNe" defaultValue={d.descriptionNe} required h="240px" {...fieldStyles.textarea} />
+          <Field label="Description (Nepali)" error={issues["description.ne"]}>
+            <chakra.textarea name="descriptionNe" defaultValue={d.descriptionNe} h="240px" {...fieldStyles.textarea} />
           </Field>
           <Field label="Description (English)">
             <chakra.textarea name="descriptionEn" defaultValue={d.descriptionEn} h="240px" {...fieldStyles.textarea} />

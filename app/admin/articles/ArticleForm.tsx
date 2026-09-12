@@ -1,16 +1,19 @@
 "use client";
 
 import { Flex, SimpleGrid, chakra } from "@chakra-ui/react";
+import { useActionState } from "react";
 import { categories } from "@/lib/config";
 import { provinces } from "@/lib/domain/province";
 import { ImageUploadField } from "../ImageUploadField";
 import {
   CheckboxField,
   Field,
+  FormError,
   FormSection,
   SubmitButton,
   fieldStyles,
 } from "../formUi";
+import { idleFormState, type FormState } from "../formState";
 
 interface AuthorOption {
   id: string;
@@ -19,7 +22,7 @@ interface AuthorOption {
 }
 
 interface Props {
-  action: (formData: FormData) => Promise<void>;
+  action: (state: FormState, formData: FormData) => Promise<FormState>;
   authorOptions: AuthorOption[];
   defaultValues?: {
     titleNe?: string;
@@ -42,21 +45,28 @@ interface Props {
 }
 
 export function ArticleForm({ action, authorOptions, defaultValues: d = {}, submitLabel, showPublish }: Props) {
+  // useActionState keeps the rejected server response on screen without
+  // remounting the form, so the inputs (which are uncontrolled) hold on to
+  // whatever the editor typed. Previously a rejected save threw and lost it all.
+  const [state, formAction] = useActionState(action, idleFormState);
+  const issues = state.status === "error" ? state.issues : {};
+
   return (
-    <form action={action}>
-      <FormSection title="Headline" description="Nepali is required; English is optional and used for the URL when present.">
+    <form action={formAction}>
+      <FormError state={state} />
+      <FormSection title="Headline" description="Fill in either language — the other is filled in automatically. English is used for the URL when present.">
         <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
-          <Field label="Title (Nepali)" required>
-            <chakra.input name="titleNe" defaultValue={d.titleNe} required {...fieldStyles.input} />
+          <Field label="Title (Nepali)" error={issues["title.ne"]}>
+            <chakra.input name="titleNe" defaultValue={d.titleNe} {...fieldStyles.input} />
           </Field>
-          <Field label="Title (English)">
+          <Field label="Title (English)" error={issues["title.en"]}>
             <chakra.input name="titleEn" defaultValue={d.titleEn} {...fieldStyles.input} />
           </Field>
         </SimpleGrid>
 
         <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
-          <Field label="Excerpt (Nepali)" required>
-            <chakra.textarea name="excerptNe" defaultValue={d.excerptNe} required h="86px" {...fieldStyles.textarea} />
+          <Field label="Excerpt (Nepali)" error={issues["excerpt.ne"]}>
+            <chakra.textarea name="excerptNe" defaultValue={d.excerptNe} h="86px" {...fieldStyles.textarea} />
           </Field>
           <Field label="Excerpt (English)">
             <chakra.textarea name="excerptEn" defaultValue={d.excerptEn} h="86px" {...fieldStyles.textarea} />
@@ -66,8 +76,8 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
 
       <FormSection title="Body" description="Separate paragraphs with a blank line.">
         <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
-          <Field label="Body (Nepali)" required>
-            <chakra.textarea name="bodyNe" defaultValue={d.bodyNe} required h="240px" {...fieldStyles.textarea} />
+          <Field label="Body (Nepali)" error={issues["body.ne"]}>
+            <chakra.textarea name="bodyNe" defaultValue={d.bodyNe} h="240px" {...fieldStyles.textarea} />
           </Field>
           <Field label="Body (English)">
             <chakra.textarea name="bodyEn" defaultValue={d.bodyEn} h="240px" {...fieldStyles.textarea} />
@@ -77,7 +87,7 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
 
       <FormSection title="Classification">
         <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} gap="16px">
-          <Field label="Category" required>
+          <Field label="Category" required error={issues.categorySlug}>
             <chakra.select name="categorySlug" defaultValue={d.categorySlug} required {...fieldStyles.select}>
               <option value="">Select...</option>
               {categories.map((c) => (
@@ -85,7 +95,7 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
               ))}
             </chakra.select>
           </Field>
-          <Field label="Province" hint="Leave as National if not region-specific">
+          <Field label="Province" hint="Leave as National if not region-specific" error={issues.provinceSlug}>
             <chakra.select name="provinceSlug" defaultValue={d.provinceSlug ?? ""} {...fieldStyles.select}>
               <option value="">National</option>
               {provinces.map((p) => (
@@ -93,7 +103,7 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
               ))}
             </chakra.select>
           </Field>
-          <Field label="Author" required>
+          <Field label="Author" required error={issues.authorId}>
             <chakra.select name="authorId" defaultValue={d.authorId} required {...fieldStyles.select}>
               <option value="">Select...</option>
               {authorOptions.map((a) => (
@@ -103,7 +113,7 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
           </Field>
         </SimpleGrid>
 
-        <Field label="Featured image" required>
+        <Field label="Featured image" required error={issues.imageUrl}>
           <ImageUploadField folder="articles" defaultValue={d.imageUrl} />
         </Field>
 

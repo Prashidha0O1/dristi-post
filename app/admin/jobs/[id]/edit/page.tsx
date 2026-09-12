@@ -4,6 +4,7 @@ import { getContainer } from "@/lib/container";
 import { JobForm } from "../../JobForm";
 import { updateJobAction } from "../../../jobActions";
 import { Card, PageHeader } from "../../../ui";
+import { primaryText } from "@/lib/domain/article";
 
 export default async function EditJobPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -16,7 +17,7 @@ export default async function EditJobPage({ params }: { params: Promise<{ id: st
 
   return (
     <Box>
-      <PageHeader title="Edit Job" subtitle={`${found.title.ne} · ${found.company}`} />
+      <PageHeader title="Edit Job" subtitle={`${primaryText(found.title)} · ${found.company}`} />
       <Card p="24px">
         <JobForm
           action={boundAction}

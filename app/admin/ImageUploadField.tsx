@@ -7,6 +7,9 @@ import { ImageOff, Loader2, Upload } from "lucide-react";
 import { uploadImageAction } from "./uploadActions";
 import { describeAdSlotMismatch, type AdPlacement } from "@/lib/adSlots";
 
+/** Mirrors the 5MB cap enforced in lib/infrastructure/supabaseStorage.ts. */
+const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
+
 /** Best-effort browser-side decode; `null` when the format isn't decodable here. */
 async function readLocalDimensions(
   file: File,
@@ -72,6 +75,18 @@ export function ImageUploadField({
       // Undecodable locally: say nothing and let the server be the judge.
     }
 
+    // Checked here as well as in the action: an oversize body can be rejected
+    // by the host's proxy before it ever reaches the Server Action, which
+    // surfaces as a transport failure with no message worth showing.
+    if (file.size > MAX_UPLOAD_BYTES) {
+      setStatus("error");
+      setError(
+        `That image is ${(file.size / 1024 / 1024).toFixed(1)}MB. The limit is 5MB — ` +
+          `resize or re-export it and try again.`,
+      );
+      return;
+    }
+
     setStatus("uploading");
 
     const formData = new FormData();
@@ -79,20 +94,39 @@ export function ImageUploadField({
     formData.set("folder", folder);
     if (placement) formData.set("placement", placement);
 
-    const result = await uploadImageAction(formData);
-    if ("error" in result) {
-      setStatus("error");
-      setError(result.error);
-      return;
-    }
+    // `uploadImageAction` returns its failures rather than throwing, but the
+    // *call itself* can still reject — a dropped connection, a proxy rejecting
+    // the body, an auth redirect. Without this catch the component was left on
+    // "Uploading..." forever with only an unhandled rejection in the console,
+    // and the only way out was reloading the page and losing the form.
+    try {
+      const result = await uploadImageAction(formData);
+      if ("error" in result) {
+        setStatus("error");
+        setError(result.error);
+        return;
+      }
 
-    setUrl(result.url);
-    setStatus("idle");
+      setUrl(result.url);
+      setStatus("idle");
+    } catch {
+      setStatus("error");
+      setError("The upload did not complete. Check your connection and try again.");
+    } finally {
+      // Whatever happened above, never leave the button spinning.
+      setStatus((s) => (s === "uploading" ? "idle" : s));
+    }
   }
 
   return (
     <Box>
-      <chakra.input type="hidden" name={name} value={url} required />
+      {/*
+        No `required` here: browsers skip constraint validation on hidden
+        inputs, so it never blocked submission — the form posted with an empty
+        imageUrl and failed server-side instead. The server validators are the
+        real gate, and their messages are now rendered on the field.
+      */}
+      <chakra.input type="hidden" name={name} value={url} />
 
       <Flex gap="14px" align="flex-start" flexWrap="wrap">
         <Box

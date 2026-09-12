@@ -32,7 +32,7 @@ export class CreateJob {
 
     // Company is folded into the slug so two listings with the same role title
     // at different employers don't collide into "-2" suffixes.
-    const slugSource = `${input.title.en?.trim() || input.title.ne.trim()} ${input.company.trim()}`;
+    const slugSource = `${input.title.en?.trim() || input.title.ne?.trim() || ""} ${input.company.trim()}`;
     const slug = await this.slugger.slugify(slugSource, async (candidate) => {
       return (await this.jobs.findBySlug(candidate)) !== null;
     });

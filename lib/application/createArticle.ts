@@ -23,7 +23,9 @@ export class CreateArticle {
 
     // Prefer the English title for slugs (URL-friendly); fall back to Nepali,
     // which the slugger transliterates/normalises.
-    const slugSource = input.title.en?.trim() || input.title.ne.trim();
+    // English preferred for a readable ASCII slug; falls back to Nepali, and
+    // now tolerates either language being absent.
+    const slugSource = input.title.en?.trim() || input.title.ne?.trim() || "";
     const slug = await this.slugger.slugify(slugSource, async (candidate) => {
       return (await this.articles.findBySlug(candidate)) !== null;
     });

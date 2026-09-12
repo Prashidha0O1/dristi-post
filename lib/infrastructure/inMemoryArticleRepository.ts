@@ -44,7 +44,7 @@ export class InMemoryArticleRepository implements ArticleRepository {
       if (categorySlug && a.categorySlug !== categorySlug) return false;
       if (provinceSlug && a.provinceSlug !== provinceSlug) return false;
       if (needle) {
-        const haystack = `${a.title.ne} ${a.title.en ?? ""}`.toLowerCase();
+        const haystack = `${a.title.ne ?? ""} ${a.title.en ?? ""}`.toLowerCase();
         if (!haystack.includes(needle)) return false;
       }
       return true;

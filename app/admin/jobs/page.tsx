@@ -14,6 +14,7 @@ import {
 } from "../ui";
 import { deleteJobAction, publishJobAction, unpublishJobAction } from "../jobActions";
 import { JobRowActions } from "./JobRowActions";
+import { primaryText } from "@/lib/domain/article";
 
 const TYPE_LABEL = new Map(employmentTypes.map((t) => [t.value, t.name.en]));
 
@@ -82,7 +83,7 @@ export default async function JobsListPage() {
             <TableRow key={job.id}>
               <Box flex="2" minW="0" pr="12px">
                 <Text fontWeight="600" color="var(--color-headline)" lineClamp={1}>
-                  {job.title.ne}
+                  {primaryText(job.title)}
                 </Text>
                 {job.title.en && (
                   <Text fontSize="12px" color="var(--color-muted)" lineClamp={1} mt="1px">

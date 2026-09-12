@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Flex, SimpleGrid, Text, chakra } from "@chakra-ui/react";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import { Info } from "lucide-react";
 import {
   AD_SLOTS,
@@ -13,13 +13,15 @@ import { ImageUploadField } from "../ImageUploadField";
 import {
   CheckboxField,
   Field,
+  FormError,
   FormSection,
   SubmitButton,
   fieldStyles,
 } from "../formUi";
+import { idleFormState, type FormState } from "../formState";
 
 interface Props {
-  action: (formData: FormData) => Promise<void>;
+  action: (state: FormState, formData: FormData) => Promise<FormState>;
   defaultValues?: {
     placement?: AdPlacement;
     imageUrl?: string;
@@ -37,13 +39,17 @@ export function AdForm({ action, defaultValues: d = {}, submitLabel, showActivat
   const [placement, setPlacement] = useState<AdPlacement | "">(d.placement ?? "");
   const spec = placement ? AD_SLOTS[placement] : null;
 
+  const [state, formAction] = useActionState(action, idleFormState);
+  const issues = state.status === "error" ? state.issues : {};
+
   return (
-    <form action={action}>
+    <form action={formAction}>
+      <FormError state={state} />
       <FormSection
         title="Slot"
         description="Where this ad appears. Each slot accepts one live ad at a time."
       >
-        <Field label="Placement" required>
+        <Field label="Placement" required error={issues.placement}>
           <chakra.select
             name="placement"
             value={placement}
@@ -90,7 +96,7 @@ export function AdForm({ action, defaultValues: d = {}, submitLabel, showActivat
       </FormSection>
 
       <FormSection title="Creative">
-        <Field label="Ad image" required>
+        <Field label="Ad image" required error={issues.imageUrl}>
           {placement ? (
             <ImageUploadField
               folder="ads"
@@ -113,7 +119,7 @@ export function AdForm({ action, defaultValues: d = {}, submitLabel, showActivat
         </Field>
 
         <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
-          <Field label="Click-through link" required hint="Full https:// URL of the advertiser">
+          <Field label="Click-through link" required hint="Full https:// URL of the advertiser" error={issues.linkUrl}>
             <chakra.input
               name="linkUrl"
               type="url"
@@ -127,6 +133,7 @@ export function AdForm({ action, defaultValues: d = {}, submitLabel, showActivat
             label="Alt text"
             required
             hint="Describes the ad for screen readers and when the image fails to load"
+            error={issues.altText}
           >
             <chakra.input
               name="altText"

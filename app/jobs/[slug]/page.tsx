@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getJobBySlug, getPublishedJobs } from "@/lib/publicQueries";
 import JobDetailClient from "./JobDetailClient";
+import { primaryText } from "@/lib/domain/article";
 
 export async function generateStaticParams() {
   const jobs = await getPublishedJobs();
@@ -15,11 +16,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!job) return { title: "Job Not Found - Dristi Post" };
 
   return {
-    title: `${job.title.ne} — ${job.company} | Dristi Post`,
-    description: job.description.ne.slice(0, 160),
+    title: `${primaryText(job.title)} — ${job.company} | Dristi Post`,
+    description: primaryText(job.description).slice(0, 160),
     openGraph: {
-      title: `${job.title.ne} — ${job.company}`,
-      description: job.description.ne.slice(0, 160),
+      title: `${primaryText(job.title)} — ${job.company}`,
+      description: primaryText(job.description).slice(0, 160),
       type: "article",
     },
   };

@@ -4,12 +4,43 @@ import type { ProvinceSlug } from "./province";
 export type ArticleStatus = "draft" | "published";
 
 /**
- * Localised text. Nepali is mandatory (the portal's primary language);
- * English is optional so an editor can publish without waiting on translation.
+ * Localised text. Both sides are optional, but at least one must be present —
+ * an invariant the validators enforce rather than the type system.
+ *
+ * Nepali used to be mandatory, which meant an editor working from an English
+ * source could not save at all, even with a translator to hand. Now either
+ * language is enough and the other is filled in by fallback at read time.
  */
 export interface LocalisedText {
-  ne: string;
+  ne?: string;
   en?: string;
+}
+
+/**
+ * The text to show when only one language is wanted — an admin list row, a
+ * <title>, a slug source. Prefers Nepali (the portal's primary language) and
+ * falls back to English, so a single-language article never renders blank.
+ */
+export function primaryText(text: LocalisedText | undefined): string {
+  return text?.ne?.trim() || text?.en?.trim() || "";
+}
+
+/** True when at least one language carries content. */
+export function hasAnyText(text: LocalisedText | undefined): boolean {
+  return primaryText(text) !== "";
+}
+
+/**
+ * Normalises a stored row pair into a LocalisedText.
+ *
+ * The database columns are NOT NULL, so an absent language is persisted as an
+ * empty string rather than NULL. Treating "" as absent here keeps that storage
+ * detail from leaking into the domain — and keeps the fallbacks working.
+ */
+export function localisedFromRow(ne: unknown, en: unknown): LocalisedText {
+  const neText = typeof ne === "string" && ne.trim() ? ne : undefined;
+  const enText = typeof en === "string" && en.trim() ? en : undefined;
+  return { ne: neText, en: enText };
 }
 
 /**
@@ -81,6 +112,15 @@ export interface Paginated<T> {
   total: number;
 }
 
+/**
+ * Fills in whichever language is missing, in both directions.
+ *
+ * This used to fall back only en <- ne, which is why making Nepali optional is
+ * a data-model change rather than a validation tweak: without the ne <- en
+ * direction an English-only article renders a blank headline to every reader.
+ */
 export function localisedTextToRecord(text: LocalisedText): Record<Locale, string> {
-  return { ne: text.ne, en: text.en?.trim() ? text.en : text.ne };
+  const ne = text.ne?.trim() ? text.ne : undefined;
+  const en = text.en?.trim() ? text.en : undefined;
+  return { ne: ne ?? en ?? "", en: en ?? ne ?? "" };
 }

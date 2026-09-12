@@ -4,6 +4,8 @@ import type { JobRepository } from "@/lib/domain/ports";
 import type { Paginated } from "@/lib/domain/article";
 import type { EmploymentType, JobQuery, JobRecord, JobStatus } from "@/lib/domain/job";
 import type { ProvinceSlug } from "@/lib/domain/province";
+import { supabaseEnv } from "@/lib/env";
+import { localisedFromRow } from "@/lib/domain/article";
 
 type Row = Record<string, unknown>;
 
@@ -33,15 +35,12 @@ function toDomain(row: Row): JobRecord {
   return {
     id: row.id as string,
     slug: row.slug as string,
-    title: { ne: row.titleNe as string, en: (row.titleEn as string) ?? undefined },
+    title: localisedFromRow(row.titleNe, row.titleEn),
     company: row.company as string,
     location: row.location as string,
     provinceSlug: row.province ? PROVINCE_REVERSE[row.province as string] : undefined,
     employmentType: EMPLOYMENT_REVERSE[row.employmentType as string] ?? "full-time",
-    description: {
-      ne: row.descriptionNe as string,
-      en: (row.descriptionEn as string) ?? undefined,
-    },
+    description: localisedFromRow(row.descriptionNe, row.descriptionEn),
     salary: (row.salary as string) ?? undefined,
     deadline: (row.deadline as string) ?? undefined,
     applyUrl: row.applyUrl as string,
@@ -56,10 +55,8 @@ function toDomain(row: Row): JobRecord {
 let _client: SupabaseClient | null = null;
 function getClient(): SupabaseClient {
   if (!_client) {
-    _client = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    );
+    const { url, anonKey } = supabaseEnv();
+    _client = createClient(url, anonKey);
   }
   return _client;
 }
@@ -127,13 +124,14 @@ export class SupabaseJobRepository implements JobRepository {
     const row = {
       id: job.id,
       slug: job.slug,
-      titleNe: job.title.ne,
+      // NOT NULL columns: an absent language is stored as "".
+      titleNe: job.title.ne ?? "",
       titleEn: job.title.en ?? null,
       company: job.company,
       location: job.location,
       province: job.provinceSlug ? PROVINCE_MAP[job.provinceSlug] : null,
       employmentType: EMPLOYMENT_MAP[job.employmentType],
-      descriptionNe: job.description.ne,
+      descriptionNe: job.description.ne ?? "",
       descriptionEn: job.description.en ?? null,
       salary: job.salary ?? null,
       deadline: job.deadline ?? null,

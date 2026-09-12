@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { updateTag } from "next/cache";
 import type { EmploymentType } from "@/lib/domain/job";
 import type { ProvinceSlug } from "@/lib/domain/province";
+import { runFormAction, type FormState } from "./formState";
 
 async function requireAuth() {
   const supabase = await getSupabaseServerClient();
@@ -36,24 +37,38 @@ function readJobForm(formData: FormData) {
   };
 }
 
-export async function createJobAction(formData: FormData) {
-  await requireAuth();
+export async function createJobAction(
+  _prev: FormState,
+  formData: FormData,
+): Promise<FormState> {
   const container = getContainer();
 
-  await container.createJob.execute({
-    ...readJobForm(formData),
-    publish: formData.get("publish") === "on",
+  const failure = await runFormAction(async () => {
+    await requireAuth();
+    await container.createJob.execute({
+      ...readJobForm(formData),
+      publish: formData.get("publish") === "on",
+    });
   });
+  if (failure) return failure;
 
   updateTag("jobs");
+  // Outside runFormAction: redirect() signals by throwing.
   redirect("/admin/jobs");
 }
 
-export async function updateJobAction(id: string, formData: FormData) {
-  await requireAuth();
+export async function updateJobAction(
+  id: string,
+  _prev: FormState,
+  formData: FormData,
+): Promise<FormState> {
   const container = getContainer();
 
-  await container.updateJob.execute(id, readJobForm(formData));
+  const failure = await runFormAction(async () => {
+    await requireAuth();
+    await container.updateJob.execute(id, readJobForm(formData));
+  });
+  if (failure) return failure;
 
   updateTag("jobs");
   redirect("/admin/jobs");

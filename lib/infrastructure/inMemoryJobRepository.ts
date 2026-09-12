@@ -38,7 +38,7 @@ export class InMemoryJobRepository implements JobRepository {
       if (employmentType && j.employmentType !== employmentType) return false;
       if (activeOnly && isExpired(j, now)) return false;
       if (needle) {
-        const haystack = `${j.title.ne} ${j.title.en ?? ""} ${j.company}`.toLowerCase();
+        const haystack = `${j.title.ne ?? ""} ${j.title.en ?? ""} ${j.company}`.toLowerCase();
         if (!haystack.includes(needle)) return false;
       }
       return true;

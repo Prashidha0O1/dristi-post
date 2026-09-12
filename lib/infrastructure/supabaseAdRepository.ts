@@ -4,6 +4,7 @@ import type { AdRepository } from "@/lib/domain/ports";
 import type { Paginated } from "@/lib/domain/article";
 import type { AdQuery, AdRecord } from "@/lib/domain/ad";
 import type { AdPlacement } from "@/lib/adSlots";
+import { supabaseEnv } from "@/lib/env";
 
 type Row = Record<string, unknown>;
 
@@ -38,10 +39,8 @@ function toDomain(row: Row): AdRecord {
 let _client: SupabaseClient | null = null;
 function getClient(): SupabaseClient {
   if (!_client) {
-    _client = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    );
+    const { url, anonKey } = supabaseEnv();
+    _client = createClient(url, anonKey);
   }
   return _client;
 }

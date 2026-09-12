@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getActiveAds, getArticleBySlug, getRecentArticles, getRelatedArticles, getTrendingArticles } from "@/lib/publicQueries";
 import ArticlePageClient from "./ArticlePageClient";
+import { primaryText } from "@/lib/domain/article";
 
 export async function generateStaticParams() {
   const articles = await getRecentArticles();
@@ -17,19 +18,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   return {
-    title: `${article.title.ne} | Dristi Post`,
-    description: article.excerpt.ne,
+    title: `${primaryText(article.title)} | Dristi Post`,
+    description: primaryText(article.excerpt),
     openGraph: {
-      title: article.title.ne,
-      description: article.excerpt.ne,
+      title: primaryText(article.title),
+      description: primaryText(article.excerpt),
       images: [article.image],
       type: "article",
       publishedTime: article.publishedAt,
     },
     twitter: {
       card: "summary_large_image",
-      title: article.title.ne,
-      description: article.excerpt.ne,
+      title: primaryText(article.title),
+      description: primaryText(article.excerpt),
       images: [article.image],
     },
   };

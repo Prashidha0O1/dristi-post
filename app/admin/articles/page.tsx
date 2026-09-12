@@ -17,6 +17,7 @@ import {
   unpublishArticleAction,
 } from "../actions";
 import { ArticleRowActions } from "./ArticleRowActions";
+import { primaryText } from "@/lib/domain/article";
 
 const CATEGORY_NAME = new Map(categories.map((c) => [c.slug, c]));
 
@@ -50,7 +51,7 @@ export default async function ArticlesListPage() {
             <TableRow key={article.id}>
               <Box flex="2" minW="0" pr="12px">
                 <Text fontWeight="600" color="var(--color-headline)" lineClamp={1}>
-                  {article.title.ne}
+                  {primaryText(article.title)}
                 </Text>
                 {article.title.en && (
                   <Text fontSize="12px" color="var(--color-muted)" lineClamp={1} mt="1px">

@@ -3,6 +3,8 @@ import { getSupabaseServerClient } from "./supabaseServer";
 import type { ArticleRepository } from "@/lib/domain/ports";
 import type { ArticleRecord, ArticleQuery, Paginated, ArticleStatus } from "@/lib/domain/article";
 import type { ProvinceSlug } from "@/lib/domain/province";
+import { supabaseEnv } from "@/lib/env";
+import { localisedFromRow } from "@/lib/domain/article";
 
 type Row = Record<string, unknown>;
 
@@ -23,9 +25,9 @@ function toDomain(row: Row): ArticleRecord {
   return {
     id: row.id as string,
     slug: row.slug as string,
-    title: { ne: row.titleNe as string, en: (row.titleEn as string) ?? undefined },
-    excerpt: { ne: row.excerptNe as string, en: (row.excerptEn as string) ?? undefined },
-    body: { ne: row.bodyNe as string, en: (row.bodyEn as string) ?? undefined },
+    title: localisedFromRow(row.titleNe, row.titleEn),
+    excerpt: localisedFromRow(row.excerptNe, row.excerptEn),
+    body: localisedFromRow(row.bodyNe, row.bodyEn),
     categorySlug: (category?.slug as string) ?? "",
     provinceSlug: row.province ? PROVINCE_REVERSE[row.province as string] : undefined,
     authorId: row.authorId as string,
@@ -41,9 +43,7 @@ function toDomain(row: Row): ArticleRecord {
     createdAt: row.createdAt as string,
     updatedAt: row.updatedAt as string,
     publishedAt: (row.publishedAt as string) ?? undefined,
-    authorName: author
-      ? { ne: author.nameNe as string, en: (author.nameEn as string) ?? undefined }
-      : undefined,
+    authorName: author ? localisedFromRow(author.nameNe, author.nameEn) : undefined,
   };
 }
 
@@ -53,10 +53,8 @@ const SELECT_FIELDS =
 let _client: SupabaseClient | null = null;
 function getClient(): SupabaseClient {
   if (!_client) {
-    _client = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    );
+    const { url, anonKey } = supabaseEnv();
+    _client = createClient(url, anonKey);
   }
   return _client;
 }
@@ -138,11 +136,13 @@ export class SupabaseArticleRepository implements ArticleRepository {
     const row = {
       id: article.id,
       slug: article.slug,
-      titleNe: article.title.ne,
+      // The columns are NOT NULL, so an absent language is stored as "" and
+      // read back as undefined by localisedFromRow.
+      titleNe: article.title.ne ?? "",
       titleEn: article.title.en ?? null,
-      excerptNe: article.excerpt.ne,
+      excerptNe: article.excerpt.ne ?? "",
       excerptEn: article.excerpt.en ?? null,
-      bodyNe: article.body.ne,
+      bodyNe: article.body.ne ?? "",
       bodyEn: article.body.en ?? null,
       imageUrl: article.imageUrl,
       status: STATUS_MAP[article.status],

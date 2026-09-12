@@ -5,15 +5,17 @@ import { ArticleForm } from "../../ArticleForm";
 import { updateArticleAction } from "../../../actions";
 import { Card, PageHeader } from "../../../ui";
 import { notFound } from "next/navigation";
+import { primaryText } from "@/lib/domain/article";
 
 export default async function EditArticlePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const container = getContainer();
-  const [article, authorOptions] = await Promise.all([
-    container.listArticles.execute({ limit: 1000 }),
+  // Was: list 1000 articles and .find() the one we want in JS. The repository
+  // has a findById for exactly this, and the jobs edit page already uses it.
+  const [found, authorOptions] = await Promise.all([
+    container.articles.findById(id),
     listAuthorOptions(),
   ]);
-  const found = article.items.find((a) => a.id === id);
 
   if (!found) notFound();
 
@@ -21,7 +23,7 @@ export default async function EditArticlePage({ params }: { params: Promise<{ id
 
   return (
     <Box>
-      <PageHeader title="Edit Article" subtitle={found.title.ne} />
+      <PageHeader title="Edit Article" subtitle={primaryText(found.title)} />
       <Card p="24px">
         <ArticleForm
           action={boundAction}

@@ -40,6 +40,7 @@ import {
   UpdateAd,
 } from "./application/adUseCases";
 import { seedArticles } from "./infrastructure/seedArticles";
+import { hasSupabaseEnv } from "@/lib/env";
 
 /**
  * Composition root: the single place that names concrete implementations.
@@ -83,7 +84,7 @@ export interface Container {
 export function buildContainer(
   overrides: Partial<Pick<Container, "articles" | "jobs" | "ads" | "clock" | "ids" | "slugger">> = {},
 ): Container {
-  const useSupabase = !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+  const useSupabase = hasSupabaseEnv();
   const articles = overrides.articles ?? (useSupabase ? new SupabaseArticleRepository() : new InMemoryArticleRepository(seedArticles));
   // No seed data for jobs: unlike articles there is no mock fixture to fall
   // back on, so the in-memory path starts empty and the board shows its

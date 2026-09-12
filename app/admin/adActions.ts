@@ -5,6 +5,7 @@ import { getSupabaseServerClient } from "@/lib/infrastructure/supabaseServer";
 import { redirect } from "next/navigation";
 import { updateTag } from "next/cache";
 import { isAdPlacement, type AdPlacement } from "@/lib/adSlots";
+import { runFormAction, type FormState } from "./formState";
 
 async function requireAuth() {
   const supabase = await getSupabaseServerClient();
@@ -29,24 +30,38 @@ function readAdForm(formData: FormData) {
   };
 }
 
-export async function createAdAction(formData: FormData) {
-  await requireAuth();
+export async function createAdAction(
+  _prev: FormState,
+  formData: FormData,
+): Promise<FormState> {
   const container = getContainer();
 
-  await container.createAd.execute({
-    ...readAdForm(formData),
-    activate: formData.get("activate") === "on",
+  const failure = await runFormAction(async () => {
+    await requireAuth();
+    await container.createAd.execute({
+      ...readAdForm(formData),
+      activate: formData.get("activate") === "on",
+    });
   });
+  if (failure) return failure;
 
   updateTag("ads");
+  // Outside runFormAction: redirect() signals by throwing.
   redirect("/admin/ads");
 }
 
-export async function updateAdAction(id: string, formData: FormData) {
-  await requireAuth();
+export async function updateAdAction(
+  id: string,
+  _prev: FormState,
+  formData: FormData,
+): Promise<FormState> {
   const container = getContainer();
 
-  await container.updateAd.execute(id, readAdForm(formData));
+  const failure = await runFormAction(async () => {
+    await requireAuth();
+    await container.updateAd.execute(id, readAdForm(formData));
+  });
+  if (failure) return failure;
 
   updateTag("ads");
   redirect("/admin/ads");
