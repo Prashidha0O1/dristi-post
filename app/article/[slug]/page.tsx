@@ -15,11 +15,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const article = await getArticleBySlug(slug);
 
   if (!article) {
-    return { title: "Article Not Found - Dristi Post" };
+    return { title: "Article Not Found - Dristi Times" };
   }
 
   return {
-    title: `${primaryText(article.title)} | Dristi Post`,
+    title: `${primaryText(article.title)} | Dristi Times`,
     description: primaryText(article.excerpt),
     openGraph: {
       title: primaryText(article.title),

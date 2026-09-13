@@ -117,3 +117,14 @@ export function getBSDayHeaders(locale: "ne" | "en"): string[] {
   if (locale === "ne") return BS_DAYS_SHORT_NE;
   return ["S", "M", "T", "W", "T", "F", "S"];
 }
+
+export function formatNepaliDateShort(date: Date, locale: "ne" | "en"): string {
+  const bs = toNepaliDate(date);
+  if (locale === "ne") {
+    // "आइतबार" -> "आइत"
+    const shortDay = BS_DAYS_NE[bs.dayOfWeek].replace("बार", "");
+    return `${shortDay}, ${toNepaliDigits(bs.day)} ${BS_MONTHS_NE[bs.month]}`;
+  }
+  const shortDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][bs.dayOfWeek];
+  return `${shortDay}, ${BS_MONTHS_EN[bs.month]} ${bs.day}`;
+}

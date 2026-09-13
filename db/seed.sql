@@ -1,5 +1,5 @@
 -- ============================================================================
--- Dristi Post — starter seed (FRESH INSTALL ONLY)
+-- Dristi Times — starter seed (FRESH INSTALL ONLY)
 -- ============================================================================
 -- Run this ONLY if you are starting with an empty database. Do NOT run it if
 -- you are importing an existing export from Supabase — that export already
@@ -37,5 +37,5 @@ ON DUPLICATE KEY UPDATE `slug` = VALUES(`slug`);
 -- One starting author so the "New article" form can be submitted. Add more
 -- from the DB later, or through an admin authors screen when one exists.
 INSERT INTO `authors` (`id`, `nameNe`, `nameEn`) VALUES
-  ('author-desk', 'दृष्टि पोस्ट संवाददाता', 'Dristi Post')
+  ('author-desk', 'दृष्टि टाइम्स संवाददाता', 'Dristi Times')
 ON DUPLICATE KEY UPDATE `nameEn` = VALUES(`nameEn`);

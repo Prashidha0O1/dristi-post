@@ -16,7 +16,7 @@ const FALLBACK_CATEGORY = categories[0];
 
 const FALLBACK_AUTHOR: Author = {
   id: "unknown",
-  name: { ne: "दृष्टि पोस्ट", en: "Dristi Post" },
+  name: { ne: "दृष्टि टाइम्स", en: "Dristi Times" },
 };
 
 function toTag(slug: string): Tag {

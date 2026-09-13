@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex, Text, SimpleGrid, Input, chakra } from "@chakra-ui/react";
+import { Box, Flex, Text, SimpleGrid, Input, chakra, Heading } from "@chakra-ui/react";
 import { useState } from "react";
 import { PageShell } from "@/components/pageShell";
 import { SectionHeader } from "@/components/sectionHeader";
@@ -73,12 +73,17 @@ export default function DateConverterPage() {
 
   return (
     <PageShell>
-      <SectionHeader
-        title={locale === "ne" ? "मिति रूपान्तरक" : "Date Converter"}
-        accent="var(--color-brand)"
-      />
-
-      <Box maxW="600px" mx="auto" py="20px">
+      <Box maxW="800px" mx="auto" pt="20px">
+        <Box borderBottom="2px solid var(--color-nav)" pb="12px" mb="32px">
+        <Heading as="h1" fontSize={{ base: "28px", md: "32px" }} fontWeight="800" color="var(--color-headline)">
+          {locale === "ne" ? "मिति रूपान्तरक" : "Date Converter"}
+        </Heading>
+        <Text color="var(--color-muted)" fontSize="15px" mt="8px">
+          {locale === "ne" 
+            ? "वि.सं. बाट ई.सं. र ई.सं. बाट वि.सं. मा मिति सजिलै परिवर्तन गर्नुहोस्।"
+            : "Easily convert dates between BS (Nepali) and AD (English)."}
+        </Text>
+      </Box>
         <Flex gap="0" mb="24px" borderRadius="4px" overflow="hidden" border="1px solid var(--color-border)">
           {(["bs2ad", "ad2bs"] as const).map((m) => (
             <chakra.button

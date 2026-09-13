@@ -2,13 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { useLocale } from "@/lib/localeContext";
-import { formatNepaliDate } from "@/lib/nepaliDate";
+import { formatNepaliDate, formatNepaliDateShort } from "@/lib/nepaliDate";
 
 export function TopInfoBar() {
   const { locale } = useLocale();
   const [info, setInfo] = useState({
     nepaliDate: "",
+    nepaliDateShort: "",
     adDate: "",
+    adDateShort: "",
     weather: "",
     usd: "",
     inr: "",
@@ -20,6 +22,8 @@ export function TopInfoBar() {
     setMounted(true);
     const now = new Date();
     const nepaliDate = formatNepaliDate(now, locale);
+    const nepaliDateShort = formatNepaliDateShort(now, locale);
+    const adDateShort = now.toLocaleDateString(locale === "ne" ? "ne-NP" : "en-US", { weekday: "short", month: "short", day: "numeric" });
     const adDate = now.toLocaleDateString(locale === "ne" ? "ne-NP" : "en-US", {
       year: "numeric",
       month: "short",
@@ -28,7 +32,9 @@ export function TopInfoBar() {
 
     setInfo({
       nepaliDate,
+      nepaliDateShort,
       adDate,
+      adDateShort,
       weather: locale === "ne" ? "..." : "...",
       usd: "...",
       inr: "...",
@@ -146,20 +152,21 @@ export function TopInfoBar() {
   }
 
   return (
-    <div className="bg-[#012861] text-white/85 text-[14px] md:text-[12px] font-sans border-b border-white/10 transition-opacity duration-300">
+    <div className="bg-[#012861] text-white/85 text-[11px] sm:text-[12px] font-sans border-b border-white/10 transition-opacity duration-300">
       <div className="mx-auto max-w-[var(--max-content)] h-[30px] px-[var(--side-pad)]">
         <div className="flex items-center justify-between h-full gap-3">
-          <div className="flex items-center gap-3 shrink-0">
-            <span className="font-semibold text-[14px] md:text-[12px]">
-              {locale === "ne" ? info.nepaliDate : info.adDate}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <span className="font-semibold text-[11px] sm:text-[12px]">
+              <span className="hidden sm:inline">{locale === "ne" ? info.nepaliDate : info.adDate}</span>
+              <span className="inline sm:hidden">{locale === "ne" ? info.nepaliDateShort : info.adDateShort}</span>
             </span>
             {info.weather && <span className="text-white/30">·</span>}
-            <span className="text-[14px] md:text-[12px]">{info.weather ? `☁ ${info.weather}` : ""}</span>
+            <span className="text-[11px] sm:text-[12px]">{info.weather ? `☁ ${info.weather}` : ""}</span>
           </div>
           
-          <div className="flex items-center gap-3 shrink-0">
-            <span className="text-white/70 text-[14px] md:text-[12px]">{info.usd}</span>
-            <span className="text-white/70 text-[14px] md:text-[12px]">{info.inr}</span>
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <span className="text-white/70 text-[11px] sm:text-[12px]">{info.usd}</span>
+            <span className="text-white/70 text-[11px] sm:text-[12px]">{info.inr}</span>
           </div>
         </div>
       </div>

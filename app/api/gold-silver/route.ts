@@ -6,7 +6,7 @@ export async function GET() {
   try {
     const res = await fetch("https://www.fenegosida.org/", {
       next: { revalidate: 3600 },
-      headers: { "User-Agent": "DristiPost/1.0" },
+      headers: { "User-Agent": "DristiTimes/1.0" },
     });
     if (!res.ok) return NextResponse.json({ rates: null });
 

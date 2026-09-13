@@ -14,10 +14,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const job = await getJobBySlug(slug);
 
-  if (!job) return { title: "Job Not Found - Dristi Post" };
+  if (!job) return { title: "Job Not Found - Dristi Times" };
 
   return {
-    title: `${primaryText(job.title)} — ${job.company} | Dristi Post`,
+    title: `${primaryText(job.title)} — ${job.company} | Dristi Times`,
     description: primaryText(job.description).slice(0, 160),
     openGraph: {
       title: `${primaryText(job.title)} — ${job.company}`,

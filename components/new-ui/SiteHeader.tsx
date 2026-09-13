@@ -22,13 +22,13 @@ interface SiteHeaderProps {
 
 function Wordmark({ small, lang }: { small: boolean; lang: Lang }) {
   return (
-    <Link href="/" className="flex items-baseline gap-2" aria-label="दृष्टि पोस्ट — home">
+    <Link href="/" className="flex items-baseline gap-2" aria-label="दृष्टि टाइम्स — home">
       <span
         className={`font-np font-extrabold leading-none tracking-tight text-crimson transition-all duration-300 ${
           small ? "text-2xl" : "text-[32px]"
         }`}
       >
-        दृष्टि<span className="text-ink dark:text-white">पोस्ट</span>
+        दृष्टि<span className="text-ink dark:text-white">टाइम्स</span>
       </span>
       {!small && (
         <span className="hidden text-[10px] font-semibold uppercase tracking-[0.28em] text-ink-400 sm:inline">
@@ -179,9 +179,7 @@ export function SiteHeader({ variant = "editorial", showBreakingTicker = true }:
             >
               <SearchIcon className="h-4 w-4" />
               <span className="hidden xl:inline">{lang === "np" ? "खोज" : "Search"}</span>
-              <kbd className="hidden rounded border border-paper-200 px-1 text-[10px] xl:inline dark:border-ink-600">
-                /
-              </kbd>
+              
             </button>
 
             {/* Which icon shows is decided in CSS, not JS. `resolved` differs

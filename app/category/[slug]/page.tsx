@@ -13,14 +13,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const category = categories.find((c) => c.slug === slug);
 
-  if (!category) return { title: "Category Not Found - Dristi Post" };
+  if (!category) return { title: "Category Not Found - Dristi Times" };
 
   return {
-    title: `${category.name.ne} समाचार | Dristi Post`,
-    description: `Read the latest ${category.name.en} news on Dristi Post.`,
+    title: `${category.name.ne} समाचार | Dristi Times`,
+    description: `Read the latest ${category.name.en} news on Dristi Times.`,
     openGraph: {
-      title: `${category.name.ne} समाचार | Dristi Post`,
-      description: `Read the latest ${category.name.en} news on Dristi Post.`,
+      title: `${category.name.ne} समाचार | Dristi Times`,
+      description: `Read the latest ${category.name.en} news on Dristi Times.`,
       type: "website",
     },
   };

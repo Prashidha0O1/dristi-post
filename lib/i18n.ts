@@ -6,7 +6,7 @@ export const locales: Locale[] = ["ne", "en"];
 
 const translations = {
   ne: {
-    siteName: "दृष्टि पोस्ट",
+    siteName: "दृष्टि टाइम्स",
     siteTagline: "नेपालको विश्वसनीय समाचार पोर्टल",
     home: "गृहपृष्ठ",
     latest: "ताजा अपडेट",
@@ -40,7 +40,7 @@ const translations = {
     contactUs: "सम्पर्क",
     privacyPolicy: "गोपनीयता नीति",
     termsOfService: "सेवाका सर्तहरू",
-    copyright: "© २०२६ दृष्टि पोस्ट। सर्वाधिकार सुरक्षित।",
+    copyright: "© २०२६ दृष्टि टाइम्स। सर्वाधिकार सुरक्षित।",
     publishedAt: "प्रकाशित",
     updatedAt: "अपडेट",
     viewAll: "सबै हेर्नुहोस्",
@@ -51,7 +51,7 @@ const translations = {
     adInquiryDesc: "विज्ञापन प्लेसमेन्टका लागि हामीलाई सम्पर्क गर्नुहोस्।",
   },
   en: {
-    siteName: "Dristi Post",
+    siteName: "Dristi Times",
     siteTagline: "Nepal's Trusted News Portal",
     home: "Home",
     latest: "Latest Updates",
@@ -85,7 +85,7 @@ const translations = {
     contactUs: "Contact Us",
     privacyPolicy: "Privacy Policy",
     termsOfService: "Terms of Service",
-    copyright: "© 2026 Dristi Post. All rights reserved.",
+    copyright: "© 2026 Dristi Times. All rights reserved.",
     publishedAt: "Published",
     updatedAt: "Updated",
     viewAll: "View All",
