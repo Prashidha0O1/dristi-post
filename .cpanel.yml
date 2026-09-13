@@ -1,12 +1,11 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/dristiti/dristitimes-app
-    - /bin/rm -rf "$DEPLOYPATH/.next" "$DEPLOYPATH/node_modules"
-    - /bin/cp -R .next "$DEPLOYPATH/"
-    - /bin/cp -R node_modules "$DEPLOYPATH/"
-    - /bin/cp -R public "$DEPLOYPATH/"
-    - /bin/cp -f server.js "$DEPLOYPATH/"
-    - /bin/cp -f package.json "$DEPLOYPATH/"
-    - /bin/mkdir -p "$DEPLOYPATH/tmp"
-    - /bin/touch "$DEPLOYPATH/tmp/restart.txt"
+    - /bin/rm -rf /home/dristiti/dristitimes-app/.next /home/dristiti/dristitimes-app/node_modules
+    - /bin/cp -R .next /home/dristiti/dristitimes-app/
+    - /bin/cp -R node_modules /home/dristiti/dristitimes-app/
+    - /bin/cp -R public /home/dristiti/dristitimes-app/
+    - /bin/cp -f server.js /home/dristiti/dristitimes-app/
+    - /bin/cp -f package.json /home/dristiti/dristitimes-app/
+    - /bin/mkdir -p /home/dristiti/dristitimes-app/tmp
+    - /bin/touch /home/dristiti/dristitimes-app/tmp/restart.txt
