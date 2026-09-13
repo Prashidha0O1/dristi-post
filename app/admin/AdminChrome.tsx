@@ -11,13 +11,14 @@ import {
   LogOut,
   Megaphone,
   Newspaper,
+  Users,
 } from "lucide-react";
-import { can, type Role } from "@/lib/domain/user";
+import { can, type Capability, type Role } from "@/lib/domain/user";
 import { logoutAction } from "./authActions";
 
 const SIDEBAR_W = "236px";
 
-type NavItem = { label: string; href: string; icon: typeof LayoutDashboard; capability?: "ads.manage" };
+type NavItem = { label: string; href: string; icon: typeof LayoutDashboard; capability?: Capability };
 
 const NAV: NavItem[] = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
@@ -25,6 +26,7 @@ const NAV: NavItem[] = [
   { label: "Jobs", href: "/admin/jobs", icon: Briefcase },
   { label: "Ads", href: "/admin/ads", icon: Megaphone, capability: "ads.manage" },
   { label: "Categories", href: "/admin/categories", icon: FolderTree },
+  { label: "Users", href: "/admin/users", icon: Users, capability: "users.manage" },
 ];
 
 function currentTitle(pathname: string, nav: NavItem[]): string {

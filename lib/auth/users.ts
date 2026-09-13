@@ -36,3 +36,25 @@ export async function listUsers(): Promise<UserRecord[]> {
   const [rows] = await getPool().query<Row[]>("SELECT * FROM users ORDER BY createdAt ASC");
   return rows.map(toRecord);
 }
+
+export async function emailExists(email: string): Promise<boolean> {
+  const [rows] = await getPool().query<Row[]>(
+    "SELECT id FROM users WHERE email = ? LIMIT 1",
+    [email.trim().toLowerCase()],
+  );
+  return rows.length > 0;
+}
+
+/** Change a user's role. OWNER is intentionally not assignable here. */
+export async function updateUserRole(id: string, role: Role): Promise<void> {
+  await getPool().query("UPDATE users SET role = ? WHERE id = ?", [role, id]);
+}
+
+/** Activate/deactivate. Deactivating also drops the user's sessions. */
+export async function setUserActive(id: string, active: boolean): Promise<void> {
+  const pool = getPool();
+  await pool.query("UPDATE users SET isActive = ? WHERE id = ?", [active ? 1 : 0, id]);
+  if (!active) {
+    await pool.query("DELETE FROM sessions WHERE userId = ?", [id]);
+  }
+}

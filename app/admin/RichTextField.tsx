@@ -83,23 +83,7 @@ function ToolbarButton({
   );
 }
 
-function Toolbar({ editor }: { editor: Editor }) {
-  const setLink = () => {
-    if (editor.isActive("link")) {
-      editor.chain().focus().unsetLink().run();
-      return;
-    }
-    const previous = editor.getAttributes("link").href as string | undefined;
-    const url = window.prompt("Link URL (https://...)", previous ?? "https://");
-    if (url === null) return; // cancelled
-    if (url.trim() === "") {
-      editor.chain().focus().unsetLink().run();
-      return;
-    }
-    const href = /^https?:\/\//i.test(url.trim()) ? url.trim() : `https://${url.trim()}`;
-    editor.chain().focus().extendMarkRange("link").setLink({ href }).run();
-  };
-
+function Toolbar({ editor, onOpenLink }: { editor: Editor; onOpenLink: () => void }) {
   return (
     <Flex
       wrap="wrap"
@@ -139,7 +123,15 @@ function Toolbar({ editor }: { editor: Editor }) {
 
       <Box w="1px" bg="var(--color-border)" mx="4px" my="4px" />
 
-      <ToolbarButton title={editor.isActive("link") ? "Remove link" : "Add link"} active={editor.isActive("link")} onClick={setLink}>
+      <ToolbarButton
+        title={editor.isActive("link") ? "Remove link" : "Add link"}
+        active={editor.isActive("link")}
+        onClick={() =>
+          editor.isActive("link")
+            ? editor.chain().focus().unsetLink().run()
+            : onOpenLink()
+        }
+      >
         {editor.isActive("link") ? <Link2Off size={16} strokeWidth={2.2} /> : <Link2 size={16} strokeWidth={2.2} />}
       </ToolbarButton>
 
@@ -165,6 +157,20 @@ export function RichTextField({
   minHeight?: string;
 }) {
   const [html, setHtml] = useState(() => toInitialHtml(defaultValue));
+  const [linkOpen, setLinkOpen] = useState(false);
+  const [linkUrl, setLinkUrl] = useState("https://");
+
+  function applyLink() {
+    if (!editor) return;
+    const value = linkUrl.trim();
+    if (!value || value === "https://") {
+      editor.chain().focus().unsetLink().run();
+    } else {
+      const href = /^https?:\/\//i.test(value) ? value : `https://${value}`;
+      editor.chain().focus().extendMarkRange("link").setLink({ href }).run();
+    }
+    setLinkOpen(false);
+  }
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -195,7 +201,72 @@ export function RichTextField({
       }}
     >
       <chakra.input type="hidden" name={name} value={html} readOnly />
-      {editor && <Toolbar editor={editor} />}
+      {editor && (
+        <Toolbar
+          editor={editor}
+          onOpenLink={() => {
+            setLinkUrl((editor.getAttributes("link").href as string) || "https://");
+            setLinkOpen(true);
+          }}
+        />
+      )}
+
+      {linkOpen && editor && (
+        <Flex
+          align="center"
+          gap="8px"
+          p="8px"
+          borderBottom="1px solid var(--color-input-border)"
+          bg="var(--color-card-alt)"
+        >
+          <chakra.input
+            autoFocus
+            value={linkUrl}
+            onChange={(e) => setLinkUrl(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") { e.preventDefault(); applyLink(); }
+              if (e.key === "Escape") setLinkOpen(false);
+            }}
+            placeholder="https://example.com"
+            flex="1"
+            h="32px"
+            px="10px"
+            fontSize="13px"
+            border="1px solid var(--color-input-border)"
+            bg="var(--color-input-bg)"
+            color="var(--color-body)"
+            borderRadius="5px"
+          />
+          <chakra.button
+            type="button"
+            onClick={applyLink}
+            h="32px"
+            px="12px"
+            fontSize="13px"
+            fontWeight="600"
+            bg="var(--color-brand)"
+            color="white"
+            border="none"
+            borderRadius="5px"
+            cursor="pointer"
+          >
+            Apply
+          </chakra.button>
+          <chakra.button
+            type="button"
+            onClick={() => setLinkOpen(false)}
+            h="32px"
+            px="10px"
+            fontSize="13px"
+            bg="transparent"
+            color="var(--color-subtle)"
+            border="none"
+            cursor="pointer"
+          >
+            Cancel
+          </chakra.button>
+        </Flex>
+      )}
       <Box color="var(--color-body)" css={{
         "& .ProseMirror": { minHeight },
         "& .ProseMirror p": { margin: "0 0 12px" },

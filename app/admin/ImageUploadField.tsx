@@ -2,10 +2,11 @@
 
 import { Box, Flex, Text, chakra } from "@chakra-ui/react";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ImageOff, Loader2, Upload } from "lucide-react";
 import { uploadImageAction } from "./uploadActions";
 import { describeAdSlotMismatch, type AdPlacement } from "@/lib/adSlots";
+import { toaster } from "@/components/ui/toaster";
 
 /** Mirrors the 5MB cap enforced in lib/infrastructure/fileStorage.ts. */
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
@@ -49,6 +50,13 @@ export function ImageUploadField({
   const [url, setUrl] = useState(defaultValue ?? "");
   const [status, setStatus] = useState<"idle" | "uploading" | "error">("idle");
   const [error, setError] = useState("");
+
+  // Surface upload problems as a toast as well as inline.
+  useEffect(() => {
+    if (status === "error" && error) {
+      toaster.create({ type: "error", title: "Image upload", description: error });
+    }
+  }, [status, error]);
   const [previewFailed, setPreviewFailed] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 

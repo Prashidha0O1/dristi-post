@@ -5,6 +5,7 @@ import { Check, ChevronDown, Plus } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
 import type { AuthorOption } from "@/lib/adminQueries";
 import { createAuthorAction } from "../authorActions";
+import { toaster } from "@/components/ui/toaster";
 
 function label(a: AuthorOption): string {
   return a.nameEn ? `${a.nameEn} / ${a.nameNe}` : a.nameNe;
@@ -30,7 +31,6 @@ export function AuthorField({
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
   const blurTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const selected = authors.find((a) => a.id === selectedId);
@@ -50,13 +50,13 @@ export function AuthorField({
     const name = query.trim();
     if (!name || busy) return;
     setBusy(true);
-    setError("");
     const result = await createAuthorAction(name);
     setBusy(false);
     if (!result.ok) {
-      setError(result.error);
+      toaster.create({ type: "error", title: "Couldn't add author", description: result.error });
       return;
     }
+    toaster.create({ type: "success", title: `Added ${result.author.nameNe}` });
     setAuthors((prev) =>
       prev.some((a) => a.id === result.author.id) ? prev : [...prev, result.author],
     );
@@ -97,11 +97,13 @@ export function AuthorField({
             blurTimer.current = setTimeout(() => setOpen(false), 150);
           }}
           flex="1"
+          minW="0"
           bg="transparent"
           border="none"
           outline="none"
           fontSize="14px"
           color="var(--color-body)"
+          textOverflow="ellipsis"
           _placeholder={{ color: "var(--color-muted)" }}
         />
         <ChevronDown size={16} color="var(--color-muted)" aria-hidden="true" />
@@ -143,8 +145,8 @@ export function AuthorField({
                 setOpen(false);
               }}
             >
-              {label(a)}
-              {a.id === selectedId && <Check size={15} color="var(--color-brand)" aria-hidden="true" />}
+              <Text truncate flex="1" mr="8px">{label(a)}</Text>
+              {a.id === selectedId && <Check size={15} color="var(--color-brand)" aria-hidden="true" style={{ flexShrink: 0 }} />}
             </Flex>
           ))}
 
@@ -175,9 +177,6 @@ export function AuthorField({
         </Box>
       )}
 
-      {error && (
-        <Text fontSize="12px" color="var(--color-danger-fg)" mt="6px">{error}</Text>
-      )}
       {!canAdd && (
         <Text fontSize="11px" color="var(--color-muted)" mt="5px">
           Choose an author. Ask an admin to add a new one.
