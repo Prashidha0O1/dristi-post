@@ -5,6 +5,8 @@ export const dynamic = "force-dynamic";
 import { Box } from "@chakra-ui/react";
 import { getContainer } from "@/lib/container";
 import { listAuthorOptions } from "@/lib/adminQueries";
+import { getCurrentUser } from "@/lib/auth/session";
+import { can } from "@/lib/domain/user";
 import { ArticleForm } from "../../ArticleForm";
 import { updateArticleAction } from "../../../actions";
 import { Card, PageHeader } from "../../../ui";
@@ -16,10 +18,12 @@ export default async function EditArticlePage({ params }: { params: Promise<{ id
   const container = getContainer();
   // Was: list 1000 articles and .find() the one we want in JS. The repository
   // has a findById for exactly this, and the jobs edit page already uses it.
-  const [found, authorOptions] = await Promise.all([
+  const [found, authorOptions, user] = await Promise.all([
     container.articles.findById(id),
     listAuthorOptions(),
+    getCurrentUser(),
   ]);
+  const canAddAuthors = user ? can(user.role, "authors.manage") : false;
 
   if (!found) notFound();
 
@@ -32,6 +36,7 @@ export default async function EditArticlePage({ params }: { params: Promise<{ id
         <ArticleForm
           action={boundAction}
           authorOptions={authorOptions}
+          canAddAuthors={canAddAuthors}
           submitLabel="Save Changes"
           defaultValues={{
             titleNe: found.title.ne,

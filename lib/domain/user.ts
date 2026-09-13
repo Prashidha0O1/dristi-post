@@ -20,13 +20,14 @@ export function isRole(value: string): value is Role {
 export type Capability =
   | "content.write" // create / edit / publish articles and jobs
   | "content.delete" // permanently delete articles and jobs
+  | "authors.manage" // add / manage the author list
   | "ads.manage" // create / edit / activate advertisements
   | "users.manage" // invite, change roles, deactivate users
   | "settings.manage"; // site-wide settings
 
 const ROLE_CAPABILITIES: Record<Role, readonly Capability[]> = {
-  OWNER: ["content.write", "content.delete", "ads.manage", "users.manage", "settings.manage"],
-  ADMIN: ["content.write", "ads.manage"],
+  OWNER: ["content.write", "content.delete", "authors.manage", "ads.manage", "users.manage", "settings.manage"],
+  ADMIN: ["content.write", "authors.manage", "ads.manage"],
   EDITOR: ["content.write"],
 };
 

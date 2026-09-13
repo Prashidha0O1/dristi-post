@@ -5,6 +5,8 @@ import { useActionState } from "react";
 import { categories } from "@/lib/config";
 import { provinces } from "@/lib/domain/province";
 import { ImageUploadField } from "../ImageUploadField";
+import { RichTextField } from "../RichTextField";
+import { AuthorField } from "./AuthorField";
 import {
   CheckboxField,
   Field,
@@ -42,9 +44,11 @@ interface Props {
   };
   submitLabel: string;
   showPublish?: boolean;
+  /** Owner/admin may create authors inline from the picker. */
+  canAddAuthors?: boolean;
 }
 
-export function ArticleForm({ action, authorOptions, defaultValues: d = {}, submitLabel, showPublish }: Props) {
+export function ArticleForm({ action, authorOptions, defaultValues: d = {}, submitLabel, showPublish, canAddAuthors = false }: Props) {
   // useActionState keeps the rejected server response on screen without
   // remounting the form, so the inputs (which are uncontrolled) hold on to
   // whatever the editor typed. Previously a rejected save threw and lost it all.
@@ -74,13 +78,13 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
         </SimpleGrid>
       </FormSection>
 
-      <FormSection title="Body" description="Separate paragraphs with a blank line.">
+      <FormSection title="Body" description="Format text, add headings and lists, and insert links with the toolbar.">
         <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
           <Field label="Body (Nepali)" error={issues["body.ne"]}>
-            <chakra.textarea name="bodyNe" defaultValue={d.bodyNe} h="240px" {...fieldStyles.textarea} />
+            <RichTextField name="bodyNe" defaultValue={d.bodyNe} />
           </Field>
           <Field label="Body (English)">
-            <chakra.textarea name="bodyEn" defaultValue={d.bodyEn} h="240px" {...fieldStyles.textarea} />
+            <RichTextField name="bodyEn" defaultValue={d.bodyEn} />
           </Field>
         </SimpleGrid>
       </FormSection>
@@ -104,17 +108,16 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
             </chakra.select>
           </Field>
           <Field label="Author" required error={issues.authorId}>
-            <chakra.select name="authorId" defaultValue={d.authorId} required {...fieldStyles.select}>
-              <option value="">Select...</option>
-              {authorOptions.map((a) => (
-                <option key={a.id} value={a.id}>{a.nameEn ? `${a.nameEn} / ${a.nameNe}` : a.nameNe}</option>
-              ))}
-            </chakra.select>
+            <AuthorField options={authorOptions} defaultValue={d.authorId} canAdd={canAddAuthors} />
           </Field>
         </SimpleGrid>
 
         <Field label="Featured image" required error={issues.imageUrl}>
-          <ImageUploadField folder="articles" defaultValue={d.imageUrl} />
+          <ImageUploadField
+            folder="articles"
+            defaultValue={d.imageUrl}
+            hint="JPEG, PNG, WebP or GIF, up to 5MB. Recommended 1200×675px (16:9)."
+          />
         </Field>
 
         <Field label="Tags" hint="Comma-separated slugs">
