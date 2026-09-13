@@ -1,10 +1,5 @@
 name: Build and publish deploy branch
 
-# Push to main -> build the self-contained bundle in CI -> publish it to the
-# `deploy` branch. cPanel Git Version Control then pulls `deploy` (outbound, so
-# the host firewall never blocks it) and runs .cpanel.yml to copy the files into
-# the app dir. No SSH/rsync from the runner; no build on the server.
-
 on:
   push:
     branches: [main]
@@ -35,8 +30,6 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
 
-      # Standalone doesn't include static assets or public/ — copy them in next
-      # to server.js, and carry .cpanel.yml so the deploy branch is self-describing.
       - name: Assemble bundle
         run: |
           cp -r .next/static .next/standalone/.next/static
@@ -52,8 +45,6 @@ jobs:
           git config user.email "ci@dristitimes"
           git config user.name "Deploy Bot"
           REMOTE="https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
-          # Base the new commit on the existing deploy tip so the push
-          # fast-forwards (cPanel pulls with --ff-only).
           if git ls-remote --exit-code "$REMOTE" refs/heads/deploy >/dev/null 2>&1; then
             git fetch -q --depth=1 "$REMOTE" deploy
             git reset -q --soft FETCH_HEAD
