@@ -1,9 +1,9 @@
-name: Deploy to cPanel (FTP)
+name: Build and publish deploy branch
 
-# Push to main -> build a self-contained bundle in CI -> upload it over FTP.
-# FTP is used instead of SSH because the host firewall (Imunify360) blocks the
-# GitHub runner IPs on SSH. The build needs no secrets; DATABASE_URL lives on
-# the server in cPanel > Setup Node.js App > Environment variables.
+# Push to main -> build the self-contained bundle in CI -> publish it to the
+# `deploy` branch. cPanel Git Version Control then pulls `deploy` (outbound, so
+# the host firewall never blocks it) and runs .cpanel.yml to copy the files into
+# the app dir. No SSH/rsync from the runner; no build on the server.
 
 on:
   push:
@@ -11,11 +11,14 @@ on:
   workflow_dispatch: {}
 
 concurrency:
-  group: deploy-cpanel-ftp
+  group: build-deploy-branch
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,28 +36,28 @@ jobs:
       - run: pnpm build
 
       # Standalone doesn't include static assets or public/ — copy them in next
-      # to server.js. A fresh tmp/restart.txt each deploy nudges Passenger to
-      # restart once the new files land.
+      # to server.js, and carry .cpanel.yml so the deploy branch is self-describing.
       - name: Assemble bundle
         run: |
           cp -r .next/static .next/standalone/.next/static
           cp -r public .next/standalone/public
-          mkdir -p .next/standalone/tmp
-          date +%s > .next/standalone/tmp/restart.txt
+          cp .cpanel.yml .next/standalone/.cpanel.yml
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          # The FTP account is rooted at the app dir, so upload into its home.
-          local-dir: ./.next/standalone/
-          server-dir: ./
-          # Never wipe these on the server (they're not in the bundle):
-          exclude: |
-            **/.env
-            **/.env.*
-            **/public/uploads/**
+      - name: Publish to deploy branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd .next/standalone
+          git init -q -b deploy
+          git config user.email "ci@dristitimes"
+          git config user.name "Deploy Bot"
+          REMOTE="https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+          # Base the new commit on the existing deploy tip so the push
+          # fast-forwards (cPanel pulls with --ff-only).
+          if git ls-remote --exit-code "$REMOTE" refs/heads/deploy >/dev/null 2>&1; then
+            git fetch -q --depth=1 "$REMOTE" deploy
+            git reset -q --soft FETCH_HEAD
+          fi
+          git add -A
+          git commit -q -m "deploy ${GITHUB_SHA}" || { echo "No changes to deploy."; exit 0; }
+          git push -q "$REMOTE" HEAD:deploy
