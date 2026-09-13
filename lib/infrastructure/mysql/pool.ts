@@ -18,18 +18,39 @@ declare global {
   var __dristiMysqlPool: mysql.Pool | undefined;
 }
 
+function buildPoolConfig(): mysql.PoolOptions {
+  const url = new URL(databaseUrl());
+  const common: mysql.PoolOptions = {
+    // URL parts are percent-encoded; decode so a password like "Muskan%40121"
+    // becomes "Muskan@121".
+    user: decodeURIComponent(url.username),
+    password: decodeURIComponent(url.password),
+    database: url.pathname.replace(/^\//, ""),
+    timezone: "Z",
+    dateStrings: true,
+    connectionLimit: 10,
+    namedPlaceholders: false,
+    // utf8mb4 so Devanagari round-trips intact.
+    charset: "utf8mb4",
+    supportBigNumbers: true,
+  };
+
+  // On cPanel a TCP connection to localhost is seen by MySQL as coming from the
+  // server's public hostname, which the cPanel grant (user@localhost) does not
+  // cover -> "access denied to database" (1044). Connecting through the MySQL
+  // unix socket is identified as @localhost and matches the grant. The socket
+  // path is overridable via MYSQL_SOCKET; /var/lib/mysql/mysql.sock is the
+  // cPanel default.
+  const isLocal = url.hostname === "localhost" || url.hostname === "127.0.0.1";
+  if (isLocal) {
+    return { ...common, socketPath: process.env.MYSQL_SOCKET || "/var/lib/mysql/mysql.sock" };
+  }
+  return { ...common, host: url.hostname, port: Number(url.port) || 3306 };
+}
+
 export function getPool(): mysql.Pool {
   if (!globalThis.__dristiMysqlPool) {
-    globalThis.__dristiMysqlPool = mysql.createPool({
-      uri: databaseUrl(),
-      timezone: "Z",
-      dateStrings: true,
-      connectionLimit: 10,
-      namedPlaceholders: false,
-      // utf8mb4 so Devanagari round-trips intact.
-      charset: "utf8mb4",
-      supportBigNumbers: true,
-    });
+    globalThis.__dristiMysqlPool = mysql.createPool(buildPoolConfig());
   }
   return globalThis.__dristiMysqlPool;
 }
