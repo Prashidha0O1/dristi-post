@@ -1,13 +1,4 @@
 ---
-# cPanel Git Version Control deployment.
-#
-# This file is what cPanel runs on the server when you click "Deploy HEAD
-# Commit". It is meant for the `deploy` branch, which CI fills with the built,
-# self-contained bundle (server.js + .next + node_modules + public). The tasks
-# just copy that bundle into the running Node app's directory and nudge
-# Passenger to restart — no build happens on the server.
-#
-# .env, tmp and public/uploads in the app dir are left untouched.
 deployment:
   tasks:
     - export DEPLOYPATH=/home/dristiti/dristitimes-app
