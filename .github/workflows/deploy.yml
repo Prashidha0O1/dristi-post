@@ -1,8 +1,9 @@
-name: Deploy to cPanel
+name: Deploy to cPanel (FTP)
 
-# Push to main -> build a self-contained bundle in CI -> rsync it to the server
-# over SSH -> restart. The build needs no secrets: DATABASE_URL lives on the
-# server, in cPanel > Setup Node.js App > Environment variables.
+# Push to main -> build a self-contained bundle in CI -> upload it over FTP.
+# FTP is used instead of SSH because the host firewall (Imunify360) blocks the
+# GitHub runner IPs on SSH. The build needs no secrets; DATABASE_URL lives on
+# the server in cPanel > Setup Node.js App > Environment variables.
 
 on:
   push:
@@ -10,7 +11,7 @@ on:
   workflow_dispatch: {}
 
 concurrency:
-  group: deploy-cpanel
+  group: deploy-cpanel-ftp
   cancel-in-progress: true
 
 jobs:
@@ -29,39 +30,31 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
-      # next build type-checks on its own (and generates the LayoutProps/PageProps
-      # types first), so a separate tsc step here just fails on missing types.
       - run: pnpm build
 
       # Standalone doesn't include static assets or public/ — copy them in next
-      # to server.js so the bundle is complete.
+      # to server.js. A fresh tmp/restart.txt each deploy nudges Passenger to
+      # restart once the new files land.
       - name: Assemble bundle
         run: |
           cp -r .next/static .next/standalone/.next/static
           cp -r public .next/standalone/public
+          mkdir -p .next/standalone/tmp
+          date +%s > .next/standalone/tmp/restart.txt
 
-      - name: Add SSH key
-        uses: webfactory/ssh-agent@v0.9.0
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          ssh-private-key: ${{ secrets.CPANEL_SSH_KEY }}
-
-      - name: Trust host
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -p "${{ secrets.CPANEL_SSH_PORT }}" "${{ secrets.CPANEL_SSH_HOST }}" >> ~/.ssh/known_hosts
-
-      - name: Deploy
-        run: |
-          rsync -az --delete \
-            --exclude '.env' \
-            --exclude 'public/uploads' \
-            --exclude 'tmp' \
-            -e "ssh -p ${{ secrets.CPANEL_SSH_PORT }}" \
-            .next/standalone/ \
-            "${{ secrets.CPANEL_SSH_USER }}@${{ secrets.CPANEL_SSH_HOST }}:${{ secrets.CPANEL_APP_PATH }}/"
-
-      - name: Restart app
-        run: |
-          ssh -p "${{ secrets.CPANEL_SSH_PORT }}" \
-            "${{ secrets.CPANEL_SSH_USER }}@${{ secrets.CPANEL_SSH_HOST }}" \
-            "mkdir -p '${{ secrets.CPANEL_APP_PATH }}/tmp' && touch '${{ secrets.CPANEL_APP_PATH }}/tmp/restart.txt'"
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          # The FTP account is rooted at the app dir, so upload into its home.
+          local-dir: ./.next/standalone/
+          server-dir: ./
+          # Never wipe these on the server (they're not in the bundle):
+          exclude: |
+            **/.env
+            **/.env.*
+            **/public/uploads/**
