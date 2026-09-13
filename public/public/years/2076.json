@@ -1,0 +1,7961 @@
+[
+  {
+    "month": 1,
+    "days": [
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 1
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "नयाँ वर्ष / बिस्का: जात्रा / मेष संक्रान्ति",
+            "titleEn": "Nepali New Year / Mesh Sankranti / Biska Jatra",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 2
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "कामदा एकादशी व्रत",
+            "titleEn": "Kamada Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 3
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 4
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "महावीर जयन्ती",
+            "titleEn": "Mahavir Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 5
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व सम्पदा दिवस",
+            "titleEn": "International Day For Monuments and Sites",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 6
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "हनुमान जयन्ती व्रत",
+            "titleEn": "Hanuman Jayanti Barta",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 7
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 8
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "छन्द दिवस",
+            "titleEn": "Chhanda Diwas",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 9
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "स्वामी शशिधर जन्मजयन्ती",
+            "titleEn": "Swami Shashidhar Janma Jayanti",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "विश्व पृथ्वी दिवस",
+            "titleEn": "World Earth Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 10
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व पुस्तक र प्रतिलिपि अधिकार दिवस",
+            "titleEn": "International Book and Copyright Day",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "मङ्गल चौथी व्रत",
+            "titleEn": "Mangal Chauthi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 11
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "लोकतन्त्र दिवस",
+            "titleEn": "Loktantra Diwas",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 12
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व औंलो दिवस",
+            "titleEn": "World Malaria Day",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "विसं २०७२ सालको महाभुकम्पको सम्झना",
+            "titleEn": "2072 Earthquake rememberance day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 13
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व बौद्धिक सम्पत्ति दिवस",
+            "titleEn": "World intellectual property day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 14
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 15
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "काममा सुरक्षा र स्वास्थ्यको लागि विश्व दिवस",
+            "titleEn": "World Day for Safety and Health at Work",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 16
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व नृत्य दिवस",
+            "titleEn": "World Dance Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 17
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "वरुथिनी एकादशी व्रत",
+            "titleEn": "Baruthini Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 18
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "अन्तर्राष्ट्रिय मजदुर दिवस",
+            "titleEn": "International Labour Day",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 19
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 20
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व प्रेस स्वतन्त्रता दिवस",
+            "titleEn": "World Press Freedom day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 21
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "मातातीर्थ औंसी",
+            "titleEn": "Matatirtha Aunshi",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 22
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व हाँसाे दिवस",
+            "titleEn": "World Laughter Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 23
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 24
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "अक्षय तृतीया व्रत",
+            "titleEn": "Akshaya Tritiya Barta",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "किराँत समाज सुधार दिवस",
+            "titleEn": "Kirat Samaj Sudhar Diwas",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "परशुराम जयन्ती",
+            "titleEn": "Parshuram Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 25
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व रेडक्रस दिवस",
+            "titleEn": "World Redcross Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 26
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "कानून दिवस",
+            "titleEn": "Law Day",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "आद्यगुरु शंकराचार्य जयन्ती",
+            "titleEn": "Aadhyaguru Shankarachaarya Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 27
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 28
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "गङ्गा सप्तमी व्रत",
+            "titleEn": "Ganga Saptami Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 29
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व नर्स दिवस",
+            "titleEn": "World Nurse Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 30
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "सीता नवमी व्रत",
+            "titleEn": "Sita Nawami Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 1,
+          "day": 31
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 2,
+    "days": [
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 1
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "वृष संक्रान्ति",
+            "titleEn": "Brish Sankranti",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "अन्तर्राष्ट्रिय परिवार दिवस",
+            "titleEn": "International Day of Families",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "मोहिनी एकादशी व्रत",
+            "titleEn": "Mohini Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 2
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 3
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "क्वयेर प्रति घृणा विरुद्धको दिवस",
+            "titleEn": "International Day Against Queer/MOGAI-phobia",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "विश्व दूरसञ्चार दिवस / विश्व उच्च रक्तचाप दिवस",
+            "titleEn": "World Telecommunication day / World Hypertension Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 4
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "बुद्ध जयन्ती",
+            "titleEn": "Buddha Jayanti",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "चण्डेश्वरी जात्रा",
+            "titleEn": "Chandeshwari Jatra",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "उभौली पर्व",
+            "titleEn": "Ubhauli Parwa",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 5
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 6
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 7
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 8
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "अन्तर्राष्ट्रिय जैविक विविधता दिवस",
+            "titleEn": "International Day for Biological Diversity",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 9
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 10
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "सर्वयौनिक जनचेतना र दृश्यता दिवस",
+            "titleEn": "Pansexual Awareness and Visibility Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 11
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 12
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 13
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 14
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 15
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "गणतन्त्र दिवस",
+            "titleEn": "National Republic Day",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 16
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "चित्तधर हृदय जन्मजयन्ती",
+            "titleEn": "Chittadhar Hridaya Janma Jayanti",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "अपरा एकादशी व्रत",
+            "titleEn": "Apara Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 17
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व धुम्रपान रहित दिवस",
+            "titleEn": "World No Tobacco Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 18
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 19
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 20
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "सोमबारे औंसी व्रत",
+            "titleEn": "Sombare Ekadashi Brata",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "शनि जयन्ती व्रत",
+            "titleEn": "Shani Jayanti Barta",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 21
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "गोसाइकुण्ड स्नान आरम्भ",
+            "titleEn": "Gosaikunda Snaan Arambha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 22
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "ईद उल फितर",
+            "titleEn": "Eid al Fitr",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "विश्व वातावरण दिवस",
+            "titleEn": "World Environment Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 23
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 24
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 25
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "सिथि नखः",
+            "titleEn": "Sithi Nakha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 26
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "भोटो जात्रा (उपत्यका बिदा)",
+            "titleEn": "Bhoto Jatra",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 27
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "राष्ट्रिय कृषक दिवस",
+            "titleEn": "Rashtriya Krishak Diwas",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 28
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 29
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "गङ्गादशहरा व्रत",
+            "titleEn": "Gangadashara Barta",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "गोसाइकुण्ड स्नान समाप्ति",
+            "titleEn": "Gosaikunda Snaan Samaapti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 30
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "निर्जला एकादशी व्रत",
+            "titleEn": "Nirjala Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 31
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 2,
+          "day": 32
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 3,
+    "days": [
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 1
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 2
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "ज्या: पुन्हि",
+            "titleEn": "Jya Punhi",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "विश्व खडेरी विरुद्ध संघर्ष दिवस",
+            "titleEn": "World Day to Combat Desertification and Drought",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "पनौती स्नान",
+            "titleEn": "Panauti Snan",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 3
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 4
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 5
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 6
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "सबैभन्दा लामो दिन",
+            "titleEn": "Sabai Bhanda Lamo Din",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 7
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 8
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "अन्तराष्ट्रिय एकल महिला दिवस",
+            "titleEn": "International Widows Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 9
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 10
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 11
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 12
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 13
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "योगिनी एकादशी व्रत",
+            "titleEn": "Yogini Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 14
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "नेपाल गौरव यात्रा",
+            "titleEn": "Nepal Pride Parade",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 15
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 16
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 17
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 18
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 19
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 20
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 21
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 22
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 23
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 24
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 25
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 26
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 27
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "चतुर्मास व्रत आरम्भ",
+            "titleEn": "Chaturmaas Barta Arambha",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "हरिशयनी एकादशी व्रत",
+            "titleEn": "Harisayani Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 28
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 29
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 30
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 3,
+          "day": 31
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "गुरु पुर्णिमा व्रत",
+            "titleEn": "Guru Purnima Barta",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "खण्डग्रास चन्द्र ग्रहण",
+            "titleEn": "Khandagras Chandra Grahan",
+            "isHoliday": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": 4,
+    "days": [
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 1
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "दक्षिणायन आरम्भ",
+            "titleEn": "Dakshinayan Arambha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 2
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 3
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 4
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 5
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 6
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 7
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 8
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 9
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 10
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 11
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 12
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व हेपाटाइटिस दिवस",
+            "titleEn": "World Hepatitis Day",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "कामिका एकादशी व्रत",
+            "titleEn": "Kamika Ekadashi Brata",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "विश्व आमाबुवा दिवस",
+            "titleEn": "World Parents Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 13
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 14
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "अन्तर्राष्ट्रिय मानव बेचबिखन विरुद्ध दिवस",
+            "titleEn": "World Day against Trafficking in Persons",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "गथांमुगः चःह्रे",
+            "titleEn": "Gathamung Chare",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 15
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 16
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व स्तनपान सप्ताह प्रारम्भ",
+            "titleEn": "World Breastfeeding Week",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 17
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "गुंलापर्व आरम्भ",
+            "titleEn": "Gunla Parwa Arambha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 18
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "वराह जयन्ती",
+            "titleEn": "Baraah Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 19
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "अन्तर्राष्ट्रिय मित्रता दिवस",
+            "titleEn": "International Friendship Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 20
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "नाग पञ्चमी व्रत",
+            "titleEn": "Nag Panchami Barta",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "कल्की जयन्ती",
+            "titleEn": "Kalki Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 21
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 22
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "तुलसीदास जयन्ती",
+            "titleEn": "Tulasidas Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 23
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 24
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 25
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 26
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "पुत्रदा एकादशी व्रत",
+            "titleEn": "Putrada Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 27
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "इद उल जोहा",
+            "titleEn": "Eid al-Joha",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 28
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 29
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 30
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "क्वाटी खाने दिन",
+            "titleEn": "Kwati Khane Din",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "संस्कृत दिवस",
+            "titleEn": "Sanskrit Diwas",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "रक्षाबन्धन",
+            "titleEn": "Rakshya Bandhan",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "जनैपुर्णिमा",
+            "titleEn": "Janai Poornima",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 31
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "गाईजात्रा (काठमाडौँ उपत्यका मात्र)",
+            "titleEn": "Gaijatra",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 4,
+          "day": 32
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "रोपाईं जात्रा",
+            "titleEn": "Ropai Jatra",
+            "isHoliday": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": 5,
+    "days": [
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 1
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 2
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व फोटोग्राफी दिवस",
+            "titleEn": "World Photography Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 3
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 4
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 5
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 6
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "गौरा पर्व",
+            "titleEn": "Gaura Parba",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "श्रीकृष्ण जन्माष्टमी व्रत",
+            "titleEn": "Shree Krishna Janmashtami Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 7
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 8
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 9
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "अजा एकादशी व्रत",
+            "titleEn": "Ajaa Ekadashi Brata",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "राष्ट्रिय धर्मसभा दिवस",
+            "titleEn": "Rashtriya Dharma Sabha Diwas",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 10
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 11
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 12
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 13
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "बुवाको मुख हेर्ने दिन",
+            "titleEn": "Buwako Mukh Herne Din",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "विश्व बेपत्ता विरुद्धको दिवस",
+            "titleEn": "International Day of the Victims of Enforced Disappearances",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "मोती जयन्ती",
+            "titleEn": "Moti Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 14
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "गुंलापर्व समाप्ती",
+            "titleEn": "Gula Parwa Samapti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 15
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "दर खाने दिन",
+            "titleEn": "Dar Khane Din",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 16
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "हरितालिका तीज व्रत (महिला बिदा)",
+            "titleEn": "Haritalika Teej Barta",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 17
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "मङ्गल चौथी व्रत",
+            "titleEn": "Mangal Chauthi Brata",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "ऋषिपञ्चमी व्रत",
+            "titleEn": "Rishi Panchami Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 18
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 19
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 20
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "महालक्ष्मी व्रतआरम्भ",
+            "titleEn": "Mahalakshmi Barta Arambha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 21
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 22
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "अन्तर्राष्ट्रिय साक्षरता दिवस / विश्व फिजियोथेरापी दिवस",
+            "titleEn": "International Literacy Day/ World Physiotherapy Day",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "निजामती सेवा दिवस",
+            "titleEn": "Nijamati Sewa Diwas",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 23
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "हरिपरिवर्तिनि एकादशी व्रत",
+            "titleEn": "Haripariwartini Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 24
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "वामन द्वादशी व्रत",
+            "titleEn": "Waaman Ekadashi Brata",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "विश्व आत्महत्या रोकथाम दिवस",
+            "titleEn": "World Suicide Prevention Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 25
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 26
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "अनन्त चतुर्दशी व्रत",
+            "titleEn": "Ananta Chaturdashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 27
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "इन्द्रजात्रा (उपत्यका मात्र)",
+            "titleEn": "Indra Jaatra",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 28
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "प्राथमिक उपचार दिवस",
+            "titleEn": "Prathamik Upachar Diwas",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "सोह्रश्राद्ध प्रारम्भ (प्रतिपदा श्राद्ध)",
+            "titleEn": "Sohra Shraddha Prarambha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 29
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "द्वितीया श्राद्ध",
+            "titleEn": "Dwitiya Shraddha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 30
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "तृतीया श्राद्ध",
+            "titleEn": "Tritiya Shraddha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 5,
+          "day": 31
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 6,
+    "days": [
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 1
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "चतुर्थी श्राद्ध",
+            "titleEn": "Chaturthi Shraddha",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "राष्ट्रिय विज्ञान दिवस",
+            "titleEn": "National Science Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 2
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "पञ्चमी श्राद्ध",
+            "titleEn": "Panchami Shraddha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 3
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "संविधान दिवस",
+            "titleEn": "Sambidhan Diwas",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "षष्ठी श्राद्ध",
+            "titleEn": "Khasti Shraddha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 4
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "सप्तमी श्राद्ध",
+            "titleEn": "Saptami Shraddha",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "महालक्ष्मी व्रत समाप्ति",
+            "titleEn": "Mahalakshmi Barta Samaapti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 5
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "जितियापर्व (जितिया पर्व मनाउने महिला कर्मचारीलाई मात्र)",
+            "titleEn": "Jitiya Parwa (For Womens Who Celebrate Jitiya)",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "अष्टमी र नवमी श्राद्ध",
+            "titleEn": "Ashtami And Nawami Shraddha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 6
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "दशमी श्राद्ध",
+            "titleEn": "Dashami Shraddha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 7
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "एकादशी श्राद्ध",
+            "titleEn": "Ekadashi Shraddha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 8
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "इन्दिरा एकादशी व्रत",
+            "titleEn": "Indira Ekadashi Brata",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "द्वादशी श्राद्ध",
+            "titleEn": "Dwadashi Shraddha",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "विश्व फार्मासिस्ट दिवस",
+            "titleEn": "World Pharmacists Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 9
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "त्रयोदशी श्राद्ध/ मघा श्राद्ध",
+            "titleEn": "Trayodashi Shraddha/ Magha Shraddha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 10
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "चतुर्दशी श्राद्ध",
+            "titleEn": "Chaturdashi Shraddha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 11
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "औंसी श्राद्ध/ पितृ विसर्जन",
+            "titleEn": "Aushi Shraddha/ Pitri Bisarjan",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 12
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व मुटु दिवस",
+            "titleEn": "World Heart Day",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "घटस्थापना व्रत /नवरात्र आरम्भ",
+            "titleEn": "Ghatasthaapana Barta/ Nawaraatra Arambha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 13
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 14
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 15
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 16
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 17
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व अन्तरिक्ष सप्ताह प्रारम्भ",
+            "titleEn": "World Space Week Start",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 18
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "फूलपाती",
+            "titleEn": "Fulpati",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "विश्व शिक्षक दिवस",
+            "titleEn": "World Teachers Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 19
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "महाअष्टमी व्रत",
+            "titleEn": "Maha astami Barta",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 20
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "महानवमी व्रत",
+            "titleEn": "Maha Nawami Barta",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "विश्व बसोबास दिवस",
+            "titleEn": "World Habitat Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 21
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विजयादशमी",
+            "titleEn": "Bijaya Dashami",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 22
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "पापांकुशा एकादशी व्रत",
+            "titleEn": "Paapkunsh Ekadashi Brata",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "विश्व हुलाक दिवस",
+            "titleEn": "World Post  Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 23
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व दृष्टि दिवस",
+            "titleEn": "World Sight Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 24
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 25
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "गैर आवासीय नेपाली दिवस",
+            "titleEn": "NRN Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 26
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व प्राकृतिक प्रकोप नियन्त्रण दिवस",
+            "titleEn": "International Day for Disaster Reduction",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "कोजाग्रत पूर्णिमा",
+            "titleEn": "Kojagrat Purnima",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 27
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 28
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 29
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 6,
+          "day": 30
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 7,
+    "days": [
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 1
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 2
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 3
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "रविसप्तमी व्रत",
+            "titleEn": "Ravisaptami Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 4
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "राधाष्टमी व्रत",
+            "titleEn": "Radhastami Barta",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 5
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 6
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 7
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "संयुक्त राष्ट्रसंघ दिवस / विश्व विकास सूचना दिवस",
+            "titleEn": "UN day / World Development Information Day",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "रमा एकादशी व्रत",
+            "titleEn": "Rama Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 8
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "धन त्रयोदशी व्रत (धन्तेरस)",
+            "titleEn": "Dhan Trayodashi Brata (Dhanteras)",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 9
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "अन्तर्लिङ्गी जनचेतना दिवस",
+            "titleEn": "Intersex Awareness Day",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "काग तिहार",
+            "titleEn": "Kaag Tihar",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "धनवन्तरी जयन्ती",
+            "titleEn": "Dhanawantari Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 10
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "लक्ष्मी पुजा व्रत/ महाकवि लक्ष्मीप्रसाद देवकोटा जन्म जयन्ती",
+            "titleEn": "Lakshmi puja Barta/ Lakshmi prasad janma jayanti",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "कुकुर तिहार",
+            "titleEn": "Kukur Tihar",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 11
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "म्हपूजा",
+            "titleEn": "Mha Puja",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 12
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "भाइटीका / गोवर्धन पूजा",
+            "titleEn": "Bhai tika / Gobardhan Pooja",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "नेपाल सम्वत ११४०",
+            "titleEn": "Nepal Sambat 1140",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 13
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "किजा पूजा",
+            "titleEn": "Kija Pooja",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 14
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 15
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 16
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "छठपर्व व्रत",
+            "titleEn": "Chhat Parba Barta",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 17
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "रविसप्तमी व्रत",
+            "titleEn": "Ravisaptami Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 18
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 19
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 20
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "कुष्मान्ड नवमी व्रत",
+            "titleEn": "Kusmaanda Nawami Barta",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 21
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 22
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व रेडियोग्राफी दिवस",
+            "titleEn": "World Radiography Day",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "हरिबोधिनी एकादशी व्रत (तुलसी बिवाह)",
+            "titleEn": "Haribodhini Ekadashi Brata / Tulasi Bibaha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 23
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 24
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 25
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 26
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "गुरु नानक जयन्ती",
+            "titleEn": "Guru Nanak Jayanti",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "विश्व निमोनिया दिवस",
+            "titleEn": "World pneumonia day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 27
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 28
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 29
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 7,
+          "day": 30
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 8,
+    "days": [
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 1
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 2
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 3
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 4
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 5
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व दर्शनशास्त्र दिवस",
+            "titleEn": "World Philosophy Day",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "विश्व टेलिभिजन दिवस",
+            "titleEn": "World Television Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 6
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "उत्पत्तिका एकादशी व्रत",
+            "titleEn": "Utpattika Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 7
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 8
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 9
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "अन्तर्राष्ट्रिय महिला हिंसा अन्त्य दिवस",
+            "titleEn": "International Day for the Elimination of Violence against Women",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "बाला चतुर्दशी व्रत /शतबीज छर्ने",
+            "titleEn": "Bala Chaturdashi Barta/ Shatbij Chharne Din",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 10
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 11
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 12
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 13
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 14
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 15
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व एड्स दिवस",
+            "titleEn": "World AIDS Day",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "बिवाह पञ्चमी",
+            "titleEn": "Biwaah Panchami",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "षडानन्द जयन्ती",
+            "titleEn": "Shadananda Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 16
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 17
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "अन्तर्राष्ट्रिय अपाङ्ग दिवस",
+            "titleEn": "International Day of Disabled Persons",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 18
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 19
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 20
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 21
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 22
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "मोक्षदा एकादशी व्रत",
+            "titleEn": "Mokshada Ekadashi Brata",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "गीता जयन्ती",
+            "titleEn": "Gita Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 23
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 24
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 25
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "दत्तात्रेय जयन्ती",
+            "titleEn": "Dattatreya Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 26
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "उधौली पर्व / धान्यपुर्णिमा",
+            "titleEn": "Dhanya Poornima / Udhauli Parba",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "अन्तर्राष्ट्रिय तटस्थ दिवस",
+            "titleEn": "International Day of Neutrality",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "योमरीपुन्हि",
+            "titleEn": "Yomari Punhi",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 27
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 28
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 29
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 8,
+          "day": 30
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 9,
+    "days": [
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 1
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 2
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 3
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 4
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 5
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 6
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "सफला एकादशी व्रत",
+            "titleEn": "Safala Ekadashi Brata",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "सबै भन्दा छोटो दिन",
+            "titleEn": "Sabai Bhanda Chhoto Din",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 7
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 8
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 9
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 10
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "खण्डग्रास सूर्यग्रहण",
+            "titleEn": "Khandagras Surya Grahan",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 11
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "तोल ल्होसार",
+            "titleEn": "Tol Lhosar",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 12
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 13
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 14
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 15
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "तमु ल्होसार",
+            "titleEn": "Tamu Lhosar",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 16
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "राष्ट्रिय मेलमिलाप दिवस",
+            "titleEn": "Rashtriya Melmilap Diwas",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "सन् २०२० प्रारम्भ",
+            "titleEn": "New Year 2020",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "टोपी दिवस",
+            "titleEn": "Topi Diwas",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 17
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "राष्ट्रिय पोशाक दिवस",
+            "titleEn": "Rashtriya Poshak Diwas",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 18
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 19
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 20
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "गुरु गोबिन्द सिंह जयन्ती",
+            "titleEn": "Guru Gobinda Singh Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 21
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "पुत्रदा एकादशी व्रत",
+            "titleEn": "Putrada Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 22
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 23
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 24
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 25
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "स्वस्थानी व्रत प्रारम्भ/ माघ स्नान सुरु",
+            "titleEn": "Swasthani Brata Prarambha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 26
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 27
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 28
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 9,
+          "day": 29
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "मंगलचौथी व्रत",
+            "titleEn": "Mangal Chauthi Brata",
+            "isHoliday": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": 10,
+    "days": [
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 1
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "माघे संक्रान्ति / मकर संक्रान्ति / घ्यु चाकु खाने दिन",
+            "titleEn": "Makar Sankranti / Maghe Sankranti/ Ghiu chaku khane Din",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "राष्ट्रिय योग दिवस",
+            "titleEn": "Rashtriya Yog Diwas",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "मकर स्नान आरम्भ",
+            "titleEn": "Makar Snan Arambha",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "उत्तरायण आरम्भ",
+            "titleEn": "Uttarayan Arambha",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 2
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 3
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 4
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 5
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 6
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "षट्तिला एकादशी व्रत",
+            "titleEn": "Shattila Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 7
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 8
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 9
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "सशस्त्र प्रहरी दिवस",
+            "titleEn": "Armed Police Force Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 10
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 11
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "सोनाम ल्होसार",
+            "titleEn": "Sonam Lhosar",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "श्रीबल्लभ जयन्ती",
+            "titleEn": "ShreeBallabh Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 12
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व कुष्ठरोग दिवस",
+            "titleEn": "World Leprosy Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 13
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 14
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "मंगलचौथी व्रत",
+            "titleEn": "Mangal Chauthi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 15
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 16
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "शहीद दिवस",
+            "titleEn": "Sahid Diwas",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "वसन्तपञ्चमी व्रत",
+            "titleEn": "Basanta Panchami Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 17
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 18
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 19
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 20
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 21
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 22
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "भीमा एकादशी व्रत",
+            "titleEn": "Bhima Ekadashi",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 23
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 24
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 25
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "पशुपतिनाथको छाया दर्शन",
+            "titleEn": "Pashupatinath Chhaya Darshan",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 26
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "श्री स्वस्थानी व्रत समाप्ती",
+            "titleEn": "Shree Swasthani Brata Samapti",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "माघ स्नान समाप्ती",
+            "titleEn": "Magh Snan Samapti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 27
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 28
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 10,
+          "day": 29
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 11,
+    "days": [
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 1
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 2
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 3
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 4
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 5
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 6
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 7
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विजया एकादशी व्रत",
+            "titleEn": "Bijaya Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 8
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 9
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "महाशिवरात्रि व्रत",
+            "titleEn": "Maha Sivaratri Brata",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "सिलाचःह्रे पूजा",
+            "titleEn": "Silachahre Puja",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "अन्तर्राष्ट्रिय मातृभाषा दिवस",
+            "titleEn": "International Mother Language Day",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "नेपाली सेना दिवस",
+            "titleEn": "Nepali Sena Diwas",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 10
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 11
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 12
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "ग्याल्पो ल्होसार",
+            "titleEn": "Gyalpo Lhosar",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 13
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 14
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 15
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 16
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 17
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 18
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 19
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 20
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 21
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 22
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 23
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "आमलकी एकादशी व्रत",
+            "titleEn": "Amalaki Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 24
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 25
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 26
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "फागुपुर्णिमा",
+            "titleEn": "Fagu Purnima",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 27
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "तराई होली",
+            "titleEn": "Terai Holi",
+            "isHoliday": true
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 28
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 29
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 11,
+          "day": 30
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  },
+  {
+    "month": 12,
+    "days": [
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 1
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 2
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 3
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 4
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 5
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 6
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 7
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "पापमोचनी एकादशी व्रत",
+            "titleEn": "Paapmochini Ekadashi Brata",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "विश्व मुख स्वास्थ्य दिवस / अन्तर्राष्ट्रिय खुशी दिवस",
+            "titleEn": "World Oral Health Day / International Day of Happiness",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 8
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "अन्तर्राष्ट्रिय रंगभेद उन्मुलन दिवस",
+            "titleEn": "International Day for the Elimination of Racial Discrimination",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 9
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 10
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "पाहाँचःह्रे",
+            "titleEn": "Paha Chahre",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 11
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "घोडेजात्रा",
+            "titleEn": "Ghode Jaatra",
+            "isHoliday": true
+          },
+          {
+            "titleNp": "विश्व क्षयरोग दिवस",
+            "titleEn": "World Tuberculosis Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 12
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 13
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 14
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "मत्स्य जयन्ती व्रत",
+            "titleEn": "Matsya Jayanti Barta",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 15
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 16
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 17
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 18
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "पारलिङ्गी दृश्यताको अन्तर्राष्ट्रिय दिवस",
+            "titleEn": "International Transgender Day of Visibility",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 19
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "चैते दशैँ",
+            "titleEn": "Chaite Dashain",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "विश्व मूर्ख दिवस",
+            "titleEn": "April Fool Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 20
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "रामनवमी व्रत",
+            "titleEn": "Ram Nawami Brata",
+            "isHoliday": false
+          },
+          {
+            "titleNp": "विश्व अटिजम जागरुकता दिवस",
+            "titleEn": "World Autism Awareness Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 21
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 22
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "कामदा एकादशी व्रत",
+            "titleEn": "Kamada Ekadashi Brata",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 23
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 24
+        },
+        "weekdayNp": "सोमवार",
+        "weekdayEn": "Monday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "महावीर जयन्ती",
+            "titleEn": "Mahavir Jayanti",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 25
+        },
+        "weekdayNp": "मंगलवार",
+        "weekdayEn": "Tuesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "विश्व स्वास्थ्य दिवस",
+            "titleEn": "World Health Day",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 26
+        },
+        "weekdayNp": "बुधवार",
+        "weekdayEn": "Wednesday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": [
+          {
+            "titleNp": "हनुमान जयन्ती व्रत",
+            "titleEn": "Hanuman Jayanti Barta",
+            "isHoliday": false
+          }
+        ]
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 27
+        },
+        "weekdayNp": "बिहिवार",
+        "weekdayEn": "Thursday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 28
+        },
+        "weekdayNp": "शुक्रवार",
+        "weekdayEn": "Friday",
+        "isHoliday": false,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 29
+        },
+        "weekdayNp": "शनिवार",
+        "weekdayEn": "Saturday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      },
+      {
+        "bs": {
+          "year": 2076,
+          "month": 12,
+          "day": 30
+        },
+        "weekdayNp": "आइतवार",
+        "weekdayEn": "Sunday",
+        "isHoliday": true,
+        "tithiShort": null,
+        "tithi": null,
+        "yoga": null,
+        "karana": null,
+        "nakshatra": null,
+        "sunriseNp": null,
+        "sunsetNp": null,
+        "events": []
+      }
+    ]
+  }
+]
