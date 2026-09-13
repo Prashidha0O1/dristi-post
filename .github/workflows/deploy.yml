@@ -30,7 +30,8 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm exec tsc --noEmit
+      # next build type-checks on its own (and generates the LayoutProps/PageProps
+      # types first), so a separate tsc step here just fails on missing types.
       - run: pnpm build
 
       # Standalone doesn't include static assets or public/ — copy them in next
