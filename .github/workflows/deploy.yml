@@ -32,15 +32,22 @@ jobs:
 
       - name: Assemble bundle
         run: |
+          set -e
+          test -d .next/standalone || { echo "ERROR: .next/standalone missing (is output:'standalone' set?)"; exit 1; }
           cp -r .next/static .next/standalone/.next/static
           cp -r public .next/standalone/public
           cp .cpanel.yml .next/standalone/.cpanel.yml
+          echo "Bundle top-level:"; ls -la .next/standalone
+          test -d .next/standalone/node_modules || { echo "ERROR: bundle has no node_modules"; exit 1; }
+          test -d .next/standalone/.next || { echo "ERROR: bundle has no .next"; exit 1; }
 
       - name: Publish to deploy branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -e
           cd .next/standalone
+          rm -rf .git
           git init -q -b deploy
           git config user.email "ci@dristitimes"
           git config user.name "Deploy Bot"
@@ -50,5 +57,6 @@ jobs:
             git reset -q --soft FETCH_HEAD
           fi
           git add -A
+          echo "Committing $(git diff --cached --name-only | wc -l) files"
           git commit -q -m "deploy ${GITHUB_SHA}" || { echo "No changes to deploy."; exit 0; }
           git push -q "$REMOTE" HEAD:deploy
