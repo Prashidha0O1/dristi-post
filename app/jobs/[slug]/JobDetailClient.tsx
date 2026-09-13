@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Briefcase, Clock, MapPin, Wallet } from "lucide-react";
 import { PageShell } from "@/components/pageShell";
 import { useLocale } from "@/lib/localeContext";
+import { formatSalary } from "@/lib/formatSalary";
 import { employmentTypes, type JobRecord } from "@/lib/domain/job";
 import { localisedTextToRecord } from "@/lib/domain/article";
 import { findProvince } from "@/lib/domain/province";
@@ -93,7 +94,7 @@ export default function JobDetailClient({ job }: { job: JobRecord }) {
               <Detail
                 icon={<Wallet size={16} strokeWidth={1.8} aria-hidden="true" />}
                 label={locale === "ne" ? "तलब" : "Salary"}
-                value={job.salary}
+                value={formatSalary(job.salary, locale)}
               />
             )}
             {job.deadline && (

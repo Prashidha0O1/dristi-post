@@ -6,6 +6,7 @@ import { Briefcase, Clock, MapPin } from "lucide-react";
 import { PageShell } from "@/components/pageShell";
 import { SectionHeader } from "@/components/sectionHeader";
 import { useLocale } from "@/lib/localeContext";
+import { formatSalary } from "@/lib/formatSalary";
 import { employmentTypes, type JobRecord } from "@/lib/domain/job";
 import { localisedTextToRecord } from "@/lib/domain/article";
 import { findProvince } from "@/lib/domain/province";
@@ -78,7 +79,7 @@ function JobCard({ job }: { job: JobRecord }) {
 
         {job.salary && (
           <Text mt="12px" pt="12px" borderTop="1px solid var(--color-border)" fontSize="14px" fontWeight="600" color="var(--color-headline)">
-            {job.salary}
+            {formatSalary(job.salary, locale)}
           </Text>
         )}
       </Box>
