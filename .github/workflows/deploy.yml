@@ -51,15 +51,15 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -p "${{ secrets.CPANEL_SSH_PORT }}" "${{ secrets.CPANEL_SSH_HOST }}" >> ~/.ssh/known_hosts
 
+      # rsync isn't available on cPanel's jailed shell (it closes the connection),
+      # so ship the bundle as a tar stream over SSH — only needs `tar` remotely.
+      # .env, public/uploads and tmp aren't in the bundle, so they're untouched.
       - name: Deploy
         run: |
-          rsync -az --delete \
-            --exclude '.env' \
-            --exclude 'public/uploads' \
-            --exclude 'tmp' \
-            -e "ssh -p ${{ secrets.CPANEL_SSH_PORT }}" \
-            .next/standalone/ \
-            "${{ secrets.CPANEL_SSH_USER }}@${{ secrets.CPANEL_SSH_HOST }}:${{ secrets.CPANEL_APP_PATH }}/"
+          tar czf - -C .next/standalone . \
+            | ssh -p "${{ secrets.CPANEL_SSH_PORT }}" \
+                "${{ secrets.CPANEL_SSH_USER }}@${{ secrets.CPANEL_SSH_HOST }}" \
+                "mkdir -p '${{ secrets.CPANEL_APP_PATH }}' && tar xzf - -C '${{ secrets.CPANEL_APP_PATH }}'"
 
       - name: Restart app
         run: |
