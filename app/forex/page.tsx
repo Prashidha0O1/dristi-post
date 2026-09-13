@@ -4,6 +4,7 @@ import { Box, Flex, Heading, Text, Skeleton } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { PageShell } from "@/components/pageShell";
 import { useLocale } from "@/lib/localeContext";
+import { getFlagUrl } from "@/lib/currencyFlags";
 
 interface Rate {
   name: string;
@@ -41,14 +42,16 @@ export default function ForexPageClient() {
   return (
     <PageShell>
       <Box maxW="800px" mx="auto" pt="20px">
-        <Heading as="h1" fontSize="32px" fontWeight="700" color="var(--color-headline)" mb="8px">
-          {locale === "ne" ? "विदेशी मुद्रा विनिमय दर" : "Foreign Exchange Rates"}
-        </Heading>
-        <Flex justify="space-between" align="center" mb="24px" wrap="wrap" gap="16px">
-          <Text fontSize="14px" color="var(--color-muted)">
-            {locale === "ne" ? "स्रोत: नेपाल राष्ट्र बैंक" : "Source: Nepal Rastra Bank"}
+        <Box borderBottom="2px solid var(--color-nav)" pb="12px" mb="32px">
+          <Heading as="h1" fontSize={{ base: "28px", md: "32px" }} fontWeight="800" color="var(--color-headline)">
+            {locale === "ne" ? "विदेशी मुद्रा विनिमय (Forex)" : "Foreign Exchange"}
+          </Heading>
+          <Text color="var(--color-muted)" fontSize="15px" mt="8px">
+            {locale === "ne" ? "नेपाल राष्ट्र बैंकको आजको विदेशी मुद्रा खरिद तथा बिक्री दर।" : "Today's foreign exchange buying and selling rates from NRB."}
             {date ? ` · ${date}` : ""}
           </Text>
+        </Box>
+        <Flex justify="flex-end" align="center" mb="24px" wrap="wrap" gap="16px">
           <input
             type="text"
             placeholder={locale === "ne" ? "मुद्रा खोज्नुहोस्..." : "Search currency..."}
@@ -87,7 +90,10 @@ export default function ForexPageClient() {
               </Flex>
               {filteredRates.map((rate, index) => (
                 <Flex key={rate.iso3} px="16px" py="12px" borderTop="1px solid var(--color-border)" bg={index % 2 === 0 ? "var(--color-surface)" : "var(--color-card-alt)"} align="center">
-                  <Text flex="2" fontWeight="500" color="var(--color-body)">{rate.name}</Text>
+                  <Flex flex="2" align="center" gap="10px">
+                    {getFlagUrl(rate.iso3) && <img src={getFlagUrl(rate.iso3)!} alt={rate.iso3} width="24" height="16" style={{ borderRadius: "2px", border: "1px solid rgba(0,0,0,0.1)" }} />}
+                    <Text fontWeight="500" color="var(--color-body)">{rate.name}</Text>
+                  </Flex>
                   <Text className="dp-english" flex="1" textAlign="center" fontWeight="600" color="var(--color-subtle)">{rate.iso3}</Text>
                   <Text className="dp-number" flex="1" textAlign="right" color="var(--color-muted)">{rate.unit}</Text>
                   <Text className="dp-number" flex="1" textAlign="right" color="#16a34a" fontWeight="700">{rate.buy}</Text>

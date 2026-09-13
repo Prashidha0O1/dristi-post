@@ -74,10 +74,13 @@ export function BreakingTicker({ lang, onDismiss }: BreakingTickerProps) {
         <div className="flex shrink-0 items-center gap-1">
           <div className="mr-1 hidden items-center gap-1.5 sm:flex" aria-hidden="true">
             {breakingItems.map((b, i) => (
-              <span
+              <button
+                type="button"
                 key={b.id}
-                className={`h-1 rounded-full transition-all ${
-                  i === index ? "w-5 bg-white" : "w-1.5 bg-white/40"
+                onClick={() => setIndex(i)}
+                aria-label={`Go to headline ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                  i === index ? "w-5 bg-white" : "w-1.5 bg-white/40 hover:bg-white/70"
                 }`}
               />
             ))}

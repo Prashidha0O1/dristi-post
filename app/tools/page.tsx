@@ -57,7 +57,7 @@ export default function ToolsPage() {
     },
     {
       id: "gold-silver",
-      href: "/",
+      href: "/gold-silver",
       titleNe: "सुन चाँदी दर",
       titleEn: "Gold & Silver",
       descNe: "आजको सुन र चाँदीको बजार भाउको जानकारी।",

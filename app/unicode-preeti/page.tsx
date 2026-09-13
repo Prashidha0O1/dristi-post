@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex, Text, chakra } from "@chakra-ui/react";
+import { Box, Flex, Text, chakra, Heading } from "@chakra-ui/react";
 import { useState } from "react";
 import { PageShell } from "@/components/pageShell";
 import { SectionHeader } from "@/components/sectionHeader";
@@ -25,12 +25,19 @@ export default function UnicodePreetiPage() {
 
   return (
     <PageShell>
-      <SectionHeader
-        title={locale === "ne" ? "नेपाली टाइपिंग → प्रिती रूपान्तरक" : "Nepali Typing → Preeti Converter"}
-        accent="var(--color-brand)"
-      />
+      <Box maxW="800px" mx="auto" pt="20px">
+        <Box borderBottom="2px solid var(--color-nav)" pb="12px" mb="32px">
+        <Heading as="h1" fontSize={{ base: "28px", md: "32px" }} fontWeight="800" color="var(--color-headline)">
+          {locale === "ne" ? "युनिकोड ↔ प्रिती" : "Unicode ↔ Preeti"}
+        </Heading>
+        <Text color="var(--color-muted)" fontSize="15px" mt="8px">
+          {locale === "ne" 
+            ? "नेपाली युनिकोडलाई सजिलै प्रिती फन्टमा बदल्नुहोस्।"
+            : "Convert Nepali Unicode to Preeti font format easily."}
+        </Text>
+      </Box>
 
-      <Box maxW="700px" mx="auto" py="20px">
+      <Box>
         <Text fontSize="14px" color="var(--color-subtle)" mb="20px" lineHeight="1.7">
           {locale === "ne"
             ? "तलको बक्समा नेपाली युनिकोड वा रोमन (Mero) टाइप गर्नुहोस्। प्रिती फन्टमा रूपान्तरित पाठ तल देखिनेछ।"
@@ -105,6 +112,7 @@ export default function UnicodePreetiPage() {
             readOnly
           />
         </Box>
+      </Box>
       </Box>
     </PageShell>
   );

@@ -127,8 +127,8 @@ export default function JobDetailClient({ job }: { job: JobRecord }) {
             </Text>
             <Text fontSize="13px" color="var(--color-muted)" mb="16px" lineHeight="1.6">
               {locale === "ne"
-                ? "आवेदन दृष्टि पोस्ट मार्फत होइन, सीधै रोजगारदातासँग जान्छ।"
-                : "Applications go directly to the employer, not through Dristi Post."}
+                ? "आवेदन दृष्टि टाइम्स मार्फत होइन, सीधै रोजगारदातासँग जान्छ।"
+                : "Applications go directly to the employer, not through Dristi Times."}
             </Text>
             <chakra.a
               href={applyHref}

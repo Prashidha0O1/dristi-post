@@ -4,9 +4,9 @@ import { Providers } from "@/lib/provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Dristi Post - Nepal's Trusted News Portal",
+  title: "Dristi Times - Nepal's Trusted News Portal",
   description:
-    "Dristi Post delivers the latest news from Nepal and around the world in Nepali and English.",
+    "Dristi Times delivers the latest news from Nepal and around the world in Nepali and English.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

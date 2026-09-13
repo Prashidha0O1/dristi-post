@@ -9,8 +9,8 @@ export const dynamic = "force-dynamic";
 
 
 export const metadata: Metadata = {
-  title: "रोजगार | Dristi Post",
-  description: "The latest job openings from across Nepal, on Dristi Post.",
+  title: "रोजगार | Dristi Times",
+  description: "The latest job openings from across Nepal, on Dristi Times.",
 };
 
 export default async function JobsPage() {

@@ -1,5 +1,5 @@
 -- ============================================================================
--- Dristi Post — MySQL / MariaDB schema
+-- Dristi Times — MySQL / MariaDB schema
 -- ============================================================================
 -- Import this once into the cPanel database (phpMyAdmin > Import, or the SQL
 -- tab). It is safe to re-run: every CREATE uses IF NOT EXISTS.

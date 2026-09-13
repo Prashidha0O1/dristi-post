@@ -43,7 +43,13 @@ function FooterHeading({ children }: { children: React.ReactNode }) {
 
 export function Footer() {
   const { t, localized, locale } = useLocale();
-  const footerCategories = [...categories.slice(0, 8), { id: "province", slug: "province", name: { ne: "प्रदेश", en: "Provinces" } }];
+  
+  const topSlugs = ["politics", "society", "economy", "health", "sports", "entertainment", "tourism", "opinion", "education", "science-tech"];
+  const footerCategories = [
+    ...categories.filter(c => topSlugs.includes(c.slug)).slice(0, 10),
+    { id: "province", slug: "province", name: { ne: "प्रदेश", en: "Provinces" } }
+  ];
+
 
   return (
     <Box as="footer" className="dp-footer" bg="var(--color-nav)" color="rgba(255,255,255,0.7)">
@@ -52,7 +58,7 @@ export function Footer() {
           <Box gridColumn={{ base: "1 / -1", md: "auto" }}>
             <Text fontSize="25px" fontWeight="800" lineHeight="1" fontFamily="var(--font-mukta), sans-serif">
               <Text as="span" color="var(--color-brand)">{locale === "ne" ? "दृष्टि" : "Dristi"}</Text>{" "}
-              <Text as="span" color="white">{locale === "ne" ? "पोस्ट" : "Post"}</Text>
+              <Text as="span" color="white">{locale === "ne" ? "टाइम्स" : "Times"}</Text>
             </Text>
             <Text mt="12px" maxW="260px" color="rgba(255,255,255,0.55)" fontSize="13px" lineHeight="1.6">
               {locale === "ne"
@@ -76,6 +82,9 @@ export function Footer() {
                   <Text _hover={{ color: "white" }} transition="color 150ms ease">{localized(category.name)}</Text>
                 </Link>
               ))}
+              <Link href="/jobs">
+                  <Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "रोजगारी" : "Jobs"}</Text>
+                </Link>
             </SimpleGrid>
           </Box>
 
@@ -87,6 +96,7 @@ export function Footer() {
               <Link href="/unicode-preeti"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "युनिकोड → प्रिती" : "Unicode → Preeti"}</Text></Link>
               <Link href="/rashifal"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "राशिफल" : "Rashifal"}</Text></Link>
               <Link href="/forex"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "विदेशी मुद्रा" : "Forex"}</Text></Link>
+              <Link href="/gold-silver"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "सुन चाँदी दर" : "Gold & Silver"}</Text></Link>
             </Flex>
           </Box>
 
@@ -96,8 +106,8 @@ export function Footer() {
             <Box mb="24px">
               <FooterHeading>{locale === "ne" ? "विज्ञापनका लागि सम्पर्क" : "Contact for advertisement"}</FooterHeading>
               <Flex direction="column" gap="6px" fontSize="13px" color="rgba(255,255,255,0.7)">
-                <a href="mailto:ads@dristipost.com" style={{ display: "inline-block" }}>
-                  <Text _hover={{ color: "white" }} transition="color 150ms ease">Email: ads@dristipost.com</Text>
+                <a href="mailto:ads@dristitimes.com" style={{ display: "inline-block" }}>
+                  <Text _hover={{ color: "white" }} transition="color 150ms ease">Email: ads@dristitimes.com</Text>
                 </a>
                 <a href="tel:+97714123456" style={{ display: "inline-block" }}>
                   <Text className="dp-english" _hover={{ color: "white" }} transition="color 150ms ease">Phone: +977-1-4123456</Text>
@@ -129,7 +139,7 @@ export function Footer() {
         </Grid>
 
         <Flex borderTop="1px solid rgba(255,255,255,0.12)" pt="16px" gap="8px" direction={{ base: "column", sm: "row" }} align={{ base: "flex-start", sm: "center" }} justify="space-between" color="rgba(255,255,255,0.4)" fontSize="11px">
-          <Text>© {locale === "ne" ? "२०८३ दृष्टि पोस्ट। सर्वाधिकार सुरक्षित।" : "2026 Dristi Post. All rights reserved."}</Text>
+          <Text>© {locale === "ne" ? "२०८३ दृष्टि टाइम्स। सर्वाधिकार सुरक्षित।" : "2026 Dristi Times. All rights reserved."}</Text>
           <Text className="dp-english">Editorial policy · Privacy · Contact</Text>
         </Flex>
       </Box>

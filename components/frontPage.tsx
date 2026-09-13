@@ -179,7 +179,7 @@ function UtilityRail() {
     <Flex direction="column" gap="0" className="dp-utility-rail-standalone">
       <NepaliCalendar variant="default" />
       <Box border="1px solid var(--color-border)" borderTop="none" borderRadius="0 0 4px 4px" overflow="hidden" bg="var(--color-surface)">
-        <Grid templateColumns={{ base: "1fr", sm: "1fr 1fr", lg: "1fr" }} gap="0">
+        <Grid templateColumns="1fr" gap="0">
           <GoldSilverWidget variant="compact" />
           <ForexWidget variant="compact" />
         </Grid>

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { SectionHeader } from "@/components/sectionHeader";
 import { useLocale } from "@/lib/localeContext";
+import { getFlagUrl } from "@/lib/currencyFlags";
 
 interface Rate {
   name: string;
@@ -56,11 +57,11 @@ export function ForexWidget({ variant = "default" }: { variant?: WidgetVariant }
         ) : (
           <Flex direction="column" gap="0">
             <Flex align="center" justify="space-between" borderBottom="1px solid var(--color-border)" pb="8px">
-              <Text className="dp-english" fontSize="12px" fontWeight="600" color="var(--color-headline)">USD</Text>
+              <Flex align="center" gap="6px"><img src={getFlagUrl("USD")!} alt="US" width="16" height="11" style={{ borderRadius: "2px", border: "1px solid rgba(0,0,0,0.1)" }} /><Text className="dp-english" fontSize="12px" fontWeight="600" color="var(--color-headline)">USD {usd?.unit || 1}</Text></Flex>
               <Text className="dp-number" fontSize="16px" fontWeight="700" color="var(--color-headline)">रु {usd?.buy || "—"}</Text>
             </Flex>
             <Flex align="center" justify="space-between" pt="8px">
-              <Text className="dp-english" fontSize="12px" fontWeight="600" color="var(--color-headline)">INR {inr?.unit || 100}</Text>
+              <Flex align="center" gap="6px"><img src={getFlagUrl("INR")!} alt="IN" width="16" height="11" style={{ borderRadius: "2px", border: "1px solid rgba(0,0,0,0.1)" }} /><Text className="dp-english" fontSize="12px" fontWeight="600" color="var(--color-headline)">INR {inr?.unit || 100}</Text></Flex>
               <Text className="dp-number" fontSize="16px" fontWeight="700" color="var(--color-headline)">रु {inr?.buy || "—"}</Text>
             </Flex>
           </Flex>
@@ -85,7 +86,10 @@ export function ForexWidget({ variant = "default" }: { variant?: WidgetVariant }
         </Flex>
         {display.map((rate, index) => (
           <Flex key={rate.iso3} px="10px" py="6px" borderTop="1px solid var(--color-border)" bg={index % 2 === 0 ? "var(--color-surface)" : "var(--color-card-alt)"} align="center">
-            <Text flex="1" fontWeight="500" color="var(--color-body)">{rate.iso3}</Text>
+            <Flex flex="1" align="center" gap="8px">
+              {getFlagUrl(rate.iso3) && <img src={getFlagUrl(rate.iso3)!} alt={rate.iso3} width="16" height="11" style={{ borderRadius: "2px", border: "1px solid rgba(0,0,0,0.1)" }} />}
+              <Text fontWeight="500" color="var(--color-body)">{rate.iso3}</Text>
+            </Flex>
             <Text className="dp-number" w="60px" textAlign="right" color="var(--color-muted)">{rate.unit}</Text>
             <Text className="dp-number" w="70px" textAlign="right" color="#16a34a" fontWeight="600">{rate.buy}</Text>
             <Text className="dp-number" w="70px" textAlign="right" color="#dc2626" fontWeight="600">{rate.sell}</Text>
