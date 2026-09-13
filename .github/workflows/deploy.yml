@@ -1,15 +1,15 @@
 name: Deploy to cPanel
 
-# Push to main -> build in CI -> ship the standalone bundle to cPanel over SSH
-# -> restart Passenger. The build needs no secrets: DATABASE_URL and friends are
-# runtime-only and are set in cPanel's Node.js App > Environment variables.
+# Push to main -> build a self-contained bundle in CI -> copy it to the server
+# over SSH -> restart. Nothing is installed or built on the server (that is what
+# CloudLinux keeps rejecting). The build needs no secrets: DATABASE_URL is set on
+# the server, in cPanel > Setup Node.js App > Environment variables.
 
 on:
   push:
     branches: [main]
   workflow_dispatch: {}
 
-# Never run two deploys at once; a newer push cancels an in-flight one.
 concurrency:
   group: deploy-cpanel
   cancel-in-progress: true
@@ -20,25 +20,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4 # version comes from package.json "packageManager"
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: pnpm
 
-      - name: Install
-        run: pnpm install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec tsc --noEmit
+      - run: pnpm build
 
-      - name: Typecheck
-        run: pnpm exec tsc --noEmit
-
-      - name: Build
-        run: pnpm build
-
-      # Next's standalone output does not include static assets or public/ —
-      # they have to be copied in next to server.js.
-      - name: Assemble standalone bundle
+      # Standalone doesn't include static assets or public/ — copy them in next
+      # to server.js so the bundle is complete.
+      - name: Assemble bundle
         run: |
           cp -r .next/static .next/standalone/.next/static
           cp -r public .next/standalone/public
@@ -53,16 +50,17 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -p "${{ secrets.CPANEL_SSH_PORT }}" "${{ secrets.CPANEL_SSH_HOST }}" >> ~/.ssh/known_hosts
 
-      - name: Deploy over rsync
+      - name: Deploy
         run: |
           rsync -az --delete \
+            --exclude '.env' \
             --exclude 'public/uploads' \
             --exclude 'tmp' \
             -e "ssh -p ${{ secrets.CPANEL_SSH_PORT }}" \
             .next/standalone/ \
             "${{ secrets.CPANEL_SSH_USER }}@${{ secrets.CPANEL_SSH_HOST }}:${{ secrets.CPANEL_APP_PATH }}/"
 
-      - name: Restart Passenger
+      - name: Restart app
         run: |
           ssh -p "${{ secrets.CPANEL_SSH_PORT }}" \
             "${{ secrets.CPANEL_SSH_USER }}@${{ secrets.CPANEL_SSH_HOST }}" \
