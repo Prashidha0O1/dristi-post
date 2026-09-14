@@ -40,8 +40,9 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
+          protocol: ftp
           port: 21
+          timeout: 120000
           local-dir: ./.next/standalone/
           server-dir: ./
           exclude: |
