@@ -1,4 +1,4 @@
-name: Build and publish deploy branch
+name: Deploy to cPanel (FTP)
 
 on:
   push:
@@ -6,14 +6,11 @@ on:
   workflow_dispatch: {}
 
 concurrency:
-  group: build-deploy-branch
+  group: deploy-cpanel-ftp
   cancel-in-progress: true
 
-permissions:
-  contents: write
-
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,31 +29,22 @@ jobs:
 
       - name: Assemble bundle
         run: |
-          set -e
-          test -d .next/standalone || { echo "ERROR: .next/standalone missing (is output:'standalone' set?)"; exit 1; }
           cp -r .next/static .next/standalone/.next/static
           cp -r public .next/standalone/public
-          cp .cpanel.yml .next/standalone/.cpanel.yml
-          echo "Bundle top-level:"; ls -la .next/standalone
-          test -d .next/standalone/node_modules || { echo "ERROR: bundle has no node_modules"; exit 1; }
-          test -d .next/standalone/.next || { echo "ERROR: bundle has no .next"; exit 1; }
+          mkdir -p .next/standalone/tmp
+          date +%s > .next/standalone/tmp/restart.txt
 
-      - name: Publish to deploy branch
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -e
-          cd .next/standalone
-          rm -rf .git
-          git init -q -b deploy
-          git config user.email "ci@dristitimes"
-          git config user.name "Deploy Bot"
-          REMOTE="https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
-          if git ls-remote --exit-code "$REMOTE" refs/heads/deploy >/dev/null 2>&1; then
-            git fetch -q --depth=1 "$REMOTE" deploy
-            git reset -q --soft FETCH_HEAD
-          fi
-          git add -A
-          echo "Committing $(git diff --cached --name-only | wc -l) files"
-          git commit -q -m "deploy ${GITHUB_SHA}" || { echo "No changes to deploy."; exit 0; }
-          git push -q "$REMOTE" HEAD:deploy
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./.next/standalone/
+          server-dir: ./
+          exclude: |
+            **/.env
+            **/.env.*
+            **/public/uploads/**
