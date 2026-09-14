@@ -14,6 +14,6 @@ export const categories: Category[] = [
   { id: "12", slug: "sports", name: { ne: "खेलकुद", en: "Sports" }, color: "#16a34a" },
   { id: "13", slug: "entertainment", name: { ne: "मनोरञ्जन", en: "Entertainment" }, color: "#d946ef" },
   { id: "14", slug: "lifestyle", name: { ne: "जीवनशैली", en: "Lifestyle" }, color: "#f97316" },
-  { id: "15", slug: "opinion", name: { ne: "विचार", en: "Opinion" }, color: "#b45309" },
+  { id: "15", slug: "blog", name: { ne: "ब्लग", en: "Blog" }, color: "#b45309" },
   { id: "16", slug: "interview", name: { ne: "अन्तर्वार्ता", en: "Interview" }, color: "#64748b" },
 ];

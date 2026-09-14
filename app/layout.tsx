@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { mukta, poppins } from "@/lib/fonts";
 import { Providers } from "@/lib/provider";
+import { BackToTop } from "@/components/BackToTop";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,7 +14,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ne" className={`${mukta.variable} ${poppins.variable}`} suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <BackToTop />
+        </Providers>
       </body>
     </html>
   );
