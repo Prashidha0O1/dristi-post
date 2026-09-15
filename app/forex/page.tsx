@@ -51,24 +51,24 @@ export default function ForexPageClient() {
             {date ? ` · ${date}` : ""}
           </Text>
         </Box>
-        <Flex justify="flex-end" align="center" mb="24px" wrap="wrap" gap="16px">
+        <Box mb="24px">
           <input
             type="text"
             placeholder={locale === "ne" ? "मुद्रा खोज्नुहोस्..." : "Search currency..."}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={{
-              padding: "8px 12px",
-              borderRadius: "4px",
+              padding: "10px 16px",
+              borderRadius: "6px",
               border: "1px solid var(--color-border)",
               backgroundColor: "var(--color-surface)",
               color: "var(--color-headline)",
-              fontSize: "14px",
+              fontSize: "15px",
               width: "100%",
-              maxWidth: "250px",
+              maxWidth: "100%",
             }}
           />
-        </Flex>
+        </Box>
 
         {!loaded ? (
           <Flex direction="column" gap="16px">
