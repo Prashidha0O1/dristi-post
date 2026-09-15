@@ -103,17 +103,7 @@ export function AdSlot({
           style={{ objectFit: "cover" }}
         />
       </chakra.a>
-      <Text
-        mt="3px"
-        fontSize="9px"
-        textTransform="uppercase"
-        letterSpacing="0.16em"
-        color="var(--color-faint)"
-        textAlign="right"
-      >
-        {/* Paid placement should be identifiable as such, not passed off as editorial. */}
-        विज्ञापन / Advertisement
-      </Text>
+      
     </Box>
   );
 }
