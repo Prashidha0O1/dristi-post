@@ -22,6 +22,8 @@ function readArticleForm(formData: FormData) {
       ne: formData.get("bodyNe") as string,
       en: (formData.get("bodyEn") as string) || undefined,
     },
+    slug: (formData.get("slug") as string) || undefined,
+    metaDescription: (formData.get("metaDescription") as string) || undefined,
     categorySlug: formData.get("categorySlug") as string,
     provinceSlug: (formData.get("provinceSlug") as ProvinceSlug) || undefined,
     imageUrl: formData.get("imageUrl") as string,

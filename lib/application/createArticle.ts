@@ -21,11 +21,10 @@ export class CreateArticle {
 
     const now = this.clock.now().toISOString();
 
-    // Prefer the English title for slugs (URL-friendly); fall back to Nepali,
-    // which the slugger transliterates/normalises.
-    // English preferred for a readable ASCII slug; falls back to Nepali, and
-    // now tolerates either language being absent.
-    const slugSource = input.title.en?.trim() || input.title.ne?.trim() || "";
+    // A hand-typed slug wins; otherwise derive one from the English title (or
+    // Nepali, transliterated). The slugger normalises and de-duplicates either way.
+    const slugSource =
+      input.slug?.trim() || input.title.en?.trim() || input.title.ne?.trim() || "";
     const slug = await this.slugger.slugify(slugSource, async (candidate) => {
       return (await this.articles.findBySlug(candidate)) !== null;
     });
@@ -38,6 +37,7 @@ export class CreateArticle {
       title: input.title,
       excerpt: input.excerpt,
       body: input.body,
+      metaDescription: input.metaDescription?.trim() || undefined,
       categorySlug: input.categorySlug,
       provinceSlug: input.provinceSlug,
       authorId: input.authorId,

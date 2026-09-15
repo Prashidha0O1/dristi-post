@@ -112,7 +112,7 @@ export function buildContainer(
     slugger,
 
     createArticle: new CreateArticle(articles, ids, clock, slugger),
-    updateArticle: new UpdateArticle(articles, clock),
+    updateArticle: new UpdateArticle(articles, clock, slugger),
     changeArticleStatus: new ChangeArticleStatus(articles, clock),
     deleteArticle: new DeleteArticle(articles),
     listArticles: new ListArticles(articles),

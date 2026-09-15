@@ -43,6 +43,26 @@ export function localisedFromRow(ne: unknown, en: unknown): LocalisedText {
   return { ne: neText, en: enText };
 }
 
+/** Longest an editable slug may be (SEO-friendly, kept short). */
+export const MAX_SLUG = 70;
+
+/**
+ * Normalises a hand-typed slug into a clean, English-only URL segment:
+ * lowercase ASCII, words joined by hyphens, no leading/trailing hyphen, capped
+ * at MAX_SLUG. Anything non-Latin (e.g. Devanagari) is dropped, so the result
+ * is always URL- and SEO-safe.
+ */
+export function normalizeSlug(input: string, max = MAX_SLUG): string {
+  return input
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, max)
+    .replace(/-+$/g, "");
+}
+
 /**
  * The persisted shape of a news article. This is the domain's own model — it is
  * deliberately independent of both the storage schema and the public-facing
@@ -54,6 +74,8 @@ export interface ArticleRecord {
   title: LocalisedText;
   excerpt: LocalisedText;
   body: LocalisedText;
+  /** Optional SEO meta description (falls back to the excerpt when absent). */
+  metaDescription?: string;
   categorySlug: string;
   /** Absent for national/international news that isn't province-specific. */
   provinceSlug?: ProvinceSlug;
@@ -82,6 +104,10 @@ export interface NewArticleInput {
   title: LocalisedText;
   excerpt: LocalisedText;
   body: LocalisedText;
+  /** Optional hand-typed slug; auto-generated from the title when blank. */
+  slug?: string;
+  /** Optional SEO meta description. */
+  metaDescription?: string;
   categorySlug: string;
   provinceSlug?: ProvinceSlug;
   authorId: string;

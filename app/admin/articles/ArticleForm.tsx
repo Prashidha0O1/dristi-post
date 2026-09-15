@@ -33,6 +33,8 @@ interface Props {
     excerptEn?: string;
     bodyNe?: string;
     bodyEn?: string;
+    slug?: string;
+    metaDescription?: string;
     categorySlug?: string;
     provinceSlug?: string;
     authorId?: string;
@@ -122,6 +124,35 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
 
         <Field label="Tags" hint="Comma-separated slugs">
           <chakra.input name="tagSlugs" defaultValue={d.tagSlugs} placeholder="politics,breaking" {...fieldStyles.input} />
+        </Field>
+      </FormSection>
+
+      <FormSection title="SEO & URL" description="The slug is the article's web address; the meta description is the snippet shown in search results.">
+        <Field
+          label="URL slug"
+          error={issues.slug}
+          hint="English letters, numbers and hyphens only, up to 70 characters. Leave blank to auto-generate from the title. Changing it on a published article changes its link."
+        >
+          <chakra.input
+            name="slug"
+            defaultValue={d.slug}
+            maxLength={70}
+            placeholder="this-is-a-good-headline"
+            {...fieldStyles.input}
+          />
+        </Field>
+        <Field
+          label="Meta description"
+          error={issues.metaDescription}
+          hint="Shown in Google results. Aim for 150–160 characters. Falls back to the excerpt if blank."
+        >
+          <chakra.textarea
+            name="metaDescription"
+            defaultValue={d.metaDescription}
+            maxLength={200}
+            h="72px"
+            {...fieldStyles.textarea}
+          />
         </Field>
       </FormSection>
 

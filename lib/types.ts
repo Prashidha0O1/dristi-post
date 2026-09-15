@@ -6,6 +6,7 @@ export interface Article {
   title: Record<Locale, string>;
   excerpt: Record<Locale, string>;
   content: Record<Locale, string>;
+  metaDescription?: string;
   category: Category;
   author: Author;
   image: string;

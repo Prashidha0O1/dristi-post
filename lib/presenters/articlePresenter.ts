@@ -46,6 +46,7 @@ export function toArticleViewModel(record: ArticleRecord): Article {
     title: localisedTextToRecord(record.title),
     excerpt: localisedTextToRecord(record.excerpt),
     content: localisedTextToRecord(record.body),
+    metaDescription: record.metaDescription,
     category,
     author,
     image: record.imageUrl,

@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `excerptEn`   TEXT         NULL,
   `bodyNe`      MEDIUMTEXT   NOT NULL,
   `bodyEn`      MEDIUMTEXT   NULL,
+  `metaDescription` VARCHAR(320) NULL,
   `imageUrl`    VARCHAR(1024) NOT NULL,
   `status`      ENUM('DRAFT','PUBLISHED') NOT NULL DEFAULT 'DRAFT',
   `province`    ENUM('KOSHI','MADHESH','BAGMATI','GANDAKI','LUMBINI','KARNALI','SUDURPASHCHIM') NULL,
