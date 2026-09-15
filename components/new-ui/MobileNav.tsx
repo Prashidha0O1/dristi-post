@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { XIcon } from "lucide-react";
+import { XIcon, UserIcon } from "lucide-react";
 import Link from "next/link";
 import { primarySections, provinces, secondarySections } from "../data/navigation";
 import type { Lang } from "../types/navigation";
@@ -68,6 +68,16 @@ export function MobileNav({ open, lang, activeId, onSelect, onClose, onLangChang
                   </button>
                 ))}
               </div>
+
+              
+              <Link
+                href="/login"
+                onClick={onClose}
+                className={`mb-6 flex w-full items-center justify-center gap-2 rounded-lg bg-ink px-4 py-3 text-[16px] font-semibold text-white transition hover:bg-crimson dark:bg-white dark:text-ink dark:hover:bg-crimson dark:hover:text-white ${lang === "np" ? "font-np" : ""}`}
+              >
+                <UserIcon className="h-5 w-5" />
+                {lang === "np" ? "सदस्यता / लगइन" : "Subscribe / Login"}
+              </Link>
 
               <ul className="space-y-0.5">
                 {[...primarySections, ...secondarySections].map((s) => (

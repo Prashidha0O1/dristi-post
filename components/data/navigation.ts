@@ -7,6 +7,8 @@ export const primarySections: NavSection[] = [
   { id: "education", np: "शिक्षा", en: "Education", href: "/category/education" },
   { id: "sports", np: "खेलकुद", en: "Sports", href: "/category/sports" },
   { id: "science-tech", np: "विज्ञान र प्रविधि", en: "Science & Tech", href: "/category/science-tech" },
+  { id: "blog", np: "ब्लग", en: "Blog", href: "/category/blog" },
+  { id: "jobs", np: "रोजगार", en: "Jobs", href: "/jobs" },
   { id: "tools", np: "उपकरणहरू", en: "Tools", href: "/tools" },
 ];
 
@@ -19,9 +21,7 @@ export const secondarySections: NavSection[] = [
   { id: "tourism", np: "पर्यटन", en: "Tourism", href: "/category/tourism", blurb: "यात्रा र गन्तव्य" },
   { id: "entertainment", np: "मनोरञ्जन", en: "Entertainment", href: "/category/entertainment", blurb: "चलचित्र र संगीत" },
   { id: "lifestyle", np: "जीवनशैली", en: "Lifestyle", href: "/category/lifestyle", blurb: "खाना, यात्रा र सम्बन्ध" },
-  { id: "opinion", np: "विचार", en: "Opinion", href: "/category/opinion", blurb: "सम्पादकीय र स्तम्भहरू" },
   { id: "interview", np: "अन्तर्वार्ता", en: "Interview", href: "/category/interview", blurb: "विशेष कुराकानी" },
-  { id: "jobs", np: "रोजगार", en: "Jobs", href: "/jobs", blurb: "रोजगारीका अवसरहरू" },
 ];
 
 export const provinces: ProvinceItem[] = [

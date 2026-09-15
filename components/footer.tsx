@@ -44,7 +44,7 @@ function FooterHeading({ children }: { children: React.ReactNode }) {
 export function Footer() {
   const { t, localized, locale } = useLocale();
   
-  const topSlugs = ["politics", "society", "economy", "health", "sports", "entertainment", "tourism", "opinion", "education", "science-tech"];
+  const topSlugs = ["politics", "society", "economy", "health", "sports", "entertainment", "tourism", "blog", "education", "science-tech"];
   const footerCategories = [
     ...categories.filter(c => topSlugs.includes(c.slug)).slice(0, 10),
     { id: "province", slug: "province", name: { ne: "प्रदेश", en: "Provinces" } }
