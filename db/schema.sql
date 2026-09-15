@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `createdAt`   DATETIME(3)  NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `updatedAt`   DATETIME(3)  NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
   `publishedAt` DATETIME(3)  NULL,
+  `deletedAt`   DATETIME(3)  NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_articles_slug` (`slug`),
   KEY `idx_articles_status_published` (`status`, `publishedAt`),

@@ -40,6 +40,16 @@ export class UpdateArticle {
       updatedAt: this.clock.now().toISOString(),
     };
 
+    // Re-scheduling: a future scheduledAt publishes with a future publishedAt.
+    if (changes.scheduledAt !== undefined) {
+      const raw = changes.scheduledAt.trim();
+      const d = raw ? new Date(raw) : null;
+      if (d && !Number.isNaN(d.getTime())) {
+        updated.status = "published";
+        updated.publishedAt = d.toISOString();
+      }
+    }
+
     await this.articles.save(updated);
     return updated;
   }

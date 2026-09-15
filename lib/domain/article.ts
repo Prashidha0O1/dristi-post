@@ -88,8 +88,13 @@ export interface ArticleRecord {
   isTrending: boolean;
   createdAt: string;
   updatedAt: string;
-  /** Set when the article first transitions to `published`. */
+  /**
+   * When the article goes (or went) live. A value in the FUTURE means it is
+   * scheduled and stays hidden from the public until then.
+   */
   publishedAt?: string;
+  /** Set when the article is moved to trash; cleared on restore. */
+  deletedAt?: string;
   /**
    * Denormalised from the author join at read time (see
    * `SupabaseArticleRepository`'s `SELECT_FIELDS`) so the presenter doesn't
@@ -118,6 +123,8 @@ export interface NewArticleInput {
   isTrending?: boolean;
   /** Publish immediately, or leave as a draft (the default). */
   publish?: boolean;
+  /** ISO datetime to publish at; a future value schedules the article. */
+  scheduledAt?: string;
 }
 
 /** Every field an editor is allowed to change after creation. */
@@ -129,6 +136,10 @@ export interface ArticleQuery {
   provinceSlug?: ProvinceSlug;
   /** Free-text match against the Nepali and English titles. */
   search?: string;
+  /** Only articles whose publishedAt is at//before this ISO time (hides scheduled). */
+  publishedBefore?: string;
+  /** true: only trashed articles. Omitted/false: only non-trashed. */
+  onlyDeleted?: boolean;
   limit?: number;
   offset?: number;
 }

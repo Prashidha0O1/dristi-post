@@ -29,7 +29,13 @@ export class CreateArticle {
       return (await this.articles.findBySlug(candidate)) !== null;
     });
 
-    const publish = input.publish ?? false;
+    // Scheduling: a future scheduledAt publishes the article but with a future
+    // publishedAt, so the public queries keep it hidden until then.
+    const scheduled = input.scheduledAt?.trim() ? new Date(input.scheduledAt) : null;
+    const isScheduled =
+      scheduled !== null && !Number.isNaN(scheduled.getTime()) && scheduled.getTime() > this.clock.now().getTime();
+    const publish = (input.publish ?? false) || isScheduled;
+    const publishedAt = isScheduled ? scheduled!.toISOString() : publish ? now : undefined;
 
     const article: ArticleRecord = {
       id: this.ids.generate(),
@@ -49,7 +55,7 @@ export class CreateArticle {
       isTrending: input.isTrending ?? false,
       createdAt: now,
       updatedAt: now,
-      publishedAt: publish ? now : undefined,
+      publishedAt,
     };
 
     await this.articles.save(article);

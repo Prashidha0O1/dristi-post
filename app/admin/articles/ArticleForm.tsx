@@ -1,6 +1,6 @@
 "use client";
 
-import { Flex, SimpleGrid, chakra } from "@chakra-ui/react";
+import { Box, Flex, SimpleGrid, chakra } from "@chakra-ui/react";
 import { useActionState } from "react";
 import { categories } from "@/lib/config";
 import { provinces } from "@/lib/domain/province";
@@ -35,6 +35,7 @@ interface Props {
     bodyEn?: string;
     slug?: string;
     metaDescription?: string;
+    scheduledAt?: string;
     categorySlug?: string;
     provinceSlug?: string;
     authorId?: string;
@@ -165,6 +166,15 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
             <CheckboxField name="publish" label="Publish immediately" hint="Otherwise saved as a draft" />
           )}
         </Flex>
+
+        <Box mt="16px">
+          <Field
+            label="Schedule publish"
+            hint="Optional. Pick a future date/time to publish automatically then. Leave blank to publish now or keep as a draft."
+          >
+            <chakra.input type="datetime-local" name="scheduledAt" defaultValue={d.scheduledAt} {...fieldStyles.input} />
+          </Field>
+        </Box>
       </FormSection>
 
       <SubmitButton>{submitLabel}</SubmitButton>
