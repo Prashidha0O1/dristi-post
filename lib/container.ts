@@ -17,6 +17,7 @@ import { CreateArticle } from "./application/createArticle";
 import { UpdateArticle } from "./application/updateArticle";
 import { ChangeArticleStatus } from "./application/changeArticleStatus";
 import { DeleteArticle } from "./application/deleteArticle";
+import { ListTrashedArticles, RestoreArticle, DeleteArticleForever } from "./application/trashArticles";
 import {
   GetPublishedArticle,
   ListArticles,
@@ -61,6 +62,9 @@ export interface Container {
   updateArticle: UpdateArticle;
   changeArticleStatus: ChangeArticleStatus;
   deleteArticle: DeleteArticle;
+  listTrashedArticles: ListTrashedArticles;
+  restoreArticle: RestoreArticle;
+  deleteArticleForever: DeleteArticleForever;
   listArticles: ListArticles;
   listPublishedArticles: ListPublishedArticles;
   getPublishedArticle: GetPublishedArticle;
@@ -112,9 +116,12 @@ export function buildContainer(
     slugger,
 
     createArticle: new CreateArticle(articles, ids, clock, slugger),
-    updateArticle: new UpdateArticle(articles, clock),
+    updateArticle: new UpdateArticle(articles, clock, slugger),
     changeArticleStatus: new ChangeArticleStatus(articles, clock),
-    deleteArticle: new DeleteArticle(articles),
+    deleteArticle: new DeleteArticle(articles, clock),
+    listTrashedArticles: new ListTrashedArticles(articles, clock),
+    restoreArticle: new RestoreArticle(articles),
+    deleteArticleForever: new DeleteArticleForever(articles),
     listArticles: new ListArticles(articles),
     listPublishedArticles: new ListPublishedArticles(articles),
     getPublishedArticle: new GetPublishedArticle(articles),

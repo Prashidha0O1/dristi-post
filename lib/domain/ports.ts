@@ -22,6 +22,13 @@ export interface ArticleRepository {
   findBySlug(slug: string): Promise<ArticleRecord | null>;
   list(query: ArticleQuery): Promise<Paginated<ArticleRecord>>;
   save(article: ArticleRecord): Promise<void>;
+  /** Move to trash (soft delete). */
+  softDelete(id: string, at: string): Promise<void>;
+  /** Bring back from trash. */
+  restore(id: string): Promise<void>;
+  /** Permanently remove everything trashed before the given ISO time. */
+  purgeDeletedBefore(at: string): Promise<void>;
+  /** Permanent, immediate removal. */
   delete(id: string): Promise<void>;
 }
 

@@ -22,6 +22,9 @@ function readArticleForm(formData: FormData) {
       ne: formData.get("bodyNe") as string,
       en: (formData.get("bodyEn") as string) || undefined,
     },
+    slug: (formData.get("slug") as string) || undefined,
+    metaDescription: (formData.get("metaDescription") as string) || undefined,
+    scheduledAt: (formData.get("scheduledAt") as string) || undefined,
     categorySlug: formData.get("categorySlug") as string,
     provinceSlug: (formData.get("provinceSlug") as ProvinceSlug) || undefined,
     imageUrl: formData.get("imageUrl") as string,
@@ -86,9 +89,27 @@ export async function unpublishArticleAction(id: string) {
 }
 
 export async function deleteArticleAction(id: string) {
-  await requireCapability("content.delete");
+  // Soft delete (move to trash). Any signed-in editor can trash; permanent
+  // deletion below is owner-only.
+  await requireCapability("content.write");
   const container = getContainer();
   await container.deleteArticle.execute(id);
   updateTag("articles");
   redirect("/admin/articles");
+}
+
+export async function restoreArticleAction(id: string) {
+  await requireCapability("content.write");
+  const container = getContainer();
+  await container.restoreArticle.execute(id);
+  updateTag("articles");
+  redirect("/admin/articles/trash");
+}
+
+export async function deleteArticleForeverAction(id: string) {
+  await requireCapability("content.delete");
+  const container = getContainer();
+  await container.deleteArticleForever.execute(id);
+  updateTag("articles");
+  redirect("/admin/articles/trash");
 }

@@ -21,7 +21,12 @@ export class ListPublishedArticles {
   constructor(private readonly articles: ArticleRepository) {}
 
   execute(query: Omit<ArticleQuery, "status"> = {}): Promise<Paginated<ArticleRecord>> {
-    return this.articles.list({ ...query, status: "published" });
+    // Force status + hide scheduled (future publishedAt) and trashed articles.
+    return this.articles.list({
+      ...query,
+      status: "published",
+      publishedBefore: new Date().toISOString(),
+    });
   }
 }
 
@@ -31,7 +36,9 @@ export class GetPublishedArticle {
 
   async execute(slug: string): Promise<ArticleRecord | null> {
     const article = await this.articles.findBySlug(slug);
-    if (!article || article.status !== "published") return null;
+    if (!article || article.status !== "published" || article.deletedAt) return null;
+    // Scheduled (future publishedAt) or trashed articles are not public yet.
+    if (article.publishedAt && new Date(article.publishedAt) > new Date()) return null;
     return article;
   }
 }

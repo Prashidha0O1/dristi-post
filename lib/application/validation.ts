@@ -5,7 +5,7 @@ import { isEmploymentType } from "../domain/job";
 import { isAdPlacement } from "../adSlots";
 import { isProvinceSlug } from "../domain/province";
 import { categories } from "../config";
-import { hasAnyText, type LocalisedText } from "../domain/article";
+import { hasAnyText, normalizeSlug, MAX_SLUG, type LocalisedText } from "../domain/article";
 
 /** Raised for input the caller can fix; maps to HTTP 400 at the edge. */
 export class ValidationError extends Error {
@@ -25,6 +25,7 @@ export class NotFoundError extends Error {
 
 const MAX_TITLE = 200;
 const MAX_EXCERPT = 400;
+const MAX_META = 200;
 
 const categorySlugs = new Set(categories.map((c) => c.slug));
 
@@ -56,6 +57,24 @@ function checkLocalised(
   }
 }
 
+/** Optional hand-typed slug: must reduce to a non-empty English slug <= MAX_SLUG. */
+function checkSlug(issues: Record<string, string>, slug: string | undefined): void {
+  if (slug === undefined || slug.trim() === "") return; // blank -> auto-generated
+  const normalized = normalizeSlug(slug);
+  if (!normalized) {
+    issues.slug = "The slug must contain English letters or numbers.";
+  } else if (slug.trim().length > MAX_SLUG) {
+    issues.slug = `The slug must be at most ${MAX_SLUG} characters.`;
+  }
+}
+
+/** Optional SEO meta description length cap. */
+function checkMeta(issues: Record<string, string>, meta: string | undefined): void {
+  if (meta && meta.trim().length > MAX_META) {
+    issues.metaDescription = `The meta description must be at most ${MAX_META} characters.`;
+  }
+}
+
 /**
  * Validation lives here rather than inside the use cases so that the rules are
  * stated once and each use case keeps a single responsibility.
@@ -66,6 +85,8 @@ export function validateNewArticle(input: NewArticleInput): void {
   checkLocalised(issues, "title", input.title, "Title", MAX_TITLE);
   checkLocalised(issues, "excerpt", input.excerpt, "Excerpt", MAX_EXCERPT);
   checkLocalised(issues, "body", input.body, "Body");
+  checkSlug(issues, input.slug);
+  checkMeta(issues, input.metaDescription);
 
   if (!input.categorySlug?.trim()) {
     issues.categorySlug = "Category is required";
@@ -103,6 +124,8 @@ export function validateArticleUpdate(input: ArticleUpdateInput): void {
     checkLocalised(issues, "excerpt", input.excerpt, "Excerpt", MAX_EXCERPT);
   }
   if (input.body !== undefined) checkLocalised(issues, "body", input.body, "Body");
+  checkSlug(issues, input.slug);
+  checkMeta(issues, input.metaDescription);
   if (input.categorySlug !== undefined && !categorySlugs.has(input.categorySlug)) {
     issues.categorySlug = `Unknown category "${input.categorySlug}"`;
   }

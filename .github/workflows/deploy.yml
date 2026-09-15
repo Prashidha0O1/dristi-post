@@ -1,9 +1,4 @@
-name: Deploy to cPanel
-
-# Push to main -> build a self-contained bundle in CI -> copy it to the server
-# over SSH -> restart. Nothing is installed or built on the server (that is what
-# CloudLinux keeps rejecting). The build needs no secrets: DATABASE_URL is set on
-# the server, in cPanel > Setup Node.js App > Environment variables.
+name: Deploy to cPanel (FTP)
 
 on:
   push:
@@ -11,7 +6,7 @@ on:
   workflow_dispatch: {}
 
 concurrency:
-  group: deploy-cpanel
+  group: deploy-cpanel-ftp
   cancel-in-progress: true
 
 jobs:
@@ -30,39 +25,27 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
-      # next build type-checks on its own (and generates the LayoutProps/PageProps
-      # types first), so a separate tsc step here just fails on missing types.
       - run: pnpm build
 
-      # Standalone doesn't include static assets or public/ — copy them in next
-      # to server.js so the bundle is complete.
       - name: Assemble bundle
         run: |
           cp -r .next/static .next/standalone/.next/static
           cp -r public .next/standalone/public
+          mkdir -p .next/standalone/tmp
+          date +%s > .next/standalone/tmp/restart.txt
 
-      - name: Add SSH key
-        uses: webfactory/ssh-agent@v0.9.0
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          ssh-private-key: ${{ secrets.CPANEL_SSH_KEY }}
-
-      - name: Trust host
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -p "${{ secrets.CPANEL_SSH_PORT }}" "${{ secrets.CPANEL_SSH_HOST }}" >> ~/.ssh/known_hosts
-
-      - name: Deploy
-        run: |
-          rsync -az --delete \
-            --exclude '.env' \
-            --exclude 'public/uploads' \
-            --exclude 'tmp' \
-            -e "ssh -p ${{ secrets.CPANEL_SSH_PORT }}" \
-            .next/standalone/ \
-            "${{ secrets.CPANEL_SSH_USER }}@${{ secrets.CPANEL_SSH_HOST }}:${{ secrets.CPANEL_APP_PATH }}/"
-
-      - name: Restart app
-        run: |
-          ssh -p "${{ secrets.CPANEL_SSH_PORT }}" \
-            "${{ secrets.CPANEL_SSH_USER }}@${{ secrets.CPANEL_SSH_HOST }}" \
-            "mkdir -p '${{ secrets.CPANEL_APP_PATH }}/tmp' && touch '${{ secrets.CPANEL_APP_PATH }}/tmp/restart.txt'"
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          timeout: 120000
+          local-dir: ./.next/standalone/
+          server-dir: ./
+          exclude: |
+            **/.env
+            **/.env.*
+            **/public/uploads/**

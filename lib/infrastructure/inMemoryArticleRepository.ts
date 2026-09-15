@@ -36,13 +36,15 @@ export class InMemoryArticleRepository implements ArticleRepository {
   }
 
   async list(query: ArticleQuery): Promise<Paginated<ArticleRecord>> {
-    const { status, categorySlug, provinceSlug, search, limit, offset } = query;
+    const { status, categorySlug, provinceSlug, search, publishedBefore, onlyDeleted, limit, offset } = query;
     const needle = search?.trim().toLowerCase();
 
     let matches = [...this.byId.values()].filter((a) => {
+      if (onlyDeleted ? !a.deletedAt : !!a.deletedAt) return false;
       if (status && a.status !== status) return false;
       if (categorySlug && a.categorySlug !== categorySlug) return false;
       if (provinceSlug && a.provinceSlug !== provinceSlug) return false;
+      if (publishedBefore && a.publishedAt && a.publishedAt > publishedBefore) return false;
       if (needle) {
         const haystack = `${a.title.ne ?? ""} ${a.title.en ?? ""}`.toLowerCase();
         if (!haystack.includes(needle)) return false;
@@ -66,6 +68,22 @@ export class InMemoryArticleRepository implements ArticleRepository {
 
   async save(article: ArticleRecord): Promise<void> {
     this.byId.set(article.id, { ...article });
+  }
+
+  async softDelete(id: string, at: string): Promise<void> {
+    const found = this.byId.get(id);
+    if (found) this.byId.set(id, { ...found, deletedAt: at });
+  }
+
+  async restore(id: string): Promise<void> {
+    const found = this.byId.get(id);
+    if (found) this.byId.set(id, { ...found, deletedAt: undefined });
+  }
+
+  async purgeDeletedBefore(at: string): Promise<void> {
+    for (const [id, a] of this.byId) {
+      if (a.deletedAt && a.deletedAt < at) this.byId.delete(id);
+    }
   }
 
   async delete(id: string): Promise<void> {

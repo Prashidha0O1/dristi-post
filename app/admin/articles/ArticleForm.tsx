@@ -1,10 +1,12 @@
 "use client";
 
-import { Flex, SimpleGrid, chakra } from "@chakra-ui/react";
+import { Box, Flex, SimpleGrid, chakra } from "@chakra-ui/react";
 import { useActionState } from "react";
 import { categories } from "@/lib/config";
 import { provinces } from "@/lib/domain/province";
 import { ImageUploadField } from "../ImageUploadField";
+import { RichTextField } from "../RichTextField";
+import { AuthorField } from "./AuthorField";
 import {
   CheckboxField,
   Field,
@@ -31,6 +33,9 @@ interface Props {
     excerptEn?: string;
     bodyNe?: string;
     bodyEn?: string;
+    slug?: string;
+    metaDescription?: string;
+    scheduledAt?: string;
     categorySlug?: string;
     provinceSlug?: string;
     authorId?: string;
@@ -42,9 +47,11 @@ interface Props {
   };
   submitLabel: string;
   showPublish?: boolean;
+  /** Owner/admin may create authors inline from the picker. */
+  canAddAuthors?: boolean;
 }
 
-export function ArticleForm({ action, authorOptions, defaultValues: d = {}, submitLabel, showPublish }: Props) {
+export function ArticleForm({ action, authorOptions, defaultValues: d = {}, submitLabel, showPublish, canAddAuthors = false }: Props) {
   // useActionState keeps the rejected server response on screen without
   // remounting the form, so the inputs (which are uncontrolled) hold on to
   // whatever the editor typed. Previously a rejected save threw and lost it all.
@@ -74,13 +81,13 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
         </SimpleGrid>
       </FormSection>
 
-      <FormSection title="Body" description="Separate paragraphs with a blank line.">
+      <FormSection title="Body" description="Format text, add headings and lists, and insert links with the toolbar.">
         <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
           <Field label="Body (Nepali)" error={issues["body.ne"]}>
-            <chakra.textarea name="bodyNe" defaultValue={d.bodyNe} h="240px" {...fieldStyles.textarea} />
+            <RichTextField name="bodyNe" defaultValue={d.bodyNe} />
           </Field>
           <Field label="Body (English)">
-            <chakra.textarea name="bodyEn" defaultValue={d.bodyEn} h="240px" {...fieldStyles.textarea} />
+            <RichTextField name="bodyEn" defaultValue={d.bodyEn} />
           </Field>
         </SimpleGrid>
       </FormSection>
@@ -104,21 +111,49 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
             </chakra.select>
           </Field>
           <Field label="Author" required error={issues.authorId}>
-            <chakra.select name="authorId" defaultValue={d.authorId} required {...fieldStyles.select}>
-              <option value="">Select...</option>
-              {authorOptions.map((a) => (
-                <option key={a.id} value={a.id}>{a.nameEn ? `${a.nameEn} / ${a.nameNe}` : a.nameNe}</option>
-              ))}
-            </chakra.select>
+            <AuthorField options={authorOptions} defaultValue={d.authorId} canAdd={canAddAuthors} />
           </Field>
         </SimpleGrid>
 
         <Field label="Featured image" required error={issues.imageUrl}>
-          <ImageUploadField folder="articles" defaultValue={d.imageUrl} />
+          <ImageUploadField
+            folder="articles"
+            defaultValue={d.imageUrl}
+            hint="JPEG, PNG, WebP or GIF, up to 5MB. Recommended 1200×675px (16:9)."
+          />
         </Field>
 
         <Field label="Tags" hint="Comma-separated slugs">
           <chakra.input name="tagSlugs" defaultValue={d.tagSlugs} placeholder="politics,breaking" {...fieldStyles.input} />
+        </Field>
+      </FormSection>
+
+      <FormSection title="SEO & URL" description="The slug is the article's web address; the meta description is the snippet shown in search results.">
+        <Field
+          label="URL slug"
+          error={issues.slug}
+          hint="English letters, numbers and hyphens only, up to 70 characters. Leave blank to auto-generate from the title. Changing it on a published article changes its link."
+        >
+          <chakra.input
+            name="slug"
+            defaultValue={d.slug}
+            maxLength={70}
+            placeholder="this-is-a-good-headline"
+            {...fieldStyles.input}
+          />
+        </Field>
+        <Field
+          label="Meta description"
+          error={issues.metaDescription}
+          hint="Shown in Google results. Aim for 150–160 characters. Falls back to the excerpt if blank."
+        >
+          <chakra.textarea
+            name="metaDescription"
+            defaultValue={d.metaDescription}
+            maxLength={200}
+            h="72px"
+            {...fieldStyles.textarea}
+          />
         </Field>
       </FormSection>
 
@@ -131,6 +166,15 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
             <CheckboxField name="publish" label="Publish immediately" hint="Otherwise saved as a draft" />
           )}
         </Flex>
+
+        <Box mt="16px">
+          <Field
+            label="Schedule publish"
+            hint="Optional. Pick a future date/time to publish automatically then. Leave blank to publish now or keep as a draft."
+          >
+            <chakra.input type="datetime-local" name="scheduledAt" defaultValue={d.scheduledAt} {...fieldStyles.input} />
+          </Field>
+        </Box>
       </FormSection>
 
       <SubmitButton>{submitLabel}</SubmitButton>

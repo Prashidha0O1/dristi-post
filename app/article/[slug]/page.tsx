@@ -18,12 +18,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "Article Not Found - Dristi Times" };
   }
 
+  const description = article.metaDescription?.trim() || primaryText(article.excerpt);
+
   return {
     title: `${primaryText(article.title)} | Dristi Times`,
-    description: primaryText(article.excerpt),
+    description,
     openGraph: {
       title: primaryText(article.title),
-      description: primaryText(article.excerpt),
+      description,
       images: [article.image],
       type: "article",
       publishedTime: article.publishedAt,
@@ -31,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     twitter: {
       card: "summary_large_image",
       title: primaryText(article.title),
-      description: primaryText(article.excerpt),
+      description,
       images: [article.image],
     },
   };

@@ -3,10 +3,11 @@
 export const dynamic = "force-dynamic";
 
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { Newspaper, Plus } from "lucide-react";
+import { Newspaper, Plus, Trash2 } from "lucide-react";
 import { getContainer } from "@/lib/container";
 import { categories } from "@/lib/config";
 import {
+  Badge,
   ButtonLink,
   Card,
   EmptyState,
@@ -35,9 +36,14 @@ export default async function ArticlesListPage() {
         title="Articles"
         subtitle={`${total} total`}
         action={
-          <ButtonLink href="/admin/articles/new" icon={<Plus size={15} strokeWidth={2.2} aria-hidden="true" />}>
-            New Article
-          </ButtonLink>
+          <Flex gap="8px">
+            <ButtonLink href="/admin/articles/trash" variant="secondary" icon={<Trash2 size={15} strokeWidth={2.2} aria-hidden="true" />}>
+              Trash
+            </ButtonLink>
+            <ButtonLink href="/admin/articles/new" icon={<Plus size={15} strokeWidth={2.2} aria-hidden="true" />}>
+              New Article
+            </ButtonLink>
+          </Flex>
         }
       />
 
@@ -78,7 +84,13 @@ export default async function ArticlesListPage() {
               </Flex>
 
               <Flex w="100px" justify="center">
-                <StatusBadge status={article.status} />
+                {article.status === "published" &&
+                article.publishedAt &&
+                new Date(article.publishedAt) > new Date() ? (
+                  <Badge tone="info">scheduled</Badge>
+                ) : (
+                  <StatusBadge status={article.status} />
+                )}
               </Flex>
 
               <Box w="180px">

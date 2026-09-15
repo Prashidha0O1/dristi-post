@@ -127,15 +127,51 @@ export default function ArticlePageClient({
             <Image src={article.image} alt={title} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 66vw" priority />
           </Box>
 
-          <Box mb="40px" fontSize={{ base: "19px", md: "17px" }} lineHeight="1.9" color="var(--color-body)">
-            {localized(article.content)
-              .split(/\n{2,}/)
-              .map((s) => s.trim())
-              .filter(Boolean)
-              .map((paragraph, i) => (
-                <Text key={i} mb="16px">{paragraph}</Text>
-              ))}
-
+          <Box
+            className="dp-article-body"
+            mb="40px"
+            fontSize={{ base: "19px", md: "19px" }}
+            lineHeight="2"
+            color="var(--color-body)"
+            css={{
+              "& p": { marginBottom: "20px" },
+              "& h1": { fontSize: "32px", fontWeight: 800, margin: "30px 0 14px", lineHeight: 1.2 },
+              "& h2": { fontSize: "26px", fontWeight: 700, margin: "28px 0 12px", lineHeight: 1.3 },
+              "& h3": { fontSize: "21px", fontWeight: 700, margin: "24px 0 10px", lineHeight: 1.35 },
+              "& h4": { fontSize: "19px", fontWeight: 700, margin: "20px 0 8px" },
+              "& h5": { fontSize: "17px", fontWeight: 700, margin: "18px 0 6px" },
+              "& h6": { fontSize: "15px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em", margin: "18px 0 6px" },
+              "& ul, & ol": { paddingLeft: "26px", marginBottom: "20px" },
+              "& table": { borderCollapse: "collapse", width: "100%", margin: "0 0 20px", tableLayout: "fixed" },
+              "& td, & th": { border: "1px solid var(--color-border)", padding: "8px 10px", verticalAlign: "top" },
+              "& th": { background: "var(--color-card-alt)", fontWeight: 700, textAlign: "left" },
+              "& li": { marginBottom: "8px" },
+              "& a": { color: "var(--color-brand)", textDecoration: "underline" },
+              "& blockquote": {
+                borderLeft: "3px solid var(--color-border)",
+                paddingLeft: "16px",
+                color: "var(--color-subtle)",
+                fontStyle: "italic",
+                margin: "0 0 20px",
+              },
+            }}
+          >
+            {(() => {
+              const body = localized(article.content);
+              // New articles store HTML (rich-text editor); older ones are
+              // plain text. Render HTML directly; fall back to paragraph
+              // splitting for legacy plain-text bodies.
+              if (/<\/?[a-z][\s\S]*>/i.test(body)) {
+                return <Box dangerouslySetInnerHTML={{ __html: body }} />;
+              }
+              return body
+                .split(/\n{2,}/)
+                .map((s) => s.trim())
+                .filter(Boolean)
+                .map((paragraph, i) => (
+                  <Text key={i} mb="20px">{paragraph}</Text>
+                ));
+            })()}
           </Box>
 
           {article.tags.length > 0 && (

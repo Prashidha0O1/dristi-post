@@ -2,9 +2,11 @@
 
 import { Box, Flex, Text, chakra } from "@chakra-ui/react";
 import { useFormStatus } from "react-dom";
+import { useEffect } from "react";
 import { AlertCircle, Loader2 } from "lucide-react";
 import type { ReactNode } from "react";
 import type { FormState } from "./formState";
+import { toaster } from "@/components/ui/toaster";
 
 /**
  * Form primitives shared by ArticleForm and JobForm.
@@ -110,49 +112,27 @@ export function Field({
 }
 
 /**
- * Summary shown above a form after a rejected save.
- *
- * Field-level messages alone are easy to miss on a form this long — the failing
- * field can be well off screen when the page re-renders at the submit button.
+ * Fires a toast when a save is rejected. Per-field messages still render inline
+ * next to their inputs (via `Field`'s `error` prop); this is the general
+ * "couldn't save" notice, shown as a toast rather than a banner. Renders nothing.
  */
 export function FormError({ state }: { state: FormState }) {
-  if (state.status !== "error") return null;
+  const message = state.status === "error" ? state.message : null;
+  const issueCount = state.status === "error" ? Object.keys(state.issues).length : 0;
 
-  const fieldIssues = Object.entries(state.issues);
+  useEffect(() => {
+    if (!message) return;
+    toaster.create({
+      type: "error",
+      title: message,
+      description:
+        issueCount > 0
+          ? "Check the highlighted fields. Nothing was saved."
+          : "Nothing was saved.",
+    });
+  }, [message, issueCount]);
 
-  return (
-    <Box
-      mb="20px"
-      p="12px 14px"
-      borderRadius="6px"
-      bg="var(--color-danger-bg)"
-      border="1px solid color-mix(in srgb, var(--color-danger-fg) 30%, transparent)"
-      role="alert"
-    >
-      <Flex align="flex-start" gap="8px">
-        <Box color="var(--color-danger-fg)" mt="1px" flexShrink={0} display="flex">
-          <AlertCircle size={16} strokeWidth={2} aria-hidden="true" />
-        </Box>
-        <Box>
-          <Text fontSize="13px" fontWeight="600" color="var(--color-danger-fg)" lineHeight="1.5">
-            {state.message}
-          </Text>
-          {fieldIssues.length > 0 && (
-            <Box as="ul" mt="6px" pl="16px">
-              {fieldIssues.map(([field, message]) => (
-                <Text as="li" key={field} fontSize="12px" color="var(--color-danger-fg)" lineHeight="1.7">
-                  {message}
-                </Text>
-              ))}
-            </Box>
-          )}
-          <Text fontSize="12px" color="var(--color-danger-fg)" opacity={0.85} mt="6px" lineHeight="1.5">
-            Nothing was saved, and everything you typed is still here.
-          </Text>
-        </Box>
-      </Flex>
-    </Box>
-  );
+  return null;
 }
 
 /** Titled group of related fields, so long forms scan in sections. */

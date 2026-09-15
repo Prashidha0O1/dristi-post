@@ -21,16 +21,21 @@ export class CreateArticle {
 
     const now = this.clock.now().toISOString();
 
-    // Prefer the English title for slugs (URL-friendly); fall back to Nepali,
-    // which the slugger transliterates/normalises.
-    // English preferred for a readable ASCII slug; falls back to Nepali, and
-    // now tolerates either language being absent.
-    const slugSource = input.title.en?.trim() || input.title.ne?.trim() || "";
+    // A hand-typed slug wins; otherwise derive one from the English title (or
+    // Nepali, transliterated). The slugger normalises and de-duplicates either way.
+    const slugSource =
+      input.slug?.trim() || input.title.en?.trim() || input.title.ne?.trim() || "";
     const slug = await this.slugger.slugify(slugSource, async (candidate) => {
       return (await this.articles.findBySlug(candidate)) !== null;
     });
 
-    const publish = input.publish ?? false;
+    // Scheduling: a future scheduledAt publishes the article but with a future
+    // publishedAt, so the public queries keep it hidden until then.
+    const scheduled = input.scheduledAt?.trim() ? new Date(input.scheduledAt) : null;
+    const isScheduled =
+      scheduled !== null && !Number.isNaN(scheduled.getTime()) && scheduled.getTime() > this.clock.now().getTime();
+    const publish = (input.publish ?? false) || isScheduled;
+    const publishedAt = isScheduled ? scheduled!.toISOString() : publish ? now : undefined;
 
     const article: ArticleRecord = {
       id: this.ids.generate(),
@@ -38,6 +43,7 @@ export class CreateArticle {
       title: input.title,
       excerpt: input.excerpt,
       body: input.body,
+      metaDescription: input.metaDescription?.trim() || undefined,
       categorySlug: input.categorySlug,
       provinceSlug: input.provinceSlug,
       authorId: input.authorId,
@@ -49,7 +55,7 @@ export class CreateArticle {
       isTrending: input.isTrending ?? false,
       createdAt: now,
       updatedAt: now,
-      publishedAt: publish ? now : undefined,
+      publishedAt,
     };
 
     await this.articles.save(article);

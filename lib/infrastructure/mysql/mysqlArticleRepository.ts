@@ -37,6 +37,7 @@ function toDomain(row: Row, tagSlugs: string[]): ArticleRecord {
     title: localisedFromRow(row.titleNe, row.titleEn),
     excerpt: localisedFromRow(row.excerptNe, row.excerptEn),
     body: localisedFromRow(row.bodyNe, row.bodyEn),
+    metaDescription: (row.metaDescription as string) || undefined,
     categorySlug: (row.categorySlug as string) ?? "",
     provinceSlug: row.province ? PROVINCE_FROM_DB[row.province as string] : undefined,
     authorId: row.authorId as string,
@@ -49,6 +50,7 @@ function toDomain(row: Row, tagSlugs: string[]): ArticleRecord {
     createdAt: fromDbDateTime(row.createdAt),
     updatedAt: fromDbDateTime(row.updatedAt),
     publishedAt: row.publishedAt ? fromDbDateTime(row.publishedAt) : undefined,
+    deletedAt: row.deletedAt ? fromDbDateTime(row.deletedAt) : undefined,
     authorName:
       row.authorNameNe || row.authorNameEn
         ? localisedFromRow(row.authorNameNe, row.authorNameEn)
@@ -116,6 +118,13 @@ export class MysqlArticleRepository implements ArticleRepository {
       const like = `%${query.search}%`;
       params.push(like, like);
     }
+    // Trash: default excludes soft-deleted; onlyDeleted lists just the trash.
+    where.push(query.onlyDeleted ? "a.deletedAt IS NOT NULL" : "a.deletedAt IS NULL");
+    // Scheduling: hide articles whose publishedAt is still in the future.
+    if (query.publishedBefore) {
+      where.push("(a.publishedAt IS NULL OR a.publishedAt <= ?)");
+      params.push(toDbDateTime(query.publishedBefore));
+    }
 
     const whereSql = where.length ? `WHERE ${where.join(" AND ")}` : "";
 
@@ -169,18 +178,19 @@ export class MysqlArticleRepository implements ArticleRepository {
       await conn.query(
         `INSERT INTO articles
           (id, slug, titleNe, titleEn, excerptNe, excerptEn, bodyNe, bodyEn,
-           imageUrl, status, province, categoryId, authorId,
-           isFeatured, isBreaking, isTrending, createdAt, updatedAt, publishedAt)
-         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+           metaDescription, imageUrl, status, province, categoryId, authorId,
+           isFeatured, isBreaking, isTrending, createdAt, updatedAt, publishedAt, deletedAt)
+         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
          ON DUPLICATE KEY UPDATE
            slug=VALUES(slug), titleNe=VALUES(titleNe), titleEn=VALUES(titleEn),
            excerptNe=VALUES(excerptNe), excerptEn=VALUES(excerptEn),
-           bodyNe=VALUES(bodyNe), bodyEn=VALUES(bodyEn), imageUrl=VALUES(imageUrl),
+           bodyNe=VALUES(bodyNe), bodyEn=VALUES(bodyEn),
+           metaDescription=VALUES(metaDescription), imageUrl=VALUES(imageUrl),
            status=VALUES(status), province=VALUES(province),
            categoryId=VALUES(categoryId), authorId=VALUES(authorId),
            isFeatured=VALUES(isFeatured), isBreaking=VALUES(isBreaking),
            isTrending=VALUES(isTrending), updatedAt=VALUES(updatedAt),
-           publishedAt=VALUES(publishedAt)`,
+           publishedAt=VALUES(publishedAt), deletedAt=VALUES(deletedAt)`,
         [
           article.id,
           article.slug,
@@ -190,6 +200,7 @@ export class MysqlArticleRepository implements ArticleRepository {
           article.excerpt.en ?? null,
           article.body.ne ?? "",
           article.body.en ?? null,
+          article.metaDescription ?? null,
           article.imageUrl,
           STATUS_TO_DB[article.status],
           article.provinceSlug ? PROVINCE_TO_DB[article.provinceSlug] : null,
@@ -201,6 +212,7 @@ export class MysqlArticleRepository implements ArticleRepository {
           toDbDateTime(article.createdAt),
           toDbDateTime(article.updatedAt),
           toDbDateTime(article.publishedAt),
+          toDbDateTime(article.deletedAt),
         ],
       );
 
@@ -234,6 +246,20 @@ export class MysqlArticleRepository implements ArticleRepository {
     } finally {
       conn.release();
     }
+  }
+
+  async softDelete(id: string, at: string): Promise<void> {
+    await getPool().query("UPDATE articles SET deletedAt = ? WHERE id = ?", [toDbDateTime(at), id]);
+  }
+
+  async restore(id: string): Promise<void> {
+    await getPool().query("UPDATE articles SET deletedAt = NULL WHERE id = ?", [id]);
+  }
+
+  async purgeDeletedBefore(at: string): Promise<void> {
+    await getPool().query("DELETE FROM articles WHERE deletedAt IS NOT NULL AND deletedAt < ?", [
+      toDbDateTime(at),
+    ]);
   }
 
   async delete(id: string): Promise<void> {
