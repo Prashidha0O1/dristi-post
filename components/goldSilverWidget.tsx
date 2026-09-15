@@ -13,7 +13,7 @@ export function GoldSilverWidget({ variant = "default" }: { variant?: WidgetVari
     ? "https://arthakendra.com/widget/gold-silver-widget?showGraph=false" 
     : "https://arthakendra.com/widget/gold-silver-widget";
   // Set height large enough so it never scrolls internally
-  const iframeHeight = isCompact ? "420px" : "1100px";
+  const iframeHeight = isCompact ? "460px" : "1100px";
 
   return (
     <Box className={isCompact ? "dp-utility-block" : ""} borderBottom={isCompact ? "1px solid var(--color-border)" : "none"}>
