@@ -2,10 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ClockIcon, CornerDownLeftIcon, SearchIcon, TrendingUpIcon, XIcon } from "lucide-react";
+import { CornerDownLeftIcon, SearchIcon, TrendingUpIcon, XIcon } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { recentSearches, trendingItems } from "../data/navigation";
+import { primarySections } from "../data/navigation";
 import type { Lang } from "../types/navigation";
+
+// Real, browsable sections — no fabricated counts or fake search history.
+const browseTopics = primarySections.filter((s) => s.href.startsWith("/category/"));
 
 interface SearchPanelProps {
   open: boolean;
@@ -80,53 +84,24 @@ export function SearchPanel({ open, lang, onClose }: SearchPanelProps) {
               </button>
             </form>
 
-            <div className="mt-5 grid gap-6 md:grid-cols-[1.4fr_1fr]">
-              <div>
-                <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-500 dark:text-ink-400">
-                  <TrendingUpIcon className="h-3.5 w-3.5" />
-                  {lang === "np" ? "ट्रेन्डिङ विषय" : "Trending topics"}
-                </p>
-                <ul className="mt-3 grid gap-1 sm:grid-cols-2">
-                  {trendingItems.map((t) => (
-                    <li key={t.id}>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setQuery(lang === "np" ? t.np : t.en);
-                        }}
-                        className="group flex w-full items-center justify-between rounded-md px-2 py-2 text-left transition hover:bg-paper-50 dark:hover:bg-ink-700"
-                      >
-                        <span
-                          className={`text-sm font-semibold text-ink group-hover:text-crimson dark:text-paper-100 ${
-                            lang === "np" ? "font-np" : ""
-                          }`}
-                        >
-                          {lang === "np" ? t.np : t.en}
-                        </span>
-                        <span className="font-np text-xs text-ink-400">{t.count}</span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-500 dark:text-ink-400">
-                  <ClockIcon className="h-3.5 w-3.5" />
-                  {lang === "np" ? "हालैका खोजहरू" : "Recent searches"}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {recentSearches.map((r) => (
-                    <button
-                      key={r}
-                      type="button"
-                      onClick={() => setQuery(r)}
-                      className="font-np rounded-full border border-paper-200 px-3 py-1.5 text-sm text-ink-600 transition hover:border-ink hover:text-ink dark:border-ink-600 dark:text-ink-400 dark:hover:border-white dark:hover:text-white"
-                    >
-                      {r}
-                    </button>
-                  ))}
-                </div>
+            <div className="mt-5">
+              <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-500 dark:text-ink-400">
+                <TrendingUpIcon className="h-3.5 w-3.5" />
+                {lang === "np" ? "विषयहरू ब्राउज गर्नुहोस्" : "Browse topics"}
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {browseTopics.map((t) => (
+                  <Link
+                    key={t.id}
+                    href={t.href}
+                    onClick={onClose}
+                    className={`rounded-full border border-paper-200 px-3 py-1.5 text-sm font-medium text-ink-600 transition hover:border-crimson hover:text-crimson dark:border-ink-600 dark:text-ink-400 dark:hover:border-white dark:hover:text-white ${
+                      lang === "np" ? "font-np" : ""
+                    }`}
+                  >
+                    {lang === "np" ? t.np : t.en}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import type { NavSection, ProvinceItem, BreakingItem, TrendingItem } from "../types/navigation";
+import type { NavSection, ProvinceItem } from "../types/navigation";
 
 export const primarySections: NavSection[] = [
   { id: "home", np: "गृहपृष्ठ", en: "Home", href: "/" },
@@ -34,22 +34,6 @@ export const provinces: ProvinceItem[] = [
   { id: "sudurpashchim", np: "सुदूरपश्चिम", en: "Sudurpashchim", href: "/province/sudurpashchim" },
 ];
 
-export const breakingItems: BreakingItem[] = [
-  { id: "1", np: "सरकारले नयाँ बजेट घोषणा गर्‍यो, शिक्षा र स्वास्थ्यमा ठूलो लगानी", en: "Government announces new budget with major investments in education and health", time: "१२:४५" },
-  { id: "2", np: "नेपाली क्रिकेट टोलीले ऐतिहासिक जित हात पार्‍यो", en: "Nepal cricket team achieves historic victory", time: "११:३०" },
-  { id: "3", np: "पोखरामा पर्यटन क्षेत्रमा उल्लेख्य वृद्धि", en: "Significant growth in tourism sector in Pokhara", time: "१०:१५" },
-];
-
-export const trendingItems: TrendingItem[] = [
-  { id: "1", np: "बजेट २०८२", en: "Budget 2082", count: "२.४k" },
-  { id: "2", np: "क्रिकेट", en: "Cricket", count: "१.८k" },
-  { id: "3", np: "पर्यटन", en: "Tourism", count: "१.२k" },
-  { id: "4", np: "डिजिटल भुक्तानी", en: "Digital Payments", count: "९५६" },
-];
-
-export const recentSearches: string[] = [
-  "बजेट",
-  "क्रिकेट",
-  "मौसम",
-  "शिक्षा",
-];
+// Breaking/trending/recent-search placeholders were removed: the header ticker
+// now pulls real articles from /api/headlines and the search panel links to
+// real category pages instead of showing fabricated data.
