@@ -120,6 +120,31 @@ CREATE TABLE IF NOT EXISTS `jobs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------------
+-- Blogs
+-- ---------------------------------------------------------------------------
+-- Standalone long-form pages (title + hero image + rich-text body). Unlike
+-- articles they carry no category/author/province taxonomy.
+
+CREATE TABLE IF NOT EXISTS `blogs` (
+  `id`          CHAR(36)      NOT NULL,
+  `slug`        VARCHAR(191)  NOT NULL,
+  `titleNe`     VARCHAR(512)  NOT NULL,
+  `titleEn`     VARCHAR(512)  NULL,
+  `excerptNe`   VARCHAR(1024) NULL,
+  `excerptEn`   VARCHAR(1024) NULL,
+  `heroImage`   VARCHAR(1024) NOT NULL,
+  `bodyNe`      MEDIUMTEXT    NOT NULL,
+  `bodyEn`      MEDIUMTEXT    NULL,
+  `status`      ENUM('DRAFT','PUBLISHED') NOT NULL DEFAULT 'DRAFT',
+  `createdAt`   DATETIME(3)   NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+  `updatedAt`   DATETIME(3)   NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+  `publishedAt` DATETIME(3)   NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_blogs_slug` (`slug`),
+  KEY `idx_blogs_status_published` (`status`, `publishedAt`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---------------------------------------------------------------------------
 -- Ads
 -- ---------------------------------------------------------------------------
 -- Postgres enforced "one active ad per placement" with a partial unique index

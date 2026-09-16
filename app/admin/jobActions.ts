@@ -36,18 +36,21 @@ export async function createJobAction(
 ): Promise<FormState> {
   const container = getContainer();
 
+  let live: string | null = null;
   const failure = await runFormAction(async () => {
     await requireCapability("content.write");
-    await container.createJob.execute({
+    const job = await container.createJob.execute({
       ...readJobForm(formData),
       publish: formData.get("publish") === "on",
     });
+    if (job.status === "published") live = `/jobs/${job.slug}`;
   });
   if (failure) return failure;
 
   updateTag("jobs");
-  // Outside runFormAction: redirect() signals by throwing.
-  redirect("/admin/jobs");
+  // Outside runFormAction: redirect() signals by throwing. Land the editor on
+  // the live posting when it's published, so they get the shareable link.
+  redirect(live ?? "/admin/jobs");
 }
 
 export async function updateJobAction(
@@ -57,14 +60,16 @@ export async function updateJobAction(
 ): Promise<FormState> {
   const container = getContainer();
 
+  let live: string | null = null;
   const failure = await runFormAction(async () => {
     await requireCapability("content.write");
-    await container.updateJob.execute(id, readJobForm(formData));
+    const job = await container.updateJob.execute(id, readJobForm(formData));
+    if (job.status === "published") live = `/jobs/${job.slug}`;
   });
   if (failure) return failure;
 
   updateTag("jobs");
-  redirect("/admin/jobs");
+  redirect(live ?? "/admin/jobs");
 }
 
 export async function publishJobAction(id: string) {

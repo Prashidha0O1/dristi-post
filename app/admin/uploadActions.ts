@@ -8,7 +8,7 @@ import {
 import { isAdPlacement } from "@/lib/adSlots";
 import { requireUser } from "@/lib/auth/guard";
 
-const FOLDERS = ["articles", "jobs", "ads"] as const;
+const FOLDERS = ["articles", "jobs", "blog", "ads"] as const;
 type Folder = (typeof FOLDERS)[number];
 
 function readFolder(value: FormDataEntryValue | null): Folder {

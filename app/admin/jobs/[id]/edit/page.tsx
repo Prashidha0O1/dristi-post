@@ -21,7 +21,15 @@ export default async function EditJobPage({ params }: { params: Promise<{ id: st
 
   return (
     <Box>
-      <PageHeader title="Edit Job" subtitle={`${primaryText(found.title)} · ${found.company}`} />
+      <PageHeader
+        title="Edit Job"
+        subtitle={`${primaryText(found.title)} · ${found.company}`}
+        action={
+          <a href={`/jobs/${found.slug}`} target="_blank" rel="noreferrer" style={{ fontSize: "13px", fontWeight: 600, color: "var(--color-brand)" }}>
+            View live ↗
+          </a>
+        }
+      />
       <Card p="24px">
         <JobForm
           action={boundAction}

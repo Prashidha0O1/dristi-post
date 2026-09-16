@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import type { Article } from "./types";
 import type { EmploymentType, JobRecord } from "./domain/job";
+import type { BlogRecord } from "./domain/blog";
 import type { AdRecord } from "./domain/ad";
 import type { ProvinceSlug } from "./domain/province";
 import { adPlacements, type AdPlacement } from "./adSlots";
@@ -163,6 +164,37 @@ const getJobBySlugCached = unstable_cache(
 
 export async function getJobBySlug(slug: string): Promise<JobRecord | null> {
   return getJobBySlugCached(slug);
+}
+
+/* ---------------------------------------------------------------------------
+ * Blog
+ * ------------------------------------------------------------------------- */
+
+const getPublishedBlogsCached = unstable_cache(
+  async (limit: number): Promise<BlogRecord[]> => {
+    const { listPublishedBlogs } = getContainer();
+    const { items } = await listPublishedBlogs.execute({ limit });
+    return items;
+  },
+  ["public-blogs"],
+  { tags: ["blogs"] },
+);
+
+export async function getPublishedBlogs(limit = 100): Promise<BlogRecord[]> {
+  return getPublishedBlogsCached(limit);
+}
+
+const getBlogBySlugCached = unstable_cache(
+  async (slug: string): Promise<BlogRecord | null> => {
+    const { getPublishedBlog } = getContainer();
+    return getPublishedBlog.execute(slug);
+  },
+  ["public-blog-by-slug"],
+  { tags: ["blogs"] },
+);
+
+export async function getBlogBySlug(slug: string): Promise<BlogRecord | null> {
+  return getBlogBySlugCached(slug);
 }
 
 /* ---------------------------------------------------------------------------

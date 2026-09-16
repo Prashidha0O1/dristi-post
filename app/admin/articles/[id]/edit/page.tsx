@@ -31,7 +31,15 @@ export default async function EditArticlePage({ params }: { params: Promise<{ id
 
   return (
     <Box>
-      <PageHeader title="Edit Article" subtitle={primaryText(found.title)} />
+      <PageHeader
+        title="Edit Article"
+        subtitle={primaryText(found.title)}
+        action={
+          <a href={`/article/${found.slug}`} target="_blank" rel="noreferrer" style={{ fontSize: "13px", fontWeight: 600, color: "var(--color-brand)" }}>
+            View live ↗
+          </a>
+        }
+      />
       <Card p="24px">
         <ArticleForm
           action={boundAction}

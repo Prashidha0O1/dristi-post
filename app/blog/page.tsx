@@ -1,16 +1,18 @@
-import { getArticlesByCategory } from "@/lib/publicQueries";
+import { getPublishedBlogs, getActiveAds } from "@/lib/publicQueries";
 import BlogPageClient from "./BlogPageClient";
 
-// Rendered at request time, not at build: the content comes from the database
-// (only reachable as localhost in production), and a news site wants fresh
-// content on each request. Data reads are still cached via unstable_cache.
+// Rendered at request time, not at build: content comes from the database.
 export const dynamic = "force-dynamic";
 
-
 export default async function BlogPage() {
-  const [opinion, lifestyle] = await Promise.all([
-    getArticlesByCategory("opinion"),
-    getArticlesByCategory("lifestyle"),
-  ]);
-  return <BlogPageClient articles={[...opinion, ...lifestyle]} />;
+  const [blogs, ads] = await Promise.all([getPublishedBlogs(), getActiveAds()]);
+  const items = blogs.map((b) => ({
+    id: b.id,
+    slug: b.slug,
+    title: b.title,
+    excerpt: b.excerpt,
+    heroImage: b.heroImage,
+    publishedAt: b.publishedAt ?? b.createdAt,
+  }));
+  return <BlogPageClient blogs={items} ads={ads} />;
 }

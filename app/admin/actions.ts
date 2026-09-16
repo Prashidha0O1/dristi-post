@@ -41,20 +41,39 @@ export async function createArticleAction(
 ): Promise<FormState> {
   const container = getContainer();
 
+  let created: { slug: string; status: string; publishedAt?: string } | null = null;
   const failure = await runFormAction(async () => {
     await requireCapability("content.write");
-    await container.createArticle.execute({
+    const article = await container.createArticle.execute({
       ...readArticleForm(formData),
       authorId: formData.get("authorId") as string,
       publish: formData.get("publish") === "on",
     });
+    created = { slug: article.slug, status: article.status, publishedAt: article.publishedAt };
   });
   if (failure) return failure;
 
   updateTag("articles");
   // Outside runFormAction on purpose: redirect() signals by throwing, so it
   // would be caught there and reported as a save failure instead of navigating.
-  redirect("/admin/articles");
+  // If it went live now, land the editor straight on the published article so
+  // they can see (and share) the real link; drafts/scheduled go back to admin.
+  redirect(liveOrAdmin(created, "article"));
+}
+
+/**
+ * Where to send the editor after a save: the public page when it's live now,
+ * otherwise back to the admin list (drafts and future-scheduled have no live
+ * page yet).
+ */
+function liveOrAdmin(
+  saved: { slug: string; status: string; publishedAt?: string } | null,
+  kind: "article" | "job",
+): string {
+  const adminList = kind === "article" ? "/admin/articles" : "/admin/jobs";
+  if (!saved || saved.status !== "published") return adminList;
+  if (saved.publishedAt && new Date(saved.publishedAt).getTime() > Date.now()) return adminList;
+  return kind === "article" ? `/article/${saved.slug}` : `/jobs/${saved.slug}`;
 }
 
 export async function updateArticleAction(
@@ -64,14 +83,16 @@ export async function updateArticleAction(
 ): Promise<FormState> {
   const container = getContainer();
 
+  let saved: { slug: string; status: string; publishedAt?: string } | null = null;
   const failure = await runFormAction(async () => {
     await requireCapability("content.write");
-    await container.updateArticle.execute(id, readArticleForm(formData));
+    const article = await container.updateArticle.execute(id, readArticleForm(formData));
+    saved = { slug: article.slug, status: article.status, publishedAt: article.publishedAt };
   });
   if (failure) return failure;
 
   updateTag("articles");
-  redirect("/admin/articles");
+  redirect(liveOrAdmin(saved, "article"));
 }
 
 export async function publishArticleAction(id: string) {

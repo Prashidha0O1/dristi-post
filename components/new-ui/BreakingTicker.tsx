@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRightIcon, PauseIcon, PlayIcon, XIcon } from "lucide-react";
 import Link from "next/link";
-import { breakingItems } from "../data/navigation";
 import type { Lang } from "../types/navigation";
 
 interface BreakingTickerProps {
@@ -12,25 +11,53 @@ interface BreakingTickerProps {
   onDismiss: () => void;
 }
 
+/** One rotating headline, sourced live from the newsroom's latest articles. */
+interface Headline {
+  id: string;
+  slug: string;
+  ne?: string;
+  en?: string;
+  time: string;
+}
+
 export function BreakingTicker({ lang, onDismiss }: BreakingTickerProps) {
+  const [items, setItems] = useState<Headline[]>([]);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
+  // Pull the real latest published articles once on mount.
   useEffect(() => {
-    if (paused) return;
+    let alive = true;
+    fetch("/api/headlines")
+      .then((r) => r.json())
+      .then((data) => {
+        if (alive && Array.isArray(data.items)) setItems(data.items);
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (paused || items.length === 0) return;
     const id = window.setInterval(() => {
-      setIndex((i) => (i + 1) % breakingItems.length);
+      setIndex((i) => (i + 1) % items.length);
     }, 5000);
     return () => window.clearInterval(id);
-  }, [paused]);
+  }, [paused, items.length]);
 
-  const item = breakingItems[index];
+  // Nothing to show yet (still loading, or no published articles): render
+  // nothing rather than a placeholder headline.
+  if (items.length === 0) return null;
+
+  const item = items[index % items.length];
 
   return (
     <div
       className="border-b border-crimson/30 bg-crimson text-white"
       role="region"
-      aria-label={lang === "np" ? "ब्रेकिङ समाचार" : "Breaking news"}
+      aria-label={lang === "np" ? "ताजा समाचार" : "Latest news"}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -40,7 +67,7 @@ export function BreakingTicker({ lang, onDismiss }: BreakingTickerProps) {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
           </span>
-          {lang === "np" ? "ब्रेकिङ" : "Breaking"}
+          {lang === "np" ? "ताजा" : "Latest"}
         </span>
 
         <span className="hidden h-4 w-px bg-white/30 sm:block" />
@@ -62,9 +89,9 @@ export function BreakingTicker({ lang, onDismiss }: BreakingTickerProps) {
               className="flex items-center gap-2 truncate text-sm"
             >
               <span className="shrink-0 font-mono text-[11px] text-white/70">{item.time}</span>
-              <Link href="/article/nepal-budget-announcement" className="truncate hover:underline">
+              <Link href={`/article/${item.slug}`} className="truncate hover:underline">
                 <span className={lang === "np" ? "font-np" : ""}>
-                  {lang === "np" ? item.np : item.en}
+                  {lang === "np" ? item.ne || item.en : item.en || item.ne}
                 </span>
               </Link>
             </motion.span>
@@ -73,7 +100,7 @@ export function BreakingTicker({ lang, onDismiss }: BreakingTickerProps) {
 
         <div className="flex shrink-0 items-center gap-1">
           <div className="mr-1 hidden items-center gap-1.5 sm:flex" aria-hidden="true">
-            {breakingItems.map((b, i) => (
+            {items.map((b, i) => (
               <button
                 type="button"
                 key={b.id}
@@ -94,7 +121,7 @@ export function BreakingTicker({ lang, onDismiss }: BreakingTickerProps) {
             {paused ? <PlayIcon className="h-3.5 w-3.5" /> : <PauseIcon className="h-3.5 w-3.5" />}
           </button>
           <Link
-            href="/article/nepal-budget-announcement"
+            href={`/article/${item.slug}`}
             className="hidden items-center gap-1 rounded px-2 py-1 text-[11px] font-semibold uppercase tracking-wider text-white/90 transition hover:bg-white/15 hover:text-white md:inline-flex"
           >
             {lang === "np" ? "पढ्नुहोस्" : "Read"}

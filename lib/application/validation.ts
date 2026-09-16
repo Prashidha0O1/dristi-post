@@ -1,5 +1,6 @@
 import type { ArticleUpdateInput, NewArticleInput } from "../domain/article";
 import type { JobUpdateInput, NewJobInput } from "../domain/job";
+import type { BlogUpdateInput, NewBlogInput } from "../domain/blog";
 import type { AdUpdateInput, NewAdInput } from "../domain/ad";
 import { isEmploymentType } from "../domain/job";
 import { isAdPlacement } from "../adSlots";
@@ -227,6 +228,41 @@ export function validateJobUpdate(input: JobUpdateInput): void {
     } else if (!isValidApplyTarget(input.applyUrl.trim())) {
       issues.applyUrl = "Must be a full http(s) URL or an email address";
     }
+  }
+
+  if (Object.keys(issues).length > 0) throw new ValidationError(issues);
+}
+
+export function validateNewBlog(input: NewBlogInput): void {
+  const issues: Record<string, string> = {};
+
+  checkLocalised(issues, "title", input.title, "Title", MAX_TITLE);
+  if (input.excerpt !== undefined) {
+    checkLocalised(issues, "excerpt", input.excerpt, "Excerpt", MAX_EXCERPT);
+  }
+  checkLocalised(issues, "body", input.body, "Body");
+  checkSlug(issues, input.slug);
+
+  if (!input.heroImage?.trim()) {
+    issues.heroImage = "A hero image is required";
+  } else if (!/^https?:\/\//i.test(input.heroImage) && !input.heroImage.startsWith("/")) {
+    issues.heroImage = "Image must be an absolute URL or a site-relative path";
+  }
+
+  if (Object.keys(issues).length > 0) throw new ValidationError(issues);
+}
+
+export function validateBlogUpdate(input: BlogUpdateInput): void {
+  const issues: Record<string, string> = {};
+
+  if (input.title !== undefined) checkLocalised(issues, "title", input.title, "Title", MAX_TITLE);
+  if (input.excerpt !== undefined) {
+    checkLocalised(issues, "excerpt", input.excerpt, "Excerpt", MAX_EXCERPT);
+  }
+  if (input.body !== undefined) checkLocalised(issues, "body", input.body, "Body");
+  checkSlug(issues, input.slug);
+  if (input.heroImage !== undefined && !input.heroImage.trim()) {
+    issues.heroImage = "Hero image cannot be emptied";
   }
 
   if (Object.keys(issues).length > 0) throw new ValidationError(issues);

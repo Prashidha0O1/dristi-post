@@ -134,7 +134,7 @@ export default function ArticlePageClient({
             lineHeight="2"
             color="var(--color-body)"
             css={{
-              "& p": { marginBottom: "20px" },
+              "& p": { marginBottom: "20px", textAlign: "justify", textJustify: "inter-word" },
               "& h1": { fontSize: "32px", fontWeight: 800, margin: "30px 0 14px", lineHeight: 1.2 },
               "& h2": { fontSize: "26px", fontWeight: 700, margin: "28px 0 12px", lineHeight: 1.3 },
               "& h3": { fontSize: "21px", fontWeight: 700, margin: "24px 0 10px", lineHeight: 1.35 },

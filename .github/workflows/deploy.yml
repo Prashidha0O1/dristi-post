@@ -26,6 +26,13 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+        env:
+          # Stable key so Server Action IDs stay identical across builds and
+          # across Passenger workers. Without it every deploy bakes a fresh
+          # random key and any already-open tab (or a second worker) gets
+          # "Server Action ... was not found on the server." Set the SAME value
+          # as a repo secret AND in the server's .env.
+          NEXT_SERVER_ACTIONS_ENCRYPTION_KEY: ${{ secrets.SERVER_ACTIONS_KEY }}
 
       - name: Assemble bundle
         run: |
