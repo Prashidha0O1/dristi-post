@@ -77,7 +77,7 @@ export function ImageUploadField({
   hint,
 }: {
   name?: string;
-  folder: "articles" | "jobs" | "ads";
+  folder: "articles" | "jobs" | "blog" | "ads";
   defaultValue?: string;
   /** Ads only — the slot this image is for, which sets the size it must match. */
   placement?: AdPlacement;

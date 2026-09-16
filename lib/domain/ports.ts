@@ -4,6 +4,7 @@ import type {
   Paginated,
 } from "./article";
 import type { JobQuery, JobRecord } from "./job";
+import type { BlogQuery, BlogRecord } from "./blog";
 import type { AdQuery, AdRecord } from "./ad";
 import type { AdPlacement } from "../adSlots";
 
@@ -39,6 +40,15 @@ export interface JobRepository {
   findBySlug(slug: string): Promise<JobRecord | null>;
   list(query: JobQuery): Promise<Paginated<JobRecord>>;
   save(job: JobRecord): Promise<void>;
+  delete(id: string): Promise<void>;
+}
+
+/** Same shape as the other content repositories, scoped to blog posts. */
+export interface BlogRepository {
+  findById(id: string): Promise<BlogRecord | null>;
+  findBySlug(slug: string): Promise<BlogRecord | null>;
+  list(query: BlogQuery): Promise<Paginated<BlogRecord>>;
+  save(blog: BlogRecord): Promise<void>;
   delete(id: string): Promise<void>;
 }
 

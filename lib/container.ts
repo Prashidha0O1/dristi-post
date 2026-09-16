@@ -4,13 +4,16 @@ import type {
   Clock,
   IdGenerator,
   JobRepository,
+  BlogRepository,
   Slugger,
 } from "./domain/ports";
 import { InMemoryArticleRepository } from "./infrastructure/inMemoryArticleRepository";
 import { InMemoryJobRepository } from "./infrastructure/inMemoryJobRepository";
+import { InMemoryBlogRepository } from "./infrastructure/inMemoryBlogRepository";
 import { InMemoryAdRepository } from "./infrastructure/inMemoryAdRepository";
 import { MysqlArticleRepository } from "./infrastructure/mysql/mysqlArticleRepository";
 import { MysqlJobRepository } from "./infrastructure/mysql/mysqlJobRepository";
+import { MysqlBlogRepository } from "./infrastructure/mysql/mysqlBlogRepository";
 import { MysqlAdRepository } from "./infrastructure/mysql/mysqlAdRepository";
 import { RandomIdGenerator, SlugGenerator, SystemClock } from "./infrastructure/services";
 import { CreateArticle } from "./application/createArticle";
@@ -33,6 +36,15 @@ import {
   UpdateJob,
 } from "./application/jobUseCases";
 import {
+  ChangeBlogStatus,
+  CreateBlog,
+  DeleteBlog,
+  GetPublishedBlog,
+  ListBlogs,
+  ListPublishedBlogs,
+  UpdateBlog,
+} from "./application/blogUseCases";
+import {
   CreateAd,
   DeleteAd,
   GetActiveAds,
@@ -53,6 +65,7 @@ import { hasDatabaseEnv } from "@/lib/env";
 export interface Container {
   articles: ArticleRepository;
   jobs: JobRepository;
+  blogs: BlogRepository;
   ads: AdRepository;
   clock: Clock;
   ids: IdGenerator;
@@ -77,6 +90,14 @@ export interface Container {
   listPublishedJobs: ListPublishedJobs;
   getPublishedJob: GetPublishedJob;
 
+  createBlog: CreateBlog;
+  updateBlog: UpdateBlog;
+  changeBlogStatus: ChangeBlogStatus;
+  deleteBlog: DeleteBlog;
+  listBlogs: ListBlogs;
+  listPublishedBlogs: ListPublishedBlogs;
+  getPublishedBlog: GetPublishedBlog;
+
   createAd: CreateAd;
   updateAd: UpdateAd;
   setAdActive: SetAdActive;
@@ -86,7 +107,7 @@ export interface Container {
 }
 
 export function buildContainer(
-  overrides: Partial<Pick<Container, "articles" | "jobs" | "ads" | "clock" | "ids" | "slugger">> = {},
+  overrides: Partial<Pick<Container, "articles" | "jobs" | "blogs" | "ads" | "clock" | "ids" | "slugger">> = {},
 ): Container {
   // Adapter selection: MySQL when DATABASE_URL is set, else an in-memory store
   // (local smoke tests, or a first boot before the database is configured).
@@ -99,6 +120,9 @@ export function buildContainer(
   // empty state rather than inventing listings.
   const jobs =
     overrides.jobs ?? (useMysql ? new MysqlJobRepository() : new InMemoryJobRepository());
+  // Unseeded like jobs: an empty blog table renders the public empty state.
+  const blogs =
+    overrides.blogs ?? (useMysql ? new MysqlBlogRepository() : new InMemoryBlogRepository());
   // Also unseeded: an unsold slot renders the existing grey placeholder, so an
   // empty ad table is a legitimate state rather than something to fake data for.
   const ads =
@@ -110,6 +134,7 @@ export function buildContainer(
   return {
     articles,
     jobs,
+    blogs,
     ads,
     clock,
     ids,
@@ -133,6 +158,14 @@ export function buildContainer(
     listJobs: new ListJobs(jobs),
     listPublishedJobs: new ListPublishedJobs(jobs),
     getPublishedJob: new GetPublishedJob(jobs),
+
+    createBlog: new CreateBlog(blogs, ids, clock, slugger),
+    updateBlog: new UpdateBlog(blogs, clock, slugger),
+    changeBlogStatus: new ChangeBlogStatus(blogs, clock),
+    deleteBlog: new DeleteBlog(blogs),
+    listBlogs: new ListBlogs(blogs),
+    listPublishedBlogs: new ListPublishedBlogs(blogs),
+    getPublishedBlog: new GetPublishedBlog(blogs),
 
     createAd: new CreateAd(ads, ids, clock),
     updateAd: new UpdateAd(ads, clock),

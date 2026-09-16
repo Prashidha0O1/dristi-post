@@ -11,6 +11,7 @@ import {
   LogOut,
   Megaphone,
   Newspaper,
+  PenLine,
   Users,
 } from "lucide-react";
 import { can, type Capability, type Role } from "@/lib/domain/user";
@@ -23,6 +24,7 @@ type NavItem = { label: string; href: string; icon: typeof LayoutDashboard; capa
 const NAV: NavItem[] = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { label: "Articles", href: "/admin/articles", icon: Newspaper },
+  { label: "Blog", href: "/admin/blog", icon: PenLine },
   { label: "Jobs", href: "/admin/jobs", icon: Briefcase },
   { label: "Ads", href: "/admin/ads", icon: Megaphone, capability: "ads.manage" },
   { label: "Categories", href: "/admin/categories", icon: FolderTree },

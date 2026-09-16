@@ -1,0 +1,96 @@
+"use server";
+
+import { getContainer } from "@/lib/container";
+import { redirect } from "next/navigation";
+import { updateTag } from "next/cache";
+import { runFormAction, type FormState } from "./formState";
+import { requireCapability } from "@/lib/auth/guard";
+
+/** Shared FormData -> input mapping, so create and update can't drift apart. */
+function readBlogForm(formData: FormData) {
+  const excerptNe = (formData.get("excerptNe") as string) || undefined;
+  const excerptEn = (formData.get("excerptEn") as string) || undefined;
+  return {
+    title: {
+      ne: formData.get("titleNe") as string,
+      en: (formData.get("titleEn") as string) || undefined,
+    },
+    // Excerpt is optional: only send it when at least one side has text, so an
+    // empty pair doesn't trip the "required" check in the localised validator.
+    excerpt: excerptNe || excerptEn ? { ne: excerptNe, en: excerptEn } : undefined,
+    heroImage: formData.get("heroImage") as string,
+    body: {
+      ne: formData.get("bodyNe") as string,
+      en: (formData.get("bodyEn") as string) || undefined,
+    },
+    slug: (formData.get("slug") as string) || undefined,
+  };
+}
+
+/** Where to send the editor after a save: live page when published, else admin. */
+function liveOrAdmin(saved: { slug: string; status: string } | null): string {
+  if (saved && saved.status === "published") return `/blog/${saved.slug}`;
+  return "/admin/blog";
+}
+
+export async function createBlogAction(
+  _prev: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const container = getContainer();
+
+  let saved: { slug: string; status: string } | null = null;
+  const failure = await runFormAction(async () => {
+    await requireCapability("content.write");
+    const blog = await container.createBlog.execute({
+      ...readBlogForm(formData),
+      publish: formData.get("publish") === "on",
+    });
+    saved = { slug: blog.slug, status: blog.status };
+  });
+  if (failure) return failure;
+
+  updateTag("blogs");
+  redirect(liveOrAdmin(saved));
+}
+
+export async function updateBlogAction(
+  id: string,
+  _prev: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const container = getContainer();
+
+  let saved: { slug: string; status: string } | null = null;
+  const failure = await runFormAction(async () => {
+    await requireCapability("content.write");
+    const blog = await container.updateBlog.execute(id, readBlogForm(formData));
+    saved = { slug: blog.slug, status: blog.status };
+  });
+  if (failure) return failure;
+
+  updateTag("blogs");
+  redirect(liveOrAdmin(saved));
+}
+
+export async function publishBlogAction(id: string) {
+  await requireCapability("content.write");
+  const container = getContainer();
+  await container.changeBlogStatus.publish(id);
+  updateTag("blogs");
+}
+
+export async function unpublishBlogAction(id: string) {
+  await requireCapability("content.write");
+  const container = getContainer();
+  await container.changeBlogStatus.unpublish(id);
+  updateTag("blogs");
+}
+
+export async function deleteBlogAction(id: string) {
+  await requireCapability("content.delete");
+  const container = getContainer();
+  await container.deleteBlog.execute(id);
+  updateTag("blogs");
+  redirect("/admin/blog");
+}

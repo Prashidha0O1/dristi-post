@@ -27,7 +27,7 @@ const PUBLIC_BASE = process.env.UPLOAD_PUBLIC_BASE || "/uploads";
  */
 export async function uploadImage(
   file: File,
-  folder: "articles" | "jobs" | "ads",
+  folder: "articles" | "jobs" | "blog" | "ads",
 ): Promise<string> {
   if (!ALLOWED_TYPES.has(file.type)) {
     throw new UploadError("Only JPEG, PNG, WebP or GIF images are allowed.");
