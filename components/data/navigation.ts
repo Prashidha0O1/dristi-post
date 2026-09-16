@@ -7,7 +7,7 @@ export const primarySections: NavSection[] = [
   { id: "education", np: "शिक्षा", en: "Education", href: "/category/education" },
   { id: "sports", np: "खेलकुद", en: "Sports", href: "/category/sports" },
   { id: "science-tech", np: "विज्ञान र प्रविधि", en: "Science & Tech", href: "/category/science-tech" },
-  { id: "blog", np: "ब्लग", en: "Blog", href: "/category/blog" },
+  { id: "blog", np: "ब्लग", en: "Blog", href: "/blog" },
   { id: "jobs", np: "रोजगार", en: "Jobs", href: "/jobs" },
   { id: "tools", np: "उपकरणहरू", en: "Tools", href: "/tools" },
 ];
