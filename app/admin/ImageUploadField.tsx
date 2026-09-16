@@ -25,6 +25,43 @@ async function readLocalDimensions(
   }
 }
 
+const MAX_DIMENSION = 1600;
+const JPEG_QUALITY = 0.82;
+
+/**
+ * Compresses/downscales an image in the browser before upload: caps the longest
+ * side at 1600px and re-encodes to JPEG. This keeps uploads well under the
+ * server limit and makes article images load fast. GIFs (possibly animated) and
+ * anything that can't be decoded are returned unchanged.
+ */
+async function compressImage(file: File): Promise<File> {
+  if (file.type === "image/gif" || !file.type.startsWith("image/")) return file;
+  try {
+    const bitmap = await createImageBitmap(file);
+    const scale = Math.min(1, MAX_DIMENSION / Math.max(bitmap.width, bitmap.height));
+    const w = Math.round(bitmap.width * scale);
+    const h = Math.round(bitmap.height * scale);
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      bitmap.close();
+      return file;
+    }
+    ctx.drawImage(bitmap, 0, 0, w, h);
+    bitmap.close();
+    const blob = await new Promise<Blob | null>((resolve) =>
+      canvas.toBlob(resolve, "image/jpeg", JPEG_QUALITY),
+    );
+    if (!blob || blob.size >= file.size) return file; // no win -> keep original
+    const name = file.name.replace(/\.[^.]+$/, "") + ".jpg";
+    return new File([blob], name, { type: "image/jpeg" });
+  } catch {
+    return file;
+  }
+}
+
 /**
  * Replaces the old free-text "image URL" input. Uploads on file selection
  * (before the surrounding form is submitted) and carries the resulting
@@ -83,22 +120,25 @@ export function ImageUploadField({
       // Undecodable locally: say nothing and let the server be the judge.
     }
 
+    setStatus("uploading");
+
+    // Compress article/job images in the browser. Ads keep their exact pixels
+    // (the slot has a fixed size), so they are never recompressed.
+    const toUpload = placement ? file : await compressImage(file);
+
     // Checked here as well as in the action: an oversize body can be rejected
-    // by the host's proxy before it ever reaches the Server Action, which
-    // surfaces as a transport failure with no message worth showing.
-    if (file.size > MAX_UPLOAD_BYTES) {
+    // by the host's proxy before it ever reaches the Server Action.
+    if (toUpload.size > MAX_UPLOAD_BYTES) {
       setStatus("error");
       setError(
-        `That image is ${(file.size / 1024 / 1024).toFixed(1)}MB. The limit is 5MB — ` +
-          `resize or re-export it and try again.`,
+        `That image is ${(toUpload.size / 1024 / 1024).toFixed(1)}MB even after compressing. ` +
+          `The limit is 5MB — try a smaller image.`,
       );
       return;
     }
 
-    setStatus("uploading");
-
     const formData = new FormData();
-    formData.set("file", file);
+    formData.set("file", toUpload);
     formData.set("folder", folder);
     if (placement) formData.set("placement", placement);
 
