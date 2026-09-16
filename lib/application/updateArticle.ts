@@ -35,7 +35,7 @@ export class UpdateArticle {
       slug, // set after the spread so changes.slug (raw) can't overwrite it
       metaDescription:
         changes.metaDescription !== undefined
-          ? changes.metaDescription.trim() || undefined
+          ? changes.metaDescription
           : existing.metaDescription,
       updatedAt: this.clock.now().toISOString(),
     };

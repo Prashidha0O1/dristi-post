@@ -1,0 +1,1 @@
+feat: improve admin panel responsiveness and SEO form consistency, Moved category routes to top level

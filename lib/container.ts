@@ -1,3 +1,4 @@
+import type { SettingsRepository } from "./domain/settings";
 import type {
   AdRepository,
   ArticleRepository,
@@ -11,10 +12,12 @@ import { InMemoryArticleRepository } from "./infrastructure/inMemoryArticleRepos
 import { InMemoryJobRepository } from "./infrastructure/inMemoryJobRepository";
 import { InMemoryBlogRepository } from "./infrastructure/inMemoryBlogRepository";
 import { InMemoryAdRepository } from "./infrastructure/inMemoryAdRepository";
+import { InMemorySettingsRepository } from "./infrastructure/inMemorySettingsRepository";
 import { MysqlArticleRepository } from "./infrastructure/mysql/mysqlArticleRepository";
 import { MysqlJobRepository } from "./infrastructure/mysql/mysqlJobRepository";
 import { MysqlBlogRepository } from "./infrastructure/mysql/mysqlBlogRepository";
 import { MysqlAdRepository } from "./infrastructure/mysql/mysqlAdRepository";
+import { MysqlSettingsRepository } from "./infrastructure/mysql/mysqlSettingsRepository";
 import { RandomIdGenerator, SlugGenerator, SystemClock } from "./infrastructure/services";
 import { CreateArticle } from "./application/createArticle";
 import { UpdateArticle } from "./application/updateArticle";
@@ -67,6 +70,7 @@ export interface Container {
   jobs: JobRepository;
   blogs: BlogRepository;
   ads: AdRepository;
+  settings: SettingsRepository;
   clock: Clock;
   ids: IdGenerator;
   slugger: Slugger;
@@ -107,7 +111,7 @@ export interface Container {
 }
 
 export function buildContainer(
-  overrides: Partial<Pick<Container, "articles" | "jobs" | "blogs" | "ads" | "clock" | "ids" | "slugger">> = {},
+  overrides: Partial<Pick<Container, "articles" | "jobs" | "blogs" | "ads" | "clock" | "ids" | "slugger" | "settings">> = {},
 ): Container {
   // Adapter selection: MySQL when DATABASE_URL is set, else an in-memory store
   // (local smoke tests, or a first boot before the database is configured).
@@ -125,8 +129,8 @@ export function buildContainer(
     overrides.blogs ?? (useMysql ? new MysqlBlogRepository() : new InMemoryBlogRepository());
   // Also unseeded: an unsold slot renders the existing grey placeholder, so an
   // empty ad table is a legitimate state rather than something to fake data for.
-  const ads =
-    overrides.ads ?? (useMysql ? new MysqlAdRepository() : new InMemoryAdRepository());
+  const ads = overrides.ads ?? (useMysql ? new MysqlAdRepository() : new InMemoryAdRepository());
+  const settings = overrides.settings ?? (useMysql ? new MysqlSettingsRepository() : new InMemorySettingsRepository());
   const clock = overrides.clock ?? new SystemClock();
   const ids = overrides.ids ?? new RandomIdGenerator();
   const slugger = overrides.slugger ?? new SlugGenerator();
@@ -136,6 +140,7 @@ export function buildContainer(
     jobs,
     blogs,
     ads,
+    settings,
     clock,
     ids,
     slugger,

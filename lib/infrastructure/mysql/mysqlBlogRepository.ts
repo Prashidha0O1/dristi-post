@@ -14,11 +14,13 @@ function toDomain(row: Row): BlogRecord {
     slug: row.slug as string,
     title: localisedFromRow(row.titleNe, row.titleEn),
     excerpt: localisedFromRow(row.excerptNe, row.excerptEn),
+    metaDescription: localisedFromRow(row.meta_description_ne, row.meta_description_en),
     heroImage: row.heroImage as string,
     body: localisedFromRow(row.bodyNe, row.bodyEn),
     status: STATUS_FROM_DB[row.status as string] ?? "draft",
     createdAt: fromDbDateTime(row.createdAt),
     updatedAt: fromDbDateTime(row.updatedAt),
+    isFeatured: Boolean(row.is_featured),
     publishedAt: row.publishedAt ? fromDbDateTime(row.publishedAt) : undefined,
   };
 }
@@ -73,13 +75,13 @@ export class MysqlBlogRepository implements BlogRepository {
     await getPool().query(
       `INSERT INTO blogs
         (id, slug, titleNe, titleEn, excerptNe, excerptEn, heroImage,
-         bodyNe, bodyEn, status, createdAt, updatedAt, publishedAt)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+         bodyNe, bodyEn, status, createdAt, updatedAt, publishedAt, is_featured, meta_description_ne, meta_description_en)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
        ON DUPLICATE KEY UPDATE
          slug=VALUES(slug), titleNe=VALUES(titleNe), titleEn=VALUES(titleEn),
          excerptNe=VALUES(excerptNe), excerptEn=VALUES(excerptEn),
          heroImage=VALUES(heroImage), bodyNe=VALUES(bodyNe), bodyEn=VALUES(bodyEn),
-         status=VALUES(status), updatedAt=VALUES(updatedAt), publishedAt=VALUES(publishedAt)`,
+         status=VALUES(status), updatedAt=VALUES(updatedAt), publishedAt=VALUES(publishedAt), is_featured=VALUES(is_featured), meta_description_ne=VALUES(meta_description_ne), meta_description_en=VALUES(meta_description_en)`,
       [
         blog.id,
         blog.slug,
@@ -94,6 +96,9 @@ export class MysqlBlogRepository implements BlogRepository {
         toDbDateTime(blog.createdAt),
         toDbDateTime(blog.updatedAt),
         toDbDateTime(blog.publishedAt),
+        blog.isFeatured ? 1 : 0,
+        blog.metaDescription?.ne ?? null,
+        blog.metaDescription?.en ?? null,
       ],
     );
   }

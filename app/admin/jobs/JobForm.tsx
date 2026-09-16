@@ -25,9 +25,12 @@ interface Props {
     employmentType?: string;
     descriptionNe?: string;
     descriptionEn?: string;
+    metaDescNe?: string;
+    metaDescEn?: string;
     salary?: string;
     deadline?: string;
     applyUrl?: string;
+    slug?: string;
     isFeatured?: boolean;
   };
   submitLabel: string;
@@ -109,6 +112,30 @@ export function JobForm({ action, defaultValues: d = {}, submitLabel, showPublis
           </Field>
           <Field label="Description (English)">
             <chakra.textarea name="descriptionEn" defaultValue={d.descriptionEn} h="240px" {...fieldStyles.textarea} />
+          </Field>
+        </SimpleGrid>
+      </FormSection>
+
+      <FormSection title="SEO & URL" description="The slug is the job's web address; the meta description is the snippet shown in search results.">
+        <Field
+          label="URL slug"
+          error={issues.slug}
+          hint="English letters, numbers and hyphens only, up to 70 characters. Leave blank to auto-generate from the title. Changing it on a published job changes its link."
+        >
+          <chakra.input
+            name="slug"
+            defaultValue={d.slug}
+            maxLength={70}
+            placeholder="senior-software-engineer"
+            {...fieldStyles.input}
+          />
+        </Field>
+        <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
+          <Field label="Meta Description (Nepali)" hint="Optional — used for SEO. Falls back to description." error={issues["metaDescription.ne"]}>
+            <chakra.textarea name="metaDescNe" defaultValue={d.metaDescNe} maxLength={200} h="72px" {...fieldStyles.textarea} />
+          </Field>
+          <Field label="Meta Description (English)" hint="Optional">
+            <chakra.textarea name="metaDescEn" defaultValue={d.metaDescEn} maxLength={200} h="72px" {...fieldStyles.textarea} />
           </Field>
         </SimpleGrid>
       </FormSection>

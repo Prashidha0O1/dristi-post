@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageShell } from "@/components/pageShell";
 import { useLocale } from "@/lib/localeContext";
+import { formatDate } from "@/lib/time";
 import type { LocalisedText } from "@/lib/domain/article";
 
 interface BlogView {
@@ -18,7 +19,7 @@ export default function BlogDetailClient({ blog }: { blog: BlogView }) {
   const { locale } = useLocale();
   const pick = (t: LocalisedText) => (locale === "ne" ? t.ne ?? t.en : t.en ?? t.ne) ?? "";
   const title = pick(blog.title);
-  const date = new Date(blog.publishedAt).toLocaleDateString(locale === "ne" ? "en-GB" : "en-US", {
+  const date = new Date(blog.publishedAt).toLocaleDateString(locale === "ne" ? "ne-NP" : "en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",

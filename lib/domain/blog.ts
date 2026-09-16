@@ -14,6 +14,8 @@ export interface BlogRecord {
   title: LocalisedText;
   /** Short summary shown on the card and in search results. Optional. */
   excerpt: LocalisedText;
+  /** Optional SEO meta description (falls back to excerpt). */
+  metaDescription?: LocalisedText;
   /** Hero image URL — an absolute URL or a site-relative /uploads path. */
   heroImage: string;
   /** Rich-text HTML body (same editor as articles). */
@@ -22,18 +24,21 @@ export interface BlogRecord {
   createdAt: string;
   updatedAt: string;
   publishedAt?: string;
+  isFeatured?: boolean;
 }
 
 /** Fields an editor supplies when creating a post. */
 export interface NewBlogInput {
   title: LocalisedText;
   excerpt?: LocalisedText;
+  metaDescription?: LocalisedText;
   heroImage: string;
   body: LocalisedText;
   /** Optional hand-typed slug; auto-generated from the title when blank. */
   slug?: string;
   /** Publish immediately, or leave as a draft (the default). */
   publish?: boolean;
+  isFeatured?: boolean;
 }
 
 /** Every field an editor is allowed to change after creation. */

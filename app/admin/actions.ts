@@ -23,7 +23,12 @@ function readArticleForm(formData: FormData) {
       en: (formData.get("bodyEn") as string) || undefined,
     },
     slug: (formData.get("slug") as string) || undefined,
-    metaDescription: (formData.get("metaDescription") as string) || undefined,
+    metaDescription: (formData.get("metaDescNe") || formData.get("metaDescEn"))
+      ? {
+          ne: (formData.get("metaDescNe") as string) || undefined,
+          en: (formData.get("metaDescEn") as string) || undefined,
+        }
+      : undefined,
     scheduledAt: (formData.get("scheduledAt") as string) || undefined,
     categorySlug: formData.get("categorySlug") as string,
     provinceSlug: (formData.get("provinceSlug") as ProvinceSlug) || undefined,

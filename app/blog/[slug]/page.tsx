@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!blog) return { title: "Blog Not Found — Dristi Times" };
 
-  const description = primaryText(blog.excerpt).slice(0, 160);
+  const description = primaryText(blog.metaDescription || blog.excerpt).slice(0, 160);
   return {
     title: `${primaryText(blog.title)} | Dristi Times`,
     description,

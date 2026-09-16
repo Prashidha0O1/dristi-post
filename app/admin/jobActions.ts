@@ -19,6 +19,13 @@ function readJobForm(formData: FormData) {
     location: formData.get("location") as string,
     provinceSlug: (formData.get("provinceSlug") as ProvinceSlug) || undefined,
     employmentType: formData.get("employmentType") as EmploymentType,
+    slug: (formData.get("slug") as string) || undefined,
+    metaDescription: (formData.get("metaDescNe") || formData.get("metaDescEn"))
+      ? {
+          ne: (formData.get("metaDescNe") as string) || undefined,
+          en: (formData.get("metaDescEn") as string) || undefined,
+        }
+      : undefined,
     description: {
       ne: formData.get("descriptionNe") as string,
       en: (formData.get("descriptionEn") as string) || undefined,

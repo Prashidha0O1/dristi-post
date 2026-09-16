@@ -21,10 +21,13 @@ interface Props {
     titleEn?: string;
     excerptNe?: string;
     excerptEn?: string;
+    metaDescNe?: string;
+    metaDescEn?: string;
     heroImage?: string;
     bodyNe?: string;
     bodyEn?: string;
     slug?: string;
+    isFeatured?: boolean;
   };
   submitLabel: string;
   showPublish?: boolean;
@@ -80,22 +83,38 @@ export function BlogForm({ action, defaultValues: d = {}, submitLabel, showPubli
         </SimpleGrid>
       </FormSection>
 
-      <FormSection title="URL & publishing" description="The slug is the post's web address.">
+      <FormSection title="SEO & URL" description="The slug is the post's web address; the meta description is the snippet shown in search results.">
         <Field
           label="URL slug"
           error={issues.slug}
-          hint="English letters, numbers and hyphens only, up to 70 characters. Leave blank to auto-generate from the title."
+          hint="English letters, numbers and hyphens only, up to 70 characters. Leave blank to auto-generate from the title. Changing it on a published post changes its link."
         >
           <chakra.input
             name="slug"
             defaultValue={d.slug}
             maxLength={70}
-            placeholder="how-to-get-facebook-ad-clients"
+            placeholder="this-is-a-good-headline"
             {...fieldStyles.input}
           />
         </Field>
+        <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
+          <Field label="Meta Description (Nepali)" hint="Optional — used for SEO. Falls back to excerpt." error={issues["metaDescription.ne"]}>
+            <chakra.textarea name="metaDescNe" defaultValue={d.metaDescNe} maxLength={200} h="72px" {...fieldStyles.textarea} />
+          </Field>
+          <Field label="Meta Description (English)" hint="Optional">
+            <chakra.textarea name="metaDescEn" defaultValue={d.metaDescEn} maxLength={200} h="72px" {...fieldStyles.textarea} />
+          </Field>
+        </SimpleGrid>
+      </FormSection>
 
-        <Flex gap="12px" flexWrap="wrap" mt="4px">
+      <FormSection title="Placement" description="Controls where this appears on the public site.">
+        <Flex gap="12px" flexWrap="wrap">
+          <CheckboxField
+            name="isFeatured"
+            label="Featured Blog"
+            hint="Show this blog at the very top of the blog list"
+            defaultChecked={d.isFeatured}
+          />
           {showPublish && (
             <CheckboxField name="publish" label="Publish immediately" hint="Otherwise saved as a draft" />
           )}

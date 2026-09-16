@@ -48,6 +48,7 @@ export class CreateJob {
       provinceSlug: input.provinceSlug,
       employmentType: input.employmentType,
       description: input.description,
+      metaDescription: input.metaDescription,
       salary: input.salary?.trim() || undefined,
       deadline: input.deadline?.trim() || undefined,
       applyUrl: input.applyUrl.trim(),

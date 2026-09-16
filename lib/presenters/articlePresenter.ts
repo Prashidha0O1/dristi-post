@@ -1,6 +1,6 @@
 import type { Article, Author, Tag } from "../types";
 import type { ArticleRecord } from "../domain/article";
-import { localisedTextToRecord } from "../domain/article";
+import { localisedTextToRecord, primaryText } from "../domain/article";
 import { categories } from "../config";
 import { authors } from "../authors";
 
@@ -46,7 +46,7 @@ export function toArticleViewModel(record: ArticleRecord): Article {
     title: localisedTextToRecord(record.title),
     excerpt: localisedTextToRecord(record.excerpt),
     content: localisedTextToRecord(record.body),
-    metaDescription: record.metaDescription,
+    metaDescription: record.metaDescription ? primaryText(record.metaDescription) : undefined,
     category,
     author,
     image: record.imageUrl,

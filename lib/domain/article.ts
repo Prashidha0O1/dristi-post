@@ -75,7 +75,7 @@ export interface ArticleRecord {
   excerpt: LocalisedText;
   body: LocalisedText;
   /** Optional SEO meta description (falls back to the excerpt when absent). */
-  metaDescription?: string;
+  metaDescription?: LocalisedText;
   categorySlug: string;
   /** Absent for national/international news that isn't province-specific. */
   provinceSlug?: ProvinceSlug;
@@ -112,7 +112,7 @@ export interface NewArticleInput {
   /** Optional hand-typed slug; auto-generated from the title when blank. */
   slug?: string;
   /** Optional SEO meta description. */
-  metaDescription?: string;
+  metaDescription?: LocalisedText;
   categorySlug: string;
   provinceSlug?: ProvinceSlug;
   authorId: string;

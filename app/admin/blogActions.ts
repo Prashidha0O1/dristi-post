@@ -10,6 +10,8 @@ import { requireCapability } from "@/lib/auth/guard";
 function readBlogForm(formData: FormData) {
   const excerptNe = (formData.get("excerptNe") as string) || undefined;
   const excerptEn = (formData.get("excerptEn") as string) || undefined;
+  const metaDescNe = (formData.get("metaDescNe") as string) || undefined;
+  const metaDescEn = (formData.get("metaDescEn") as string) || undefined;
   return {
     title: {
       ne: formData.get("titleNe") as string,
@@ -18,12 +20,14 @@ function readBlogForm(formData: FormData) {
     // Excerpt is optional: only send it when at least one side has text, so an
     // empty pair doesn't trip the "required" check in the localised validator.
     excerpt: excerptNe || excerptEn ? { ne: excerptNe, en: excerptEn } : undefined,
+    metaDescription: metaDescNe || metaDescEn ? { ne: metaDescNe, en: metaDescEn } : undefined,
     heroImage: formData.get("heroImage") as string,
     body: {
       ne: formData.get("bodyNe") as string,
       en: (formData.get("bodyEn") as string) || undefined,
     },
     slug: (formData.get("slug") as string) || undefined,
+    isFeatured: formData.get("isFeatured") === "on",
   };
 }
 

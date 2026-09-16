@@ -1,4 +1,5 @@
 import { unstable_cache } from "next/cache";
+import { buildContainer } from "./container";
 import type { Article } from "./types";
 import type { EmploymentType, JobRecord } from "./domain/job";
 import type { BlogRecord } from "./domain/blog";
@@ -233,3 +234,19 @@ export type AdSlots = Record<AdPlacement, AdRecord | null>;
 export function emptyAdSlots(): AdSlots {
   return Object.fromEntries(adPlacements.map((p) => [p, null])) as AdSlots;
 }
+
+export const getFooterSettings = unstable_cache(
+  async () => {
+    return buildContainer().settings.getFooterSettings();
+  },
+  ["footer_settings"],
+  { tags: ["site_settings"] }
+);
+
+export const getSeoSettings = unstable_cache(
+  async () => {
+    return buildContainer().settings.getSeoSettings();
+  },
+  ["seo_settings"],
+  { tags: ["site_settings"] }
+);

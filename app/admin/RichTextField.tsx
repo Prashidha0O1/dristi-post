@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex, chakra } from "@chakra-ui/react";
+import { Box, Flex, chakra, Text } from "@chakra-ui/react";
 import { useEditor, EditorContent, type Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 // StarterKit v3 bundles Link and Underline — configure via StarterKit, don't
@@ -99,11 +99,13 @@ function currentBlock(editor: Editor): string {
 function Toolbar({
   editor,
   onOpenLink,
+  onOpenTable,
   fullscreen,
   onToggleFullscreen,
 }: {
   editor: Editor;
   onOpenLink: () => void;
+  onOpenTable: () => void;
   fullscreen: boolean;
   onToggleFullscreen: () => void;
 }) {
@@ -227,12 +229,25 @@ function Toolbar({
           </chakra.select>
         </>
       ) : (
-        <ToolbarButton
-          title="Insert table"
-          onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
-        >
-          <TableIcon size={16} strokeWidth={2.2} />
-        </ToolbarButton>
+        <Flex align="center" gap="2px" bg="var(--color-input-bg)" border="1px solid var(--color-border)" borderRadius="6px" overflow="hidden">
+          <Box p="4px 6px" color="var(--color-subtle)"><TableIcon size={16} strokeWidth={2.2} /></Box>
+          <chakra.button
+            type="button"
+            h="32px"
+            px="8px"
+            bg="transparent"
+            border="none"
+            fontSize="13px"
+            fontWeight="600"
+            color="var(--color-headline)"
+            cursor="pointer"
+            outline="none"
+            onClick={onOpenTable}
+            title="Insert Table"
+          >
+            Insert Table...
+          </chakra.button>
+        </Flex>
       )}
 
       <Divider />
@@ -261,7 +276,8 @@ const CONTENT_CSS = {
   "& .ProseMirror h4": { fontSize: "18px", fontWeight: 700, margin: "14px 0 6px" },
   "& .ProseMirror h5": { fontSize: "16px", fontWeight: 700, margin: "12px 0 4px" },
   "& .ProseMirror h6": { fontSize: "14px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em", margin: "12px 0 4px" },
-  "& .ProseMirror ul, & .ProseMirror ol": { paddingLeft: "22px", margin: "0 0 12px" },
+  "& .ProseMirror ul": { paddingLeft: "22px", margin: "0 0 12px", listStyleType: "disc" },
+  "& .ProseMirror ol": { paddingLeft: "22px", margin: "0 0 12px", listStyleType: "decimal" },
   "& .ProseMirror a": { color: "var(--color-brand)", textDecoration: "underline" },
   "& .ProseMirror blockquote": {
     borderLeft: "3px solid var(--color-border)",
@@ -291,6 +307,9 @@ export function RichTextField({
   const [linkOpen, setLinkOpen] = useState(false);
   const [linkUrl, setLinkUrl] = useState("https://");
   const [fullscreen, setFullscreen] = useState(false);
+  const [tableOpen, setTableOpen] = useState(false);
+  const [tableRows, setTableRows] = useState("3");
+  const [tableCols, setTableCols] = useState("3");
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -329,6 +348,16 @@ export function RichTextField({
     setLinkOpen(false);
   }
 
+  function applyTable() {
+    if (!editor) return;
+    const rows = parseInt(tableRows, 10);
+    const cols = parseInt(tableCols, 10);
+    if (rows > 0 && cols > 0) {
+      editor.chain().focus().insertTable({ rows, cols, withHeaderRow: true }).run();
+    }
+    setTableOpen(false);
+  }
+
   return (
     <Box
       border="1px solid var(--color-input-border)"
@@ -339,8 +368,9 @@ export function RichTextField({
       position={fullscreen ? "fixed" : "relative"}
       inset={fullscreen ? "0" : undefined}
       zIndex={fullscreen ? 1400 : undefined}
-      display={fullscreen ? "flex" : undefined}
-      flexDirection={fullscreen ? "column" : undefined}
+      display="flex"
+      flexDirection="column"
+      flex="1"
       overflow={fullscreen ? "hidden" : undefined}
       _focusWithin={{
         borderColor: "var(--color-brand)",
@@ -357,6 +387,7 @@ export function RichTextField({
             setLinkUrl((editor.getAttributes("link").href as string) || "https://");
             setLinkOpen(true);
           }}
+          onOpenTable={() => setTableOpen(true)}
         />
       )}
 
@@ -389,11 +420,62 @@ export function RichTextField({
         </Flex>
       )}
 
+      {tableOpen && editor && (
+        <Flex align="center" gap="8px" p="8px" borderBottom="1px solid var(--color-input-border)" bg="var(--color-card-alt)">
+          <Text fontSize="13px" fontWeight="600" color="var(--color-headline)">Table Size:</Text>
+          <chakra.input
+            type="number"
+            min={1}
+            max={20}
+            value={tableRows}
+            onChange={(e) => setTableRows(e.target.value)}
+            placeholder="Rows"
+            w="70px"
+            h="32px"
+            px="10px"
+            fontSize="13px"
+            border="1px solid var(--color-input-border)"
+            bg="var(--color-input-bg)"
+            color="var(--color-body)"
+            borderRadius="5px"
+          />
+          <Text fontSize="13px" color="var(--color-subtle)">rows ×</Text>
+          <chakra.input
+            type="number"
+            min={1}
+            max={20}
+            value={tableCols}
+            onChange={(e) => setTableCols(e.target.value)}
+            placeholder="Cols"
+            w="70px"
+            h="32px"
+            px="10px"
+            fontSize="13px"
+            border="1px solid var(--color-input-border)"
+            bg="var(--color-input-bg)"
+            color="var(--color-body)"
+            borderRadius="5px"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") { e.preventDefault(); applyTable(); }
+              if (e.key === "Escape") setTableOpen(false);
+            }}
+          />
+          <Text fontSize="13px" color="var(--color-subtle)">cols</Text>
+          <chakra.button type="button" onClick={applyTable} h="32px" px="12px" fontSize="13px" fontWeight="600" bg="var(--color-brand)" color="white" border="none" borderRadius="5px" cursor="pointer" ml="4px">
+            Insert
+          </chakra.button>
+          <chakra.button type="button" onClick={() => setTableOpen(false)} h="32px" px="10px" fontSize="13px" bg="transparent" color="var(--color-subtle)" border="none" cursor="pointer">
+            Cancel
+          </chakra.button>
+        </Flex>
+      )}
+
       <Box
         color="var(--color-body)"
         bg="var(--color-input-bg)"
-        flex={fullscreen ? "1" : undefined}
-        overflowY={fullscreen ? "auto" : undefined}
+        flex="1"
+        overflowY="auto"
+        maxHeight={fullscreen ? "none" : "500px"}
         css={CONTENT_CSS}
       >
         <EditorContent editor={editor} />
