@@ -59,3 +59,4 @@ skills-lock.json
 # Locally uploaded media (served at /uploads); keep the folder, ignore contents
 /public/uploads/*
 !/public/uploads/.gitkeep
+package-lock.json
