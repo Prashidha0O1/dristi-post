@@ -70,9 +70,13 @@ function checkSlug(issues: Record<string, string>, slug: string | undefined): vo
 }
 
 /** Optional SEO meta description length cap. */
-function checkMeta(issues: Record<string, string>, meta: string | undefined): void {
-  if (meta && meta.trim().length > MAX_META) {
-    issues.metaDescription = `The meta description must be at most ${MAX_META} characters.`;
+function checkMeta(issues: Record<string, string>, meta: import("../domain/article").LocalisedText | undefined): void {
+  if (!meta) return;
+  if (meta.ne && meta.ne.trim().length > MAX_META) {
+    issues["metaDescription.ne"] = `The Nepali meta description must be at most ${MAX_META} characters.`;
+  }
+  if (meta.en && meta.en.trim().length > MAX_META) {
+    issues["metaDescription.en"] = `The English meta description must be at most ${MAX_META} characters.`;
   }
 }
 

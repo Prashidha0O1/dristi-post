@@ -128,11 +128,11 @@ export function PageHeader({
 
 export function Card({ children, p = "0" }: { children: ReactNode; p?: string }) {
   return (
-    <Box
+    <Box overflowX="auto"
       bg="var(--color-surface)"
       border="1px solid var(--color-border)"
       borderRadius="10px"
-      overflow="hidden"
+      
       p={p}
     >
       {children}
@@ -143,7 +143,7 @@ export function Card({ children, p = "0" }: { children: ReactNode; p?: string })
 /** Header strip for the admin tables. Children are the column cells. */
 export function TableHead({ children }: { children: ReactNode }) {
   return (
-    <Flex
+    <Flex minW="700px"
       bg="var(--color-card-alt)"
       px="16px"
       py="11px"
@@ -161,7 +161,7 @@ export function TableHead({ children }: { children: ReactNode }) {
 
 export function TableRow({ children }: { children: ReactNode }) {
   return (
-    <Flex
+    <Flex minW="700px"
       px="16px"
       py="13px"
       borderBottom="1px solid var(--color-border)"

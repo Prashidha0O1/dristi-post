@@ -9,7 +9,7 @@ import { primarySections } from "../data/navigation";
 import type { Lang } from "../types/navigation";
 
 // Real, browsable sections — no fabricated counts or fake search history.
-const browseTopics = primarySections.filter((s) => s.href.startsWith("/category/"));
+const browseTopics = primarySections.filter((s) => !["/", "/latest", "/trending", "/blog", "/jobs", "/tools", "/forex", "/gold-silver", "/date-converter", "/unicode-preeti", "/rashifal", "/calendar", "/login"].includes(s.href));
 
 interface SearchPanelProps {
   open: boolean;

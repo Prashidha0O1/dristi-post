@@ -25,6 +25,7 @@ function toDomain(row: Row): JobRecord {
     provinceSlug: row.province ? PROVINCE_FROM_DB[row.province as string] : undefined,
     employmentType: EMPLOYMENT_FROM_DB[row.employmentType as string] ?? "full-time",
     description: localisedFromRow(row.descriptionNe, row.descriptionEn),
+    metaDescription: localisedFromRow(row.metaDescriptionNe, row.metaDescriptionEn),
     salary: (row.salary as string) ?? undefined,
     deadline: fromDbDate(row.deadline),
     applyUrl: row.applyUrl as string,
@@ -101,12 +102,13 @@ export class MysqlJobRepository implements JobRepository {
         (id, slug, titleNe, titleEn, company, location, province, employmentType,
          descriptionNe, descriptionEn, salary, deadline, applyUrl, status,
          isFeatured, createdAt, updatedAt, publishedAt)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
        ON DUPLICATE KEY UPDATE
          slug=VALUES(slug), titleNe=VALUES(titleNe), titleEn=VALUES(titleEn),
          company=VALUES(company), location=VALUES(location),
          province=VALUES(province), employmentType=VALUES(employmentType),
          descriptionNe=VALUES(descriptionNe), descriptionEn=VALUES(descriptionEn),
+         metaDescriptionNe=VALUES(metaDescriptionNe), metaDescriptionEn=VALUES(metaDescriptionEn),
          salary=VALUES(salary), deadline=VALUES(deadline), applyUrl=VALUES(applyUrl),
          status=VALUES(status), isFeatured=VALUES(isFeatured),
          updatedAt=VALUES(updatedAt), publishedAt=VALUES(publishedAt)`,
@@ -121,6 +123,8 @@ export class MysqlJobRepository implements JobRepository {
         EMPLOYMENT_TO_DB[job.employmentType],
         job.description.ne ?? "",
         job.description.en ?? null,
+        job.metaDescription?.ne ?? null,
+        job.metaDescription?.en ?? null,
         job.salary ?? null,
         job.deadline ?? null,
         job.applyUrl,

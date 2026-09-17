@@ -7,6 +7,7 @@ import { PageShell } from "@/components/pageShell";
 import { SectionHeader } from "@/components/sectionHeader";
 import { AdSlot } from "@/components/adSlot";
 import { useLocale } from "@/lib/localeContext";
+import { formatDate } from "@/lib/time";
 import type { LocalisedText } from "@/lib/domain/article";
 import type { AdSlots } from "@/lib/publicQueries";
 
@@ -17,16 +18,12 @@ interface BlogCard {
   excerpt: LocalisedText;
   heroImage: string;
   publishedAt: string;
+  isFeatured?: boolean;
 }
 
 function useDate() {
   const { locale } = useLocale();
-  return (iso: string) =>
-    new Date(iso).toLocaleDateString(locale === "ne" ? "en-GB" : "en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
+  return (iso: string) => formatDate(iso, locale as any);
 }
 
 function BlogCardItem({
@@ -52,27 +49,31 @@ function BlogCardItem({
         border="1px solid var(--color-border)"
         transition="transform 0.18s, box-shadow 0.18s"
         _hover={{ transform: "translateY(-4px)", boxShadow: "0 12px 30px rgba(0,0,0,0.10)" }}
+        display="flex"
+        flexDirection="column"
+        h="100%"
       >
-        <Box position="relative" w="full" h={imageHeight} bg="var(--color-card-alt)">
-          <Image src={blog.heroImage} alt={pick(blog.title)} fill sizes="(max-width: 768px) 100vw, 66vw" style={{ objectFit: "cover" }} />
+        <Box position="relative" w="full" h={imageHeight} bg="var(--color-card-alt)" flexShrink={0}>
+          <Image src={blog.heroImage} alt={pick(blog.title)} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover" }} />
         </Box>
-        <Box p="18px 20px 22px">
+        <Box p="18px 20px 22px" flex="1" display="flex" flexDirection="column">
           <Text fontSize="13px" color="var(--color-muted)" mb="8px">
             {fmt(blog.publishedAt)}
           </Text>
           <Text
-            fontSize={showExcerpt ? "26px" : "19px"}
+            fontSize="19px"
             fontWeight="800"
             lineHeight="1.28"
             color="var(--color-headline)"
             lineClamp={3}
             _groupHover={{ color: "var(--color-brand)" }}
             transition="color 0.15s"
+            mb="8px"
           >
             {pick(blog.title)}
           </Text>
           {showExcerpt && pick(blog.excerpt) && (
-            <Text mt="10px" fontSize="15px" color="var(--color-subtle)" lineHeight="1.6" lineClamp={3}>
+            <Text fontSize="15px" color="var(--color-subtle)" lineHeight="1.6" lineClamp={3} mt="auto">
               {pick(blog.excerpt)}
             </Text>
           )}
@@ -120,8 +121,8 @@ export default function BlogPageClient({ blogs, ads }: { blogs: BlogCard[]; ads:
   const pick = (t: LocalisedText) => (locale === "ne" ? t.ne ?? t.en : t.en ?? t.ne) ?? "";
   const fmt = useDate();
 
-  const lead = blogs[0];
-  const rest = blogs.slice(1);
+  const featuredBlogs = blogs.filter((b) => b.isFeatured);
+  const regularBlogs = blogs.filter((b) => !b.isFeatured);
 
   return (
     <PageShell>
@@ -135,19 +136,28 @@ export default function BlogPageClient({ blogs, ads }: { blogs: BlogCard[]; ads:
         <Text color="var(--color-brand)" fontWeight="600">{locale === "ne" ? "ब्लग" : "Blog"}</Text>
       </Flex>
 
-      <SectionHeader title={locale === "ne" ? "ब्लग" : "Blog"} accent="var(--color-brand)" />
-
       <SimpleGrid columns={{ base: 1, lg: 3 }} gap="32px">
         <Box gridColumn={{ lg: "span 2" }}>
-          {lead && (
-            <Box mb="28px">
-              <BlogCardItem blog={lead} pick={pick} fmt={fmt} imageHeight="380px" showExcerpt />
+          {featuredBlogs.length > 0 && (
+            <Box mb="32px">
+              <SectionHeader title={locale === "ne" ? "प्रमुख ब्लग" : "Featured Blog"} accent="var(--color-brand)" />
+              <BlogCardItem blog={featuredBlogs[0]} pick={pick} fmt={fmt} imageHeight="340px" showExcerpt />
+              {featuredBlogs.length > 1 && (
+                 <SimpleGrid columns={{ base: 1, sm: 2 }} gap="24px" mt="24px">
+                   {featuredBlogs.slice(1).map((b) => (
+                     <BlogCardItem key={b.id} blog={b} pick={pick} fmt={fmt} imageHeight="180px" showExcerpt />
+                   ))}
+                 </SimpleGrid>
+              )}
             </Box>
           )}
-          {rest.length > 0 && (
-            <SimpleGrid columns={{ base: 1, sm: 2 }} gap="20px">
-              {rest.map((b) => (
-                <BlogCardItem key={b.id} blog={b} pick={pick} fmt={fmt} imageHeight="180px" />
+
+          <SectionHeader title={locale === "ne" ? "सबै ब्लगहरू" : "All Blogs"} accent="var(--color-brand)" />
+          
+          {regularBlogs.length > 0 && (
+            <SimpleGrid columns={{ base: 1, sm: 2 }} gap="24px" mb="32px">
+              {regularBlogs.map((b) => (
+                <BlogCardItem key={b.id} blog={b} pick={pick} fmt={fmt} imageHeight="210px" showExcerpt />
               ))}
             </SimpleGrid>
           )}

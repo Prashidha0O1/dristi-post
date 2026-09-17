@@ -1,5 +1,5 @@
 import type { Locale } from "./types";
-import { toNepaliDigits } from "./nepaliDate";
+import { toNepaliDigits, toNepaliDate, getBSMonthName } from "./nepaliDate";
 
 const AD_MONTHS_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const AD_MONTHS_NE = ["जनवरी", "फेब्रुअरी", "मार्च", "अप्रिल", "मे", "जुन", "जुलाई", "अगस्ट", "सेप्टेम्बर", "अक्टोबर", "नोभेम्बर", "डिसेम्बर"];
@@ -42,4 +42,13 @@ export function timeAgo(dateStr: string, locale: Locale): string {
   return locale === "ne"
     ? `${AD_MONTHS_NE[date.getMonth()]} ${toNepaliDigits(date.getDate())}`
     : `${AD_MONTHS_EN[date.getMonth()]} ${date.getDate()}`;
+}
+
+export function formatDate(dateStr: string, locale: Locale): string {
+  const date = new Date(dateStr);
+  if (locale === "ne") {
+    const bs = toNepaliDate(date);
+    return `${toNepaliDigits(bs.day)} ${getBSMonthName(bs.month, "ne")} ${toNepaliDigits(bs.year)}`;
+  }
+  return `${date.getDate()} ${AD_MONTHS_EN[date.getMonth()]} ${date.getFullYear()}`;
 }

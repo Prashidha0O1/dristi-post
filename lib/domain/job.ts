@@ -37,7 +37,9 @@ export interface JobRecord {
   location: string;
   provinceSlug?: ProvinceSlug;
   employmentType: EmploymentType;
+  metaDescription?: LocalisedText;
   description: LocalisedText;
+  /** Optional SEO meta description. */
   /** Free text ("रु. ५०,०००–७०,०००", "Negotiable") — deliberately not numeric. */
   salary?: string;
   /** ISO date (YYYY-MM-DD). Absent means open until filled. */
@@ -59,6 +61,7 @@ export interface NewJobInput {
   provinceSlug?: ProvinceSlug;
   employmentType: EmploymentType;
   description: LocalisedText;
+  metaDescription?: LocalisedText;
   salary?: string;
   deadline?: string;
   applyUrl: string;

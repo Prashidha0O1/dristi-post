@@ -43,6 +43,8 @@ export default async function EditJobPage({ params }: { params: Promise<{ id: st
             employmentType: found.employmentType,
             descriptionNe: found.description.ne,
             descriptionEn: found.description.en,
+            metaDescNe: found.metaDescription?.ne,
+            metaDescEn: found.metaDescription?.en,
             salary: found.salary,
             deadline: found.deadline,
             applyUrl: found.applyUrl,

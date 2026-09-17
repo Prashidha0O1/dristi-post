@@ -90,7 +90,7 @@ export default function ArticlePageClient({
               </Text>
             </Link>
             <Text>›</Text>
-            <Link href={`/category/${article.category.slug}`}>
+            <Link href={`/${article.category.slug}`}>
               <Text _hover={{ color: "var(--color-brand)" }} transition="color 0.15s" color={catColor} fontWeight="600">
                 {categoryName}
               </Text>

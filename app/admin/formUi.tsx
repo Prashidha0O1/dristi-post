@@ -87,12 +87,12 @@ export function Field({
   children: ReactNode;
 }) {
   return (
-    <Box mb="16px">
+    <Flex direction="column" h="100%" mb="16px">
       <Flex align="baseline" gap="4px" mb="5px">
         <Text fontSize="13px" fontWeight="600" color="var(--color-body)">{label}</Text>
         {required && <Text fontSize="13px" color="var(--color-danger-fg)" lineHeight="1">*</Text>}
       </Flex>
-      {children}
+      <Box flex="1" display="flex" flexDirection="column">{children}</Box>
       {/* The error replaces the hint rather than stacking under it: once
           something is wrong, the generic guidance is just noise. */}
       {error ? (
@@ -107,7 +107,7 @@ export function Field({
           <Text fontSize="11px" color="var(--color-muted)" mt="5px" lineHeight="1.5">{hint}</Text>
         )
       )}
-    </Box>
+    </Flex>
   );
 }
 

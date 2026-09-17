@@ -43,7 +43,7 @@ export class CreateArticle {
       title: input.title,
       excerpt: input.excerpt,
       body: input.body,
-      metaDescription: input.metaDescription?.trim() || undefined,
+      metaDescription: input.metaDescription,
       categorySlug: input.categorySlug,
       provinceSlug: input.provinceSlug,
       authorId: input.authorId,

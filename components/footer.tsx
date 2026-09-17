@@ -3,6 +3,14 @@
 import { Box, Flex, Grid, SimpleGrid, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { useLocale } from "@/lib/localeContext";
+import { useSettings } from "@/lib/settingsContext";
+
+function formatWhatsApp(wa: string | undefined) {
+  if (!wa) return "#";
+  if (wa.startsWith("http")) return wa;
+  const clean = wa.replace(/[^0-9]/g, "");
+  return `https://wa.me/${clean}`;
+}
 import { categories } from "@/lib/config";
 
 const SOCIALS = [
@@ -43,6 +51,7 @@ function FooterHeading({ children }: { children: React.ReactNode }) {
 
 export function Footer() {
   const { t, localized, locale } = useLocale();
+  const { footer } = useSettings();
   
   const topSlugs = ["politics", "society", "economy", "health", "sports", "entertainment", "tourism", "blog", "education", "science-tech"];
   const footerCategories = [
@@ -61,13 +70,11 @@ export function Footer() {
               <Text as="span" color="white">{locale === "ne" ? "टाइम्स" : "Times"}</Text>
             </Text>
             <Text mt="12px" maxW="260px" color="rgba(255,255,255,0.55)" fontSize="13px" lineHeight="1.6">
-              {locale === "ne"
-                ? "नेपालका समाचार, विचार र उपयोगी जानकारीलाई स्पष्ट र जिम्मेवार ढंगले प्रस्तुत गर्ने डिजिटल न्यूजरुम।"
-                : "A digital newsroom presenting Nepal's news, ideas, and useful information with clarity and responsibility."}
+              {locale === "ne" ? footer.description_ne || "नेपालका समाचार, विचार र उपयोगी जानकारीलाई स्पष्ट र जिम्मेवार ढंगले प्रस्तुत गर्ने डिजिटल न्यूजरुम।" : footer.description_en || "A digital newsroom presenting Nepal's news, ideas, and useful information with clarity and responsibility."}
             </Text>
             <Box mt="16px" fontSize="11px" color="rgba(255,255,255,0.4)" lineHeight="1.6">
-              <Text>{locale === "ne" ? "कम्पनी दर्ता नं.:" : "Company Reg. No.:"} 123456/080/081</Text>
-              <Text>{locale === "ne" ? "सूचना विभाग दर्ता नं.:" : "Media Reg. No.:"} 6789/080/081</Text>
+              <Text>{locale === "ne" ? "कम्पनी दर्ता नं.:" : "Company Reg. No.:"} {footer.companyRegNo}</Text>
+              <Text>{locale === "ne" ? "सूचना विभाग दर्ता नं.:" : "Media Reg. No.:"} {footer.mediaRegNo}</Text>
             </Box>
             <Text className="dp-english" mt="16px" color="rgba(255,255,255,0.4)" fontSize="10px" textTransform="uppercase" letterSpacing="0.14em">
               Nepal&apos;s trusted newsroom
@@ -78,7 +85,7 @@ export function Footer() {
             <FooterHeading>{t("categories")}</FooterHeading>
             <SimpleGrid columns={2} gapY="8px" fontSize="13px">
               {footerCategories.map((category) => (
-                <Link key={category.id} href={category.id === "province" ? "/province/koshi" : `/category/${category.slug}`}>
+                <Link key={category.id} href={category.id === "province" ? "/province/koshi" : `/${category.slug}`}>
                   <Text _hover={{ color: "white" }} transition="color 150ms ease">{localized(category.name)}</Text>
                 </Link>
               ))}
@@ -106,25 +113,30 @@ export function Footer() {
             <Box mb="24px">
               <FooterHeading>{locale === "ne" ? "विज्ञापनका लागि सम्पर्क" : "Contact for advertisement"}</FooterHeading>
               <Flex direction="column" gap="6px" fontSize="13px" color="rgba(255,255,255,0.7)">
-                <a href="mailto:ads@dristitimes.com" style={{ display: "inline-block" }}>
-                  <Text _hover={{ color: "white" }} transition="color 150ms ease">Email: ads@dristitimes.com</Text>
+                <a href={`mailto:${footer.email}`} style={{ display: "inline-block" }}>
+                  <Text _hover={{ color: "white" }} transition="color 150ms ease">{footer.email ? `Email: ${footer.email}` : "Email"}</Text>
                 </a>
-                <a href="tel:+97714123456" style={{ display: "inline-block" }}>
-                  <Text className="dp-english" _hover={{ color: "white" }} transition="color 150ms ease">Phone: +977-1-4123456</Text>
+                <a href={`tel:${footer.phone}`} style={{ display: "inline-block" }}>
+                  <Text className="dp-english" _hover={{ color: "white" }} transition="color 150ms ease">{footer.phone ? `Phone: ${footer.phone}` : "Phone"}</Text>
                 </a>
-                <a href="https://wa.me/9779800000000" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block" }}>
-                  <Text className="dp-english" _hover={{ color: "white" }} transition="color 150ms ease">WhatsApp: +977-9800000000</Text>
+                <a href={formatWhatsApp(footer.whatsapp)} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block" }}>
+                  <Text className="dp-english" _hover={{ color: "white" }} transition="color 150ms ease">{footer.whatsapp ? `WhatsApp: ${footer.whatsapp}` : "WhatsApp"}</Text>
                 </a>
               </Flex>
             </Box>
 
             <FooterHeading>{locale === "ne" ? "हामीसँग जोडिनुहोस्" : "Stay connected"}</FooterHeading>
             <Flex gap="8px">
-              {SOCIALS.map((social) => (
+              
+              {SOCIALS.map((social) => {
+                const dbHref = social.name === "Facebook" ? footer.socialFacebook :
+                               social.name === "X" ? footer.socialX :
+                               social.name === "TikTok" ? footer.socialTiktok : social.href;
+                return (
                 <a
                   key={social.name}
                   className="dp-social-link"
-                  href={social.href}
+                  href={dbHref || social.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
@@ -133,7 +145,9 @@ export function Footer() {
                     <path d={social.path} />
                   </svg>
                 </a>
-              ))}
+                );
+              })}
+
             </Flex>
           </Box>
         </Grid>

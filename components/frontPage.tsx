@@ -238,7 +238,7 @@ function CategoryBlock({ categorySlug, articles, title, eyebrow }: { categorySlu
 
   return (
     <Box>
-      <FrontPageSectionHeader eyebrow={locale === "ne" ? "" : (eyebrow || "")} title={title} href={`/category/${categorySlug}`} actionLabel={locale === "ne" ? "सबै हेर्नुहोस्" : "See all"} />
+      <FrontPageSectionHeader eyebrow={locale === "ne" ? "" : (eyebrow || "")} title={title} href={`/${categorySlug}`} actionLabel={locale === "ne" ? "सबै हेर्नुहोस्" : "See all"} />
       <Grid templateColumns={{ base: "1fr", lg: "minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr)" }} gap="28px">
 
         {/* Left: Title + Excerpt */}

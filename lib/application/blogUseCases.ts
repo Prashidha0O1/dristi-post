@@ -41,6 +41,7 @@ export class CreateBlog {
       excerpt: input.excerpt ?? {},
       heroImage: input.heroImage.trim(),
       body: input.body,
+      isFeatured: input.isFeatured,
       status: publish ? "published" : "draft",
       createdAt: now,
       updatedAt: now,

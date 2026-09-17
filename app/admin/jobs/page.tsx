@@ -83,6 +83,7 @@ export default async function JobsListPage() {
 
         {result.items.map((job) => {
           const expired = isExpired(job, now);
+          
           return (
             <TableRow key={job.id}>
               <Box flex="2" minW="0" pr="12px">

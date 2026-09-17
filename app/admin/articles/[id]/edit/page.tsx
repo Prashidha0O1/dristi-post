@@ -54,7 +54,7 @@ export default async function EditArticlePage({ params }: { params: Promise<{ id
             bodyNe: found.body.ne,
             bodyEn: found.body.en,
             slug: found.slug,
-            metaDescription: found.metaDescription,
+            metaDescNe: found.metaDescription?.ne, metaDescEn: found.metaDescription?.en,
             categorySlug: found.categorySlug,
             provinceSlug: found.provinceSlug,
             authorId: found.authorId,

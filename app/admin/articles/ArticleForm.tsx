@@ -37,7 +37,8 @@ interface Props {
     bodyNe?: string;
     bodyEn?: string;
     slug?: string;
-    metaDescription?: string;
+    metaDescNe?: string;
+    metaDescEn?: string;
     scheduledAt?: string;
     categorySlug?: string;
     provinceSlug?: string;
@@ -222,19 +223,14 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
             {...fieldStyles.input}
           />
         </Field>
-        <Field
-          label="Meta description"
-          error={issues.metaDescription}
-          hint="Shown in Google results. Aim for 150–160 characters. Falls back to the excerpt if blank."
-        >
-          <chakra.textarea
-            name="metaDescription"
-            defaultValue={d.metaDescription}
-            maxLength={200}
-            h="72px"
-            {...fieldStyles.textarea}
-          />
-        </Field>
+        <SimpleGrid columns={{ base: 1, md: 2 }} gap="16px">
+          <Field label="Meta Description (Nepali)" hint="Optional — used for SEO. Falls back to excerpt." error={issues["metaDescription.ne"]}>
+            <chakra.textarea name="metaDescNe" defaultValue={d.metaDescNe} maxLength={200} h="72px" {...fieldStyles.textarea} />
+          </Field>
+          <Field label="Meta Description (English)" hint="Optional">
+            <chakra.textarea name="metaDescEn" defaultValue={d.metaDescEn} maxLength={200} h="72px" {...fieldStyles.textarea} />
+          </Field>
+        </SimpleGrid>
       </FormSection>
 
       <FormSection title="Placement" description="Controls where this appears on the public site.">
