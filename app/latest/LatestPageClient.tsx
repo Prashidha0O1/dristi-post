@@ -57,10 +57,13 @@ function TrendingSidebar({ trending }: { trending: Article[] }) {
   );
 }
 
-export default function LatestPageClient({ articles, trending, ads }: { articles: Article[]; trending: Article[]; ads: AdSlots }) {
+export default function LatestPageClient({ articles, trending, ads, search }: { articles: Article[]; trending: Article[]; ads: AdSlots; search?: string }) {
   const { locale, t } = useLocale();
   const lead = articles[0];
   const rest = articles.slice(1);
+  const pageTitle = search 
+    ? (locale === "ne" ? `खोज नतिजा: ${search}` : `Search Results for "${search}"`) 
+    : t("latest");
 
   return (
     <PageShell>
@@ -71,27 +74,29 @@ export default function LatestPageClient({ articles, trending, ads }: { articles
           </Text>
         </Link>
         <Text>›</Text>
-        <Text color="var(--color-headline)" fontWeight="600">{t("latest")}</Text>
+        <Text color="var(--color-headline)" fontWeight="600">{pageTitle}</Text>
       </Flex>
 
-      <SectionHeader title={t("latest")} accent="var(--color-brand)" />
+      <SectionHeader title={pageTitle} accent="var(--color-brand)" />
 
       <SimpleGrid columns={{ base: 1, lg: 3 }} gap="32px">
         <Box gridColumn={{ lg: "span 2" }}>
           {lead && (
             <Box mb="28px">
-              <NewsCard article={lead} variant="hero" showExcerpt showAuthor imageHeight="380px" />
+              <NewsCard article={lead} variant="hero" showExcerpt showAuthor imageHeight={{ base: "230px", md: "300px", lg: "380px" }} />
             </Box>
           )}
           <SimpleGrid columns={{ base: 1, sm: 2 }} gap="20px">
             {rest.map((a) => (
-              <NewsCard key={a.id} article={a} variant="featured" imageHeight="170px" />
+              <NewsCard key={a.id} article={a} variant="featured" imageHeight={{ base: "170px", md: "170px" }} />
             ))}
           </SimpleGrid>
           {articles.length === 0 && (
             <Box py="40px" textAlign="center">
               <Text fontSize="16px" color="var(--color-muted)">
-                {locale === "ne" ? "हाल कुनै समाचार छैन।" : "No articles yet."}
+                {search 
+                  ? (locale === "ne" ? "कुनै नतिजा फेला परेन।" : "No search results found.")
+                  : (locale === "ne" ? "हाल कुनै समाचार छैन।" : "No articles yet.")}
               </Text>
             </Box>
           )}

@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { CornerDownLeftIcon, SearchIcon, TrendingUpIcon, XIcon } from "lucide-react";
+import { ClockIcon, CornerDownLeftIcon, SearchIcon, TrendingUpIcon, XIcon, TrashIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { primarySections } from "../data/navigation";
 import type { Lang } from "../types/navigation";
 
-// Real, browsable sections — no fabricated counts or fake search history.
+// Real, browsable sections
 const browseTopics = primarySections.filter((s) => !["/", "/latest", "/trending", "/blog", "/jobs", "/tools", "/forex", "/gold-silver", "/date-converter", "/unicode-preeti", "/rashifal", "/calendar", "/login"].includes(s.href));
 
 interface SearchPanelProps {
@@ -17,10 +17,37 @@ interface SearchPanelProps {
   onClose: () => void;
 }
 
+const HISTORY_KEY = "dristi_search_history";
+
 export function SearchPanel({ open, lang, onClose }: SearchPanelProps) {
   const [query, setQuery] = useState("");
+  const [history, setHistory] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(HISTORY_KEY);
+      if (stored) setHistory(JSON.parse(stored));
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  const saveHistory = (term: string) => {
+    try {
+      const newHistory = [term, ...history.filter((h) => h !== term)].slice(0, 4);
+      setHistory(newHistory);
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory));
+    } catch {
+      // ignore
+    }
+  };
+
+  const clearHistory = () => {
+    setHistory([]);
+    localStorage.removeItem(HISTORY_KEY);
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -39,8 +66,16 @@ export function SearchPanel({ open, lang, onClose }: SearchPanelProps) {
     e.preventDefault();
     const value = query.trim();
     if (!value) return;
+    saveHistory(value);
     onClose();
     router.push(`/latest?search=${encodeURIComponent(value)}`);
+  }
+
+  function handleHistoryClick(term: string) {
+    saveHistory(term);
+    setQuery(term);
+    onClose();
+    router.push(`/latest?search=${encodeURIComponent(term)}`);
   }
 
   return (
@@ -84,24 +119,61 @@ export function SearchPanel({ open, lang, onClose }: SearchPanelProps) {
               </button>
             </form>
 
-            <div className="mt-5">
-              <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-500 dark:text-ink-400">
-                <TrendingUpIcon className="h-3.5 w-3.5" />
-                {lang === "np" ? "विषयहरू ब्राउज गर्नुहोस्" : "Browse topics"}
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {browseTopics.map((t) => (
-                  <Link
-                    key={t.id}
-                    href={t.href}
-                    onClick={onClose}
-                    className={`rounded-full border border-paper-200 px-3 py-1.5 text-sm font-medium text-ink-600 transition hover:border-crimson hover:text-crimson dark:border-ink-600 dark:text-ink-400 dark:hover:border-white dark:hover:text-white ${
-                      lang === "np" ? "font-np" : ""
-                    }`}
-                  >
-                    {lang === "np" ? t.np : t.en}
-                  </Link>
-                ))}
+            <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* History Section */}
+              {history.length > 0 && (
+                <div>
+                  <div className="flex items-center justify-between">
+                    <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-500 dark:text-ink-400">
+                      <ClockIcon className="h-3.5 w-3.5" />
+                      {lang === "np" ? "हालै खोजिएका" : "Recent Searches"}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={clearHistory}
+                      className="flex items-center gap-1 text-[11px] font-medium text-ink-400 transition hover:text-crimson"
+                    >
+                      <TrashIcon className="h-3 w-3" />
+                      {lang === "np" ? "हटाउनुहोस्" : "Clear"}
+                    </button>
+                  </div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {history.map((h, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => handleHistoryClick(h)}
+                        className={`rounded-full border border-paper-200 px-3 py-1.5 text-sm font-medium text-ink-600 transition hover:border-brand hover:text-brand dark:border-ink-600 dark:text-ink-400 dark:hover:border-white dark:hover:text-white ${
+                          lang === "np" ? "font-np" : ""
+                        }`}
+                      >
+                        {h}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Topics Section */}
+              <div>
+                <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-500 dark:text-ink-400">
+                  <TrendingUpIcon className="h-3.5 w-3.5" />
+                  {lang === "np" ? "विषयहरू ब्राउज गर्नुहोस्" : "Browse topics"}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {browseTopics.map((t) => (
+                    <Link
+                      key={t.id}
+                      href={t.href}
+                      onClick={onClose}
+                      className={`rounded-full border border-paper-200 px-3 py-1.5 text-sm font-medium text-ink-600 transition hover:border-crimson hover:text-crimson dark:border-ink-600 dark:text-ink-400 dark:hover:border-white dark:hover:text-white ${
+                        lang === "np" ? "font-np" : ""
+                      }`}
+                    >
+                      {lang === "np" ? t.np : t.en}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

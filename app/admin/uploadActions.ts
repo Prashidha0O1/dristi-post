@@ -60,3 +60,14 @@ export async function uploadImageAction(
     return { error: e instanceof UploadError ? e.message : "Upload failed." };
   }
 }
+
+export async function listImagesAction(folder?: Folder): Promise<{ url: string }[]> {
+  try {
+    await requireUser();
+  } catch {
+    return [];
+  }
+  const { listImages } = await import("@/lib/infrastructure/fileStorage");
+  const images = await listImages(folder);
+  return images.map(img => ({ url: img.url }));
+}

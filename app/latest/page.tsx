@@ -1,17 +1,17 @@
-import { getActiveAds, getRecentArticles, getTrendingArticles } from "@/lib/publicQueries";
+import { getActiveAds, getRecentArticles, getTrendingArticles, searchArticles } from "@/lib/publicQueries";
 import LatestPageClient from "./LatestPageClient";
 
-// Rendered at request time, not at build: the content comes from the database
-// (only reachable as localhost in production), and a news site wants fresh
-// content on each request. Data reads are still cached via unstable_cache.
 export const dynamic = "force-dynamic";
 
+export default async function LatestPage(props: { searchParams: Promise<{ search?: string }> }) {
+  const params = await props.searchParams;
+  const search = params.search || "";
 
-export default async function LatestPage() {
   const [articles, trending, ads] = await Promise.all([
-    getRecentArticles(),
+    search ? searchArticles(search) : getRecentArticles(),
     getTrendingArticles(6),
     getActiveAds(),
   ]);
-  return <LatestPageClient articles={articles} trending={trending} ads={ads} />;
+
+  return <LatestPageClient articles={articles} trending={trending} ads={ads} search={search} />;
 }

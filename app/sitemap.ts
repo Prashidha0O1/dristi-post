@@ -46,7 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     /* leave empty */
   }
   try {
-    const jobs = await getPublishedJobs({ limit: 500 });
+    const { items: jobs } = await getPublishedJobs({ limit: 500 });
     jobEntries = jobs.map((j) => ({
       url: `${base}/jobs/${j.slug}`,
       lastModified: j.updatedAt,

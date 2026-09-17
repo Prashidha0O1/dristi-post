@@ -113,13 +113,13 @@ export default function CategoryPageClient({
         <Box gridColumn={{ lg: "span 2" }}>
           {lead && (
             <Box mb="28px">
-              <NewsCard article={lead} variant="hero" showExcerpt showAuthor imageHeight="380px" />
+              <NewsCard article={lead} variant="hero" showExcerpt showAuthor imageHeight={{ base: "230px", md: "300px", lg: "380px" }} />
             </Box>
           )}
           {rest.length > 0 && (
             <SimpleGrid columns={{ base: 1, sm: 2 }} gap="20px">
               {rest.map((a) => (
-                <NewsCard key={a.id} article={a} variant="featured" showCategory={false} imageHeight="170px" />
+                <NewsCard key={a.id} article={a} variant="featured" showCategory={false} imageHeight={{ base: "170px", md: "170px" }} />
               ))}
             </SimpleGrid>
           )}

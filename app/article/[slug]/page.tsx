@@ -36,8 +36,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description,
       images: [article.image],
     },
+    alternates: {
+      canonical: `/article/${slug}`,
+    }
   };
 }
+
+import { siteUrl } from "@/lib/siteUrl";
 
 export default async function ArticlePage({
   params,
@@ -54,5 +59,26 @@ export default async function ArticlePage({
     getActiveAds(),
   ]);
 
-  return <ArticlePageClient article={article} related={related} trending={trending} ads={ads} />;
+  const newsArticleSchema = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": primaryText(article.title),
+    "image": [article.image],
+    "datePublished": article.publishedAt,
+    "dateModified": article.updatedAt ?? article.publishedAt,
+    "author": [{
+      "@type": "Person",
+      "name": primaryText(article.author?.name) || "Dristi Times",
+    }]
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticleSchema) }}
+      />
+      <ArticlePageClient article={article} related={related} trending={trending} ads={ads} />
+    </>
+  );
 }

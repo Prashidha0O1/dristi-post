@@ -14,7 +14,7 @@ interface NewsCardProps {
   showExcerpt?: boolean;
   showTimestamp?: boolean;
   showAuthor?: boolean;
-  imageHeight?: string;
+  imageHeight?: any;
 }
 
 export function NewsCard({
@@ -67,7 +67,7 @@ export function NewsCard({
     return (
       <Link href={`/article/${article.slug}`}>
         <Box _hover={{ "& .title": { color: "var(--color-brand)" }, "& .img img": { transform: "scale(1.03)" } }} cursor="pointer">
-          <Box className="img" position="relative" w="full" h={imageHeight || "140px"} overflow="hidden" borderRadius="3px" mb="10px">
+          <Box className="img" position="relative" w="full" h={imageHeight || { base: "140px", md: "140px" }} overflow="hidden" borderRadius="3px" mb="10px">
             <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 50vw, 25vw" />
           </Box>
           {showCategory && (
@@ -95,7 +95,7 @@ export function NewsCard({
           cursor="pointer"
           h="full"
         >
-          <Box className="img" position="relative" w="full" h={imageHeight || "480px"} overflow="hidden">
+          <Box className="img" position="relative" w="full" h={imageHeight || { base: "240px", md: "380px", lg: "480px" }} overflow="hidden">
             <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.6s ease" }} sizes="(max-width: 768px) 100vw, 66vw" priority />
           </Box>
           <Box
@@ -143,7 +143,7 @@ export function NewsCard({
           cursor="pointer"
           h="full"
         >
-          <Box className="img" position="relative" w="full" h={imageHeight || "200px"} overflow="hidden" borderRadius="3px" mb="12px">
+          <Box className="img" position="relative" w="full" h={imageHeight || { base: "180px", lg: "200px" }} overflow="hidden" borderRadius="3px" mb="12px">
             <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 100vw, 33vw" />
             {article.isBreaking && (
               <Text position="absolute" top="8px" left="8px" bg="var(--color-brand)" color="white" fontSize="10px" fontWeight="700" px="7px" py="2px" borderRadius="1px" textTransform="uppercase" letterSpacing="0.5px">
@@ -185,7 +185,7 @@ export function NewsCard({
         cursor="pointer"
         h="full"
       >
-        <Box className="img" position="relative" w="full" h={imageHeight || "180px"} overflow="hidden">
+        <Box className="img" position="relative" w="full" h={imageHeight || { base: "160px", lg: "180px" }} overflow="hidden">
           <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 100vw, 25vw" />
           {article.isBreaking && (
             <Text position="absolute" top="8px" left="8px" bg="var(--color-brand)" color="white" fontSize="10px" fontWeight="700" px="7px" py="2px" borderRadius="1px" textTransform="uppercase" letterSpacing="0.5px">

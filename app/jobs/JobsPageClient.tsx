@@ -87,8 +87,10 @@ function JobCard({ job }: { job: JobRecord }) {
   );
 }
 
-export default function JobsPageClient({ jobs }: { jobs: JobRecord[] }) {
+export default function JobsPageClient({ jobs, total, currentPage }: { jobs: JobRecord[], total: number, currentPage: number }) {
   const { locale } = useLocale();
+  const limit = 16;
+  const totalPages = Math.ceil(total / limit);
 
   return (
     <PageShell>
@@ -104,11 +106,45 @@ export default function JobsPageClient({ jobs }: { jobs: JobRecord[] }) {
       </Text>
 
       {jobs.length > 0 ? (
-        <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} gap="18px">
-          {jobs.map((job) => (
-            <JobCard key={job.id} job={job} />
-          ))}
-        </SimpleGrid>
+        <>
+          <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} gap="18px">
+            {jobs.map((job) => (
+              <JobCard key={job.id} job={job} />
+            ))}
+          </SimpleGrid>
+          
+          {totalPages > 1 && (
+            <Flex justify="center" align="center" gap="16px" mt="40px">
+              {currentPage > 1 ? (
+                <Link href={`/jobs?page=${currentPage - 1}`}>
+                  <Box as="button" px="16px" py="8px" border="1px solid var(--color-border)" borderRadius="4px" _hover={{ bg: "var(--color-paper)", color: "var(--color-brand)", borderColor: "var(--color-brand)" }} transition="all 0.15s">
+                    {locale === "ne" ? "अघिल्लो" : "Previous"}
+                  </Box>
+                </Link>
+              ) : (
+                <Box px="16px" py="8px" border="1px solid var(--color-border)" borderRadius="4px" opacity={0.5} cursor="not-allowed">
+                  {locale === "ne" ? "अघिल्लो" : "Previous"}
+                </Box>
+              )}
+              
+              <Text fontSize="14px" fontWeight="600" color="var(--color-muted)">
+                {locale === "ne" ? `पृष्ठ ${currentPage} / ${totalPages}` : `Page ${currentPage} of ${totalPages}`}
+              </Text>
+              
+              {currentPage < totalPages ? (
+                <Link href={`/jobs?page=${currentPage + 1}`}>
+                  <Box as="button" px="16px" py="8px" border="1px solid var(--color-border)" borderRadius="4px" _hover={{ bg: "var(--color-paper)", color: "var(--color-brand)", borderColor: "var(--color-brand)" }} transition="all 0.15s">
+                    {locale === "ne" ? "अर्को" : "Next"}
+                  </Box>
+                </Link>
+              ) : (
+                <Box px="16px" py="8px" border="1px solid var(--color-border)" borderRadius="4px" opacity={0.5} cursor="not-allowed">
+                  {locale === "ne" ? "अर्को" : "Next"}
+                </Box>
+              )}
+            </Flex>
+          )}
+        </>
       ) : (
         <Box py="48px" textAlign="center">
           <Text fontSize="16px" color="var(--color-muted)">

@@ -7,6 +7,7 @@ import { ImageOff, Loader2, Upload } from "lucide-react";
 import { uploadImageAction } from "./uploadActions";
 import { describeAdSlotMismatch, type AdPlacement } from "@/lib/adSlots";
 import { toaster } from "@/components/ui/toaster";
+import { MediaLibraryModal } from "./MediaLibraryModal";
 
 /** Mirrors the 5MB cap enforced in lib/infrastructure/fileStorage.ts. */
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
@@ -31,10 +32,10 @@ const JPEG_QUALITY = 0.82;
 /**
  * Compresses/downscales an image in the browser before upload: caps the longest
  * side at 1600px and re-encodes to JPEG. This keeps uploads well under the
- * server limit and makes article images load fast. GIFs (possibly animated) and
- * anything that can't be decoded are returned unchanged.
+ * server's 5MB hard limit, saving bandwidth, storage, and processing time.
+ * Leaves non-images and GIFs alone.
  */
-async function compressImage(file: File): Promise<File> {
+export async function compressImage(file: File): Promise<File> {
   if (file.type === "image/gif" || !file.type.startsWith("image/")) return file;
   try {
     const bitmap = await createImageBitmap(file);
@@ -87,6 +88,7 @@ export function ImageUploadField({
   const [url, setUrl] = useState(defaultValue ?? "");
   const [status, setStatus] = useState<"idle" | "uploading" | "error">("idle");
   const [error, setError] = useState("");
+  const [showMediaLibrary, setShowMediaLibrary] = useState(false);
 
   // Surface upload problems as a toast as well as inline.
   useEffect(() => {
@@ -168,12 +170,6 @@ export function ImageUploadField({
 
   return (
     <Box>
-      {/*
-        No `required` here: browsers skip constraint validation on hidden
-        inputs, so it never blocked submission — the form posted with an empty
-        imageUrl and failed server-side instead. The server validators are the
-        real gate, and their messages are now rendered on the field.
-      */}
       <chakra.input type="hidden" name={name} value={url} />
 
       <Flex gap="14px" align="flex-start" flexWrap="wrap">
@@ -214,40 +210,64 @@ export function ImageUploadField({
             onChange={(e) => handleFile(e.target.files?.[0])}
           />
 
-          <chakra.button
-            type="button"
-            onClick={() => inputRef.current?.click()}
-            disabled={status === "uploading"}
-            display="inline-flex"
-            alignItems="center"
-            gap="7px"
-            px="14px"
-            py="9px"
-            borderRadius="6px"
-            fontSize="13px"
-            fontWeight="600"
-            bg="var(--color-surface)"
-            color="var(--color-body)"
-            border="1px solid var(--color-border)"
-            cursor={status === "uploading" ? "default" : "pointer"}
-            opacity={status === "uploading" ? 0.7 : 1}
-            transition="border-color 0.15s"
-            _hover={status === "uploading" ? {} : { borderColor: "var(--color-brand)" }}
-          >
-            {status === "uploading" ? (
-              <>
-                <Box css={{ animation: "spin 1s linear infinite" }}>
-                  <Loader2 size={15} strokeWidth={2} aria-hidden="true" />
-                </Box>
-                Uploading...
-              </>
-            ) : (
-              <>
-                <Upload size={15} strokeWidth={2} aria-hidden="true" />
-                {url ? "Replace image" : "Upload image"}
-              </>
-            )}
-          </chakra.button>
+          <Flex gap="10px">
+            <chakra.button
+              type="button"
+              onClick={() => inputRef.current?.click()}
+              disabled={status === "uploading"}
+              display="inline-flex"
+              alignItems="center"
+              gap="7px"
+              px="14px"
+              py="9px"
+              borderRadius="6px"
+              fontSize="13px"
+              fontWeight="600"
+              bg="var(--color-surface)"
+              color="var(--color-body)"
+              border="1px solid var(--color-border)"
+              cursor={status === "uploading" ? "default" : "pointer"}
+              opacity={status === "uploading" ? 0.7 : 1}
+              transition="border-color 0.15s"
+              _hover={status === "uploading" ? {} : { borderColor: "var(--color-brand)" }}
+            >
+              {status === "uploading" ? (
+                <>
+                  <Box css={{ animation: "spin 1s linear infinite" }}>
+                    <Loader2 size={15} strokeWidth={2} aria-hidden="true" />
+                  </Box>
+                  Uploading...
+                </>
+              ) : (
+                <>
+                  <Upload size={15} strokeWidth={2} aria-hidden="true" />
+                  {url ? "Upload new" : "Upload image"}
+                </>
+              )}
+            </chakra.button>
+
+            <chakra.button
+              type="button"
+              onClick={() => setShowMediaLibrary(true)}
+              disabled={status === "uploading"}
+              display="inline-flex"
+              alignItems="center"
+              gap="7px"
+              px="14px"
+              py="9px"
+              borderRadius="6px"
+              fontSize="13px"
+              fontWeight="600"
+              bg="var(--color-surface)"
+              color="var(--color-body)"
+              border="1px solid var(--color-border)"
+              cursor={status === "uploading" ? "default" : "pointer"}
+              transition="border-color 0.15s"
+              _hover={status === "uploading" ? {} : { borderColor: "var(--color-brand)" }}
+            >
+              Library
+            </chakra.button>
+          </Flex>
 
           <Text fontSize="11px" color="var(--color-muted)" mt="7px" lineHeight="1.5">
             {hint ?? "JPEG, PNG, WebP or GIF, up to 5MB."}
@@ -258,6 +278,17 @@ export function ImageUploadField({
           )}
         </Box>
       </Flex>
+
+      {showMediaLibrary && (
+        <MediaLibraryModal
+          folder={folder}
+          onClose={() => setShowMediaLibrary(false)}
+          onSelect={(selectedUrl) => {
+            setUrl(selectedUrl);
+            setShowMediaLibrary(false);
+          }}
+        />
+      )}
     </Box>
   );
 }

@@ -80,3 +80,35 @@ export async function assertAdImageFitsSlot(
   const mismatch = describeAdSlotMismatch(placement, dimensions);
   if (mismatch) throw new UploadError(mismatch);
 }
+
+/**
+ * Returns a list of all images currently stored in the uploads directory,
+ * sorted by newest first. Can be optionally filtered by folder.
+ */
+export async function listImages(folderPrefix?: string): Promise<{ url: string, time: number }[]> {
+  const { readdir, stat } = require("node:fs/promises");
+  
+  const folders = folderPrefix ? [folderPrefix] : ["articles", "jobs", "blog", "ads"];
+  const results: { url: string, time: number }[] = [];
+
+  for (const folder of folders) {
+    const dir = path.join(UPLOADS_DIR, folder);
+    try {
+      const files = await readdir(dir);
+      for (const file of files) {
+        if (!file.match(/\.(jpg|jpeg|png|webp|gif)$/i)) continue;
+        const filePath = path.join(dir, file);
+        const stats = await stat(filePath);
+        results.push({
+          url: `${PUBLIC_BASE}/${folder}/${file}`,
+          time: stats.mtimeMs,
+        });
+      }
+    } catch (e) {
+      // Folder might not exist yet
+    }
+  }
+
+  // Sort newest first
+  return results.sort((a, b) => b.time - a.time);
+}

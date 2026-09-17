@@ -36,7 +36,7 @@ function BlogCardItem({
   blog: BlogCard;
   pick: (t: LocalisedText) => string;
   fmt: (iso: string) => string;
-  imageHeight: string;
+  imageHeight: any;
   showExcerpt?: boolean;
 }) {
   return (
@@ -116,10 +116,13 @@ function RecentBlogs({ blogs, pick, fmt }: { blogs: BlogCard[]; pick: (t: Locali
   );
 }
 
-export default function BlogPageClient({ blogs, ads }: { blogs: BlogCard[]; ads: AdSlots }) {
+export default function BlogPageClient({ blogs, ads, total, currentPage }: { blogs: BlogCard[]; ads: AdSlots; total: number; currentPage: number }) {
   const { locale } = useLocale();
   const pick = (t: LocalisedText) => (locale === "ne" ? t.ne ?? t.en : t.en ?? t.ne) ?? "";
   const fmt = useDate();
+
+  const limit = 16;
+  const totalPages = Math.ceil(total / limit);
 
   const featuredBlogs = blogs.filter((b) => b.isFeatured);
   const regularBlogs = blogs.filter((b) => !b.isFeatured);
@@ -141,11 +144,11 @@ export default function BlogPageClient({ blogs, ads }: { blogs: BlogCard[]; ads:
           {featuredBlogs.length > 0 && (
             <Box mb="32px">
               <SectionHeader title={locale === "ne" ? "प्रमुख ब्लग" : "Featured Blog"} accent="var(--color-brand)" />
-              <BlogCardItem blog={featuredBlogs[0]} pick={pick} fmt={fmt} imageHeight="340px" showExcerpt />
+              <BlogCardItem blog={featuredBlogs[0]} pick={pick} fmt={fmt} imageHeight={{ base: "230px", md: "340px" }} showExcerpt />
               {featuredBlogs.length > 1 && (
                  <SimpleGrid columns={{ base: 1, sm: 2 }} gap="24px" mt="24px">
                    {featuredBlogs.slice(1).map((b) => (
-                     <BlogCardItem key={b.id} blog={b} pick={pick} fmt={fmt} imageHeight="180px" showExcerpt />
+                     <BlogCardItem key={b.id} blog={b} pick={pick} fmt={fmt} imageHeight={{ base: "180px", md: "180px" }} showExcerpt />
                    ))}
                  </SimpleGrid>
               )}
@@ -155,11 +158,45 @@ export default function BlogPageClient({ blogs, ads }: { blogs: BlogCard[]; ads:
           <SectionHeader title={locale === "ne" ? "सबै ब्लगहरू" : "All Blogs"} accent="var(--color-brand)" />
           
           {regularBlogs.length > 0 && (
-            <SimpleGrid columns={{ base: 1, sm: 2 }} gap="24px" mb="32px">
-              {regularBlogs.map((b) => (
-                <BlogCardItem key={b.id} blog={b} pick={pick} fmt={fmt} imageHeight="210px" showExcerpt />
-              ))}
-            </SimpleGrid>
+            <>
+              <SimpleGrid columns={{ base: 1, sm: 2 }} gap="24px" mb="32px">
+                {regularBlogs.map((b) => (
+                  <BlogCardItem key={b.id} blog={b} pick={pick} fmt={fmt} imageHeight={{ base: "200px", md: "210px" }} showExcerpt />
+                ))}
+              </SimpleGrid>
+              
+              {totalPages > 1 && (
+                <Flex justify="center" align="center" gap="16px" mt="40px" mb="32px">
+                  {currentPage > 1 ? (
+                    <Link href={`/blog?page=${currentPage - 1}`}>
+                      <Box as="button" px="16px" py="8px" border="1px solid var(--color-border)" borderRadius="4px" _hover={{ bg: "var(--color-paper)", color: "var(--color-brand)", borderColor: "var(--color-brand)" }} transition="all 0.15s">
+                        {locale === "ne" ? "अघिल्लो" : "Previous"}
+                      </Box>
+                    </Link>
+                  ) : (
+                    <Box px="16px" py="8px" border="1px solid var(--color-border)" borderRadius="4px" opacity={0.5} cursor="not-allowed">
+                      {locale === "ne" ? "अघिल्लो" : "Previous"}
+                    </Box>
+                  )}
+                  
+                  <Text fontSize="14px" fontWeight="600" color="var(--color-muted)">
+                    {locale === "ne" ? `पृष्ठ ${currentPage} / ${totalPages}` : `Page ${currentPage} of ${totalPages}`}
+                  </Text>
+                  
+                  {currentPage < totalPages ? (
+                    <Link href={`/blog?page=${currentPage + 1}`}>
+                      <Box as="button" px="16px" py="8px" border="1px solid var(--color-border)" borderRadius="4px" _hover={{ bg: "var(--color-paper)", color: "var(--color-brand)", borderColor: "var(--color-brand)" }} transition="all 0.15s">
+                        {locale === "ne" ? "अर्को" : "Next"}
+                      </Box>
+                    </Link>
+                  ) : (
+                    <Box px="16px" py="8px" border="1px solid var(--color-border)" borderRadius="4px" opacity={0.5} cursor="not-allowed">
+                      {locale === "ne" ? "अर्को" : "Next"}
+                    </Box>
+                  )}
+                </Flex>
+              )}
+            </>
           )}
           {blogs.length === 0 && (
             <Box py="40px" textAlign="center">
