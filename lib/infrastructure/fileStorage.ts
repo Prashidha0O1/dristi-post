@@ -81,6 +81,48 @@ export async function assertAdImageFitsSlot(
   if (mismatch) throw new UploadError(mismatch);
 }
 
+const UPLOAD_FOLDERS = new Set(["articles", "jobs", "blog", "ads"]);
+
+/**
+ * Permanently removes an uploaded image, given the site-relative URL that was
+ * stored for it. Returns true when a file was deleted, false when it was
+ * already gone.
+ *
+ * Path-traversal safe: the URL must be under PUBLIC_BASE, name a known folder,
+ * and reduce to a plain filename — anything with "..", nested paths, or an
+ * unexpected shape is rejected rather than turned into a filesystem path.
+ */
+export async function deleteImage(url: string): Promise<boolean> {
+  const { unlink } = await import("node:fs/promises");
+
+  if (typeof url !== "string" || !url.startsWith(`${PUBLIC_BASE}/`)) {
+    throw new UploadError("That doesn't look like an uploaded image.");
+  }
+
+  const rel = url.slice(PUBLIC_BASE.length + 1); // "<folder>/<name>"
+  const parts = rel.split("/");
+  if (parts.length !== 2) {
+    throw new UploadError("Unexpected image path.");
+  }
+  const [folder, name] = parts;
+  if (!UPLOAD_FOLDERS.has(folder)) {
+    throw new UploadError("Unknown image folder.");
+  }
+  // Filename only: no separators, no traversal, must be a real image name.
+  if (name !== path.basename(name) || name.includes("..") || !name.match(/^[\w.-]+\.(jpg|jpeg|png|webp|gif)$/i)) {
+    throw new UploadError("Invalid image name.");
+  }
+
+  const filePath = path.join(UPLOADS_DIR, folder, name);
+  try {
+    await unlink(filePath);
+    return true;
+  } catch (e) {
+    if ((e as NodeJS.ErrnoException).code === "ENOENT") return false;
+    throw new UploadError(e instanceof Error ? e.message : "Could not delete the image.");
+  }
+}
+
 /**
  * Returns a list of all images currently stored in the uploads directory,
  * sorted by newest first. Can be optionally filtered by folder.

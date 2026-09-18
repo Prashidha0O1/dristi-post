@@ -61,6 +61,23 @@ export async function uploadImageAction(
   }
 }
 
+export async function deleteImageAction(
+  url: string,
+): Promise<{ ok: true } | { error: string }> {
+  try {
+    await requireUser();
+  } catch {
+    return { error: "You must be signed in to delete images." };
+  }
+  try {
+    const { deleteImage } = await import("@/lib/infrastructure/fileStorage");
+    await deleteImage(url);
+    return { ok: true };
+  } catch (e) {
+    return { error: e instanceof UploadError ? e.message : "Could not delete the image." };
+  }
+}
+
 export async function listImagesAction(folder?: Folder): Promise<{ url: string }[]> {
   try {
     await requireUser();

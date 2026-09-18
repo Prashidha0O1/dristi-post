@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Box, Flex, Text, SimpleGrid, Spinner, IconButton, Button, chakra } from "@chakra-ui/react";
-import { X, Upload, Loader2 } from "lucide-react";
+import { Box, Flex, Text, SimpleGrid, Spinner, IconButton, chakra } from "@chakra-ui/react";
+import { X, Upload, Loader2, Trash2 } from "lucide-react";
 import Image from "next/image";
-import { uploadImageAction, listImagesAction } from "./uploadActions";
+import { uploadImageAction, listImagesAction, deleteImageAction } from "./uploadActions";
 import { compressImage } from "./ImageUploadField";
 import { toaster } from "@/components/ui/toaster";
 
@@ -17,7 +17,28 @@ interface MediaLibraryModalProps {
 export function MediaLibraryModal({ onSelect, onClose, folder = "articles" }: MediaLibraryModalProps) {
   const [images, setImages] = useState<{ url: string }[] | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [deleting, setDeleting] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  async function handleDelete(url: string) {
+    if (!window.confirm("Delete this image permanently? This cannot be undone. If it's used by a post, that post will show a broken image.")) {
+      return;
+    }
+    setDeleting(url);
+    try {
+      const result = await deleteImageAction(url);
+      if ("error" in result) {
+        toaster.create({ type: "error", title: "Delete failed", description: result.error });
+        return;
+      }
+      setImages((prev) => (prev || []).filter((img) => img.url !== url));
+      toaster.create({ type: "success", title: "Deleted", description: "Image removed permanently." });
+    } catch {
+      toaster.create({ type: "error", title: "Delete failed", description: "Something went wrong." });
+    } finally {
+      setDeleting(null);
+    }
+  }
 
   useEffect(() => {
     let active = true;
@@ -83,14 +104,25 @@ export function MediaLibraryModal({ onSelect, onClose, folder = "articles" }: Me
               onChange={(e) => handleUpload(e.target.files?.[0])}
             />
             
-            <Button
-              size="sm"
-              variant="outline"
+            <chakra.button
+              type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={isUploading}
-              display="flex"
-              gap="6px"
+              display="inline-flex"
               alignItems="center"
+              gap="7px"
+              px="14px"
+              py="8px"
+              borderRadius="6px"
+              fontSize="13px"
+              fontWeight="600"
+              bg="var(--color-surface)"
+              color="var(--color-body)"
+              border="1px solid var(--color-border)"
+              cursor={isUploading ? "default" : "pointer"}
+              opacity={isUploading ? 0.7 : 1}
+              transition="border-color 0.15s"
+              _hover={isUploading ? {} : { borderColor: "var(--color-brand)" }}
             >
               {isUploading ? (
                 <>
@@ -105,7 +137,7 @@ export function MediaLibraryModal({ onSelect, onClose, folder = "articles" }: Me
                   Upload New
                 </>
               )}
-            </Button>
+            </chakra.button>
           </Flex>
           <IconButton aria-label="Close" size="sm" variant="ghost" onClick={onClose}><X size={20} /></IconButton>
         </Flex>
@@ -124,6 +156,7 @@ export function MediaLibraryModal({ onSelect, onClose, folder = "articles" }: Me
               {images.map((img) => (
                 <Box
                   key={img.url}
+                  role="group"
                   position="relative"
                   w="100%"
                   pb="100%"
@@ -137,6 +170,38 @@ export function MediaLibraryModal({ onSelect, onClose, folder = "articles" }: Me
                   onClick={() => onSelect(img.url)}
                 >
                   <Image src={img.url} alt="" fill sizes="200px" style={{ objectFit: "cover" }} />
+                  <chakra.button
+                    type="button"
+                    aria-label="Delete image permanently"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDelete(img.url);
+                    }}
+                    disabled={deleting === img.url}
+                    position="absolute"
+                    top="6px"
+                    right="6px"
+                    display="inline-flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    w="30px"
+                    h="30px"
+                    borderRadius="6px"
+                    bg="rgba(0,0,0,0.55)"
+                    color="white"
+                    opacity={{ base: 1, md: 0 }}
+                    _groupHover={{ opacity: 1 }}
+                    _hover={{ bg: "var(--color-danger-fg, #dc2626)" }}
+                    transition="opacity 0.15s, background 0.15s"
+                  >
+                    {deleting === img.url ? (
+                      <Box css={{ animation: "spin 1s linear infinite" }}>
+                        <Loader2 size={15} />
+                      </Box>
+                    ) : (
+                      <Trash2 size={15} />
+                    )}
+                  </chakra.button>
                 </Box>
               ))}
             </SimpleGrid>
@@ -144,7 +209,23 @@ export function MediaLibraryModal({ onSelect, onClose, folder = "articles" }: Me
         </Box>
 
         <Flex p="16px 20px" borderTop="1px solid var(--color-border)" justify="flex-end" bg="var(--color-surface)">
-          <Button variant="outline" onClick={onClose}>Cancel</Button>
+          <chakra.button
+            type="button"
+            onClick={onClose}
+            px="16px"
+            py="8px"
+            borderRadius="6px"
+            fontSize="13px"
+            fontWeight="600"
+            bg="var(--color-surface)"
+            color="var(--color-body)"
+            border="1px solid var(--color-border)"
+            cursor="pointer"
+            transition="border-color 0.15s"
+            _hover={{ borderColor: "var(--color-brand)" }}
+          >
+            Cancel
+          </chakra.button>
         </Flex>
       </Box>
     </Box>
