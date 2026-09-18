@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { buildContainer } from "./container";
 import type { Article } from "./types";
+import type { Paginated } from "./domain/article";
 import type { EmploymentType, JobRecord } from "./domain/job";
 import type { BlogRecord } from "./domain/blog";
 import type { AdRecord } from "./domain/ad";
@@ -137,10 +138,10 @@ const getPublishedJobsCached = unstable_cache(
     provinceSlug: ProvinceSlug | undefined,
     employmentType: EmploymentType | undefined,
     limit: number | undefined,
-  ): Promise<JobRecord[]> => {
+    offset: number | undefined,
+  ): Promise<Paginated<JobRecord>> => {
     const { listPublishedJobs } = getContainer();
-    const { items } = await listPublishedJobs.execute({ provinceSlug, employmentType, limit });
-    return items;
+    return await listPublishedJobs.execute({ provinceSlug, employmentType, limit, offset });
   },
   ["public-published-jobs"],
   { tags: ["jobs"] },
@@ -150,8 +151,9 @@ export async function getPublishedJobs(options: {
   provinceSlug?: ProvinceSlug;
   employmentType?: EmploymentType;
   limit?: number;
-} = {}): Promise<JobRecord[]> {
-  return getPublishedJobsCached(options.provinceSlug, options.employmentType, options.limit ?? 100);
+  offset?: number;
+} = {}): Promise<Paginated<JobRecord>> {
+  return getPublishedJobsCached(options.provinceSlug, options.employmentType, options.limit ?? 16, options.offset ?? 0);
 }
 
 const getJobBySlugCached = unstable_cache(
@@ -172,17 +174,16 @@ export async function getJobBySlug(slug: string): Promise<JobRecord | null> {
  * ------------------------------------------------------------------------- */
 
 const getPublishedBlogsCached = unstable_cache(
-  async (limit: number): Promise<BlogRecord[]> => {
+  async (limit: number, offset: number): Promise<Paginated<BlogRecord>> => {
     const { listPublishedBlogs } = getContainer();
-    const { items } = await listPublishedBlogs.execute({ limit });
-    return items;
+    return await listPublishedBlogs.execute({ limit, offset });
   },
   ["public-blogs"],
   { tags: ["blogs"] },
 );
 
-export async function getPublishedBlogs(limit = 100): Promise<BlogRecord[]> {
-  return getPublishedBlogsCached(limit);
+export async function getPublishedBlogs(limit = 16, offset = 0): Promise<Paginated<BlogRecord>> {
+  return getPublishedBlogsCached(limit, offset);
 }
 
 const getBlogBySlugCached = unstable_cache(
@@ -250,3 +251,9 @@ export const getSeoSettings = unstable_cache(
   ["seo_settings"],
   { tags: ["site_settings"] }
 );
+
+export async function searchArticles(query: string, limit = 50): Promise<Article[]> {
+  const { listPublishedArticles } = getContainer();
+  const { items } = await listPublishedArticles.execute({ search: query, limit });
+  return toArticleViewModels(items);
+}

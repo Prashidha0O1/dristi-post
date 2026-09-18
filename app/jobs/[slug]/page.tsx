@@ -24,6 +24,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: primaryText(job.description).slice(0, 160),
       type: "article",
     },
+    alternates: {
+      canonical: `/jobs/${slug}`,
+    }
   };
 }
 
@@ -36,5 +39,38 @@ export default async function JobDetailPage({
   const job = await getJobBySlug(slug);
   if (!job) notFound();
 
-  return <JobDetailClient job={job} />;
+  // Strip HTML from description for schema
+  const plainTextDescription = primaryText(job.description).replace(/<[^>]*>?/gm, '');
+
+  const jobSchema = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    "title": primaryText(job.title),
+    "description": plainTextDescription,
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": job.company,
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": job.location || "Nepal",
+        "addressCountry": "NP"
+      }
+    },
+    "datePosted": job.publishedAt || job.createdAt,
+    "validThrough": job.deadline || undefined,
+    "employmentType": job.employmentType === "full-time" ? "FULL_TIME" : job.employmentType === "part-time" ? "PART_TIME" : job.employmentType === "contract" ? "CONTRACT" : "OTHER",
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jobSchema) }}
+      />
+      <JobDetailClient job={job} />
+    </>
+  );
 }

@@ -100,7 +100,7 @@ export class MysqlJobRepository implements JobRepository {
     await getPool().query(
       `INSERT INTO jobs
         (id, slug, titleNe, titleEn, company, location, province, employmentType,
-         descriptionNe, descriptionEn, salary, deadline, applyUrl, status,
+         descriptionNe, descriptionEn, metaDescriptionNe, metaDescriptionEn, salary, deadline, applyUrl, status,
          isFeatured, createdAt, updatedAt, publishedAt)
        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
        ON DUPLICATE KEY UPDATE

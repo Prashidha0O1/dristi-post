@@ -9,10 +9,27 @@ import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getSeoSettings();
+  const title = seo.home_title_ne || seo.home_title_en || "Dristi Times - Nepal's Trusted News Portal";
+  const description = seo.home_desc_ne || seo.home_desc_en || "Dristi Times delivers the latest news from Nepal and around the world in Nepali and English.";
+  
   return {
     metadataBase: new URL(siteUrl()),
-    title: seo.home_title_ne || seo.home_title_en || "Dristi Times - Nepal's Trusted News Portal",
-    description: seo.home_desc_ne || seo.home_desc_en || "Dristi Times delivers the latest news from Nepal and around the world in Nepali and English.",
+    title,
+    description,
+    openGraph: {
+      type: "website",
+      siteName: "Dristi Times",
+      title,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    alternates: {
+      canonical: "/",
+    }
   };
 }
 

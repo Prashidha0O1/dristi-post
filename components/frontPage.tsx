@@ -65,7 +65,7 @@ function StoryImage({
 }: {
   article: Article;
   alt: string;
-  height: string;
+  height: any;
   sizes: string;
   priority?: boolean;
   className?: string;
@@ -97,7 +97,7 @@ function LeadDesk({ articles, ads }: { articles: Article[]; ads: AdSlots }) {
       <Grid className="dp-hero-grid" templateColumns={{ base: "1fr", lg: "minmax(0, 1.65fr) minmax(360px, 1fr)" }} gap="28px">
         <Box as="article">
           <Link href={`/article/${lead.slug}`} className="dp-image-wrap" style={{ display: "block" }}>
-            <StoryImage article={lead} alt={localized(lead.title)} height="368px" sizes="(max-width: 992px) 100vw, 66vw" priority />
+            <StoryImage article={lead} alt={localized(lead.title)} height={{ base: "230px", md: "300px", lg: "368px" }} sizes="(max-width: 992px) 100vw, 66vw" priority />
           </Link>
           <Box pt="16px">
             <Flex align="center" gap="8px" mb="8px" fontSize="11px" fontWeight="600" color={lead.category.color || BRAND}>
@@ -253,7 +253,7 @@ function CategoryBlock({ categorySlug, articles, title, eyebrow }: { categorySlu
 
         {/* Center: Image */}
         <Link href={`/article/${feature.slug}`} style={{ display: "block" }}>
-          <StoryImage article={feature} alt={localized(feature.title)} height="280px" sizes="(max-width: 992px) 100vw, 34vw" />
+          <StoryImage article={feature} alt={localized(feature.title)} height={{ base: "210px", lg: "280px" }} sizes="(max-width: 992px) 100vw, 34vw" />
         </Link>
 
         {/* Right: up to 4 small articles */}

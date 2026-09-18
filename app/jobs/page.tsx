@@ -13,7 +13,12 @@ export const metadata: Metadata = {
   description: "The latest job openings from across Nepal, on Dristi Times.",
 };
 
-export default async function JobsPage() {
-  const jobs = await getPublishedJobs();
-  return <JobsPageClient jobs={jobs} />;
+export default async function JobsPage(props: { searchParams: Promise<{ page?: string }> }) {
+  const params = await props.searchParams;
+  const page = parseInt(params.page || "1", 10) || 1;
+  const limit = 16;
+  const offset = (page - 1) * limit;
+
+  const { items: jobs, total } = await getPublishedJobs({ limit, offset });
+  return <JobsPageClient jobs={jobs} total={total} currentPage={page} />;
 }

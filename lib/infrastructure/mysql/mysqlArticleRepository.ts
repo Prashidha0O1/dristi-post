@@ -114,9 +114,9 @@ export class MysqlArticleRepository implements ArticleRepository {
     if (query.search) {
       // Bound parameters, not interpolation. utf8mb4_unicode_ci is already
       // case-insensitive, so a plain LIKE matches what ilike did.
-      where.push("(a.titleNe LIKE ? OR a.titleEn LIKE ?)");
+      where.push("(a.titleNe LIKE ? OR a.titleEn LIKE ? OR a.excerptNe LIKE ? OR a.excerptEn LIKE ? OR a.bodyNe LIKE ? OR a.bodyEn LIKE ?)");
       const like = `%${query.search}%`;
-      params.push(like, like);
+      params.push(like, like, like, like, like, like);
     }
     // Trash: default excludes soft-deleted; onlyDeleted lists just the trash.
     where.push(query.onlyDeleted ? "a.deletedAt IS NOT NULL" : "a.deletedAt IS NULL");

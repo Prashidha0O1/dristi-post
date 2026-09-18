@@ -20,8 +20,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function BlogPage() {
-  const [blogs, ads] = await Promise.all([getPublishedBlogs(), getActiveAds()]);
+export default async function BlogPage(props: { searchParams: Promise<{ page?: string }> }) {
+  const params = await props.searchParams;
+  const page = parseInt(params.page || "1", 10) || 1;
+  const limit = 16;
+  const offset = (page - 1) * limit;
+
+  const [{ items: blogs, total }, ads] = await Promise.all([getPublishedBlogs(limit, offset), getActiveAds()]);
   const items = blogs.map((b) => ({
     id: b.id,
     slug: b.slug,
@@ -31,5 +36,5 @@ export default async function BlogPage() {
     publishedAt: b.publishedAt ?? b.createdAt,
     isFeatured: b.isFeatured,
   }));
-  return <BlogPageClient blogs={items} ads={ads} />;
+  return <BlogPageClient blogs={items} ads={ads} total={total} currentPage={page} />;
 }

@@ -23,6 +23,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: "article",
       images: blog.heroImage ? [{ url: blog.heroImage }] : undefined,
     },
+    alternates: {
+      canonical: `/blog/${slug}`,
+    }
   };
 }
 
@@ -31,14 +34,33 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
 
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": primaryText(blog.title),
+    "image": blog.heroImage ? [blog.heroImage] : undefined,
+    "datePublished": blog.publishedAt ?? blog.createdAt,
+    "dateModified": blog.updatedAt ?? blog.createdAt,
+    "author": [{
+      "@type": "Person",
+      "name": "Dristi Times",
+    }]
+  };
+
   return (
-    <BlogDetailClient
-      blog={{
-        title: blog.title,
-        body: blog.body,
-        heroImage: blog.heroImage,
-        publishedAt: blog.publishedAt ?? blog.createdAt,
-      }}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
+      <BlogDetailClient
+        blog={{
+          title: blog.title,
+          body: blog.body,
+          heroImage: blog.heroImage,
+          publishedAt: blog.publishedAt ?? blog.createdAt,
+        }}
+      />
+    </>
   );
 }

@@ -7,7 +7,29 @@ import { getActiveAds, getRecentArticles } from "@/lib/publicQueries";
 export const dynamic = "force-dynamic";
 
 
+import { siteUrl } from "@/lib/siteUrl";
+
 export default async function Page() {
   const [articles, ads] = await Promise.all([getRecentArticles(), getActiveAds()]);
-  return <FrontPage articles={articles} ads={ads} />;
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "NewsMediaOrganization",
+    "name": "Dristi Times",
+    "url": siteUrl(),
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteUrl()}/dristi-logo.png`
+    }
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <FrontPage articles={articles} ads={ads} />
+    </>
+  );
 }
