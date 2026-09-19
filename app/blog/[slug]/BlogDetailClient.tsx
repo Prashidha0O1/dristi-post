@@ -49,7 +49,7 @@ export default function BlogDetailClient({ blog }: { blog: BlogView }) {
           {title}
         </Text>
 
-        <Box position="relative" w="full" h={{ base: "220px", md: "420px" }} borderRadius="12px" overflow="hidden" mb="30px">
+        <Box position="relative" w="full" style={{ aspectRatio: 16/9 }} borderRadius="12px" overflow="hidden" mb="30px">
           <Image src={blog.heroImage} alt={title} fill style={{ objectFit: "cover" }} sizes="760px" priority />
         </Box>
 

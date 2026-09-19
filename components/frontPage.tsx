@@ -1,5 +1,8 @@
 "use client";
+import React from "react";
 
+
+import { categories } from "@/lib/config";
 import { Box, Flex, Grid, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import { Info } from "lucide-react";
 import Image from "next/image";
@@ -7,6 +10,7 @@ import Link from "next/link";
 import { useLocale } from "@/lib/localeContext";
 import { provinces } from "@/lib/domain/province";
 import type { Article } from "@/lib/types";
+import type { BlogRecord } from "@/lib/domain/blog";
 import { NepaliCalendar } from "@/components/nepaliCalendar";
 import { ForexWidget } from "@/components/forexWidget";
 import { GoldSilverWidget } from "@/components/goldSilverWidget";
@@ -59,19 +63,21 @@ function StoryImage({
   article,
   alt,
   height,
+  aspectRatio,
   sizes,
   priority = false,
   className = "",
 }: {
   article: Article;
   alt: string;
-  height: any;
+  height?: any;
+  aspectRatio?: number | string;
   sizes: string;
   priority?: boolean;
   className?: string;
 }) {
   return (
-    <Box className={`dp-image-wrap ${className}`} position="relative" h={height} overflow="hidden" borderRadius="3px" bg="var(--color-card-alt)">
+    <Box className={`dp-image-wrap ${className}`} position="relative" h={height} style={aspectRatio ? { aspectRatio } : undefined} overflow="hidden" borderRadius="3px" bg="var(--color-card-alt)">
       <Image src={article.image} alt={alt} fill priority={priority} sizes={sizes} className="dp-image" style={{ objectFit: "cover" }} />
     </Box>
   );
@@ -82,6 +88,7 @@ function LeadDesk({ articles, ads }: { articles: Article[]; ads: AdSlots }) {
   const featured = articles.filter((a) => a.isFeatured);
   const lead = featured[0];
   const supporting = featured.slice(1, 3);
+  const secondaryFeatured = featured.slice(3, 7);
 
   if (!lead) return null;
 
@@ -94,10 +101,10 @@ function LeadDesk({ articles, ads }: { articles: Article[]; ads: AdSlots }) {
         actionLabel={locale === "ne" ? "सबै हेर्नुहोस्" : "See all"}
         headingLevel="h1"
       />
-      <Grid className="dp-hero-grid" templateColumns={{ base: "1fr", lg: "minmax(0, 1.65fr) minmax(360px, 1fr)" }} gap="28px">
+      <Grid className="dp-hero-grid" templateColumns={{ base: "1fr", lg: "minmax(0, 1.65fr) minmax(360px, 1fr)" }} gap="28px" alignItems="start">
         <Box as="article">
           <Link href={`/article/${lead.slug}`} className="dp-image-wrap" style={{ display: "block" }}>
-            <StoryImage article={lead} alt={localized(lead.title)} height={{ base: "230px", md: "300px", lg: "368px" }} sizes="(max-width: 992px) 100vw, 66vw" priority />
+            <StoryImage article={lead} alt={localized(lead.title)} aspectRatio={16/9} sizes="(max-width: 992px) 100vw, 66vw" priority />
           </Link>
           <Box pt="16px">
             <Flex align="center" gap="8px" mb="8px" fontSize="11px" fontWeight="600" color={lead.category.color || BRAND}>
@@ -124,7 +131,7 @@ function LeadDesk({ articles, ads }: { articles: Article[]; ads: AdSlots }) {
           {supporting.map((article) => (
             <Box as="article" key={article.id} className="dp-support-row" borderTop="1px solid var(--color-border)" py="16px">
               <Link href={`/article/${article.slug}`} style={{ display: "flex", gap: "16px", minWidth: 0 }}>
-                <StoryImage article={article} alt={localized(article.title)} height="96px" sizes="138px" className="dp-support-thumb" />
+                <StoryImage article={article} alt={localized(article.title)} aspectRatio={16/9} sizes="138px" className="dp-support-thumb" />
                 <Box minW="0">
                   <Text mb="4px" fontSize="11px" fontWeight="600" color={article.category.color || BRAND}>
                     {localized(article.category.name)}
@@ -144,6 +151,28 @@ function LeadDesk({ articles, ads }: { articles: Article[]; ads: AdSlots }) {
           <AdSlot placement="home-lead-rail" ad={ads["home-lead-rail"]} mt="24px" />
         </Box>
       </Grid>
+
+      {/* 4 Small Box Type Featured Articles below the main hero grid */}
+      {secondaryFeatured.length > 0 && (
+        <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }} gap="24px" mt="32px" pt="32px" borderTop="1px solid var(--color-border)">
+          {secondaryFeatured.map((article) => (
+            <Box as="article" key={article.id}>
+              <Link href={`/article/${article.slug}`} className="dp-image-wrap" style={{ display: "block" }}>
+                <StoryImage article={article} alt={localized(article.title)} aspectRatio={16/9} sizes="(max-width: 768px) 100vw, (max-width: 992px) 50vw, 25vw" />
+              </Link>
+              <Box pt="12px">
+                <Text mb="4px" fontSize="11px" fontWeight="600" color={article.category.color || BRAND}>
+                  {localized(article.category.name)}
+                </Text>
+                <Link href={`/article/${article.slug}`} className="dp-story-link" style={{ display: "block", fontSize: "16px", fontWeight: 700, lineHeight: 1.3, color: "var(--color-headline)" }}>
+                  {localized(article.title)}
+                </Link>
+                <TimeAgo date={article.publishedAt} className="dp-number" mt="8px" fontSize="11px" color="var(--color-muted)" />
+              </Box>
+            </Box>
+          ))}
+        </Grid>
+      )}
     </Box>
   );
 }
@@ -166,8 +195,8 @@ function LatestLedgerRow({ article }: { article: Article }) {
         <Link href={`/article/${article.slug}`} className="dp-story-link" style={{ minWidth: 0, color: "var(--color-headline)", fontSize: "17px", fontWeight: 700, lineHeight: 1.28 }}>
           {localized(article.title)}
         </Link>
-        <Box className="dp-ledger-thumb" position="relative" w="68px" h="48px" overflow="hidden" borderRadius="3px" bg="var(--color-card-alt)">
-          <Image src={article.image} alt={localized(article.title)} fill sizes="68px" style={{ objectFit: "cover" }} />
+        <Box className="dp-ledger-thumb" position="relative" w="76px" style={{ aspectRatio: 16/9 }} overflow="hidden" borderRadius="3px" bg="var(--color-card-alt)">
+          <Image src={article.image} alt={localized(article.title)} fill sizes="76px" style={{ objectFit: "cover" }} />
         </Box>
       </Grid>
     </Box>
@@ -188,14 +217,15 @@ function UtilityRail() {
   );
 }
 
-function LatestSection({ articles, ads }: { articles: Article[]; ads: AdSlots }) {
-  const { locale } = useLocale();
-  const latest = articles.slice(0, 5);
+function LatestSection({ articles, ads, blogs }: { articles: Article[]; ads: AdSlots; blogs: BlogRecord[] }) {
+  const { locale, localized } = useLocale();
+  const latest = articles.slice(0, 8);
   return (
     <Box as="section" id="latest" aria-labelledby="latest-heading" mb="44px">
-      <FrontPageSectionHeader eyebrow="Latest updates" title={locale === "ne" ? "ताजा अपडेट" : "Latest updates"} href="/latest" actionLabel={locale === "ne" ? "सबै हेर्नुहोस्" : "View all"} />
-      <Grid className="dp-ledger-grid" templateColumns={{ base: "1fr", lg: "minmax(0, 1.95fr) minmax(310px, 1fr)" }} gap="32px">
-        <Box>
+      <Grid className="dp-ledger-grid" templateColumns={{ base: "1fr", lg: "minmax(0, 1.95fr) minmax(310px, 1fr)" }} gap="32px" alignItems="stretch">
+        {/* Left column is a flex column — articles fill top, blogs fill the bottom */}
+        <Flex direction="column">
+          <FrontPageSectionHeader eyebrow="Latest updates" title={locale === "ne" ? "ताजा अपडेट" : "Latest updates"} href="/latest" actionLabel={locale === "ne" ? "सबै हेर्नुहोस्" : "View all"} />
           <Grid className="dp-ledger-head" templateColumns="76px 110px minmax(0, 1fr) 76px" gap="12px" pb="8px" color="var(--color-muted)" fontSize="10px" fontWeight="600" textTransform="uppercase" letterSpacing="0.12em">
             <Text className="dp-english">Time</Text>
             <Text>विषय</Text>
@@ -209,21 +239,60 @@ function LatestSection({ articles, ads }: { articles: Article[]; ads: AdSlots })
             {locale === "ne" ? "सबै ताजा अपडेट" : "All latest updates"}
             <Text as="span" fontSize="15px" aria-hidden="true">→</Text>
           </Link>
-          <AdSlot placement="home-latest-rail" ad={ads["home-latest-rail"]} mt="24px" />
-        </Box>
+
+          {/* Blogs section replacing the ad in the left column empty space */}
+          {blogs && blogs.length > 0 && (
+            <Box mt="12px" pt="16px" borderTop="1px solid var(--color-border)">
+              <Flex align="center" justify="space-between" mb="16px" borderBottom="1px solid var(--color-border)" pb="8px">
+                <Text fontSize="14px" fontWeight="700" color="var(--color-headline)" textTransform="uppercase" letterSpacing="0.05em">
+                  {locale === "ne" ? "ब्लग / विचार" : "Blogs & Opinions"}
+                </Text>
+                <Link href="/blog" className="dp-story-link" style={{ color: "var(--color-brand)", fontSize: "12px", fontWeight: 600 }}>
+                  {locale === "ne" ? "सबै हेर्नुहोस् →" : "View all →"}
+                </Link>
+              </Flex>
+              <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap="24px">
+                {blogs.slice(0, 2).map(blog => (
+                  <Link key={blog.id} href={`/blog/${blog.slug}`} className="dp-image-wrap" style={{ display: "block" }}>
+                    <Box width="100%" style={{ aspectRatio: 16/9 }} position="relative" borderRadius="6px" overflow="hidden" mb="12px">
+                      {blog.heroImage ? (
+                        <Image src={blog.heroImage} alt="" fill style={{ objectFit: "cover" }} />
+                      ) : (
+                        <Box width="100%" height="100%" bg="var(--color-border)" />
+                      )}
+                    </Box>
+                    <Text className="dp-story-link" fontSize="16px" fontWeight="700" color="var(--color-headline)" lineHeight="1.4" lineClamp={3}>
+                      {locale === "ne" ? (blog.title.ne || blog.title.en) : (blog.title.en || blog.title.ne)}
+                    </Text>
+                  </Link>
+                ))}
+              </Grid>
+            </Box>
+          )}
+        </Flex>
         <UtilityRail />
       </Grid>
+      
+      {/* Ad pushed below the entire LatestSection grid — full width on all devices */}
+      <Box mt="32px">
+        <AdSlot placement="home-latest-rail" ad={ads["home-latest-rail"]} />
+      </Box>
     </Box>
   );
 }
 
-const HOME_CATEGORY_BLOCKS = [
-  { categorySlug: "economy", titleNe: "अर्थ / वाणिज्य", titleEn: "Economy & Business", eyebrow: "Finance" },
-  { categorySlug: "politics", titleNe: "राजनीति", titleEn: "Politics", eyebrow: "National Affairs" },
-  { categorySlug: "education", titleNe: "शिक्षा", titleEn: "Education", eyebrow: "Education" },
-  { categorySlug: "sports", titleNe: "खेलकुद", titleEn: "Sports", eyebrow: "Sports" },
-  { categorySlug: "science-tech", titleNe: "विज्ञान र प्रविधि", titleEn: "Science & Tech", eyebrow: "Technology" },
-] as const;
+
+// We dynamically generate the category blocks for the homepage so that ANY 
+// category with an article automatically appears, instead of being hardcoded to just 5.
+const HOME_CATEGORY_BLOCKS = categories
+  .filter(c => !["blog", "interview", "entertainment"].includes(c.slug))
+  .map(c => ({
+    categorySlug: c.slug,
+    titleNe: c.name.ne,
+    titleEn: c.name.en,
+    eyebrow: c.name.en,
+  }));
+
 
 function CategoryBlock({ categorySlug, articles, title, eyebrow }: { categorySlug: string; articles: Article[]; title: string; eyebrow?: string }) {
   const { locale, localized } = useLocale();
@@ -253,7 +322,7 @@ function CategoryBlock({ categorySlug, articles, title, eyebrow }: { categorySlu
 
         {/* Center: Image */}
         <Link href={`/article/${feature.slug}`} style={{ display: "block" }}>
-          <StoryImage article={feature} alt={localized(feature.title)} height={{ base: "210px", lg: "280px" }} sizes="(max-width: 992px) 100vw, 34vw" />
+          <StoryImage article={feature} alt={localized(feature.title)} aspectRatio={16/9} sizes="(max-width: 992px) 100vw, 34vw" />
         </Link>
 
         {/* Right: up to 4 small articles */}
@@ -267,8 +336,8 @@ function CategoryBlock({ categorySlug, articles, title, eyebrow }: { categorySlu
                   </Link>
                   <TimeAgo date={item.publishedAt} className="dp-number" mt="4px" fontSize="10px" color="var(--color-muted)" />
                 </Box>
-                <Box w="80px" h="54px" flexShrink={0} borderRadius="3px" overflow="hidden" bg="var(--color-surface)">
-                  <StoryImage article={item} alt={localized(item.title)} height="54px" sizes="80px" />
+                <Box w="80px" flexShrink={0} borderRadius="3px" overflow="hidden" bg="var(--color-surface)">
+                  <StoryImage article={item} alt={localized(item.title)} aspectRatio={16/9} sizes="80px" />
                 </Box>
               </Flex>
             ))}
@@ -280,20 +349,29 @@ function CategoryBlock({ categorySlug, articles, title, eyebrow }: { categorySlu
   );
 }
 
-function AllCategoriesSection({ articles }: { articles: Article[] }) {
+function AllCategoriesSection({ articles, ads }: { articles: Article[]; ads: AdSlots }) {
   const { locale } = useLocale();
+  let visibleCount = 0;
   return (
     <Box as="section" mb="48px">
       <Flex direction="column" gap="48px">
-        {HOME_CATEGORY_BLOCKS.map((block) => (
-          <CategoryBlock
-            key={block.categorySlug}
-            categorySlug={block.categorySlug}
-            articles={articles}
-            title={locale === "ne" ? block.titleNe : block.titleEn}
-            eyebrow={block.eyebrow}
-          />
-        ))}
+        {HOME_CATEGORY_BLOCKS.map((block) => {
+          const hasArticles = articles.some((a) => a.category.slug === block.categorySlug);
+          if (!hasArticles) return null;
+          visibleCount++;
+          const showAd = visibleCount === 2;
+          return (
+            <React.Fragment key={block.categorySlug}>
+              <CategoryBlock
+                categorySlug={block.categorySlug}
+                articles={articles}
+                title={locale === "ne" ? block.titleNe : block.titleEn}
+                eyebrow={block.eyebrow}
+              />
+              {showAd && <AdSlot placement="home-mid" ad={ads["home-mid"]} />}
+            </React.Fragment>
+          );
+        })}
       </Flex>
     </Box>
   );
@@ -359,7 +437,7 @@ function ClosingDesk({ articles }: { articles: Article[] }) {
       <Grid className="dp-closing-grid" templateColumns={{ base: "1fr", lg: "1.25fr 1fr 1fr" }} gap="28px">
         <Box as="article">
           <Link href={`/article/${feature.slug}`} style={{ display: "block" }}>
-            <StoryImage article={feature} alt={localized(feature.title)} height="178px" sizes="(max-width: 992px) 100vw, 34vw" />
+            <StoryImage article={feature} alt={localized(feature.title)} aspectRatio={16/9} sizes="(max-width: 992px) 100vw, 34vw" />
           </Link>
           <Text mt="12px" fontSize="11px" fontWeight="600" color={feature.category.color || BRAND}>{localized(feature.category.name)}</Text>
           <Link href={`/article/${feature.slug}`} className="dp-story-link" style={{ display: "block", marginTop: "4px", color: "var(--color-headline)", fontSize: "21px", fontWeight: 700, lineHeight: 1.28 }}>
@@ -377,17 +455,18 @@ function ClosingDesk({ articles }: { articles: Article[] }) {
 export default function FrontPage({
   articles,
   ads,
+  blogs,
 }: {
   articles: Article[];
   ads: AdSlots;
+  blogs: BlogRecord[];
 }) {
   return (
     <PageShell>
       <AdSlot placement="home-top" ad={ads["home-top"]} mb="28px" />
       <LeadDesk articles={articles} ads={ads} />
-      <LatestSection articles={articles} ads={ads} />
-      <AdSlot placement="home-mid" ad={ads["home-mid"]} mb="40px" />
-      <AllCategoriesSection articles={articles} />
+      <LatestSection articles={articles} ads={ads} blogs={blogs} />
+      <AllCategoriesSection articles={articles} ads={ads} />
       <ProvinceRail />
       <ClosingDesk articles={articles} />
     </PageShell>

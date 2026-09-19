@@ -53,7 +53,7 @@ function BlogCardItem({
         flexDirection="column"
         h="100%"
       >
-        <Box position="relative" w="full" h={imageHeight} bg="var(--color-card-alt)" flexShrink={0}>
+        <Box position="relative" w="full" style={{ aspectRatio: 16/9 }} bg="var(--color-card-alt)" flexShrink={0}>
           <Image src={blog.heroImage} alt={pick(blog.title)} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover" }} />
         </Box>
         <Box p="18px 20px 22px" flex="1" display="flex" flexDirection="column">
@@ -98,7 +98,7 @@ function RecentBlogs({ blogs, pick, fmt }: { blogs: BlogCard[]; pick: (t: Locali
             _hover={{ "& .r-title": { color: "var(--color-brand)" } }}
             align="flex-start"
           >
-            <Box position="relative" w="64px" h="48px" flexShrink={0} borderRadius="6px" overflow="hidden" bg="var(--color-card-alt)">
+            <Box position="relative" w="76px" style={{ aspectRatio: 16/9 }} flexShrink={0} borderRadius="6px" overflow="hidden" bg="var(--color-card-alt)">
               <Image src={b.heroImage} alt="" fill sizes="64px" style={{ objectFit: "cover" }} />
             </Box>
             <Box flex="1" minW="0">

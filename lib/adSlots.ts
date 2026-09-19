@@ -65,10 +65,10 @@ export const AD_SLOTS: Record<AdPlacement, AdSlotSpec> = {
     minWidth: 300,
   },
   "home-latest-rail": {
-    label: "Homepage — latest section rail",
-    where: "Wide left column, below the Latest updates ledger",
-    width: 970,
-    height: 250,
+    label: "Homepage — latest section banner",
+    where: "Full width, below the Latest updates section",
+    width: 1200,
+    height: 150,
     minWidth: 728,
   },
   sidebar: {

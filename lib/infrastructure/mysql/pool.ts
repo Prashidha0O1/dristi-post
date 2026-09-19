@@ -28,7 +28,7 @@ function buildPoolConfig(): mysql.PoolOptions {
     database: url.pathname.replace(/^\//, ""),
     timezone: "Z",
     dateStrings: true,
-    connectionLimit: 10,
+    connectionLimit: 5,
     namedPlaceholders: false,
     // utf8mb4 so Devanagari round-trips intact.
     charset: "utf8mb4",

@@ -1,4 +1,5 @@
 "use server";
+import { pingAllSearchEngines } from "@/lib/infrastructure/indexing";
 
 import { getContainer } from "@/lib/container";
 import { redirect } from "next/navigation";
@@ -33,7 +34,7 @@ function readBlogForm(formData: FormData) {
 
 /** Where to send the editor after a save: live page when published, else admin. */
 function liveOrAdmin(saved: { slug: string; status: string } | null): string {
-  if (saved && saved.status === "published") return `/blog/${saved.slug}`;
+  const s = saved as any; if (s && s.status === "published") return `/blog/${s.slug}`;
   return "/admin/blog";
 }
 
@@ -55,6 +56,11 @@ export async function createBlogAction(
   if (failure) return failure;
 
   updateTag("blogs");
+
+  const s = saved as any; if (s && s.status === "published") {
+    pingAllSearchEngines(`/blog/${s.slug}`);
+  }
+
   redirect(liveOrAdmin(saved));
 }
 
@@ -74,14 +80,23 @@ export async function updateBlogAction(
   if (failure) return failure;
 
   updateTag("blogs");
+
+  const s = saved as any; if (s && s.status === "published") {
+    pingAllSearchEngines(`/blog/${s.slug}`);
+  }
+
   redirect(liveOrAdmin(saved));
 }
 
 export async function publishBlogAction(id: string) {
   await requireCapability("content.write");
   const container = getContainer();
-  await container.changeBlogStatus.publish(id);
+  const blog = await container.changeBlogStatus.publish(id);
   updateTag("blogs");
+
+  if (blog.status === "published") {
+    pingAllSearchEngines(`/blog/${blog.slug}`);
+  }
 }
 
 export async function unpublishBlogAction(id: string) {

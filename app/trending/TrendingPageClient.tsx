@@ -80,7 +80,7 @@ export default function TrendingPageClient({ trending, latest, ads }: { trending
                     <TimeAgo date={a.publishedAt} fontSize="13px" color="var(--color-muted)" />
                   </Box>
 
-                  <Box className="t-img" position="relative" w={{ base: "100px", sm: "160px" }} h={{ base: "75px", sm: "110px" }} flexShrink={0} borderRadius="3px" overflow="hidden">
+                  <Box className="t-img" position="relative" w={{ base: "100px", sm: "160px" }} style={{ aspectRatio: 16/9 }} flexShrink={0} borderRadius="3px" overflow="hidden">
                     <Image src={a.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="160px" />
                   </Box>
                 </Flex>

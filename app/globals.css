@@ -255,6 +255,13 @@
     border-bottom: 1px solid var(--color-border);
   }
 
+  /* Prevent CSS Grid's default stretch from creating empty space in the hero grid.
+     The ledger grid intentionally stretches so the left Flex column matches the
+     UtilityRail height, allowing mt="auto" to push the ad to the bottom. */
+  .dp-hero-grid {
+    align-items: start !important;
+  }
+
   .dp-story-link {
     transition: color 150ms ease;
   }
