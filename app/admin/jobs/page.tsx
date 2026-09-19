@@ -20,16 +20,24 @@ import { deleteJobAction, publishJobAction, unpublishJobAction } from "../jobAct
 import { JobRowActions } from "./JobRowActions";
 import { primaryText } from "@/lib/domain/article";
 
+import { AdminSearch } from "../AdminSearch";
+
 const TYPE_LABEL = new Map(employmentTypes.map((t) => [t.value, t.name.en]));
 
-export default async function JobsListPage() {
+export default async function JobsListPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
   const container = getContainer();
+  const params = await searchParams;
+  const q = params?.q || "";
 
   // The jobs table may not exist yet (migration unrun). Surface that as an
   // explanation rather than a 500 — the admin is exactly where someone would
   // go to find out why the board is empty.
   const result = await container.listJobs
-    .execute({ limit: 50 })
+    .execute({ limit: 50, search: q })
     .then((r) => ({ ok: true as const, ...r }))
     .catch((e: unknown) => ({
       ok: false as const,
@@ -71,6 +79,8 @@ export default async function JobsListPage() {
           </Text>
         </Box>
       )}
+
+      <AdminSearch placeholder="Search jobs..." />
 
       <Card>
         <TableHead>

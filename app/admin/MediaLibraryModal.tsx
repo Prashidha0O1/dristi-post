@@ -189,9 +189,8 @@ export function MediaLibraryModal({ onSelect, onClose, folder = "articles" }: Me
                     borderRadius="6px"
                     bg="rgba(0,0,0,0.55)"
                     color="white"
-                    opacity={{ base: 1, md: 0 }}
-                    _groupHover={{ opacity: 1 }}
-                    _hover={{ bg: "var(--color-danger-fg, #dc2626)" }}
+                    opacity={{ base: 1, md: 0.7 }}
+                    _hover={{ bg: "var(--color-danger-fg, #dc2626)", opacity: 1 }}
                     transition="opacity 0.15s, background 0.15s"
                   >
                     {deleting === img.url ? (

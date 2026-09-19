@@ -123,7 +123,7 @@ export default function ArticlePageClient({
             <TimeAgo date={article.publishedAt} fontSize="13px" color="var(--color-muted)" />
           </Flex>
 
-          <Box position="relative" w="full" h={{ base: "240px", md: "420px" }} borderRadius="4px" overflow="hidden" mb="28px">
+          <Box position="relative" w="full" aspectRatio={16/9} borderRadius="4px" overflow="hidden" mb="28px">
             <Image src={article.image} alt={title} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 66vw" priority />
           </Box>
 

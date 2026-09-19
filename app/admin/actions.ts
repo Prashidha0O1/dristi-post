@@ -1,4 +1,5 @@
 "use server";
+import { pingAllSearchEngines } from "@/lib/infrastructure/indexing";
 
 import { getContainer } from "@/lib/container";
 import { redirect } from "next/navigation";
@@ -59,6 +60,12 @@ export async function createArticleAction(
   if (failure) return failure;
 
   updateTag("articles");
+
+  const c = created as any;
+  if (c && c.status === "published" && (!c.publishedAt || new Date(c.publishedAt).getTime() <= Date.now())) {
+    await pingAllSearchEngines(`/article/${c.slug}`);
+  }
+
   // Outside runFormAction on purpose: redirect() signals by throwing, so it
   // would be caught there and reported as a save failure instead of navigating.
   // If it went live now, land the editor straight on the published article so
@@ -97,14 +104,24 @@ export async function updateArticleAction(
   if (failure) return failure;
 
   updateTag("articles");
+
+  const s = saved as any;
+  if (s && s.status === "published" && (!s.publishedAt || new Date(s.publishedAt).getTime() <= Date.now())) {
+    await pingAllSearchEngines(`/article/${s.slug}`);
+  }
+
   redirect(liveOrAdmin(saved, "article"));
 }
 
 export async function publishArticleAction(id: string) {
   await requireCapability("content.write");
   const container = getContainer();
-  await container.changeArticleStatus.publish(id);
+  const article = await container.changeArticleStatus.publish(id);
   updateTag("articles");
+
+  if (article.status === "published") {
+    await pingAllSearchEngines(`/article/${article.slug}`);
+  }
 }
 
 export async function unpublishArticleAction(id: string) {

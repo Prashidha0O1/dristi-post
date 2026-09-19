@@ -25,6 +25,7 @@
     "@tiptap/react": "^3.31.3",
     "@tiptap/starter-kit": "^3.31.3",
     "framer-motion": "^13.1.1",
+    "google-auth-library": "^11.1.0",
     "lucide-react": "^0.577.0",
     "mysql2": "^3.24.4",
     "nepali-date-converter": "^3.4.0",

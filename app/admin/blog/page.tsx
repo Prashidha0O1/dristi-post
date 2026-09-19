@@ -17,16 +17,24 @@ import {
 import { deleteBlogAction, publishBlogAction, unpublishBlogAction } from "../blogActions";
 import { BlogRowActions } from "./BlogRowActions";
 
+import { AdminSearch } from "../AdminSearch";
+
 function formatDate(iso?: string): string {
   if (!iso) return "—";
   return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 }
 
-export default async function BlogListPage() {
+export default async function BlogListPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
   const container = getContainer();
+  const params = await searchParams;
+  const q = params?.q || "";
 
   const result = await container.listBlogs
-    .execute({ limit: 50 })
+    .execute({ limit: 50, search: q })
     .then((r) => ({ ok: true as const, ...r }))
     .catch((e: unknown) => ({
       ok: false as const,
@@ -57,6 +65,8 @@ export default async function BlogListPage() {
           </Text>
         </Box>
       )}
+
+      <AdminSearch placeholder="Search blogs..." />
 
       <Card>
         <TableHead>

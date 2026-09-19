@@ -1,5 +1,5 @@
 import FrontPage from "@/components/frontPage";
-import { getActiveAds, getRecentArticles } from "@/lib/publicQueries";
+import { getActiveAds, getRecentArticles, getPublishedBlogs } from "@/lib/publicQueries";
 
 // Rendered at request time, not at build: the content comes from the database
 // (only reachable as localhost in production), and a news site wants fresh
@@ -10,7 +10,11 @@ export const dynamic = "force-dynamic";
 import { siteUrl } from "@/lib/siteUrl";
 
 export default async function Page() {
-  const [articles, ads] = await Promise.all([getRecentArticles(), getActiveAds()]);
+  const [articles, ads, blogsPage] = await Promise.all([
+    getRecentArticles(),
+    getActiveAds(),
+    getPublishedBlogs(5)
+  ]);
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -29,7 +33,7 @@ export default async function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
-      <FrontPage articles={articles} ads={ads} />
+      <FrontPage articles={articles} ads={ads} blogs={blogsPage.items} />
     </>
   );
 }

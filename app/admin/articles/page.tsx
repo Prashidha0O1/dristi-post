@@ -24,11 +24,22 @@ import {
 import { ArticleRowActions } from "./ArticleRowActions";
 import { primaryText } from "@/lib/domain/article";
 
+import { AdminSearch } from "../AdminSearch";
+
 const CATEGORY_NAME = new Map(categories.map((c) => [c.slug, c]));
 
-export default async function ArticlesListPage() {
+export default async function ArticlesListPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
   const container = getContainer();
-  const { items: articles, total } = await container.listArticles.execute({ limit: 50 });
+  const params = await searchParams;
+  const q = params?.q || "";
+  const { items: articles, total } = await container.listArticles.execute({ 
+    limit: 50,
+    search: q 
+  });
 
   return (
     <Box>
@@ -46,6 +57,8 @@ export default async function ArticlesListPage() {
           </Flex>
         }
       />
+
+      <AdminSearch placeholder="Search articles..." />
 
       <Card>
         <TableHead>

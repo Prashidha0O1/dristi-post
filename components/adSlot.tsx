@@ -85,12 +85,10 @@ export function AdSlot({
       <chakra.a
         href={ad.linkUrl}
         target="_blank"
-        // `sponsored` is the correct signal for paid placement, and
-        // noopener/noreferrer keep the advertiser's page away from ours.
         rel="sponsored noopener noreferrer"
         display="block"
         position="relative"
-        aspectRatio={aspectRatio}
+        style={{ aspectRatio }}
         borderRadius="4px"
         overflow="hidden"
         bg="var(--color-card-alt)"

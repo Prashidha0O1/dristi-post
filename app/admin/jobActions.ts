@@ -1,4 +1,5 @@
 "use server";
+import { pingAllSearchEngines } from "@/lib/infrastructure/indexing";
 
 import { getContainer } from "@/lib/container";
 import { redirect } from "next/navigation";
@@ -55,6 +56,11 @@ export async function createJobAction(
   if (failure) return failure;
 
   updateTag("jobs");
+
+  if (live) {
+    await pingAllSearchEngines(live);
+  }
+
   // Outside runFormAction: redirect() signals by throwing. Land the editor on
   // the live posting when it's published, so they get the shareable link.
   redirect(live ?? "/admin/jobs");
@@ -76,14 +82,23 @@ export async function updateJobAction(
   if (failure) return failure;
 
   updateTag("jobs");
+
+  if (live) {
+    await pingAllSearchEngines(live);
+  }
+
   redirect(live ?? "/admin/jobs");
 }
 
 export async function publishJobAction(id: string) {
   await requireCapability("content.write");
   const container = getContainer();
-  await container.changeJobStatus.publish(id);
+  const job = await container.changeJobStatus.publish(id);
   updateTag("jobs");
+
+  if (job.status === "published") {
+    await pingAllSearchEngines(`/jobs/${job.slug}`);
+  }
 }
 
 export async function unpublishJobAction(id: string) {
