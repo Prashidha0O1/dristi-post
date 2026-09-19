@@ -278,6 +278,10 @@ const CONTENT_CSS = {
   "& .ProseMirror h6": { fontSize: "14px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em", margin: "12px 0 4px" },
   "& .ProseMirror ul": { paddingLeft: "22px", margin: "0 0 12px", listStyleType: "disc" },
   "& .ProseMirror ol": { paddingLeft: "22px", margin: "0 0 12px", listStyleType: "decimal" },
+  // Force italic to render even for fonts the browser won't synthesize obliques
+  // for — otherwise the Italic button appeared to "do nothing".
+  "& .ProseMirror em, & .ProseMirror i": { fontStyle: "italic" },
+  "& .ProseMirror strong, & .ProseMirror b": { fontWeight: 700 },
   "& .ProseMirror a": { color: "var(--color-brand)", textDecoration: "underline" },
   "& .ProseMirror blockquote": {
     borderLeft: "3px solid var(--color-border)",

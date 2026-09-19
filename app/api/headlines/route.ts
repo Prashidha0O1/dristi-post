@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const articles = await getRecentArticles(8);
+    const articles = await getRecentArticles(5);
     const items = articles.map((a) => ({
       id: a.id,
       slug: a.slug,

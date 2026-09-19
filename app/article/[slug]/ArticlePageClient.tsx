@@ -149,7 +149,7 @@ export default function ArticlePageClient({
               "& li": { marginBottom: "8px", display: "list-item" },
               "& a": { color: "var(--color-brand)", textDecoration: "underline" },
               "& strong, & b": { fontWeight: "bold" },
-              "& em, & i": { fontStyle: "oblique !important" },
+              "& em, & i": { fontStyle: "italic" },
               "& u": { textDecoration: "underline" },
               "& blockquote": {
                 borderLeft: "3px solid var(--color-border)",

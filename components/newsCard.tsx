@@ -14,6 +14,11 @@ interface NewsCardProps {
   showExcerpt?: boolean;
   showTimestamp?: boolean;
   showAuthor?: boolean;
+  /**
+   * Optional fixed image height (string or Chakra responsive object). When
+   * omitted the card keeps its default 16:9 aspect ratio.
+   */
+  imageHeight?: string | Record<string, string>;
 }
 
 export function NewsCard({
@@ -23,8 +28,12 @@ export function NewsCard({
   showExcerpt = false,
   showTimestamp = true,
   showAuthor = false,
+  imageHeight,
 }: NewsCardProps) {
   const { localized } = useLocale();
+
+  // Callers may pin a height; otherwise fall back to the 16:9 ratio.
+  const imgSize = imageHeight ? { h: imageHeight } : { aspectRatio: 16 / 9 };
 
   const title = localized(article.title);
   const excerpt = localized(article.excerpt);
@@ -65,7 +74,7 @@ export function NewsCard({
     return (
       <Link href={`/article/${article.slug}`}>
         <Box _hover={{ "& .title": { color: "var(--color-brand)" }, "& .img img": { transform: "scale(1.03)" } }} cursor="pointer">
-          <Box className="img" position="relative" w="full" aspectRatio={16/9} overflow="hidden" borderRadius="3px" mb="10px">
+          <Box className="img" position="relative" w="full" {...imgSize} overflow="hidden" borderRadius="3px" mb="10px">
             <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 50vw, 25vw" />
           </Box>
           {showCategory && (
@@ -93,7 +102,7 @@ export function NewsCard({
           cursor="pointer"
           h="full"
         >
-          <Box className="img" position="relative" w="full" aspectRatio={16/9} overflow="hidden">
+          <Box className="img" position="relative" w="full" {...imgSize} overflow="hidden">
             <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.6s ease" }} sizes="(max-width: 768px) 100vw, 66vw" priority />
           </Box>
           <Box
@@ -141,7 +150,7 @@ export function NewsCard({
           cursor="pointer"
           h="full"
         >
-          <Box className="img" position="relative" w="full" aspectRatio={16/9} overflow="hidden" borderRadius="3px" mb="12px">
+          <Box className="img" position="relative" w="full" {...imgSize} overflow="hidden" borderRadius="3px" mb="12px">
             <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 100vw, 33vw" />
             {article.isBreaking && (
               <Text position="absolute" top="8px" left="8px" bg="var(--color-brand)" color="white" fontSize="10px" fontWeight="700" px="7px" py="2px" borderRadius="1px" textTransform="uppercase" letterSpacing="0.5px">
@@ -183,7 +192,7 @@ export function NewsCard({
         cursor="pointer"
         h="full"
       >
-        <Box className="img" position="relative" w="full" aspectRatio={16/9} overflow="hidden">
+        <Box className="img" position="relative" w="full" {...imgSize} overflow="hidden">
           <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 100vw, 25vw" />
           {article.isBreaking && (
             <Text position="absolute" top="8px" left="8px" bg="var(--color-brand)" color="white" fontSize="10px" fontWeight="700" px="7px" py="2px" borderRadius="1px" textTransform="uppercase" letterSpacing="0.5px">

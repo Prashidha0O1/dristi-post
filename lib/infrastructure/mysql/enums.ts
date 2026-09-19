@@ -35,8 +35,11 @@ export const EMPLOYMENT_FROM_DB: Record<string, EmploymentType> = Object.fromEnt
 
 export const PLACEMENT_TO_DB: Record<AdPlacement, string> = {
   "home-top": "HOME_TOP",
-  "home-mid": "HOME_MID",
-  "home-lead-rail": "HOME_LEAD_RAIL",
+  "home-cat-ad-1": "HOME_CAT_AD_1",
+  "home-cat-ad-2": "HOME_CAT_AD_2",
+  "home-cat-ad-3": "HOME_CAT_AD_3",
+  "home-cat-ad-4": "HOME_CAT_AD_4",
+  "home-cat-ad-5": "HOME_CAT_AD_5",
   "home-latest-rail": "HOME_LATEST_RAIL",
   sidebar: "SIDEBAR",
 };

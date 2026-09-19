@@ -76,7 +76,7 @@ export function MobileNav({ open, lang, activeId, onSelect, onClose, onLangChang
                 className={`mb-6 flex w-full items-center justify-center gap-2 rounded-lg bg-ink px-4 py-3 text-[16px] font-semibold text-white transition hover:bg-crimson dark:bg-white dark:text-ink dark:hover:bg-crimson dark:hover:text-white ${lang === "np" ? "font-np" : ""}`}
               >
                 <UserIcon className="h-5 w-5" />
-                {lang === "np" ? "सदस्यता / लगइन" : "Subscribe / Login"}
+                {lang === "np" ? "लगइन" : "Login"}
               </Link>
 
               <ul className="space-y-0.5">

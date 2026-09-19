@@ -204,7 +204,7 @@ export function SiteHeader({ variant = "editorial", showBreakingTicker = true }:
               }`}
             >
               <UserIcon className="h-4 w-4" />
-              {lang === "np" ? "सदस्यता" : "Subscribe"}
+              {lang === "np" ? "लगइन" : "Login"}
             </Link>
 
             <button
