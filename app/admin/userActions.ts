@@ -3,11 +3,12 @@
 import { requireCapability } from "@/lib/auth/guard";
 import { emailExists, findUserById, setUserActive, updateUserRole } from "@/lib/auth/users";
 import { createInvite, deleteInvite, type InviteRole } from "@/lib/auth/invites";
+import { sendInviteEmail } from "@/lib/infrastructure/inviteEmail";
 import { isRole, type Role } from "@/lib/domain/user";
 
 export type InviteState =
   | { status: "idle" }
-  | { status: "ok"; path: string; email: string }
+  | { status: "ok"; path: string; email: string; emailed: boolean }
   | { status: "error"; message: string };
 
 export const idleInviteState: InviteState = { status: "idle" };
@@ -39,7 +40,11 @@ export async function inviteUserAction(
 
   try {
     const invite = await createInvite(email, roleRaw as InviteRole, owner.id);
-    return { status: "ok", path: `/invite/${invite.token}`, email };
+    const path = `/invite/${invite.token}`;
+    // Email the link. If SMTP is unconfigured or the send fails, the invite is
+    // still valid — the admin gets the copyable link as a fallback.
+    const { sent } = await sendInviteEmail({ to: email, role: roleRaw as InviteRole, path });
+    return { status: "ok", path, email, emailed: sent };
   } catch (e) {
     console.error("[invite] failed", e);
     return { status: "error", message: "Could not create the invite. Try again." };

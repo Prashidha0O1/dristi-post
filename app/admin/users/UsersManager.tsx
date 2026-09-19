@@ -61,7 +61,7 @@ export function UsersManager({
           Invite someone
         </Text>
         <Text fontSize="13px" color="var(--color-muted)" mb="16px">
-          They get a link to set their own password. Only you (the owner) can invite.
+          They get an email with a link to set their own password. Only you (the owner) can invite.
         </Text>
 
         <form action={formAction}>
@@ -88,7 +88,9 @@ export function UsersManager({
         {state.status === "ok" && (
           <Box mt="14px" p="12px" bg="var(--color-success-bg)" borderRadius="6px">
             <Text fontSize="13px" fontWeight="600" color="var(--color-success-fg)" mb="6px">
-              Invite ready for {state.email} — send them this link:
+              {state.emailed
+                ? `Invite emailed to ${state.email}. You can also copy the link:`
+                : `Invite created for ${state.email}, but the email couldn't be sent — copy this link and send it manually:`}
             </Text>
             <Flex gap="8px" align="center">
               <chakra.input value={inviteLink} readOnly flex="1" {...fieldStyles.input} h="34px" fontSize="12px" />
