@@ -12,8 +12,11 @@
 
 export type AdPlacement =
   | "home-top"
-  | "home-mid"
-  | "home-lead-rail"
+  | "home-cat-ad-1"
+  | "home-cat-ad-2"
+  | "home-cat-ad-3"
+  | "home-cat-ad-4"
+  | "home-cat-ad-5"
   | "home-latest-rail"
   | "sidebar";
 
@@ -50,19 +53,40 @@ export const AD_SLOTS: Record<AdPlacement, AdSlotSpec> = {
     height: 150,
     minWidth: 728,
   },
-  "home-mid": {
-    label: "Homepage — mid banner",
-    where: "Full width, between Latest updates and the category sections",
+  "home-cat-ad-1": {
+    label: "Homepage — Category Ad 1",
+    where: "Full width, after 3 category blocks",
     width: 1200,
     height: 150,
     minWidth: 728,
   },
-  "home-lead-rail": {
-    label: "Homepage — lead desk rail",
-    where: "Narrow right column, below the Supporting desk",
-    width: 300,
-    height: 250,
-    minWidth: 300,
+  "home-cat-ad-2": {
+    label: "Homepage — Category Ad 2",
+    where: "Full width, after 6 category blocks",
+    width: 1200,
+    height: 150,
+    minWidth: 728,
+  },
+  "home-cat-ad-3": {
+    label: "Homepage — Category Ad 3",
+    where: "Full width, after 9 category blocks",
+    width: 1200,
+    height: 150,
+    minWidth: 728,
+  },
+  "home-cat-ad-4": {
+    label: "Homepage — Category Ad 4",
+    where: "Full width, after 12 category blocks",
+    width: 1200,
+    height: 150,
+    minWidth: 728,
+  },
+  "home-cat-ad-5": {
+    label: "Homepage — Category Ad 5",
+    where: "Full width, after 15 category blocks",
+    width: 1200,
+    height: 150,
+    minWidth: 728,
   },
   "home-latest-rail": {
     label: "Homepage — latest section banner",
@@ -73,7 +97,7 @@ export const AD_SLOTS: Record<AdPlacement, AdSlotSpec> = {
   },
   sidebar: {
     label: "Sidebar",
-    where: "Right sidebar on article, category, latest and trending pages",
+    where: "Right sidebar on article, category, latest, trending, and the homepage lead section",
     width: 300,
     height: 250,
     minWidth: 300,

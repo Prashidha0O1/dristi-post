@@ -57,7 +57,9 @@ export async function createJobAction(
 
   updateTag("jobs");
 
-  if (live) pingAllSearchEngines(live);
+  if (live) {
+    await pingAllSearchEngines(live);
+  }
 
   // Outside runFormAction: redirect() signals by throwing. Land the editor on
   // the live posting when it's published, so they get the shareable link.
@@ -81,7 +83,9 @@ export async function updateJobAction(
 
   updateTag("jobs");
 
-  if (live) pingAllSearchEngines(live);
+  if (live) {
+    await pingAllSearchEngines(live);
+  }
 
   redirect(live ?? "/admin/jobs");
 }
@@ -93,7 +97,7 @@ export async function publishJobAction(id: string) {
   updateTag("jobs");
 
   if (job.status === "published") {
-    pingAllSearchEngines(`/jobs/${job.slug}`);
+    await pingAllSearchEngines(`/jobs/${job.slug}`);
   }
 }
 

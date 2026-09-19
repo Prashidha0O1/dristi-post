@@ -58,7 +58,7 @@ export async function createBlogAction(
   updateTag("blogs");
 
   const s = saved as any; if (s && s.status === "published") {
-    pingAllSearchEngines(`/blog/${s.slug}`);
+    await pingAllSearchEngines(`/blog/${s.slug}`);
   }
 
   redirect(liveOrAdmin(saved));
@@ -82,7 +82,7 @@ export async function updateBlogAction(
   updateTag("blogs");
 
   const s = saved as any; if (s && s.status === "published") {
-    pingAllSearchEngines(`/blog/${s.slug}`);
+    await pingAllSearchEngines(`/blog/${s.slug}`);
   }
 
   redirect(liveOrAdmin(saved));
@@ -95,7 +95,7 @@ export async function publishBlogAction(id: string) {
   updateTag("blogs");
 
   if (blog.status === "published") {
-    pingAllSearchEngines(`/blog/${blog.slug}`);
+    await pingAllSearchEngines(`/blog/${blog.slug}`);
   }
 }
 

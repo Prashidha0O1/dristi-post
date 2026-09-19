@@ -63,7 +63,7 @@ export async function createArticleAction(
 
   const c = created as any;
   if (c && c.status === "published" && (!c.publishedAt || new Date(c.publishedAt).getTime() <= Date.now())) {
-    pingAllSearchEngines(`/article/${c.slug}`);
+    await pingAllSearchEngines(`/article/${c.slug}`);
   }
 
   // Outside runFormAction on purpose: redirect() signals by throwing, so it
@@ -107,7 +107,7 @@ export async function updateArticleAction(
 
   const s = saved as any;
   if (s && s.status === "published" && (!s.publishedAt || new Date(s.publishedAt).getTime() <= Date.now())) {
-    pingAllSearchEngines(`/article/${s.slug}`);
+    await pingAllSearchEngines(`/article/${s.slug}`);
   }
 
   redirect(liveOrAdmin(saved, "article"));
@@ -120,7 +120,7 @@ export async function publishArticleAction(id: string) {
   updateTag("articles");
 
   if (article.status === "published") {
-    pingAllSearchEngines(`/article/${article.slug}`);
+    await pingAllSearchEngines(`/article/${article.slug}`);
   }
 }
 

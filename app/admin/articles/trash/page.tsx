@@ -11,6 +11,8 @@ import { ButtonLink, Card, EmptyState, PageHeader, TableHead, TableRow } from ".
 import { restoreArticleAction, deleteArticleForeverAction } from "../../actions";
 import { TrashRowActions } from "./TrashRowActions";
 
+import { AdminSearch } from "../../AdminSearch";
+
 const RETENTION_DAYS = 7;
 
 function daysLeft(deletedAt: string): number {
@@ -18,12 +20,21 @@ function daysLeft(deletedAt: string): number {
   return Math.max(0, Math.ceil((gone - Date.now()) / (24 * 60 * 60 * 1000)));
 }
 
-export default async function TrashPage() {
+export default async function TrashPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
   const me = await getCurrentUser();
   if (!me) redirect("/login");
 
   const container = getContainer();
-  const { items } = await container.listTrashedArticles.execute({ limit: 100 });
+  const params = await searchParams;
+  const q = params?.q || "";
+  const { items } = await container.listTrashedArticles.execute({ 
+    limit: 100,
+    search: q
+  });
   const canDeleteForever = can(me.role, "content.delete");
 
   return (
@@ -37,6 +48,8 @@ export default async function TrashPage() {
           </ButtonLink>
         }
       />
+
+      <AdminSearch placeholder="Search trash..." />
 
       <Card>
         <TableHead>

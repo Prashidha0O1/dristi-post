@@ -148,7 +148,7 @@ function LeadDesk({ articles, ads }: { articles: Article[]; ads: AdSlots }) {
             <span>{locale === "ne" ? "समाचारका थप शीर्षक" : "More headlines"}</span>
             <span aria-hidden="true" style={{ fontSize: "16px" }}>↗</span>
           </Link>
-          <AdSlot placement="home-lead-rail" ad={ads["home-lead-rail"]} mt="24px" />
+          <AdSlot placement="sidebar" ad={ads["sidebar"]} mt="24px" />
         </Box>
       </Grid>
 
@@ -195,7 +195,7 @@ function LatestLedgerRow({ article }: { article: Article }) {
         <Link href={`/article/${article.slug}`} className="dp-story-link" style={{ minWidth: 0, color: "var(--color-headline)", fontSize: "17px", fontWeight: 700, lineHeight: 1.28 }}>
           {localized(article.title)}
         </Link>
-        <Box className="dp-ledger-thumb" position="relative" w="76px" style={{ aspectRatio: 16/9 }} overflow="hidden" borderRadius="3px" bg="var(--color-card-alt)">
+        <Box className="dp-ledger-thumb" position="relative" w="76px" aspectRatio={16/9} overflow="hidden" borderRadius="3px" bg="var(--color-card-alt)">
           <Image src={article.image} alt={localized(article.title)} fill sizes="76px" style={{ objectFit: "cover" }} />
         </Box>
       </Grid>
@@ -254,7 +254,7 @@ function LatestSection({ articles, ads, blogs }: { articles: Article[]; ads: AdS
               <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap="24px">
                 {blogs.slice(0, 2).map(blog => (
                   <Link key={blog.id} href={`/blog/${blog.slug}`} className="dp-image-wrap" style={{ display: "block" }}>
-                    <Box width="100%" style={{ aspectRatio: 16/9 }} position="relative" borderRadius="6px" overflow="hidden" mb="12px">
+                    <Box width="100%" aspectRatio={16/9} position="relative" borderRadius="6px" overflow="hidden" mb="12px">
                       {blog.heroImage ? (
                         <Image src={blog.heroImage} alt="" fill style={{ objectFit: "cover" }} />
                       ) : (
@@ -285,7 +285,7 @@ function LatestSection({ articles, ads, blogs }: { articles: Article[]; ads: AdS
 // We dynamically generate the category blocks for the homepage so that ANY 
 // category with an article automatically appears, instead of being hardcoded to just 5.
 const HOME_CATEGORY_BLOCKS = categories
-  .filter(c => !["blog", "interview", "entertainment"].includes(c.slug))
+  .filter(c => c.slug !== "blog")
   .map(c => ({
     categorySlug: c.slug,
     titleNe: c.name.ne,
@@ -359,7 +359,12 @@ function AllCategoriesSection({ articles, ads }: { articles: Article[]; ads: AdS
           const hasArticles = articles.some((a) => a.category.slug === block.categorySlug);
           if (!hasArticles) return null;
           visibleCount++;
-          const showAd = visibleCount === 2;
+          
+          const showAd = visibleCount > 0 && visibleCount % 3 === 0;
+          const adIndex = Math.floor(visibleCount / 3);
+          // Only show up to 5 ads
+          const adPlacement = (showAd && adIndex <= 5) ? `home-cat-ad-${adIndex}` as keyof AdSlots : null;
+
           return (
             <React.Fragment key={block.categorySlug}>
               <CategoryBlock
@@ -368,7 +373,7 @@ function AllCategoriesSection({ articles, ads }: { articles: Article[]; ads: AdS
                 title={locale === "ne" ? block.titleNe : block.titleEn}
                 eyebrow={block.eyebrow}
               />
-              {showAd && <AdSlot placement="home-mid" ad={ads["home-mid"]} />}
+              {adPlacement && <AdSlot placement={adPlacement as any} ad={ads[adPlacement]} />}
             </React.Fragment>
           );
         })}
@@ -423,34 +428,6 @@ function CompactTopicList({ slug, title, englishTitle, accent, articles }: { slu
   );
 }
 
-function ClosingDesk({ articles }: { articles: Article[] }) {
-  const { locale, localized } = useLocale();
-  const feature = articles.find((a) => a.category.slug === "entertainment");
-  if (!feature) return null;
-  return (
-    <Box as="section" id="closing" aria-labelledby="closing-heading" mt={{ base: "24px", lg: "32px" }}>
-      <Box mb="20px">
-        <Text className="dp-english" mb="4px" fontSize="10px" fontWeight="600" textTransform="uppercase" letterSpacing="0.15em" color="var(--color-muted)">Culture, sport & technology</Text>
-        <Heading as="h2" id="closing-heading" fontSize="25px" fontWeight="700" lineHeight="1" color="var(--color-headline)">{locale === "ne" ? "दिनको बाँकी डेस्क" : "The rest of the day"}</Heading>
-      </Box>
-      <Box className="dp-rule" mb="24px" />
-      <Grid className="dp-closing-grid" templateColumns={{ base: "1fr", lg: "1.25fr 1fr 1fr" }} gap="28px">
-        <Box as="article">
-          <Link href={`/article/${feature.slug}`} style={{ display: "block" }}>
-            <StoryImage article={feature} alt={localized(feature.title)} aspectRatio={16/9} sizes="(max-width: 992px) 100vw, 34vw" />
-          </Link>
-          <Text mt="12px" fontSize="11px" fontWeight="600" color={feature.category.color || BRAND}>{localized(feature.category.name)}</Text>
-          <Link href={`/article/${feature.slug}`} className="dp-story-link" style={{ display: "block", marginTop: "4px", color: "var(--color-headline)", fontSize: "21px", fontWeight: 700, lineHeight: 1.28 }}>
-            {localized(feature.title)}
-          </Link>
-          <Text mt="8px" fontSize="13px" lineHeight="1.5" color="var(--color-muted)" lineClamp={2}>{localized(feature.excerpt)}</Text>
-        </Box>
-        <CompactTopicList slug="sports" title={locale === "ne" ? "खेलकुद" : "Sports"} englishTitle="Sports" accent="#059669" articles={articles} />
-        <CompactTopicList slug="science-tech" title={locale === "ne" ? "विज्ञान र प्रविधि" : "Science & Tech"} englishTitle="Science & Tech" accent="#0891b2" articles={articles} />
-      </Grid>
-    </Box>
-  );
-}
 
 export default function FrontPage({
   articles,
@@ -468,7 +445,6 @@ export default function FrontPage({
       <LatestSection articles={articles} ads={ads} blogs={blogs} />
       <AllCategoriesSection articles={articles} ads={ads} />
       <ProvinceRail />
-      <ClosingDesk articles={articles} />
     </PageShell>
   );
 }

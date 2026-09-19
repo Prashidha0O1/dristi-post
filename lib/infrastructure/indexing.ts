@@ -1,7 +1,8 @@
 import { GoogleAuth } from 'google-auth-library';
+import { siteUrl } from '@/lib/siteUrl';
 
-// The URL of your site (make sure it's the live domain when you go live)
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://dristinews.com'; 
+// The URL of your site
+const SITE_URL = siteUrl();
 
 export async function pingGoogleIndexing(url: string) {
   // SAFETY SWITCH: Don't index anything if we aren't officially live.
