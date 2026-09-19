@@ -5,13 +5,7 @@ import { emailExists, findUserById, setUserActive, updateUserRole } from "@/lib/
 import { createInvite, deleteInvite, type InviteRole } from "@/lib/auth/invites";
 import { sendInviteEmail } from "@/lib/infrastructure/inviteEmail";
 import { isRole, type Role } from "@/lib/domain/user";
-
-export type InviteState =
-  | { status: "idle" }
-  | { status: "ok"; path: string; email: string; emailed: boolean }
-  | { status: "error"; message: string };
-
-export const idleInviteState: InviteState = { status: "idle" };
+import type { InviteState } from "./users/inviteState";
 
 /** Owner-only. Creates an invite and returns the accept path to share. */
 export async function inviteUserAction(

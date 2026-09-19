@@ -10,11 +10,10 @@ import { toaster } from "@/components/ui/toaster";
 import {
   cancelInviteAction,
   changeUserRoleAction,
-  idleInviteState,
   inviteUserAction,
   setUserActiveAction,
-  type InviteState,
 } from "../userActions";
+import { idleInviteState, type InviteState } from "./inviteState";
 
 type UserRow = { id: string; email: string; name: string; role: string; isActive: boolean };
 type InviteRow = { id: string; email: string; role: string; expiresAt: string };
