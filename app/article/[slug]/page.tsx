@@ -43,6 +43,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 import { siteUrl } from "@/lib/siteUrl";
+import { getRedirectBySource, log404 } from "@/lib/infrastructure/mysql/seoRepository";
+import { permanentRedirect } from "next/navigation";
 
 export default async function ArticlePage({
   params,
@@ -51,7 +53,13 @@ export default async function ArticlePage({
 }) {
   const { slug } = await params;
   const article = await getArticleBySlug(slug);
-  if (!article) notFound();
+  if (!article) {
+    const path = `/article/${slug}`;
+    const redirectRule = await getRedirectBySource(path);
+    if (redirectRule) permanentRedirect(redirectRule.destinationPath);
+    await log404(path);
+    notFound();
+  }
 
   const [related, trending, ads] = await Promise.all([
     getRelatedArticles(article),

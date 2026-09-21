@@ -7,10 +7,7 @@ export default async function SettingsPage() {
   const seo = await getSeoSettings();
 
   return (
-    <Box p="32px" maxW="1200px" mx="auto">
-      <Flex mb="24px" align="center" justify="space-between">
-        <Text fontSize="28px" fontWeight="800">Site Settings</Text>
-      </Flex>
+    <Box>
       <SettingsForm initialFooter={footer} initialSeo={seo} />
     </Box>
   );
