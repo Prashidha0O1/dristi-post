@@ -2,7 +2,8 @@ import { categories } from "@/lib/config";
 import { getActiveAds, getArticlesByCategory, getTrendingArticles, getSeoSettings } from "@/lib/publicQueries";
 import CategoryPageClient from "./CategoryPageClient";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
+import { getRedirectBySource, log404 } from "@/lib/infrastructure/mysql/seoRepository";
 
 // Rendered at request time, not at build: the content comes from the database
 // (only reachable as localhost in production), and a news site wants fresh
@@ -56,6 +57,10 @@ export default async function CategoryPage({
   
   const category = categories.find((c) => c.slug === slug);
   if (!category) {
+    const path = `/${slug}`;
+    const redirectRule = await getRedirectBySource(path);
+    if (redirectRule) permanentRedirect(redirectRule.destinationPath);
+    await log404(path);
     notFound();
   }
 

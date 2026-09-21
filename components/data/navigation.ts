@@ -16,7 +16,7 @@ export const secondarySections: NavSection[] = [
   { id: "society", np: "समाज", en: "Society", href: "/society", blurb: "सामाजिक गतिविधि" },
   { id: "health", np: "स्वास्थ्य", en: "Health", href: "/health", blurb: "अस्पताल, नीति र सार्वजनिक स्वास्थ्य" },
   { id: "agriculture", np: "कृषि", en: "Agriculture", href: "/agriculture", blurb: "खेतीपाती र किसान" },
-  { id: "environment", np: "वातावरण", en: "Environment", href: "/environment", blurb: "जलवायु र प्रकृति" },
+  { id: "international", np: "अन्तर्राष्ट्रिय", en: "International", href: "/international", blurb: "विश्वभरका खबर" },
   { id: "law-crime", np: "कानून र अपराध", en: "Law & Crime", href: "/law-crime", blurb: "अदालत र प्रहरी घटना" },
   { id: "tourism", np: "पर्यटन", en: "Tourism", href: "/tourism", blurb: "यात्रा र गन्तव्य" },
   { id: "entertainment", np: "मनोरञ्जन", en: "Entertainment", href: "/entertainment", blurb: "चलचित्र र संगीत" },

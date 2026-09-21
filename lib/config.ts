@@ -8,7 +8,7 @@ export const categories: Category[] = [
   { id: "6", slug: "health", name: { ne: "स्वास्थ्य", en: "Health" }, color: "#ec4899" },
   { id: "7", slug: "agriculture", name: { ne: "कृषि", en: "Agriculture" }, color: "#84cc16" },
   { id: "8", slug: "science-tech", name: { ne: "विज्ञान र प्रविधि", en: "Science & Tech" }, color: "#06b6d4" },
-  { id: "9", slug: "environment", name: { ne: "वातावरण", en: "Environment" }, color: "#14b8a6" },
+  { id: "9", slug: "international", name: { ne: "अन्तर्राष्ट्रिय", en: "International" }, color: "#14b8a6" },
   { id: "10", slug: "law-crime", name: { ne: "कानून र अपराध", en: "Law & Crime" }, color: "#6366f1" },
   { id: "11", slug: "tourism", name: { ne: "पर्यटन", en: "Tourism" }, color: "#0ea5e9" },
   { id: "12", slug: "sports", name: { ne: "खेलकुद", en: "Sports" }, color: "#16a34a" },

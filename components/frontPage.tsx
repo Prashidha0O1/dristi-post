@@ -327,7 +327,7 @@ function CategoryBlock({ categorySlug, articles, title, eyebrow }: { categorySlu
 
         {/* Right: up to 4 small articles */}
         {list.length > 0 && (
-          <Flex direction="column" justify="space-between" borderLeft={{ lg: "1px solid var(--color-border)" }} pl={{ lg: "20px" }}>
+          <Flex direction="column" justify="flex-start" borderLeft={{ lg: "1px solid var(--color-border)" }} pl={{ lg: "20px" }}>
             {list.map((item, index) => (
               <Flex key={item.id} gap="12px" align="center" borderBottom={index < list.length - 1 ? "1px solid var(--color-border)" : "none"} pb={index < list.length - 1 ? "12px" : "0"} pt={index > 0 ? "12px" : "0"}>
                 <Box flex="1">
