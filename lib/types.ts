@@ -10,6 +10,7 @@ export interface Article {
   category: Category;
   author: Author;
   image: string;
+  imageAlt?: string;
   publishedAt: string;
   updatedAt?: string;
   tags: Tag[];

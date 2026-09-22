@@ -33,6 +33,7 @@ export default async function BlogPage(props: { searchParams: Promise<{ page?: s
     title: b.title,
     excerpt: b.excerpt,
     heroImage: b.heroImage,
+    heroImageAlt: b.heroImageAlt,
     publishedAt: b.publishedAt ?? b.createdAt,
     isFeatured: b.isFeatured,
   }));

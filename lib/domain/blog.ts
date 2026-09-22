@@ -18,6 +18,7 @@ export interface BlogRecord {
   metaDescription?: LocalisedText;
   /** Hero image URL — an absolute URL or a site-relative /uploads path. */
   heroImage: string;
+  heroImageAlt?: string;
   /** Rich-text HTML body (same editor as articles). */
   body: LocalisedText;
   status: BlogStatus;
@@ -33,6 +34,7 @@ export interface NewBlogInput {
   excerpt?: LocalisedText;
   metaDescription?: LocalisedText;
   heroImage: string;
+  heroImageAlt?: string;
   body: LocalisedText;
   /** Optional hand-typed slug; auto-generated from the title when blank. */
   slug?: string;

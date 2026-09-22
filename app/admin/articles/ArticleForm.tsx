@@ -42,6 +42,7 @@ interface Props {
     provinceSlug?: string;
     authorId?: string;
     imageUrl?: string;
+    imageAlt?: string;
     tagSlugs?: string;
     isFeatured?: boolean;
     isBreaking?: boolean;
@@ -134,6 +135,8 @@ export function ArticleForm({ action, authorOptions, defaultValues: d = {}, subm
           <ImageUploadField
             folder="articles"
             defaultValue={d.imageUrl}
+            altName="imageAlt"
+            defaultAltValue={d.imageAlt}
             hint="JPEG, PNG, WebP or GIF, up to 5MB. Recommended 1200×675px (16:9)."
           />
         </Field>

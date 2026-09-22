@@ -16,7 +16,7 @@ interface BlogCard {
   slug: string;
   title: LocalisedText;
   excerpt: LocalisedText;
-  heroImage: string;
+  heroImage: string; heroImageAlt?: string;
   publishedAt: string;
   isFeatured?: boolean;
 }
@@ -54,7 +54,7 @@ function BlogCardItem({
         h="100%"
       >
         <Box position="relative" w="full" aspectRatio={16/9} bg="var(--color-card-alt)" flexShrink={0}>
-          <Image src={blog.heroImage} alt={pick(blog.title)} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover" }} />
+          <Image src={blog.heroImage} alt={blog.heroImageAlt || pick(blog.title)} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover" }} />
         </Box>
         <Box p="18px 20px 22px" flex="1" display="flex" flexDirection="column">
           <Text fontSize="13px" color="var(--color-muted)" mb="8px">
@@ -99,7 +99,7 @@ function RecentBlogs({ blogs, pick, fmt }: { blogs: BlogCard[]; pick: (t: Locali
             align="flex-start"
           >
             <Box position="relative" w="76px" aspectRatio={16/9} flexShrink={0} borderRadius="6px" overflow="hidden" bg="var(--color-card-alt)">
-              <Image src={b.heroImage} alt="" fill sizes="64px" style={{ objectFit: "cover" }} />
+              <Image src={b.heroImage} alt={b.heroImageAlt || ""} fill sizes="64px" style={{ objectFit: "cover" }} />
             </Box>
             <Box flex="1" minW="0">
               <Text className="r-title" fontWeight="700" fontSize="14px" lineHeight="1.4" lineClamp={2} color="var(--color-headline)" transition="color 0.15s">

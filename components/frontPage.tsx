@@ -104,7 +104,7 @@ function LeadDesk({ articles, ads }: { articles: Article[]; ads: AdSlots }) {
       <Grid className="dp-hero-grid" templateColumns={{ base: "1fr", lg: "minmax(0, 1.65fr) minmax(360px, 1fr)" }} gap="28px" alignItems="start">
         <Box as="article">
           <Link href={`/article/${lead.slug}`} className="dp-image-wrap" style={{ display: "block" }}>
-            <StoryImage article={lead} alt={localized(lead.title)} aspectRatio={16/9} sizes="(max-width: 992px) 100vw, 66vw" priority />
+            <StoryImage article={lead} alt={lead.imageAlt || localized(lead.title)} aspectRatio={16/9} sizes="(max-width: 992px) 100vw, 66vw" priority />
           </Link>
           <Box pt="16px">
             <Flex align="center" gap="8px" mb="8px" fontSize="11px" fontWeight="600" color={lead.category.color || BRAND}>
@@ -131,7 +131,7 @@ function LeadDesk({ articles, ads }: { articles: Article[]; ads: AdSlots }) {
           {supporting.map((article) => (
             <Box as="article" key={article.id} className="dp-support-row" borderTop="1px solid var(--color-border)" py="16px">
               <Link href={`/article/${article.slug}`} style={{ display: "flex", gap: "16px", minWidth: 0 }}>
-                <StoryImage article={article} alt={localized(article.title)} aspectRatio={16/9} sizes="138px" className="dp-support-thumb" />
+                <StoryImage article={article} alt={article.imageAlt || localized(article.title)} aspectRatio={16/9} sizes="138px" className="dp-support-thumb" />
                 <Box minW="0">
                   <Text mb="4px" fontSize="11px" fontWeight="600" color={article.category.color || BRAND}>
                     {localized(article.category.name)}
@@ -158,7 +158,7 @@ function LeadDesk({ articles, ads }: { articles: Article[]; ads: AdSlots }) {
           {secondaryFeatured.map((article) => (
             <Box as="article" key={article.id}>
               <Link href={`/article/${article.slug}`} className="dp-image-wrap" style={{ display: "block" }}>
-                <StoryImage article={article} alt={localized(article.title)} aspectRatio={16/9} sizes="(max-width: 768px) 100vw, (max-width: 992px) 50vw, 25vw" />
+                <StoryImage article={article} alt={article.imageAlt || localized(article.title)} aspectRatio={16/9} sizes="(max-width: 768px) 100vw, (max-width: 992px) 50vw, 25vw" />
               </Link>
               <Box pt="12px">
                 <Text mb="4px" fontSize="11px" fontWeight="600" color={article.category.color || BRAND}>
@@ -196,7 +196,7 @@ function LatestLedgerRow({ article }: { article: Article }) {
           {localized(article.title)}
         </Link>
         <Box className="dp-ledger-thumb" position="relative" w="76px" aspectRatio={16/9} overflow="hidden" borderRadius="3px" bg="var(--color-card-alt)">
-          <Image src={article.image} alt={localized(article.title)} fill sizes="76px" style={{ objectFit: "cover" }} />
+          <Image src={article.image} alt={article.imageAlt || localized(article.title)} fill sizes="76px" style={{ objectFit: "cover" }} />
         </Box>
       </Grid>
     </Box>
@@ -322,7 +322,7 @@ function CategoryBlock({ categorySlug, articles, title, eyebrow }: { categorySlu
 
         {/* Center: Image */}
         <Link href={`/article/${feature.slug}`} style={{ display: "block" }}>
-          <StoryImage article={feature} alt={localized(feature.title)} aspectRatio={16/9} sizes="(max-width: 992px) 100vw, 34vw" />
+          <StoryImage article={feature} alt={feature.imageAlt || localized(feature.title)} aspectRatio={16/9} sizes="(max-width: 992px) 100vw, 34vw" />
         </Link>
 
         {/* Right: up to 4 small articles */}
@@ -337,7 +337,7 @@ function CategoryBlock({ categorySlug, articles, title, eyebrow }: { categorySlu
                   <TimeAgo date={item.publishedAt} className="dp-number" mt="4px" fontSize="10px" color="var(--color-muted)" />
                 </Box>
                 <Box w="80px" flexShrink={0} borderRadius="3px" overflow="hidden" bg="var(--color-surface)">
-                  <StoryImage article={item} alt={localized(item.title)} aspectRatio={16/9} sizes="80px" />
+                  <StoryImage article={item} alt={item.imageAlt || localized(item.title)} aspectRatio={16/9} sizes="80px" />
                 </Box>
               </Flex>
             ))}

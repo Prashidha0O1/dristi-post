@@ -124,7 +124,7 @@ export default function ArticlePageClient({
           </Flex>
 
           <Box position="relative" w="full" aspectRatio={16/9} borderRadius="4px" overflow="hidden" mb="28px">
-            <Image src={article.image} alt={title} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 66vw" priority />
+            <Image src={article.image} alt={article.imageAlt || title} fill style={{ objectFit: "cover" }} sizes="(max-width: 768px) 100vw, 66vw" priority />
           </Box>
 
           <Box

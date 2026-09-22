@@ -59,6 +59,7 @@ export default async function EditArticlePage({ params }: { params: Promise<{ id
             provinceSlug: found.provinceSlug,
             authorId: found.authorId,
             imageUrl: found.imageUrl,
+            imageAlt: found.imageAlt,
             tagSlugs: found.tagSlugs.join(","),
             isFeatured: found.isFeatured,
             isBreaking: found.isBreaking,

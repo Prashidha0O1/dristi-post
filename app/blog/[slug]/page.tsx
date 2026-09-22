@@ -58,6 +58,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
           title: blog.title,
           body: blog.body,
           heroImage: blog.heroImage,
+          heroImageAlt: blog.heroImageAlt,
           publishedAt: blog.publishedAt ?? blog.createdAt,
         }}
       />

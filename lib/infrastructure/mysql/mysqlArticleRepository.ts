@@ -42,6 +42,7 @@ function toDomain(row: Row, tagSlugs: string[]): ArticleRecord {
     provinceSlug: row.province ? PROVINCE_FROM_DB[row.province as string] : undefined,
     authorId: row.authorId as string,
     imageUrl: row.imageUrl as string,
+    imageAlt: (row.imageAlt as string) || undefined,
     status: STATUS_FROM_DB[row.status as string] ?? "draft",
     tagSlugs,
     isFeatured: toBool(row.isFeatured),
@@ -178,14 +179,14 @@ export class MysqlArticleRepository implements ArticleRepository {
       await conn.query(
         `INSERT INTO articles
           (id, slug, titleNe, titleEn, excerptNe, excerptEn, bodyNe, bodyEn,
-           metaDescriptionNe, metaDescriptionEn, imageUrl, status, province, categoryId, authorId,
+           metaDescriptionNe, metaDescriptionEn, imageUrl, imageAlt, status, province, categoryId, authorId,
            isFeatured, isBreaking, isTrending, createdAt, updatedAt, publishedAt, deletedAt)
-         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
          ON DUPLICATE KEY UPDATE
            slug=VALUES(slug), titleNe=VALUES(titleNe), titleEn=VALUES(titleEn),
            excerptNe=VALUES(excerptNe), excerptEn=VALUES(excerptEn),
            bodyNe=VALUES(bodyNe), bodyEn=VALUES(bodyEn),
-           metaDescriptionNe=VALUES(metaDescriptionNe), metaDescriptionEn=VALUES(metaDescriptionEn), imageUrl=VALUES(imageUrl),
+           metaDescriptionNe=VALUES(metaDescriptionNe), metaDescriptionEn=VALUES(metaDescriptionEn), imageUrl=VALUES(imageUrl), imageAlt=VALUES(imageAlt),
            status=VALUES(status), province=VALUES(province),
            categoryId=VALUES(categoryId), authorId=VALUES(authorId),
            isFeatured=VALUES(isFeatured), isBreaking=VALUES(isBreaking),
@@ -201,8 +202,9 @@ export class MysqlArticleRepository implements ArticleRepository {
           article.body.ne ?? "",
           article.body.en ?? null,
           article.metaDescription?.ne ?? null,
-        article.metaDescription?.en ?? null,
+          article.metaDescription?.en ?? null,
           article.imageUrl,
+          article.imageAlt ?? null,
           STATUS_TO_DB[article.status],
           article.provinceSlug ? PROVINCE_TO_DB[article.provinceSlug] : null,
           categoryId,

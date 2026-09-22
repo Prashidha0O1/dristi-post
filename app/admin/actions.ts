@@ -34,6 +34,7 @@ function readArticleForm(formData: FormData) {
     categorySlug: formData.get("categorySlug") as string,
     provinceSlug: (formData.get("provinceSlug") as ProvinceSlug) || undefined,
     imageUrl: formData.get("imageUrl") as string,
+    imageAlt: (formData.get("imageAlt") as string) || undefined,
     tagSlugs: (formData.get("tagSlugs") as string)?.split(",").filter(Boolean) || [],
     isFeatured: formData.get("isFeatured") === "on",
     isBreaking: formData.get("isBreaking") === "on",
@@ -138,7 +139,6 @@ export async function deleteArticleAction(id: string) {
   const container = getContainer();
   await container.deleteArticle.execute(id);
   updateTag("articles");
-  redirect("/admin/articles");
 }
 
 export async function restoreArticleAction(id: string) {
@@ -146,7 +146,6 @@ export async function restoreArticleAction(id: string) {
   const container = getContainer();
   await container.restoreArticle.execute(id);
   updateTag("articles");
-  redirect("/admin/articles/trash");
 }
 
 export async function deleteArticleForeverAction(id: string) {
@@ -154,5 +153,4 @@ export async function deleteArticleForeverAction(id: string) {
   const container = getContainer();
   await container.deleteArticleForever.execute(id);
   updateTag("articles");
-  redirect("/admin/articles/trash");
 }

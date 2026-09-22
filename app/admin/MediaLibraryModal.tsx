@@ -7,10 +7,12 @@ import Image from "next/image";
 import { uploadImageAction, listImagesAction, deleteImageAction } from "./uploadActions";
 import { compressImage } from "./ImageUploadField";
 import { toaster } from "@/components/ui/toaster";
+import { ConfirmModal } from "@/components/ConfirmModal";
 
 interface MediaLibraryModalProps {
   onSelect: (url: string) => void;
   onClose: () => void;
+  /** Pass the active folder to group uploads, e.g. "articles" or "blog" */
   folder?: "articles" | "jobs" | "blog" | "ads";
 }
 
@@ -18,12 +20,11 @@ export function MediaLibraryModal({ onSelect, onClose, folder = "articles" }: Me
   const [images, setImages] = useState<{ url: string }[] | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [confirmDeleteUrl, setConfirmDeleteUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   async function handleDelete(url: string) {
-    if (!window.confirm("Delete this image permanently? This cannot be undone. If it's used by a post, that post will show a broken image.")) {
-      return;
-    }
+    setConfirmDeleteUrl(null);
     setDeleting(url);
     try {
       const result = await deleteImageAction(url);
@@ -175,7 +176,7 @@ export function MediaLibraryModal({ onSelect, onClose, folder = "articles" }: Me
                     aria-label="Delete image permanently"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleDelete(img.url);
+                      setConfirmDeleteUrl(img.url);
                     }}
                     disabled={deleting === img.url}
                     position="absolute"
@@ -227,6 +228,16 @@ export function MediaLibraryModal({ onSelect, onClose, folder = "articles" }: Me
           </chakra.button>
         </Flex>
       </Box>
+      <ConfirmModal
+        isOpen={confirmDeleteUrl !== null}
+        onClose={() => setConfirmDeleteUrl(null)}
+        onConfirm={() => confirmDeleteUrl && handleDelete(confirmDeleteUrl)}
+        title="Delete Image"
+        description="Delete this image permanently? This cannot be undone. If it's used by a post, that post will show a broken image."
+        confirmText="Delete"
+        isDanger={true}
+        isLoading={deleting !== null}
+      />
     </Box>
   );
 }
