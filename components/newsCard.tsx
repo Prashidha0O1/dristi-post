@@ -63,7 +63,7 @@ export function NewsCard({
             {showTimestamp && <TimeAgo date={article.publishedAt} fontSize="12px" color="var(--color-muted)" mt="4px" />}
           </Box>
           <Box position="relative" w="80px" aspectRatio={16/9} flexShrink={0} borderRadius="3px" overflow="hidden">
-            <Image src={article.image} alt={title} fill style={{ objectFit: "cover" }} sizes="80px" />
+            <Image src={article.image} alt={article.imageAlt || title} fill style={{ objectFit: "cover" }} sizes="80px" />
           </Box>
         </Flex>
       </Link>
@@ -75,7 +75,7 @@ export function NewsCard({
       <Link href={`/article/${article.slug}`}>
         <Box _hover={{ "& .title": { color: "var(--color-brand)" }, "& .img img": { transform: "scale(1.03)" } }} cursor="pointer">
           <Box className="img" position="relative" w="full" {...imgSize} overflow="hidden" borderRadius="3px" mb="10px">
-            <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 50vw, 25vw" />
+            <Image src={article.image} alt={article.imageAlt || title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 50vw, 25vw" />
           </Box>
           {showCategory && (
             <Text fontSize="11px" fontWeight="700" color={catColor} textTransform="uppercase" mb="4px" letterSpacing="0.5px">
@@ -103,7 +103,7 @@ export function NewsCard({
           h="full"
         >
           <Box className="img" position="relative" w="full" {...imgSize} overflow="hidden">
-            <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.6s ease" }} sizes="(max-width: 768px) 100vw, 66vw" priority />
+            <Image src={article.image} alt={article.imageAlt || title} fill style={{ objectFit: "cover", transition: "transform 0.6s ease" }} sizes="(max-width: 768px) 100vw, 66vw" priority />
           </Box>
           <Box
             position="absolute"
@@ -151,7 +151,7 @@ export function NewsCard({
           h="full"
         >
           <Box className="img" position="relative" w="full" {...imgSize} overflow="hidden" borderRadius="3px" mb="12px">
-            <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 100vw, 33vw" />
+            <Image src={article.image} alt={article.imageAlt || title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 100vw, 33vw" />
             {article.isBreaking && (
               <Text position="absolute" top="8px" left="8px" bg="var(--color-brand)" color="white" fontSize="10px" fontWeight="700" px="7px" py="2px" borderRadius="1px" textTransform="uppercase" letterSpacing="0.5px">
                 Breaking
@@ -193,7 +193,7 @@ export function NewsCard({
         h="full"
       >
         <Box className="img" position="relative" w="full" {...imgSize} overflow="hidden">
-          <Image src={article.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 100vw, 25vw" />
+          <Image src={article.image} alt={article.imageAlt || title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="(max-width: 768px) 100vw, 25vw" />
           {article.isBreaking && (
             <Text position="absolute" top="8px" left="8px" bg="var(--color-brand)" color="white" fontSize="10px" fontWeight="700" px="7px" py="2px" borderRadius="1px" textTransform="uppercase" letterSpacing="0.5px">
               Breaking

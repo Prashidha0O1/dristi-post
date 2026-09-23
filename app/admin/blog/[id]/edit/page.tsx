@@ -42,6 +42,7 @@ export default async function EditBlogPage({ params }: { params: Promise<{ id: s
             metaDescEn: found.metaDescription?.en,
             isFeatured: found.isFeatured,
             heroImage: found.heroImage,
+            heroImageAlt: found.heroImageAlt,
             bodyNe: found.body.ne,
             bodyEn: found.body.en,
             slug: found.slug,

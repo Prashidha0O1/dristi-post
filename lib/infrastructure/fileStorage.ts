@@ -37,7 +37,16 @@ export async function uploadImage(
   }
 
   const ext = file.type.split("/")[1] === "jpeg" ? "jpg" : file.type.split("/")[1];
-  const name = `${crypto.randomUUID()}.${ext}`;
+  // Strip forbidden filesystem/URL characters but preserve Unicode (e.g. Nepali text)
+  let safeOriginalName = "image";
+  if (file.name) {
+    const base = file.name.substring(0, file.name.lastIndexOf('.'));
+    // Strip < > : " / \ | ? * and control chars, replace spaces with dashes
+    const cleaned = base.replace(/[<>:"/\\|?*\x00-\x1F]/g, '').replace(/\s+/g, '-').slice(0, 40);
+    // Fall back to "image" if it was entirely stripped or empty
+    safeOriginalName = cleaned.replace(/^-+|-+$/g, '') || "image";
+  }
+  const name = `${safeOriginalName}-${crypto.randomUUID().split('-')[0]}.${ext}`;
   const dir = path.join(UPLOADS_DIR, folder);
 
   try {

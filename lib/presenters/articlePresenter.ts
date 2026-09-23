@@ -50,6 +50,7 @@ export function toArticleViewModel(record: ArticleRecord): Article {
     category,
     author,
     image: record.imageUrl,
+    imageAlt: record.imageAlt,
     publishedAt: record.publishedAt ?? record.createdAt,
     updatedAt: record.updatedAt,
     tags: record.tagSlugs.map(toTag),

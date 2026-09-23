@@ -81,6 +81,7 @@ export interface ArticleRecord {
   provinceSlug?: ProvinceSlug;
   authorId: string;
   imageUrl: string;
+  imageAlt?: string;
   status: ArticleStatus;
   tagSlugs: string[];
   isFeatured: boolean;
@@ -117,6 +118,7 @@ export interface NewArticleInput {
   provinceSlug?: ProvinceSlug;
   authorId: string;
   imageUrl: string;
+  imageAlt?: string;
   tagSlugs?: string[];
   isFeatured?: boolean;
   isBreaking?: boolean;

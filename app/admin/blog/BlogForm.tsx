@@ -24,6 +24,7 @@ interface Props {
     metaDescNe?: string;
     metaDescEn?: string;
     heroImage?: string;
+    heroImageAlt?: string;
     bodyNe?: string;
     bodyEn?: string;
     slug?: string;
@@ -67,6 +68,8 @@ export function BlogForm({ action, defaultValues: d = {}, submitLabel, showPubli
             name="heroImage"
             folder="blog"
             defaultValue={d.heroImage}
+            altName="heroImageAlt"
+            defaultAltValue={d.heroImageAlt}
             hint="JPEG, PNG, WebP or GIF, up to 5MB. Recommended 1200×675px (16:9)."
           />
         </Field>

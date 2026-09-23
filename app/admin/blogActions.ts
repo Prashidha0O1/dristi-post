@@ -23,6 +23,7 @@ function readBlogForm(formData: FormData) {
     excerpt: excerptNe || excerptEn ? { ne: excerptNe, en: excerptEn } : undefined,
     metaDescription: metaDescNe || metaDescEn ? { ne: metaDescNe, en: metaDescEn } : undefined,
     heroImage: formData.get("heroImage") as string,
+    heroImageAlt: (formData.get("heroImageAlt") as string) || undefined,
     body: {
       ne: formData.get("bodyNe") as string,
       en: (formData.get("bodyEn") as string) || undefined,

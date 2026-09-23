@@ -47,3 +47,21 @@ export async function createAuthorAction(
   await pool.query("INSERT INTO authors (id, nameNe, nameEn) VALUES (?, ?, NULL)", [id, trimmed]);
   return { ok: true, author: { id, nameNe: trimmed } };
 }
+
+export async function deleteAuthorAction(id: string): Promise<{ ok: true } | { ok: false; error: string }> {
+  try {
+    await requireCapability("authors.manage");
+  } catch {
+    return { ok: false, error: "Only an owner or admin can delete authors." };
+  }
+
+  if (!id) return { ok: false, error: "Invalid author ID." };
+
+  const pool = getPool();
+  try {
+    await pool.query("DELETE FROM authors WHERE id = ?", [id]);
+    return { ok: true };
+  } catch (err: any) {
+    return { ok: false, error: err.message || "Failed to delete author." };
+  }
+}

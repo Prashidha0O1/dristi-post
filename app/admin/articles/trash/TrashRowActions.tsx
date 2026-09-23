@@ -2,8 +2,9 @@
 
 import { chakra, Flex } from "@chakra-ui/react";
 import { RotateCcw, Trash2 } from "lucide-react";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { toaster } from "@/components/ui/toaster";
+import { ConfirmModal } from "@/components/ConfirmModal";
 
 export function TrashRowActions({
   restoreAction,
@@ -15,9 +16,14 @@ export function TrashRowActions({
   canDeleteForever: boolean;
 }) {
   const [pending, start] = useTransition();
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
-  const run = (fn: () => Promise<void>, confirmMsg?: string) => {
-    if (confirmMsg && !window.confirm(confirmMsg)) return;
+  const run = (fn: () => Promise<void>, requireConfirm?: boolean) => {
+    if (requireConfirm) {
+      setIsConfirmOpen(true);
+      return;
+    }
+    
     start(async () => {
       try {
         await fn();
@@ -27,6 +33,8 @@ export function TrashRowActions({
           title: "Action failed",
           description: e instanceof Error ? e.message : "Try again.",
         });
+      } finally {
+        setIsConfirmOpen(false);
       }
     });
   };
@@ -46,33 +54,44 @@ export function TrashRowActions({
   } as const;
 
   return (
-    <Flex gap="6px" justify="flex-end">
-      <chakra.button
-        type="button"
-        disabled={pending}
-        onClick={() => run(restoreAction)}
-        {...btn}
-        bg="var(--color-surface)"
-        color="var(--color-body)"
-        _hover={{ borderColor: "var(--color-brand)" }}
-      >
-        <RotateCcw size={13} strokeWidth={2.2} /> Restore
-      </chakra.button>
-      {canDeleteForever && (
+    <>
+      <Flex gap="6px" justify="flex-end">
         <chakra.button
           type="button"
           disabled={pending}
-          onClick={() =>
-            run(deleteForeverAction, "Permanently delete this article? This cannot be undone.")
-          }
+          onClick={() => run(restoreAction, false)}
           {...btn}
           bg="var(--color-surface)"
-          color="var(--color-danger-fg)"
-          _hover={{ borderColor: "var(--color-danger-fg)" }}
+          color="var(--color-body)"
+          _hover={{ borderColor: "var(--color-brand)" }}
         >
-          <Trash2 size={13} strokeWidth={2.2} /> Delete
+          <RotateCcw size={13} strokeWidth={2.2} /> Restore
         </chakra.button>
-      )}
-    </Flex>
+        {canDeleteForever && (
+          <chakra.button
+            type="button"
+            disabled={pending}
+            onClick={() => run(deleteForeverAction, true)}
+            {...btn}
+            bg="var(--color-surface)"
+            color="var(--color-danger-fg)"
+            _hover={{ borderColor: "var(--color-danger-fg)" }}
+          >
+            <Trash2 size={13} strokeWidth={2.2} /> Delete
+          </chakra.button>
+        )}
+      </Flex>
+      
+      <ConfirmModal
+        isOpen={isConfirmOpen}
+        onClose={() => setIsConfirmOpen(false)}
+        onConfirm={() => run(deleteForeverAction, false)}
+        title="Delete Permanently"
+        description="Permanently delete this article? This cannot be undone."
+        confirmText="Delete Forever"
+        isDanger={true}
+        isLoading={pending}
+      />
+    </>
   );
 }

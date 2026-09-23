@@ -1,11 +1,12 @@
 "use client";
 
 import { Box, Flex, Text, chakra } from "@chakra-ui/react";
-import { Check, ChevronDown, Plus } from "lucide-react";
+import { Check, ChevronDown, Plus, Trash2 } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
 import type { AuthorOption } from "@/lib/adminQueries";
-import { createAuthorAction } from "../authorActions";
+import { createAuthorAction, deleteAuthorAction } from "../authorActions";
 import { toaster } from "@/components/ui/toaster";
+import { ConfirmModal } from "@/components/ConfirmModal";
 
 function label(a: AuthorOption): string {
   return a.nameEn ? `${a.nameEn} / ${a.nameNe}` : a.nameNe;
@@ -31,6 +32,8 @@ export function AuthorField({
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
   const blurTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const selected = authors.find((a) => a.id === selectedId);
@@ -63,6 +66,25 @@ export function AuthorField({
     setSelectedId(result.author.id);
     setQuery("");
     setOpen(false);
+  }
+
+  async function handleDelete(id: string) {
+    setConfirmDeleteId(null);
+    setDeletingId(id);
+    const result = await deleteAuthorAction(id);
+    if (!result.ok) {
+      toaster.create({ type: "error", title: "Couldn't delete author", description: result.error });
+      setDeletingId(null);
+      return;
+    }
+    
+    toaster.create({ type: "success", title: "Author deleted" });
+    setAuthors((prev) => prev.filter((a) => a.id !== id));
+    if (selectedId === id) setSelectedId("");
+    setDeletingId(null);
+    
+    // Keep the dropdown open to show it's gone
+    if (blurTimer.current) clearTimeout(blurTimer.current);
   }
 
   return (
@@ -146,7 +168,30 @@ export function AuthorField({
               }}
             >
               <Text truncate flex="1" mr="8px">{label(a)}</Text>
-              {a.id === selectedId && <Check size={15} color="var(--color-brand)" aria-hidden="true" style={{ flexShrink: 0 }} />}
+              
+              <Flex align="center" gap="10px">
+                <Box w="15px" display="flex" alignItems="center" justifyContent="center">
+                  {a.id === selectedId && <Check size={15} color="var(--color-brand)" aria-hidden="true" />}
+                </Box>
+                
+                {canAdd && (
+                  <chakra.button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setConfirmDeleteId(a.id);
+                    }}
+                    disabled={deletingId === a.id}
+                    color="var(--color-faint-fg)"
+                    _hover={{ color: "var(--color-danger-fg)" }}
+                    title="Delete author permanently"
+                    opacity={deletingId === a.id ? 0.5 : 1}
+                    display="flex"
+                  >
+                    <Trash2 size={15} />
+                  </chakra.button>
+                )}
+              </Flex>
             </Flex>
           ))}
 
@@ -182,6 +227,17 @@ export function AuthorField({
           Choose an author. Ask an admin to add a new one.
         </Text>
       )}
+
+      <ConfirmModal
+        isOpen={confirmDeleteId !== null}
+        onClose={() => setConfirmDeleteId(null)}
+        onConfirm={() => confirmDeleteId && handleDelete(confirmDeleteId)}
+        title="Delete Author"
+        description="Permanently delete this author? Any articles they wrote will temporarily have no author until you assign a new one."
+        confirmText="Delete"
+        isDanger={true}
+        isLoading={deletingId !== null}
+      />
     </Box>
   );
 }

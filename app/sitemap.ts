@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteUrl } from "@/lib/siteUrl";
 import { categories } from "@/lib/config";
 import { provinces } from "@/lib/domain/province";
-import { getRecentArticles, getPublishedJobs } from "@/lib/publicQueries";
+import { getRecentArticles, getPublishedJobs, getPublishedBlogs } from "@/lib/publicQueries";
 
 // Built at request time so it never touches the database during `next build`
 // (the DB is localhost-only in production). Cached data reads keep it cheap.
@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteUrl();
 
-  const staticPaths = ["", "/latest", "/trending", "/jobs", "/calendar", "/tools"];
+  const staticPaths = ["", "/latest", "/trending", "/jobs", "/blog", "/calendar", "/tools"];
   const staticEntries: MetadataRoute.Sitemap = staticPaths.map((p) => ({
     url: `${base}${p}`,
     changeFrequency: "daily",
@@ -34,6 +34,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // parts rather than failing the whole sitemap.
   let articleEntries: MetadataRoute.Sitemap = [];
   let jobEntries: MetadataRoute.Sitemap = [];
+  let blogEntries: MetadataRoute.Sitemap = [];
+  
   try {
     const articles = await getRecentArticles(500);
     articleEntries = articles.map((a) => ({
@@ -42,9 +44,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.8,
     }));
-  } catch {
-    /* leave empty */
-  }
+  } catch { /* leave empty */ }
+
   try {
     const { items: jobs } = await getPublishedJobs({ limit: 500 });
     jobEntries = jobs.map((j) => ({
@@ -53,9 +54,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.6,
     }));
-  } catch {
-    /* leave empty */
-  }
+  } catch { /* leave empty */ }
+
+  try {
+    const { items: blogs } = await getPublishedBlogs(500, 0);
+    blogEntries = blogs.map((b) => ({
+      url: `${base}/blog/${b.slug}`,
+      lastModified: b.updatedAt,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    }));
+  } catch { /* leave empty */ }
 
   return [
     ...staticEntries,
@@ -63,5 +72,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...provinceEntries,
     ...articleEntries,
     ...jobEntries,
+    ...blogEntries,
   ];
 }

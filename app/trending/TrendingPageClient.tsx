@@ -81,7 +81,7 @@ export default function TrendingPageClient({ trending, latest, ads }: { trending
                   </Box>
 
                   <Box className="t-img" position="relative" w={{ base: "100px", sm: "160px" }} aspectRatio={16/9} flexShrink={0} borderRadius="3px" overflow="hidden">
-                    <Image src={a.image} alt={title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="160px" />
+                    <Image src={a.image} alt={a.imageAlt || title} fill style={{ objectFit: "cover", transition: "transform 0.4s" }} sizes="160px" />
                   </Box>
                 </Flex>
               </Link>

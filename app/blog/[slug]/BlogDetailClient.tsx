@@ -11,7 +11,7 @@ import type { LocalisedText } from "@/lib/domain/article";
 interface BlogView {
   title: LocalisedText;
   body: LocalisedText;
-  heroImage: string;
+  heroImage: string; heroImageAlt?: string;
   publishedAt: string;
 }
 
@@ -50,7 +50,7 @@ export default function BlogDetailClient({ blog }: { blog: BlogView }) {
         </Text>
 
         <Box position="relative" w="full" aspectRatio={16/9} borderRadius="12px" overflow="hidden" mb="30px">
-          <Image src={blog.heroImage} alt={title} fill style={{ objectFit: "cover" }} sizes="760px" priority />
+          <Image src={blog.heroImage} alt={blog.heroImageAlt || title} fill style={{ objectFit: "cover" }} sizes="760px" priority />
         </Box>
 
         <Box

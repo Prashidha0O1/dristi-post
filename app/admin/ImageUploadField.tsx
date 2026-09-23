@@ -74,18 +74,23 @@ export function ImageUploadField({
   name = "imageUrl",
   folder,
   defaultValue,
+  altName,
+  defaultAltValue,
   placement,
   hint,
 }: {
   name?: string;
   folder: "articles" | "jobs" | "blog" | "ads";
   defaultValue?: string;
+  altName?: string;
+  defaultAltValue?: string;
   /** Ads only — the slot this image is for, which sets the size it must match. */
   placement?: AdPlacement;
   /** Overrides the default "JPEG, PNG..." line, e.g. to state a required size. */
   hint?: string;
 }) {
   const [url, setUrl] = useState(defaultValue ?? "");
+  const [alt, setAlt] = useState(defaultAltValue ?? "");
   const [status, setStatus] = useState<"idle" | "uploading" | "error">("idle");
   const [error, setError] = useState("");
   const [showMediaLibrary, setShowMediaLibrary] = useState(false);
@@ -278,6 +283,34 @@ export function ImageUploadField({
           )}
         </Box>
       </Flex>
+
+      {url && altName && (
+        <Box mt="16px">
+          <Text fontSize="12px" fontWeight="600" mb="6px" color="var(--color-headline)">
+            Alt Text
+          </Text>
+          <chakra.input
+            name={altName}
+            value={alt}
+            onChange={(e) => setAlt(e.target.value)}
+            placeholder="Describe this image..."
+            w="100%"
+            maxW="500px"
+            h="36px"
+            px="12px"
+            fontSize="14px"
+            borderRadius="6px"
+            border="1px solid var(--color-input-border)"
+            bg="var(--color-surface)"
+            color="var(--color-body)"
+            _placeholder={{ color: "var(--color-faint-fg)" }}
+            _focus={{ borderColor: "var(--color-brand)", outline: "none" }}
+          />
+          <Text fontSize="11px" color="var(--color-muted)" mt="5px" lineHeight="1.5">
+            Briefly describe the image for visually impaired readers.
+          </Text>
+        </Box>
+      )}
 
       {showMediaLibrary && (
         <MediaLibraryModal

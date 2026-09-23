@@ -16,6 +16,7 @@ function toDomain(row: Row): BlogRecord {
     excerpt: localisedFromRow(row.excerptNe, row.excerptEn),
     metaDescription: localisedFromRow(row.meta_description_ne, row.meta_description_en),
     heroImage: row.heroImage as string,
+    heroImageAlt: (row.heroImageAlt as string) || undefined,
     body: localisedFromRow(row.bodyNe, row.bodyEn),
     status: STATUS_FROM_DB[row.status as string] ?? "draft",
     createdAt: fromDbDateTime(row.createdAt),
@@ -74,13 +75,13 @@ export class MysqlBlogRepository implements BlogRepository {
   async save(blog: BlogRecord): Promise<void> {
     await getPool().query(
       `INSERT INTO blogs
-        (id, slug, titleNe, titleEn, excerptNe, excerptEn, heroImage,
+        (id, slug, titleNe, titleEn, excerptNe, excerptEn, heroImage, heroImageAlt,
          bodyNe, bodyEn, status, createdAt, updatedAt, publishedAt, is_featured, meta_description_ne, meta_description_en)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
        ON DUPLICATE KEY UPDATE
          slug=VALUES(slug), titleNe=VALUES(titleNe), titleEn=VALUES(titleEn),
          excerptNe=VALUES(excerptNe), excerptEn=VALUES(excerptEn),
-         heroImage=VALUES(heroImage), bodyNe=VALUES(bodyNe), bodyEn=VALUES(bodyEn),
+         heroImage=VALUES(heroImage), heroImageAlt=VALUES(heroImageAlt), bodyNe=VALUES(bodyNe), bodyEn=VALUES(bodyEn),
          status=VALUES(status), updatedAt=VALUES(updatedAt), publishedAt=VALUES(publishedAt), is_featured=VALUES(is_featured), meta_description_ne=VALUES(meta_description_ne), meta_description_en=VALUES(meta_description_en)`,
       [
         blog.id,
@@ -90,6 +91,7 @@ export class MysqlBlogRepository implements BlogRepository {
         blog.excerpt.ne ?? null,
         blog.excerpt.en ?? null,
         blog.heroImage,
+        blog.heroImageAlt ?? null,
         blog.body.ne ?? "",
         blog.body.en ?? null,
         STATUS_TO_DB[blog.status],
