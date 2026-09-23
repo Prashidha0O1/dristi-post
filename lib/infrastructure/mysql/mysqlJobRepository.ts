@@ -34,6 +34,7 @@ function toDomain(row: Row): JobRecord {
     createdAt: fromDbDateTime(row.createdAt),
     updatedAt: fromDbDateTime(row.updatedAt),
     publishedAt: row.publishedAt ? fromDbDateTime(row.publishedAt) : undefined,
+    deletedAt: row.deletedAt ? fromDbDateTime(row.deletedAt) : undefined,
   };
 }
 
@@ -52,6 +53,8 @@ export class MysqlJobRepository implements JobRepository {
     const where: string[] = [];
     const params: unknown[] = [];
 
+    // Trashed listings are hidden everywhere except the Trash view.
+    where.push(query.onlyDeleted ? "deletedAt IS NOT NULL" : "deletedAt IS NULL");
     if (query.status) {
       where.push("status = ?");
       params.push(STATUS_TO_DB[query.status]);
@@ -101,8 +104,8 @@ export class MysqlJobRepository implements JobRepository {
       `INSERT INTO jobs
         (id, slug, titleNe, titleEn, company, location, province, employmentType,
          descriptionNe, descriptionEn, metaDescriptionNe, metaDescriptionEn, salary, deadline, applyUrl, status,
-         isFeatured, createdAt, updatedAt, publishedAt)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+         isFeatured, createdAt, updatedAt, publishedAt, deletedAt)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
        ON DUPLICATE KEY UPDATE
          slug=VALUES(slug), titleNe=VALUES(titleNe), titleEn=VALUES(titleEn),
          company=VALUES(company), location=VALUES(location),
@@ -111,7 +114,7 @@ export class MysqlJobRepository implements JobRepository {
          metaDescriptionNe=VALUES(metaDescriptionNe), metaDescriptionEn=VALUES(metaDescriptionEn),
          salary=VALUES(salary), deadline=VALUES(deadline), applyUrl=VALUES(applyUrl),
          status=VALUES(status), isFeatured=VALUES(isFeatured),
-         updatedAt=VALUES(updatedAt), publishedAt=VALUES(publishedAt)`,
+         updatedAt=VALUES(updatedAt), publishedAt=VALUES(publishedAt), deletedAt=VALUES(deletedAt)`,
       [
         job.id,
         job.slug,
@@ -133,11 +136,24 @@ export class MysqlJobRepository implements JobRepository {
         toDbDateTime(job.createdAt),
         toDbDateTime(job.updatedAt),
         toDbDateTime(job.publishedAt),
+        toDbDateTime(job.deletedAt),
       ],
     );
   }
 
   async delete(id: string): Promise<void> {
     await getPool().query("DELETE FROM jobs WHERE id = ?", [id]);
+  }
+
+  async softDelete(id: string, at: string): Promise<void> {
+    await getPool().query("UPDATE jobs SET deletedAt = ? WHERE id = ?", [toDbDateTime(at), id]);
+  }
+
+  async restore(id: string): Promise<void> {
+    await getPool().query("UPDATE jobs SET deletedAt = NULL WHERE id = ?", [id]);
+  }
+
+  async purgeDeletedBefore(at: string): Promise<void> {
+    await getPool().query("DELETE FROM jobs WHERE deletedAt IS NOT NULL AND deletedAt < ?", [toDbDateTime(at)]);
   }
 }

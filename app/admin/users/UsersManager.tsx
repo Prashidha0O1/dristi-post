@@ -3,7 +3,7 @@
 import { Box, Flex, Text, chakra } from "@chakra-ui/react";
 import { useActionState, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Copy, UserPlus } from "lucide-react";
+import { Copy, Mail, UserPlus } from "lucide-react";
 import { Badge, Card } from "../ui";
 import { fieldStyles } from "../formUi";
 import { toaster } from "@/components/ui/toaster";
@@ -11,9 +11,81 @@ import {
   cancelInviteAction,
   changeUserRoleAction,
   inviteUserAction,
+  sendTestEmailAction,
   setUserActiveAction,
 } from "../userActions";
 import { idleInviteState, type InviteState } from "./inviteState";
+
+/** Owner tool to verify outgoing email (SMTP + deliverability) without SSH. */
+function TestEmailCard() {
+  const [to, setTo] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [result, setResult] = useState<{ ok: boolean; message: string } | null>(null);
+
+  async function send() {
+    setBusy(true);
+    setResult(null);
+    try {
+      setResult(await sendTestEmailAction(to));
+    } catch {
+      setResult({ ok: false, message: "Request failed. Try again." });
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <Card p="20px">
+      <Text fontSize="15px" fontWeight="700" color="var(--color-headline)" mb="4px">
+        Test email
+      </Text>
+      <Text fontSize="13px" color="var(--color-muted)" mb="12px">
+        Send a test message to check that invite emails can be delivered. Leave blank to send to yourself.
+      </Text>
+      <Flex gap="10px" flexWrap="wrap">
+        <chakra.input
+          type="email"
+          value={to}
+          onChange={(e) => setTo(e.target.value)}
+          placeholder="you@gmail.com"
+          flex="1"
+          minW="220px"
+          {...fieldStyles.input}
+        />
+        <chakra.button
+          type="button"
+          onClick={send}
+          disabled={busy}
+          display="inline-flex"
+          alignItems="center"
+          gap="7px"
+          px="16px"
+          borderRadius="6px"
+          fontSize="13px"
+          fontWeight="600"
+          bg="var(--color-surface)"
+          color="var(--color-body)"
+          border="1px solid var(--color-border)"
+          cursor={busy ? "default" : "pointer"}
+          opacity={busy ? 0.6 : 1}
+          _hover={busy ? {} : { borderColor: "var(--color-brand)" }}
+        >
+          <Mail size={15} /> {busy ? "Sending..." : "Send test email"}
+        </chakra.button>
+      </Flex>
+      {result && (
+        <Text
+          fontSize="13px"
+          mt="10px"
+          lineHeight="1.5"
+          color={result.ok ? "var(--color-success-fg)" : "var(--color-danger-fg)"}
+        >
+          {result.message}
+        </Text>
+      )}
+    </Card>
+  );
+}
 
 type UserRow = { id: string; email: string; name: string; role: string; isActive: boolean };
 type InviteRow = { id: string; email: string; role: string; expiresAt: string };
@@ -115,12 +187,19 @@ export function UsersManager({
                 <Copy size={14} /> Copy
               </chakra.button>
             </Flex>
+            {!state.emailed && state.emailError && (
+              <Text fontSize="12px" color="var(--color-danger-fg)" mt="8px" lineHeight="1.5">
+                Email error: {state.emailError}
+              </Text>
+            )}
             <Text fontSize="11px" color="var(--color-muted)" mt="6px">
               The link works once and expires in 7 days.
             </Text>
           </Box>
         )}
       </Card>
+
+      <TestEmailCard />
 
       {/* Pending invites */}
       {invites.length > 0 && (

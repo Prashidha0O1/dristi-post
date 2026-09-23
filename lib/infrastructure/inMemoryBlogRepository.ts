@@ -31,6 +31,7 @@ export class InMemoryBlogRepository implements BlogRepository {
     const needle = search?.trim().toLowerCase();
 
     let matches = [...this.byId.values()].filter((b) => {
+      if (query.onlyDeleted ? !b.deletedAt : !!b.deletedAt) return false;
       if (status && b.status !== status) return false;
       if (needle) {
         const haystack = `${b.title.ne ?? ""} ${b.title.en ?? ""}`.toLowerCase();
@@ -58,5 +59,21 @@ export class InMemoryBlogRepository implements BlogRepository {
 
   async delete(id: string): Promise<void> {
     this.byId.delete(id);
+  }
+
+  async softDelete(id: string, at: string): Promise<void> {
+    const found = this.byId.get(id);
+    if (found) this.byId.set(id, { ...found, deletedAt: at });
+  }
+
+  async restore(id: string): Promise<void> {
+    const found = this.byId.get(id);
+    if (found) this.byId.set(id, { ...found, deletedAt: undefined });
+  }
+
+  async purgeDeletedBefore(at: string): Promise<void> {
+    for (const [id, b] of this.byId) {
+      if (b.deletedAt && b.deletedAt < at) this.byId.delete(id);
+    }
   }
 }

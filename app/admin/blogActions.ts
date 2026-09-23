@@ -107,10 +107,24 @@ export async function unpublishBlogAction(id: string) {
   updateTag("blogs");
 }
 
+/** Moves a post to Trash (restorable for 7 days). */
 export async function deleteBlogAction(id: string) {
-  await requireCapability("content.delete");
+  await requireCapability("content.write");
   const container = getContainer();
   await container.deleteBlog.execute(id);
   updateTag("blogs");
   redirect("/admin/blog");
+}
+
+export async function restoreBlogAction(id: string) {
+  await requireCapability("content.write");
+  await getContainer().restoreBlog.execute(id);
+  updateTag("blogs");
+}
+
+/** Permanent delete from Trash — owner only. */
+export async function deleteBlogForeverAction(id: string) {
+  await requireCapability("content.delete");
+  await getContainer().deleteBlogForever.execute(id);
+  updateTag("blogs");
 }

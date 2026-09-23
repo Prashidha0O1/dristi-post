@@ -2,7 +2,7 @@
 export const dynamic = "force-dynamic";
 
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { PenLine, Plus } from "lucide-react";
+import { PenLine, Plus, Trash2 } from "lucide-react";
 import { getContainer } from "@/lib/container";
 import { primaryText } from "@/lib/domain/article";
 import {
@@ -49,9 +49,14 @@ export default async function BlogListPage({
         title="Blog"
         subtitle={result.ok ? `${result.total} total` : undefined}
         action={
-          <ButtonLink href="/admin/blog/new" icon={<Plus size={15} strokeWidth={2.2} aria-hidden="true" />}>
-            New Blog
-          </ButtonLink>
+          <Flex gap="8px">
+            <ButtonLink href="/admin/blog/trash" variant="secondary" icon={<Trash2 size={15} strokeWidth={2.2} aria-hidden="true" />}>
+              Trash
+            </ButtonLink>
+            <ButtonLink href="/admin/blog/new" icon={<Plus size={15} strokeWidth={2.2} aria-hidden="true" />}>
+              New Blog
+            </ButtonLink>
+          </Flex>
         }
       />
 

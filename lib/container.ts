@@ -33,6 +33,9 @@ import {
   ChangeJobStatus,
   CreateJob,
   DeleteJob,
+  DeleteJobForever,
+  ListTrashedJobs,
+  RestoreJob,
   GetPublishedJob,
   ListJobs,
   ListPublishedJobs,
@@ -42,6 +45,9 @@ import {
   ChangeBlogStatus,
   CreateBlog,
   DeleteBlog,
+  DeleteBlogForever,
+  ListTrashedBlogs,
+  RestoreBlog,
   GetPublishedBlog,
   ListBlogs,
   ListPublishedBlogs,
@@ -90,6 +96,9 @@ export interface Container {
   updateJob: UpdateJob;
   changeJobStatus: ChangeJobStatus;
   deleteJob: DeleteJob;
+  listTrashedJobs: ListTrashedJobs;
+  restoreJob: RestoreJob;
+  deleteJobForever: DeleteJobForever;
   listJobs: ListJobs;
   listPublishedJobs: ListPublishedJobs;
   getPublishedJob: GetPublishedJob;
@@ -98,6 +107,9 @@ export interface Container {
   updateBlog: UpdateBlog;
   changeBlogStatus: ChangeBlogStatus;
   deleteBlog: DeleteBlog;
+  listTrashedBlogs: ListTrashedBlogs;
+  restoreBlog: RestoreBlog;
+  deleteBlogForever: DeleteBlogForever;
   listBlogs: ListBlogs;
   listPublishedBlogs: ListPublishedBlogs;
   getPublishedBlog: GetPublishedBlog;
@@ -159,7 +171,10 @@ export function buildContainer(
     createJob: new CreateJob(jobs, ids, clock, slugger),
     updateJob: new UpdateJob(jobs, clock),
     changeJobStatus: new ChangeJobStatus(jobs, clock),
-    deleteJob: new DeleteJob(jobs),
+    deleteJob: new DeleteJob(jobs, clock),
+    listTrashedJobs: new ListTrashedJobs(jobs, clock),
+    restoreJob: new RestoreJob(jobs),
+    deleteJobForever: new DeleteJobForever(jobs),
     listJobs: new ListJobs(jobs),
     listPublishedJobs: new ListPublishedJobs(jobs),
     getPublishedJob: new GetPublishedJob(jobs),
@@ -167,7 +182,10 @@ export function buildContainer(
     createBlog: new CreateBlog(blogs, ids, clock, slugger),
     updateBlog: new UpdateBlog(blogs, clock, slugger),
     changeBlogStatus: new ChangeBlogStatus(blogs, clock),
-    deleteBlog: new DeleteBlog(blogs),
+    deleteBlog: new DeleteBlog(blogs, clock),
+    listTrashedBlogs: new ListTrashedBlogs(blogs, clock),
+    restoreBlog: new RestoreBlog(blogs),
+    deleteBlogForever: new DeleteBlogForever(blogs),
     listBlogs: new ListBlogs(blogs),
     listPublishedBlogs: new ListPublishedBlogs(blogs),
     getPublishedBlog: new GetPublishedBlog(blogs),

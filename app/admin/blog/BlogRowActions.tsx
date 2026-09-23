@@ -89,10 +89,10 @@ export function BlogRowActions({
       <ConfirmModal
         isOpen={isConfirmOpen}
         onClose={() => setIsConfirmOpen(false)}
-        onConfirm={() => handleAction(deleteAction, "Blog deleted")}
-        title="Delete Blog"
-        description="Delete this blog post permanently? This cannot be undone."
-        confirmText="Delete"
+        onConfirm={() => handleAction(deleteAction, "Moved to trash")}
+        title="Move to Trash"
+        description="Move this blog post to Trash? You can restore it for 7 days."
+        confirmText="Move to Trash"
         isDanger={true}
         isLoading={pending}
       />

@@ -124,12 +124,50 @@ export class ChangeJobStatus {
   }
 }
 
+/** Moves a listing to Trash (soft delete). Restorable for TRASH_RETENTION_DAYS. */
 export class DeleteJob {
+  constructor(
+    private readonly jobs: JobRepository,
+    private readonly clock: Clock,
+  ) {}
+
+  async execute(id: string): Promise<void> {
+    const existing = await this.jobs.findById(id);
+    if (!existing) throw new NotFoundError(`Job "${id}" not found`);
+    await this.jobs.softDelete(id, this.clock.now().toISOString());
+  }
+}
+
+const TRASH_RETENTION_DAYS = 7;
+
+/** Trash view: purges listings trashed over 7 days ago, then lists the rest. */
+export class ListTrashedJobs {
+  constructor(
+    private readonly jobs: JobRepository,
+    private readonly clock: Clock,
+  ) {}
+
+  async execute(query: Omit<JobQuery, "onlyDeleted"> = {}): Promise<Paginated<JobRecord>> {
+    const cutoff = new Date(this.clock.now().getTime() - TRASH_RETENTION_DAYS * 24 * 60 * 60 * 1000);
+    await this.jobs.purgeDeletedBefore(cutoff.toISOString());
+    return this.jobs.list({ ...query, onlyDeleted: true, limit: query.limit ?? 100 });
+  }
+}
+
+export class RestoreJob {
   constructor(private readonly jobs: JobRepository) {}
 
   async execute(id: string): Promise<void> {
     const existing = await this.jobs.findById(id);
     if (!existing) throw new NotFoundError(`Job "${id}" not found`);
+    await this.jobs.restore(id);
+  }
+}
+
+export class DeleteJobForever {
+  constructor(private readonly jobs: JobRepository) {}
+
+  async execute(id: string): Promise<void> {
     await this.jobs.delete(id);
   }
 }
@@ -162,7 +200,7 @@ export class GetPublishedJob {
 
   async execute(slug: string): Promise<JobRecord | null> {
     const job = await this.jobs.findBySlug(slug);
-    if (!job || job.status !== "published") return null;
+    if (!job || job.status !== "published" || job.deletedAt) return null;
     return job;
   }
 }

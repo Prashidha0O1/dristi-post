@@ -23,6 +23,7 @@ function toDomain(row: Row): BlogRecord {
     updatedAt: fromDbDateTime(row.updatedAt),
     isFeatured: Boolean(row.is_featured),
     publishedAt: row.publishedAt ? fromDbDateTime(row.publishedAt) : undefined,
+    deletedAt: row.deletedAt ? fromDbDateTime(row.deletedAt) : undefined,
   };
 }
 
@@ -41,6 +42,8 @@ export class MysqlBlogRepository implements BlogRepository {
     const where: string[] = [];
     const params: unknown[] = [];
 
+    // Trashed posts are hidden everywhere except the Trash view.
+    where.push(query.onlyDeleted ? "deletedAt IS NOT NULL" : "deletedAt IS NULL");
     if (query.status) {
       where.push("status = ?");
       params.push(STATUS_TO_DB[query.status]);
@@ -76,13 +79,13 @@ export class MysqlBlogRepository implements BlogRepository {
     await getPool().query(
       `INSERT INTO blogs
         (id, slug, titleNe, titleEn, excerptNe, excerptEn, heroImage, heroImageAlt,
-         bodyNe, bodyEn, status, createdAt, updatedAt, publishedAt, is_featured, meta_description_ne, meta_description_en)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+         bodyNe, bodyEn, status, createdAt, updatedAt, publishedAt, is_featured, meta_description_ne, meta_description_en, deletedAt)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
        ON DUPLICATE KEY UPDATE
          slug=VALUES(slug), titleNe=VALUES(titleNe), titleEn=VALUES(titleEn),
          excerptNe=VALUES(excerptNe), excerptEn=VALUES(excerptEn),
          heroImage=VALUES(heroImage), heroImageAlt=VALUES(heroImageAlt), bodyNe=VALUES(bodyNe), bodyEn=VALUES(bodyEn),
-         status=VALUES(status), updatedAt=VALUES(updatedAt), publishedAt=VALUES(publishedAt), is_featured=VALUES(is_featured), meta_description_ne=VALUES(meta_description_ne), meta_description_en=VALUES(meta_description_en)`,
+         status=VALUES(status), updatedAt=VALUES(updatedAt), publishedAt=VALUES(publishedAt), is_featured=VALUES(is_featured), meta_description_ne=VALUES(meta_description_ne), meta_description_en=VALUES(meta_description_en), deletedAt=VALUES(deletedAt)`,
       [
         blog.id,
         blog.slug,
@@ -101,11 +104,24 @@ export class MysqlBlogRepository implements BlogRepository {
         blog.isFeatured ? 1 : 0,
         blog.metaDescription?.ne ?? null,
         blog.metaDescription?.en ?? null,
+        toDbDateTime(blog.deletedAt),
       ],
     );
   }
 
   async delete(id: string): Promise<void> {
     await getPool().query("DELETE FROM blogs WHERE id = ?", [id]);
+  }
+
+  async softDelete(id: string, at: string): Promise<void> {
+    await getPool().query("UPDATE blogs SET deletedAt = ? WHERE id = ?", [toDbDateTime(at), id]);
+  }
+
+  async restore(id: string): Promise<void> {
+    await getPool().query("UPDATE blogs SET deletedAt = NULL WHERE id = ?", [id]);
+  }
+
+  async purgeDeletedBefore(at: string): Promise<void> {
+    await getPool().query("DELETE FROM blogs WHERE deletedAt IS NOT NULL AND deletedAt < ?", [toDbDateTime(at)]);
   }
 }

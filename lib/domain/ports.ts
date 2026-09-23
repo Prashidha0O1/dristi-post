@@ -41,6 +41,9 @@ export interface JobRepository {
   list(query: JobQuery): Promise<Paginated<JobRecord>>;
   save(job: JobRecord): Promise<void>;
   delete(id: string): Promise<void>;
+  softDelete(id: string, at: string): Promise<void>;
+  restore(id: string): Promise<void>;
+  purgeDeletedBefore(at: string): Promise<void>;
 }
 
 /** Same shape as the other content repositories, scoped to blog posts. */
@@ -50,6 +53,9 @@ export interface BlogRepository {
   list(query: BlogQuery): Promise<Paginated<BlogRecord>>;
   save(blog: BlogRecord): Promise<void>;
   delete(id: string): Promise<void>;
+  softDelete(id: string, at: string): Promise<void>;
+  restore(id: string): Promise<void>;
+  purgeDeletedBefore(at: string): Promise<void>;
 }
 
 /**

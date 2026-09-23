@@ -4,7 +4,7 @@
 
 export type InviteState =
   | { status: "idle" }
-  | { status: "ok"; path: string; email: string; emailed: boolean }
+  | { status: "ok"; path: string; email: string; emailed: boolean; emailError?: string }
   | { status: "error"; message: string };
 
 export const idleInviteState: InviteState = { status: "idle" };

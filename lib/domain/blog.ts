@@ -26,6 +26,8 @@ export interface BlogRecord {
   updatedAt: string;
   publishedAt?: string;
   isFeatured?: boolean;
+  /** Set when moved to Trash; purged after 7 days. */
+  deletedAt?: string;
 }
 
 /** Fields an editor supplies when creating a post. */
@@ -50,6 +52,8 @@ export interface BlogQuery {
   status?: BlogStatus;
   /** Free-text match against the Nepali and English titles. */
   search?: string;
+  /** Trash view: return only trashed posts (default hides them). */
+  onlyDeleted?: boolean;
   limit?: number;
   offset?: number;
 }

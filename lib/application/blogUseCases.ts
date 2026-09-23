@@ -126,12 +126,50 @@ export class ChangeBlogStatus {
   }
 }
 
+/** Moves a post to Trash (soft delete). Restorable for TRASH_RETENTION_DAYS. */
 export class DeleteBlog {
+  constructor(
+    private readonly blogs: BlogRepository,
+    private readonly clock: Clock,
+  ) {}
+
+  async execute(id: string): Promise<void> {
+    const existing = await this.blogs.findById(id);
+    if (!existing) throw new NotFoundError(`Blog "${id}" not found`);
+    await this.blogs.softDelete(id, this.clock.now().toISOString());
+  }
+}
+
+const TRASH_RETENTION_DAYS = 7;
+
+/** Trash view: purges posts trashed over 7 days ago, then lists the rest. */
+export class ListTrashedBlogs {
+  constructor(
+    private readonly blogs: BlogRepository,
+    private readonly clock: Clock,
+  ) {}
+
+  async execute(query: Omit<BlogQuery, "onlyDeleted"> = {}): Promise<Paginated<BlogRecord>> {
+    const cutoff = new Date(this.clock.now().getTime() - TRASH_RETENTION_DAYS * 24 * 60 * 60 * 1000);
+    await this.blogs.purgeDeletedBefore(cutoff.toISOString());
+    return this.blogs.list({ ...query, onlyDeleted: true, limit: query.limit ?? 100 });
+  }
+}
+
+export class RestoreBlog {
   constructor(private readonly blogs: BlogRepository) {}
 
   async execute(id: string): Promise<void> {
     const existing = await this.blogs.findById(id);
     if (!existing) throw new NotFoundError(`Blog "${id}" not found`);
+    await this.blogs.restore(id);
+  }
+}
+
+export class DeleteBlogForever {
+  constructor(private readonly blogs: BlogRepository) {}
+
+  async execute(id: string): Promise<void> {
     await this.blogs.delete(id);
   }
 }
@@ -163,7 +201,7 @@ export class GetPublishedBlog {
 
   async execute(slug: string): Promise<BlogRecord | null> {
     const blog = await this.blogs.findBySlug(slug);
-    if (!blog || blog.status !== "published") return null;
+    if (!blog || blog.status !== "published" || blog.deletedAt) return null;
     return blog;
   }
 }

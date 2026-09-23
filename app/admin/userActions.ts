@@ -37,12 +37,40 @@ export async function inviteUserAction(
     const path = `/invite/${invite.token}`;
     // Email the link. If SMTP is unconfigured or the send fails, the invite is
     // still valid — the admin gets the copyable link as a fallback.
-    const { sent } = await sendInviteEmail({ to: email, role: roleRaw as InviteRole, path });
-    return { status: "ok", path, email, emailed: sent };
+    const { sent, error } = await sendInviteEmail({ to: email, role: roleRaw as InviteRole, path });
+    return { status: "ok", path, email, emailed: sent, emailError: sent ? undefined : error };
   } catch (e) {
     console.error("[invite] failed", e);
     return { status: "error", message: "Could not create the invite. Try again." };
   }
+}
+
+/**
+ * Owner-only SMTP check: sends a short test message to `to` (or the owner's own
+ * address) and reports success or the exact error, so email can be diagnosed
+ * from the admin without SSH.
+ */
+export async function sendTestEmailAction(to?: string): Promise<{ ok: boolean; message: string }> {
+  let owner;
+  try {
+    owner = await requireCapability("users.manage");
+  } catch {
+    return { ok: false, message: "Only the owner can send a test email." };
+  }
+  const target = (to ?? "").trim().toLowerCase() || owner.email;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(target)) {
+    return { ok: false, message: "Enter a valid email address." };
+  }
+  const { sendMail } = await import("@/lib/infrastructure/email");
+  const result = await sendMail({
+    to: target,
+    subject: "Dristi Times — test email",
+    text: "This is a test email from the Dristi Times admin. If you got this, outgoing email works.",
+    html: "<p>This is a test email from the <strong>Dristi Times</strong> admin.</p><p>If you got this, outgoing email works.</p>",
+  });
+  return result.sent
+    ? { ok: true, message: `Test email sent to ${target}. Check the inbox and the spam folder.` }
+    : { ok: false, message: result.error ?? "Email send failed." };
 }
 
 export async function cancelInviteAction(id: string): Promise<void> {

@@ -51,6 +51,8 @@ export interface JobRecord {
   createdAt: string;
   updatedAt: string;
   publishedAt?: string;
+  /** Set when moved to Trash; purged after 7 days. */
+  deletedAt?: string;
 }
 
 /** Fields an editor supplies when creating a listing. */
@@ -81,6 +83,8 @@ export interface JobQuery {
   search?: string;
   /** Hide listings whose deadline has passed. */
   activeOnly?: boolean;
+  /** Trash view: return only trashed listings (default hides them). */
+  onlyDeleted?: boolean;
   limit?: number;
   offset?: number;
 }

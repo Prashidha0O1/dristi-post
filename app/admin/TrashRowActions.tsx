@@ -6,27 +6,31 @@ import { useState, useTransition } from "react";
 import { toaster } from "@/components/ui/toaster";
 import { ConfirmModal } from "@/components/ConfirmModal";
 
+/**
+ * Restore / Delete-forever controls for one Trash row. Shared by the article,
+ * blog and job Trash pages — the work stays in Server Actions passed in already
+ * bound to an id.
+ */
 export function TrashRowActions({
   restoreAction,
   deleteForeverAction,
   canDeleteForever,
+  itemLabel = "item",
 }: {
   restoreAction: () => Promise<void>;
   deleteForeverAction: () => Promise<void>;
   canDeleteForever: boolean;
+  /** e.g. "article", "blog post", "job" — used in the confirm/toast copy. */
+  itemLabel?: string;
 }) {
   const [pending, start] = useTransition();
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
-  const run = (fn: () => Promise<void>, requireConfirm?: boolean) => {
-    if (requireConfirm) {
-      setIsConfirmOpen(true);
-      return;
-    }
-    
+  const run = (fn: () => Promise<void>, success: string) => {
     start(async () => {
       try {
         await fn();
+        toaster.create({ type: "success", title: success });
       } catch (e) {
         toaster.create({
           type: "error",
@@ -59,7 +63,7 @@ export function TrashRowActions({
         <chakra.button
           type="button"
           disabled={pending}
-          onClick={() => run(restoreAction, false)}
+          onClick={() => run(restoreAction, "Restored")}
           {...btn}
           bg="var(--color-surface)"
           color="var(--color-body)"
@@ -71,7 +75,7 @@ export function TrashRowActions({
           <chakra.button
             type="button"
             disabled={pending}
-            onClick={() => run(deleteForeverAction, true)}
+            onClick={() => setIsConfirmOpen(true)}
             {...btn}
             bg="var(--color-surface)"
             color="var(--color-danger-fg)"
@@ -81,13 +85,13 @@ export function TrashRowActions({
           </chakra.button>
         )}
       </Flex>
-      
+
       <ConfirmModal
         isOpen={isConfirmOpen}
         onClose={() => setIsConfirmOpen(false)}
-        onConfirm={() => run(deleteForeverAction, false)}
+        onConfirm={() => run(deleteForeverAction, "Deleted permanently")}
         title="Delete Permanently"
-        description="Permanently delete this article? This cannot be undone."
+        description={`Permanently delete this ${itemLabel}? This cannot be undone.`}
         confirmText="Delete Forever"
         isDanger={true}
         isLoading={pending}

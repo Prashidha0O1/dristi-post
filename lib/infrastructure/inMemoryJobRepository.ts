@@ -33,6 +33,7 @@ export class InMemoryJobRepository implements JobRepository {
     const now = new Date();
 
     let matches = [...this.byId.values()].filter((j) => {
+      if (query.onlyDeleted ? !j.deletedAt : !!j.deletedAt) return false;
       if (status && j.status !== status) return false;
       if (provinceSlug && j.provinceSlug !== provinceSlug) return false;
       if (employmentType && j.employmentType !== employmentType) return false;
@@ -63,5 +64,21 @@ export class InMemoryJobRepository implements JobRepository {
 
   async delete(id: string): Promise<void> {
     this.byId.delete(id);
+  }
+
+  async softDelete(id: string, at: string): Promise<void> {
+    const found = this.byId.get(id);
+    if (found) this.byId.set(id, { ...found, deletedAt: at });
+  }
+
+  async restore(id: string): Promise<void> {
+    const found = this.byId.get(id);
+    if (found) this.byId.set(id, { ...found, deletedAt: undefined });
+  }
+
+  async purgeDeletedBefore(at: string): Promise<void> {
+    for (const [id, j] of this.byId) {
+      if (j.deletedAt && j.deletedAt < at) this.byId.delete(id);
+    }
   }
 }

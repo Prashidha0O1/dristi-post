@@ -3,7 +3,7 @@
 export const dynamic = "force-dynamic";
 
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { Briefcase, Plus } from "lucide-react";
+import { Briefcase, Plus, Trash2 } from "lucide-react";
 import { getContainer } from "@/lib/container";
 import { employmentTypes, isExpired } from "@/lib/domain/job";
 import {
@@ -54,9 +54,14 @@ export default async function JobsListPage({
         title="Jobs"
         subtitle={result.ok ? `${result.total} total` : undefined}
         action={
-          <ButtonLink href="/admin/jobs/new" icon={<Plus size={15} strokeWidth={2.2} aria-hidden="true" />}>
-            New Job
-          </ButtonLink>
+          <Flex gap="8px">
+            <ButtonLink href="/admin/jobs/trash" variant="secondary" icon={<Trash2 size={15} strokeWidth={2.2} aria-hidden="true" />}>
+              Trash
+            </ButtonLink>
+            <ButtonLink href="/admin/jobs/new" icon={<Plus size={15} strokeWidth={2.2} aria-hidden="true" />}>
+              New Job
+            </ButtonLink>
+          </Flex>
         }
       />
 

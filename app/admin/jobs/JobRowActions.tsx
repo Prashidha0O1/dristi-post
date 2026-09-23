@@ -90,10 +90,10 @@ export function JobRowActions({
       <ConfirmModal
         isOpen={isConfirmOpen}
         onClose={() => setIsConfirmOpen(false)}
-        onConfirm={() => handleAction(deleteAction, "Job deleted")}
-        title="Delete Job"
-        description="Delete this job listing permanently? This cannot be undone."
-        confirmText="Delete"
+        onConfirm={() => handleAction(deleteAction, "Moved to trash")}
+        title="Move to Trash"
+        description="Move this job listing to Trash? You can restore it for 7 days."
+        confirmText="Move to Trash"
         isDanger={true}
         isLoading={pending}
       />
