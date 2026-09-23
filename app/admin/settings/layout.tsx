@@ -9,6 +9,7 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
 
   const tabs = [
     { name: "General Settings", href: "/admin/settings" },
+    { name: "Policies", href: "/admin/settings/policies" },
     { name: "301 Redirects", href: "/admin/settings/redirects" },
     { name: "404 Logs", href: "/admin/settings/404-logs" },
   ];
