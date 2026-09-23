@@ -31,14 +31,24 @@ export interface SeoSettings {
   pageOverrides: PageSeoOverride[];
 }
 
+export interface PoliciesSettings {
+  editorial_ne: string;
+  editorial_en: string;
+  privacy_ne: string;
+  privacy_en: string;
+}
+
 export interface SiteSettings {
   footer: FooterSettings;
   seo: SeoSettings;
+  policies: PoliciesSettings;
 }
 
 export interface SettingsRepository {
   getFooterSettings(): Promise<FooterSettings>;
   getSeoSettings(): Promise<SeoSettings>;
+  getPoliciesSettings(): Promise<PoliciesSettings>;
   saveFooterSettings(settings: FooterSettings): Promise<void>;
   saveSeoSettings(settings: SeoSettings): Promise<void>;
+  savePoliciesSettings(settings: PoliciesSettings): Promise<void>;
 }

@@ -37,11 +37,12 @@ const QUALITY = 0.8;
  * side and re-encodes to WebP (~30% smaller than JPEG at equal quality), falling
  * back to JPEG where the browser can't encode WebP. Leaves GIFs alone.
  */
-export async function compressImage(file: File): Promise<File> {
+export async function compressImage(file: File, isAd: boolean = false): Promise<File> {
   if (file.type === "image/gif" || !file.type.startsWith("image/")) return file;
   try {
     const bitmap = await createImageBitmap(file);
-    const scale = Math.min(1, MAX_DIMENSION / Math.max(bitmap.width, bitmap.height));
+    // Ads must not be resized to fit slots perfectly. Articles/Jobs cap at 1600px.
+    const scale = isAd ? 1 : Math.min(1, MAX_DIMENSION / Math.max(bitmap.width, bitmap.height));
     const w = Math.round(bitmap.width * scale);
     const h = Math.round(bitmap.height * scale);
     const canvas = document.createElement("canvas");
@@ -54,8 +55,9 @@ export async function compressImage(file: File): Promise<File> {
     }
     ctx.drawImage(bitmap, 0, 0, w, h);
     bitmap.close();
+    const quality = isAd ? 0.95 : QUALITY;
     const encode = (type: string) =>
-      new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, type, QUALITY));
+      new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, type, quality));
     let blob = await encode("image/webp");
     // Safari < 16 silently returns PNG for unsupported types — fall back to JPEG.
     if (!blob || blob.type !== "image/webp") blob = await encode("image/jpeg");
@@ -135,8 +137,8 @@ export function ImageUploadField({
     setStatus("uploading");
 
     // Compress article/job images in the browser. Ads keep their exact pixels
-    // (the slot has a fixed size), so they are never recompressed.
-    const toUpload = placement ? file : await compressImage(file);
+    // but are now safely compressed to high-quality WebP to fix LCP performance.
+    const toUpload = await compressImage(file, !!placement);
 
     // Checked here as well as in the action: an oversize body can be rejected
     // by the host's proxy before it ever reaches the Server Action.

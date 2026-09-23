@@ -257,3 +257,11 @@ export async function searchArticles(query: string, limit = 50): Promise<Article
   const { items } = await listPublishedArticles.execute({ search: query, limit });
   return toArticleViewModels(items);
 }
+
+export const getPoliciesSettings = unstable_cache(
+  async () => {
+    return buildContainer().settings.getPoliciesSettings();
+  },
+  ["policiesSettings"],
+  { tags: ["settings"] }
+);
