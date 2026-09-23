@@ -40,6 +40,28 @@ export function TopInfoBar() {
       inr: "...",
     });
 
+    // Rates + weather are cached for the browser session so navigating between
+    // pages doesn't refire 3 external requests every time the header mounts.
+    const CACHE_KEY = `dp-topbar-${locale}`;
+    const CACHE_TTL = 30 * 60 * 1000;
+    try {
+      const raw = sessionStorage.getItem(CACHE_KEY);
+      if (raw) {
+        const cached = JSON.parse(raw) as { at: number; weather: string; usd: string; inr: string };
+        if (Date.now() - cached.at < CACHE_TTL) {
+          setInfo((prev) => ({ ...prev, weather: cached.weather, usd: cached.usd, inr: cached.inr }));
+          return;
+        }
+      }
+    } catch {}
+
+    const saved: { weather: string; usd: string; inr: string } = { weather: "", usd: "", inr: "" };
+    function persist() {
+      try {
+        sessionStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), ...saved }));
+      } catch {}
+    }
+
     async function fetchLiveRates() {
       try {
         const res = await fetch("https://open.er-api.com/v6/latest/USD");
@@ -48,11 +70,10 @@ export function TopInfoBar() {
         const npr = data.rates?.NPR;
         const inrRate = data.rates?.INR;
         if (npr) {
-          setInfo((prev) => ({
-            ...prev,
-            usd: `USD ${npr.toFixed(2)}`,
-            inr: inrRate ? `INR ${(npr / inrRate).toFixed(2)}` : prev.inr,
-          }));
+          saved.usd = `USD ${npr.toFixed(2)}`;
+          saved.inr = inrRate ? `INR ${(npr / inrRate).toFixed(2)}` : "";
+          setInfo((prev) => ({ ...prev, usd: saved.usd, inr: saved.inr || prev.inr }));
+          persist();
         }
       } catch {}
     }
@@ -100,51 +121,31 @@ export function TopInfoBar() {
         if (res.ok) {
           const data = await res.json();
           const temp = Math.round(data.current_weather?.temperature ?? 26);
-          setInfo((prev) => ({ ...prev, weather: `${displayCity} ${temp}°C` }));
+          saved.weather = `${displayCity} ${temp}°C`;
+          setInfo((prev) => ({ ...prev, weather: saved.weather }));
+          persist();
         }
       } catch (e) {}
-
-      // 2. Ask for precise GPS location
-      if (typeof navigator !== "undefined" && navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          async (position) => {
-            const { latitude, longitude } = position.coords;
-            try {
-              // Reverse geocode to get exact city
-              const geoUrl = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
-              const geoReq = await fetch(geoUrl, {
-                headers: { "Accept-Language": locale === "ne" ? "ne" : "en-US" }
-              });
-              let preciseCity = displayCity;
-              if (geoReq.ok) {
-                const geoData = await geoReq.json();
-                const address = geoData.address || {};
-                preciseCity = address.city || address.town || address.village || address.county || preciseCity;
-              }
-
-              // Fetch exact weather
-              const weatherRes = await fetch(
-                `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`
-              );
-              if (weatherRes.ok) {
-                const weatherData = await weatherRes.json();
-                const preciseTemp = Math.round(weatherData.current_weather?.temperature ?? 26);
-                setInfo((prev) => ({
-                  ...prev,
-                  weather: `${preciseCity} ${preciseTemp}°C`,
-                }));
-              }
-            } catch (err) {}
-          },
-          (error) => {
-            // User denied or error occurred; we keep the IP-based fallback
-          }
-        );
-      }
+      // No GPS prompt: asking for location on page load hurts UX and the
+      // Lighthouse Best Practices score. The IP-based city is accurate enough.
     }
 
-    fetchLiveRates();
-    fetchWeather();
+    // Defer the network work until the browser is idle, so these third-party
+    // requests don't compete with the page's own content on a slow phone.
+    const run = () => {
+      fetchLiveRates();
+      fetchWeather();
+    };
+    const w = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+    if (w.requestIdleCallback) {
+      const id = w.requestIdleCallback(run, { timeout: 4000 });
+      return () => w.cancelIdleCallback?.(id);
+    }
+    const t = window.setTimeout(run, 2500);
+    return () => window.clearTimeout(t);
   }, [locale]);
 
   if (!mounted) {

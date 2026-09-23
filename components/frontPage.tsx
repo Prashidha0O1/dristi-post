@@ -11,10 +11,17 @@ import { useLocale } from "@/lib/localeContext";
 import { provinces } from "@/lib/domain/province";
 import type { Article } from "@/lib/types";
 import type { BlogRecord } from "@/lib/domain/blog";
-import { NepaliCalendar } from "@/components/nepaliCalendar";
-import { ForexWidget } from "@/components/forexWidget";
-import { GoldSilverWidget } from "@/components/goldSilverWidget";
+import dynamic from "next/dynamic";
+import { LazyMount } from "@/components/LazyMount";
 import { PageShell } from "@/components/pageShell";
+
+// Heavy sidebar widgets are code-split and only mounted when scrolled near
+// (calendar pulls ~300 KB of year JSON + nepali-date-converter; gold/silver is
+// a third-party iframe; forex fetches on mount). Keeps them off the critical
+// path for mobile first paint.
+const NepaliCalendar = dynamic(() => import("@/components/nepaliCalendar").then((m) => m.NepaliCalendar), { ssr: false });
+const GoldSilverWidget = dynamic(() => import("@/components/goldSilverWidget").then((m) => m.GoldSilverWidget), { ssr: false });
+const ForexWidget = dynamic(() => import("@/components/forexWidget").then((m) => m.ForexWidget), { ssr: false });
 import { TimeAgo } from "@/components/timeAgo";
 import { AdSlot } from "@/components/adSlot";
 import type { AdSlots } from "@/lib/publicQueries";
@@ -206,11 +213,17 @@ function LatestLedgerRow({ article }: { article: Article }) {
 function UtilityRail() {
   return (
     <Flex direction="column" gap="0" className="dp-utility-rail-standalone">
-      <NepaliCalendar variant="default" />
+      <LazyMount minHeight="380px">
+        <NepaliCalendar variant="default" />
+      </LazyMount>
       <Box border="1px solid var(--color-border)" borderTop="none" borderRadius="0 0 4px 4px" overflow="hidden" bg="var(--color-surface)">
         <Grid templateColumns="1fr" gap="0">
-          <GoldSilverWidget variant="compact" />
-          <ForexWidget variant="compact" />
+          <LazyMount minHeight="470px">
+            <GoldSilverWidget variant="compact" />
+          </LazyMount>
+          <LazyMount minHeight="260px">
+            <ForexWidget variant="compact" />
+          </LazyMount>
         </Grid>
       </Box>
     </Flex>

@@ -26,14 +26,16 @@ async function readLocalDimensions(
   }
 }
 
-const MAX_DIMENSION = 1600;
-const JPEG_QUALITY = 0.82;
+// 1400px covers the widest rendered slot (article hero ~900px CSS @1.5x) while
+// keeping phones from downloading needlessly large files — the host has no
+// server-side resizer (images.unoptimized), so this is the only size shaping.
+const MAX_DIMENSION = 1400;
+const QUALITY = 0.8;
 
 /**
  * Compresses/downscales an image in the browser before upload: caps the longest
- * side at 1600px and re-encodes to JPEG. This keeps uploads well under the
- * server's 5MB hard limit, saving bandwidth, storage, and processing time.
- * Leaves non-images and GIFs alone.
+ * side and re-encodes to WebP (~30% smaller than JPEG at equal quality), falling
+ * back to JPEG where the browser can't encode WebP. Leaves GIFs alone.
  */
 export async function compressImage(file: File): Promise<File> {
   if (file.type === "image/gif" || !file.type.startsWith("image/")) return file;
@@ -52,12 +54,15 @@ export async function compressImage(file: File): Promise<File> {
     }
     ctx.drawImage(bitmap, 0, 0, w, h);
     bitmap.close();
-    const blob = await new Promise<Blob | null>((resolve) =>
-      canvas.toBlob(resolve, "image/jpeg", JPEG_QUALITY),
-    );
+    const encode = (type: string) =>
+      new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, type, QUALITY));
+    let blob = await encode("image/webp");
+    // Safari < 16 silently returns PNG for unsupported types — fall back to JPEG.
+    if (!blob || blob.type !== "image/webp") blob = await encode("image/jpeg");
     if (!blob || blob.size >= file.size) return file; // no win -> keep original
-    const name = file.name.replace(/\.[^.]+$/, "") + ".jpg";
-    return new File([blob], name, { type: "image/jpeg" });
+    const ext = blob.type === "image/webp" ? ".webp" : ".jpg";
+    const name = file.name.replace(/\.[^.]+$/, "") + ext;
+    return new File([blob], name, { type: blob.type });
   } catch {
     return file;
   }

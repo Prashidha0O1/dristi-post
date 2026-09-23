@@ -9,8 +9,11 @@ import { useLocale } from "@/lib/localeContext";
 import { useTheme } from "@/lib/themeContext";
 import { BreakingTicker } from "./BreakingTicker";
 import { CategoryNav } from "./CategoryNav";
-import { SearchPanel } from "./SearchPanel";
-import { MobileNav } from "./MobileNav";
+import dynamic from "next/dynamic";
+
+// Both are closed on first paint — load their code only when needed.
+const SearchPanel = dynamic(() => import("./SearchPanel").then((m) => m.SearchPanel), { ssr: false });
+const MobileNav = dynamic(() => import("./MobileNav").then((m) => m.MobileNav), { ssr: false });
 import { TopInfoBar } from "./TopInfoBar";
 import { primarySections, secondarySections } from "../data/navigation";
 import type { Lang } from "../types/navigation";

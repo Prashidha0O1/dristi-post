@@ -41,6 +41,7 @@ export function GoldSilverWidget({ variant = "default" }: { variant?: WidgetVari
           width="100%" 
           src={iframeSrc}
           title="Gold Silver Widget"
+          loading="lazy"
           scrolling="no"
           sandbox="allow-scripts allow-same-origin"
         ></iframe>
