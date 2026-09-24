@@ -155,11 +155,11 @@ export function Footer() {
         <Flex borderTop="1px solid rgba(255,255,255,0.12)" pt="16px" gap="8px" direction={{ base: "column", sm: "row" }} align={{ base: "flex-start", sm: "center" }} justify="space-between" color="rgba(255,255,255,0.4)" fontSize="11px">
           <Text>© {locale === "ne" ? "२०८३ दृष्टि टाइम्स। सर्वाधिकार सुरक्षित।" : "2026 Dristi Times. All rights reserved."}</Text>
           <Flex className={locale === "en" ? "dp-english" : ""} gap="6px" align="center">
-            <Link href="/editorial-policy"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "सम्पादकीय नीति" : "Editorial policy"}</Text></Link>
-            <Text>·</Text>
-            <Link href="/privacy-policy"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "गोपनीयता नीति" : "Privacy"}</Text></Link>
-            <Text>·</Text>
-            <Link href="/contact"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "सम्पर्क" : "Contact"}</Text></Link>
+            <Link href="/editorial-policy"><Box as="span" _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "सम्पादकीय नीति" : "Editorial policy"}</Box></Link>
+            <Box as="span">·</Box>
+            <Link href="/privacy-policy"><Box as="span" _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "गोपनीयता नीति" : "Privacy"}</Box></Link>
+            <Box as="span">·</Box>
+            <Link href="/contact"><Box as="span" _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "सम्पर्क" : "Contact"}</Box></Link>
           </Flex>
         </Flex>
       </Box>

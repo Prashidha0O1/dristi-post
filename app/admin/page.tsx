@@ -150,7 +150,7 @@ export default async function AdminDashboard() {
         >
           <Text fontWeight="700" mb="2px">Jobs table not found</Text>
           <Text>
-            The job board schema hasn&apos;t been applied to Supabase yet, so job counts show 0
+            The job board schema hasn&apos;t been applied to the database yet, so job counts show 0
             and the public /jobs page will error. Run the jobs migration to fix it.
           </Text>
         </Box>

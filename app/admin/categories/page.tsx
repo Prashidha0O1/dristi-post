@@ -30,7 +30,7 @@ export default function CategoriesPage() {
             <Text fontWeight="700" mb="2px">Read-only</Text>
             <Text>
               These come from <Text as="span" fontFamily="monospace">lib/config.ts</Text> and can&apos;t
-              be edited here yet. They must also exist as rows in the Supabase categories table, or
+              be edited here yet. They must also exist as rows in the the database categories table, or
               saving an article in that category will fail.
             </Text>
           </Box>

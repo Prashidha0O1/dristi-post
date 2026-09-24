@@ -69,7 +69,7 @@ export default async function AdsListPage() {
           <Text fontWeight="700" mb="2px">Could not load ads</Text>
           <Text>{result.message}</Text>
           <Text mt="6px" opacity={0.85}>
-            If this says the table is missing, the ads schema hasn&apos;t been applied to Supabase
+            If this says the table is missing, the ads schema hasn&apos;t been applied to the database
             yet.
           </Text>
         </Box>
