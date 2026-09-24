@@ -30,6 +30,7 @@ function readBlogForm(formData: FormData) {
     },
     slug: (formData.get("slug") as string) || undefined,
     isFeatured: formData.get("isFeatured") === "on",
+    publish: formData.get("publish") === "on",
   };
 }
 
@@ -48,10 +49,7 @@ export async function createBlogAction(
   let saved: { slug: string; status: string } | null = null;
   const failure = await runFormAction(async () => {
     await requireCapability("content.write");
-    const blog = await container.createBlog.execute({
-      ...readBlogForm(formData),
-      publish: formData.get("publish") === "on",
-    });
+    const blog = await container.createBlog.execute(readBlogForm(formData));
     saved = { slug: blog.slug, status: blog.status };
   });
   if (failure) return failure;
@@ -113,7 +111,6 @@ export async function deleteBlogAction(id: string) {
   const container = getContainer();
   await container.deleteBlog.execute(id);
   updateTag("blogs");
-  redirect("/admin/blog");
 }
 
 export async function restoreBlogAction(id: string) {

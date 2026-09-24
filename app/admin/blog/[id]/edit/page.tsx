@@ -33,6 +33,7 @@ export default async function EditBlogPage({ params }: { params: Promise<{ id: s
         <BlogForm
           action={boundAction}
           submitLabel="Save Changes"
+          showPublish={found.status === "draft"}
           defaultValues={{
             titleNe: found.title.ne,
             titleEn: found.title.en,

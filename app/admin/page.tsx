@@ -26,20 +26,19 @@ function StatCard({
   value: number;
   icon: React.ReactNode;
   tone: string;
-  href: string;
+  href?: string;
 }) {
-  return (
-    <Link href={href}>
-      <Box
-        bg="var(--color-surface)"
-        border="1px solid var(--color-border)"
-        borderRadius="10px"
-        p="18px"
-        transition="border-color 0.15s"
-        _hover={{ borderColor: "var(--color-brand)" }}
-        cursor="pointer"
-        h="full"
-      >
+  const content = (
+    <Box
+      bg="var(--color-surface)"
+      border="1px solid var(--color-border)"
+      borderRadius="10px"
+      p="18px"
+      transition="border-color 0.15s"
+      _hover={href ? { borderColor: "var(--color-brand)" } : {}}
+      cursor={href ? "pointer" : "default"}
+      h="full"
+    >
         <Flex align="center" justify="space-between" mb="10px">
           <Text fontSize="12px" fontWeight="600" color="var(--color-muted)" textTransform="uppercase" letterSpacing="0.05em">
             {label}
@@ -60,9 +59,10 @@ function StatCard({
         <Text fontSize="30px" fontWeight="800" color="var(--color-headline)" lineHeight="1">
           {value}
         </Text>
-      </Box>
-    </Link>
+    </Box>
   );
+
+  return href ? <Link href={href}>{content}</Link> : content;
 }
 
 export default async function AdminDashboard() {
@@ -71,11 +71,13 @@ export default async function AdminDashboard() {
   // Jobs can fail independently of articles — the table may not exist yet if
   // the migration hasn't been run — so it's settled separately rather than
   // taking the whole dashboard down with it.
-  const [allArticles, publishedArticles, draftArticles, recentArticles] = await Promise.all([
+  const [allArticles, publishedArticles, draftArticles, recentArticles, draftBlogs, allBlogs] = await Promise.all([
     container.listArticles.execute({ limit: 0 }),
     container.listArticles.execute({ status: "published", limit: 0 }),
     container.listArticles.execute({ status: "draft", limit: 0 }),
     container.listArticles.execute({ limit: 6 }),
+    container.listBlogs.execute({ status: "draft", limit: 0 }),
+    container.listBlogs.execute({ limit: 0 }),
   ]);
 
   const jobsResult = await container.listJobs
@@ -92,18 +94,18 @@ export default async function AdminDashboard() {
       href: "/admin/articles",
     },
     {
-      label: "Published",
-      value: publishedArticles.total,
-      icon: <SendHorizonal size={16} strokeWidth={2} aria-hidden="true" />,
+      label: "Total Blogs",
+      value: allBlogs.total,
+      icon: <Newspaper size={16} strokeWidth={2} aria-hidden="true" />,
       tone: "#16a34a",
-      href: "/admin/articles",
+      href: "/admin/blog",
     },
     {
       label: "Drafts",
-      value: draftArticles.total,
+      value: draftArticles.total + draftBlogs.total,
       icon: <FileEdit size={16} strokeWidth={2} aria-hidden="true" />,
       tone: "#ea580c",
-      href: "/admin/articles",
+      href: "/admin/drafts",
     },
     {
       label: "Jobs",

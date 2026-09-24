@@ -65,10 +65,9 @@ export function Footer() {
       <Box maxW="var(--max-content)" mx="auto" px="var(--side-pad)" pt="40px" pb="24px">
         <Grid className="dp-footer-grid" templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(2, minmax(0, 1fr))", lg: "1.35fr repeat(3, minmax(0, 1fr))" }} gap={{ base: "28px", md: "32px" }} mb="32px">
           <Box gridColumn={{ base: "1 / -1", md: "auto" }}>
-            <Text fontSize="25px" fontWeight="800" lineHeight="1" fontFamily="var(--font-mukta), sans-serif">
-              <Text as="span" color="var(--color-brand)">{locale === "ne" ? "दृष्टि" : "Dristi"}</Text>{" "}
-              <Text as="span" color="white">{locale === "ne" ? "टाइम्स" : "Times"}</Text>
-            </Text>
+            <Box mb="12px" display="inline-block" bg="white" p="8px 12px" borderRadius="6px">
+              <img src="/dristi_times_logo.svg" alt="Dristi Times Logo" style={{ height: "72px", width: "auto" }} />
+            </Box>
             <Text mt="12px" maxW="260px" color="rgba(255,255,255,0.55)" fontSize="13px" lineHeight="1.6">
               {locale === "ne" ? footer.description_ne || "नेपालका समाचार, विचार र उपयोगी जानकारीलाई स्पष्ट र जिम्मेवार ढंगले प्रस्तुत गर्ने डिजिटल न्यूजरुम।" : footer.description_en || "A digital newsroom presenting Nepal's news, ideas, and useful information with clarity and responsibility."}
             </Text>
