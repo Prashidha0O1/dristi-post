@@ -77,13 +77,17 @@ export class UpdateBlog {
       });
     }
 
-    const { slug: _ignored, ...rest } = changes;
+    const { slug: _ignored, publish, ...rest } = changes;
     const updated: BlogRecord = {
       ...existing,
       ...rest,
       slug,
       updatedAt: this.clock.now().toISOString(),
     };
+    if (publish) {
+      updated.status = "published";
+      if (!updated.publishedAt) updated.publishedAt = this.clock.now().toISOString();
+    }
 
     await this.blogs.save(updated);
     return updated;

@@ -314,6 +314,7 @@ export function RichTextField({
   const [tableOpen, setTableOpen] = useState(false);
   const [tableRows, setTableRows] = useState("3");
   const [tableCols, setTableCols] = useState("3");
+  const [selectionUpdate, setSelectionUpdate] = useState(0);
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -329,6 +330,7 @@ export function RichTextField({
       TableCell,
     ],
     content: toInitialHtml(defaultValue),
+    onTransaction() { setSelectionUpdate(s => s + 1); },
     onUpdate({ editor }) {
       // isEmpty covers tables/images too (getText would be empty for a table).
       setHtml(editor.isEmpty ? "" : editor.getHTML());

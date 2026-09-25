@@ -25,19 +25,9 @@ interface SiteHeaderProps {
 
 function Wordmark({ small, lang }: { small: boolean; lang: Lang }) {
   return (
-    <Link href="/" className="flex items-baseline gap-2" aria-label="दृष्टि टाइम्स — home">
-      <span
-        className={`font-np font-extrabold leading-none tracking-tight text-crimson transition-all duration-300 ${
-          small ? "text-2xl" : "text-[32px]"
-        }`}
-      >
-        दृष्टि<span className="text-ink dark:text-white">टाइम्स</span>
-      </span>
-      {!small && (
-        <span className="hidden text-[10px] font-semibold uppercase tracking-[0.28em] text-ink-400 sm:inline">
-          {lang === "np" ? "भरपर्दो समाचार" : "Nepal's trusted news"}
-        </span>
-      )}
+    <Link href="/" className="flex items-center gap-2" aria-label="दृष्टि टाइम्स — home">
+      <img src="/dristi_times_logo.svg" alt="Dristi Times Logo" className={`transition-all duration-300 dark:invert dark:hue-rotate-180 ${small ? "h-10" : "h-[72px]"}`} />
+      
     </Link>
   );
 }

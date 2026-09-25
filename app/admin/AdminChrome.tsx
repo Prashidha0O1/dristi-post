@@ -41,10 +41,9 @@ function SidebarContent({ user, pathname, nav, onClose }: { user: any; pathname:
     <>
       <Box px="18px" py="18px" borderBottom="1px solid rgba(255,255,255,0.1)">
         <Link href="/" onClick={onClose}>
-          <Text fontWeight="900" fontSize="19px" fontFamily="var(--font-mukta), sans-serif" lineHeight="1.2">
-            <Text as="span" color="var(--color-brand)">दृष्टि</Text>
-            <Text as="span" color="white">पोस्ट</Text>
-          </Text>
+          <Box display="inline-block" className="dark:invert dark:hue-rotate-180">
+            <img src="/dristi_times_logo.svg" alt="Dristi Times Logo" style={{ width: "100%", maxWidth: "140px", height: "auto" }} />
+          </Box>
         </Link>
         <Text fontSize="10px" color="rgba(255,255,255,0.45)" mt="3px" textTransform="uppercase" letterSpacing="0.14em" fontWeight="600">
           Admin Panel
@@ -251,6 +250,7 @@ export function AdminChrome({
             variant="ghost"
             size="sm"
             onClick={onOpen}
+            color="var(--color-headline)"
           >
             <Menu size={20} />
           </IconButton>

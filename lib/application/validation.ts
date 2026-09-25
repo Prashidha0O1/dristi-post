@@ -244,14 +244,19 @@ export function validateNewBlog(input: NewBlogInput): void {
   if (input.excerpt !== undefined) {
     checkLocalised(issues, "excerpt", input.excerpt, "Excerpt", MAX_EXCERPT);
   }
-  checkLocalised(issues, "body", input.body, "Body");
-  checkSlug(issues, input.slug);
+  
+  if (input.publish) {
+    checkLocalised(issues, "body", input.body, "Body");
+    if (!input.heroImage?.trim()) {
+      issues.heroImage = "A hero image is required";
+    }
+  }
 
-  if (!input.heroImage?.trim()) {
-    issues.heroImage = "A hero image is required";
-  } else if (!/^https?:\/\//i.test(input.heroImage) && !input.heroImage.startsWith("/")) {
+  if (input.heroImage?.trim() && !/^https?:\/\//i.test(input.heroImage) && !input.heroImage.startsWith("/")) {
     issues.heroImage = "Image must be an absolute URL or a site-relative path";
   }
+
+  checkSlug(issues, input.slug);
 
   if (Object.keys(issues).length > 0) throw new ValidationError(issues);
 }
@@ -263,10 +268,11 @@ export function validateBlogUpdate(input: BlogUpdateInput): void {
   if (input.excerpt !== undefined) {
     checkLocalised(issues, "excerpt", input.excerpt, "Excerpt", MAX_EXCERPT);
   }
-  if (input.body !== undefined) checkLocalised(issues, "body", input.body, "Body");
+  if (input.body !== undefined && input.publish) checkLocalised(issues, "body", input.body, "Body");
   checkSlug(issues, input.slug);
-  if (input.heroImage !== undefined && !input.heroImage.trim()) {
-    issues.heroImage = "Hero image cannot be emptied";
+  
+  if (input.publish && input.heroImage !== undefined && !input.heroImage.trim()) {
+    issues.heroImage = "Hero image cannot be emptied when publishing";
   }
 
   if (Object.keys(issues).length > 0) throw new ValidationError(issues);

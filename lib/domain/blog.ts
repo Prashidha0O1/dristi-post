@@ -46,7 +46,7 @@ export interface NewBlogInput {
 }
 
 /** Every field an editor is allowed to change after creation. */
-export type BlogUpdateInput = Partial<Omit<NewBlogInput, "publish">>;
+export type BlogUpdateInput = Partial<NewBlogInput>;
 
 export interface BlogQuery {
   status?: BlogStatus;

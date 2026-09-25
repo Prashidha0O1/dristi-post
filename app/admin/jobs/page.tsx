@@ -80,7 +80,7 @@ export default async function JobsListPage({
           <Text>{result.message}</Text>
           <Text mt="6px" opacity={0.85}>
             If this says the table is missing, the job board schema hasn&apos;t been applied to
-            Supabase yet.
+            the database yet.
           </Text>
         </Box>
       )}

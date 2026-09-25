@@ -65,10 +65,9 @@ export function Footer() {
       <Box maxW="var(--max-content)" mx="auto" px="var(--side-pad)" pt="40px" pb="24px">
         <Grid className="dp-footer-grid" templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(2, minmax(0, 1fr))", lg: "1.35fr repeat(3, minmax(0, 1fr))" }} gap={{ base: "28px", md: "32px" }} mb="32px">
           <Box gridColumn={{ base: "1 / -1", md: "auto" }}>
-            <Text fontSize="25px" fontWeight="800" lineHeight="1" fontFamily="var(--font-mukta), sans-serif">
-              <Text as="span" color="var(--color-brand)">{locale === "ne" ? "दृष्टि" : "Dristi"}</Text>{" "}
-              <Text as="span" color="white">{locale === "ne" ? "टाइम्स" : "Times"}</Text>
-            </Text>
+            <Box mb="12px" display="inline-block" bg="white" p="8px 12px" borderRadius="6px">
+              <img src="/dristi_times_logo.svg" alt="Dristi Times Logo" style={{ height: "72px", width: "auto" }} />
+            </Box>
             <Text mt="12px" maxW="260px" color="rgba(255,255,255,0.55)" fontSize="13px" lineHeight="1.6">
               {locale === "ne" ? footer.description_ne || "नेपालका समाचार, विचार र उपयोगी जानकारीलाई स्पष्ट र जिम्मेवार ढंगले प्रस्तुत गर्ने डिजिटल न्यूजरुम।" : footer.description_en || "A digital newsroom presenting Nepal's news, ideas, and useful information with clarity and responsibility."}
             </Text>
@@ -155,11 +154,11 @@ export function Footer() {
         <Flex borderTop="1px solid rgba(255,255,255,0.12)" pt="16px" gap="8px" direction={{ base: "column", sm: "row" }} align={{ base: "flex-start", sm: "center" }} justify="space-between" color="rgba(255,255,255,0.4)" fontSize="11px">
           <Text>© {locale === "ne" ? "२०८३ दृष्टि टाइम्स। सर्वाधिकार सुरक्षित।" : "2026 Dristi Times. All rights reserved."}</Text>
           <Flex className={locale === "en" ? "dp-english" : ""} gap="6px" align="center">
-            <Link href="/editorial-policy"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "सम्पादकीय नीति" : "Editorial policy"}</Text></Link>
-            <Text>·</Text>
-            <Link href="/privacy-policy"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "गोपनीयता नीति" : "Privacy"}</Text></Link>
-            <Text>·</Text>
-            <Link href="/contact"><Text _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "सम्पर्क" : "Contact"}</Text></Link>
+            <Link href="/editorial-policy"><Box as="span" _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "सम्पादकीय नीति" : "Editorial policy"}</Box></Link>
+            <Box as="span">·</Box>
+            <Link href="/privacy-policy"><Box as="span" _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "गोपनीयता नीति" : "Privacy"}</Box></Link>
+            <Box as="span">·</Box>
+            <Link href="/contact"><Box as="span" _hover={{ color: "white" }} transition="color 150ms ease">{locale === "ne" ? "सम्पर्क" : "Contact"}</Box></Link>
           </Flex>
         </Flex>
       </Box>
