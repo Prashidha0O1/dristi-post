@@ -202,7 +202,7 @@ export default function ArticlePageClient({
               <SectionHeader title={locale === "ne" ? "सम्बन्धित समाचार" : "Related News"} accent={catColor} />
               <SimpleGrid columns={{ base: 1, sm: 2 }} gap="18px">
                 {related.map((a) => (
-                  <NewsCard key={a.id} article={a} variant="compact" imageHeight="140px" />
+                  <NewsCard key={a.id} article={a} variant="compact" />
                 ))}
               </SimpleGrid>
             </Box>

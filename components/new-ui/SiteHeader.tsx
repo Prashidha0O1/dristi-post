@@ -26,7 +26,7 @@ interface SiteHeaderProps {
 function Wordmark({ small, lang }: { small: boolean; lang: Lang }) {
   return (
     <Link href="/" className="flex items-center gap-2" aria-label="दृष्टि टाइम्स — home">
-      <img src="/dristi_times_logo.svg" alt="Dristi Times Logo" className={`transition-all duration-300 dark:invert dark:hue-rotate-180 ${small ? "h-10" : "h-[72px]"}`} />
+      <img src="/dristi_times_logo.svg" alt="Dristi Times Logo" className={`transition-all duration-300 dark:bg-white dark:p-1 dark:rounded-md ${small ? "h-10" : "h-[72px]"}`} />
       
     </Link>
   );
@@ -39,8 +39,7 @@ export function SiteHeader({ variant = "editorial", showBreakingTicker = true }:
   const lang: Lang = locale === "ne" ? "np" : "en";
   const dark = resolved === "dark";
 
-  const [activeId, setActiveId] = useState("home");
-  const [searchOpen, setSearchOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [tickerVisible, setTickerVisible] = useState(true);
   const [condensed, setCondensed] = useState(false);
@@ -48,18 +47,11 @@ export function SiteHeader({ variant = "editorial", showBreakingTicker = true }:
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 30, mass: 0.3 });
 
-  useEffect(() => {
-    // Resolved by matching real hrefs rather than reading a path segment by
-    // index: single-segment routes like /calendar or /blog have no segment[1],
-    // so the old index lookup fell through to "home" and wrongly underlined
-    // गृहपृष्ठ. Primary is searched first so a section that also appears under
-    // "थप" (e.g. /category/world) highlights its top-level tab.
-    const matches = (href: string) =>
-      href === "/" ? pathname === "/" : pathname === href || Boolean(pathname?.startsWith(`${href}/`));
-    const hit =
-      primarySections.find((s) => matches(s.href)) ?? secondarySections.find((s) => matches(s.href));
-    setActiveId(hit ? hit.id : "");
-  }, [pathname]);
+  const matches = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || Boolean(pathname?.startsWith(`${href}/`));
+  const hit =
+    primarySections.find((s) => matches(s.href)) ?? secondarySections.find((s) => matches(s.href));
+  const activeId = hit ? hit.id : "";
 
   useEffect(() => {
     const onScroll = () => {
@@ -116,7 +108,7 @@ export function SiteHeader({ variant = "editorial", showBreakingTicker = true }:
 
           {!stacked && (
             <div className="ml-4 hidden lg:block">
-              <CategoryNav lang={lang} activeId={activeId} onSelect={setActiveId} compact={condensed} layoutScope="inline" />
+              <CategoryNav lang={lang} activeId={activeId} onSelect={() => {}} compact={condensed} layoutScope="inline" />
             </div>
           )}
 
@@ -214,7 +206,7 @@ export function SiteHeader({ variant = "editorial", showBreakingTicker = true }:
         {stacked && (
           <div className="hidden border-t border-paper-100 lg:block dark:border-ink-700">
             <div className="mx-auto max-w-[var(--max-content)] px-[var(--side-pad)]">
-              <CategoryNav lang={lang} activeId={activeId} onSelect={setActiveId} layoutScope="stacked" />
+              <CategoryNav lang={lang} activeId={activeId} onSelect={() => {}} layoutScope="stacked" />
             </div>
           </div>
         )}
@@ -232,7 +224,7 @@ export function SiteHeader({ variant = "editorial", showBreakingTicker = true }:
         open={menuOpen}
         lang={lang}
         activeId={activeId}
-        onSelect={setActiveId}
+        onSelect={() => {}}
         onClose={() => setMenuOpen(false)}
         onLangChange={(l) => setLocale(l === "np" ? "ne" : "en")}
       />

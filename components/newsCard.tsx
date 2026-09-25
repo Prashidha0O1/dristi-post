@@ -33,7 +33,7 @@ export function NewsCard({
   const { localized } = useLocale();
 
   // Callers may pin a height; otherwise fall back to the 16:9 ratio.
-  const imgSize = imageHeight ? { h: imageHeight } : { aspectRatio: 16 / 9 };
+  const imgSize = { aspectRatio: 16 / 9 };
 
   const title = localized(article.title);
   const excerpt = localized(article.excerpt);

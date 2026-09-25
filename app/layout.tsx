@@ -5,6 +5,7 @@ import { BackToTop } from "@/components/BackToTop";
 import { siteUrl } from "@/lib/siteUrl";
 import { getFooterSettings, getSeoSettings } from "@/lib/publicQueries";
 import { SettingsProvider } from "@/lib/settingsContext";
+import { GlobalLayoutWrapper } from "@/components/GlobalLayoutWrapper";
 import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -41,7 +42,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <body suppressHydrationWarning>
         <Providers>
           <SettingsProvider footer={footerSettings} seo={seoSettings}>
-          {children}
+          <GlobalLayoutWrapper>{children}</GlobalLayoutWrapper>
           <BackToTop />
         </SettingsProvider>
           </Providers>
