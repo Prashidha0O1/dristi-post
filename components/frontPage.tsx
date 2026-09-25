@@ -85,7 +85,7 @@ function StoryImage({
 }) {
   return (
     <Box className={`dp-image-wrap ${className}`} position="relative" h={height} style={aspectRatio ? { aspectRatio } : undefined} overflow="hidden" borderRadius="3px" bg="var(--color-card-alt)">
-      <Image src={article.image} alt={alt} fill priority={priority} fetchPriority={priority ? "high" : "auto"} sizes={sizes} className="dp-image" style={{ objectFit: "cover" }} />
+      <Image src={article.image} alt={alt} fill priority={priority} sizes={sizes} className="dp-image" style={{ objectFit: "cover" }} />
     </Box>
   );
 }

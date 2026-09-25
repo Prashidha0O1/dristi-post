@@ -26,7 +26,7 @@ interface SiteHeaderProps {
 function Wordmark({ small, lang }: { small: boolean; lang: Lang }) {
   return (
     <Link href="/" className="flex items-center gap-2" aria-label="दृष्टि टाइम्स — home">
-      <img src="/dristi_times_logo.svg" alt="Dristi Times Logo" className={`transition-all duration-300 dark:bg-white dark:p-1.5 dark:rounded-md ${small ? "h-10" : "h-[72px]"}`} />
+      <img src="/dristi_times_logo.svg" alt="Dristi Times Logo" className={`transition-all duration-300 dark:invert dark:hue-rotate-180 ${small ? "h-10" : "h-[72px]"}`} />
       
     </Link>
   );

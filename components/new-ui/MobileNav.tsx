@@ -39,7 +39,7 @@ export function MobileNav({ open, lang, activeId, onSelect, onClose, onLangChang
             className="fixed inset-y-0 right-0 z-50 flex w-[min(360px,88vw)] flex-col bg-white lg:hidden dark:bg-ink-800"
           >
             <div className="flex items-center justify-between border-b border-paper-200 px-5 py-4 dark:border-ink-700">
-              <img src="/dristi_times_logo.svg" alt="Dristi Times Logo" className="h-12 w-auto dark:bg-white dark:p-1 dark:rounded-md" />
+              <img src="/dristi_times_logo.svg" alt="Dristi Times Logo" className="h-12 w-auto dark:invert dark:hue-rotate-180" />
               <button
                 type="button"
                 onClick={onClose}

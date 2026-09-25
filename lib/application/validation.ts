@@ -273,9 +273,6 @@ export function validateBlogUpdate(input: BlogUpdateInput): void {
   
   if (input.publish && input.heroImage !== undefined && !input.heroImage.trim()) {
     issues.heroImage = "Hero image cannot be emptied when publishing";
-  } else if (input.heroImage !== undefined && !input.heroImage.trim() && !input.publish) {
-    // allow emptying if just drafting? Sure, but it shouldn't be empty if it's already published.
-    // The use case doesn't know if it's already published. Let's just say if you empty it, it's fine for drafts.
   }
 
   if (Object.keys(issues).length > 0) throw new ValidationError(issues);
