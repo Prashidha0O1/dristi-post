@@ -41,7 +41,7 @@ function SidebarContent({ user, pathname, nav, onClose }: { user: any; pathname:
     <>
       <Box px="18px" py="18px" borderBottom="1px solid rgba(255,255,255,0.1)">
         <Link href="/" onClick={onClose}>
-          <Box display="inline-block" className="dark:invert dark:hue-rotate-180">
+          <Box bg="white" p="6px 10px" borderRadius="6px" display="inline-block">
             <img src="/dristi_times_logo.svg" alt="Dristi Times Logo" style={{ width: "100%", maxWidth: "140px", height: "auto" }} />
           </Box>
         </Link>
